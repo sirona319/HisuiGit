@@ -61,27 +61,6 @@ public class EnemyBase : MonoBehaviour
         }
 
 
-        //for (int i = 0; i < (int)enemyData.attackType.Length; i++)
-        //{
-        //    Type typeClass = Type.GetType(enemyData.attackType[i].ToString());
-
-        //    if (baseMagazine.Values.GetType().FullName == atkType.ToString())
-        //    {
-        //        //baseMagazine[i] = (BaseMagazine)gameObject.AddComponent(typeClass);
-
-        //        //baseMagazine[i].Initialize();
-
-
-        //        //baseMagazine[i] = (BaseMagazine)gameObject.AddComponent(typeClass);
-
-        //        //baseMagazine[i].Initialize();
-
-        //        var magazine = (BaseMagazine)typeClass;
-        //        //return 
-
-        //    }
-        //}
-
         return null;
     }
 
