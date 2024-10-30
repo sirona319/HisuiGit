@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - FxTemporaire
+  - ExitErea
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - P
+  - E
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 3333767641
+    locked: 0
+  - name: Bullet
+    uniqueID: 4064863901
+    locked: 0
+  - name: Enemy
+    uniqueID: 866118371
+    locked: 0
+  - name: Player
+    uniqueID: 1299838535
+    locked: 0
+  m_RenderingLayers:
+  - Default

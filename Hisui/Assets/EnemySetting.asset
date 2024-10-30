@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd2c18130d084441802761e204ff96f, type: 3}
+  m_Name: EnemySetting
+  m_EditorClassIdentifier: 
+  DataList:
+  - Id: JerryNormal
+    moveType: 0
+    attackType: 0200000000000000
+    Speed: 3
+    HpMax: 1
+    Hp: 1
+    AtkInterval: 1
+    FirstTargetPlayer: 0
+  - Id: JerryFive
+    moveType: 0
+    attackType: 
+    Speed: 3
+    HpMax: 1
+    Hp: 1
+    AtkInterval: 1
+    FirstTargetPlayer: 0
+  - Id: JerryMoveCircle
+    moveType: 0
+    attackType: 
+    Speed: 3
+    HpMax: 1
+    Hp: 1
+    AtkInterval: 1
+    FirstTargetPlayer: 0
+  - Id: JerryMovePoint
+    moveType: 1
+    attackType: 
+    Speed: 3
+    HpMax: 1
+    Hp: 1
+    AtkInterval: 1
+    FirstTargetPlayer: 1
