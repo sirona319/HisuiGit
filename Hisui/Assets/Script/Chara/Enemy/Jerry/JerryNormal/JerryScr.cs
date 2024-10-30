@@ -14,6 +14,7 @@ public class JerryScr : EnemyBase
 
     void Start()
     {
+        base.StartInit();
         base.Init();
 
         basePosition = transform.position;
@@ -31,10 +32,13 @@ public class JerryScr : EnemyBase
 
 
 
-    public int ReturnStateType(int stateType)
+    public int JerryReturnStateType(int stateType)
     {
         if (IsAttack)
             return (int)JerryCtr.State.Jerry_Attack;
+
+        else if (IsMove)
+            return (int)JerryCtr.State.Jerry_Move;
 
 
         //if (enemyData.moveType == EnemyData.MoveType.random)

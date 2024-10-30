@@ -39,7 +39,7 @@ public class BaseJerry_MoveCircle : StateChildBase
         var pScr = player.GetComponent<PlayerScr2D>();
 
 
-        if (GetComponent<EnemyBase>().enemyData.moveType == EnemyData.MoveType.CircleMove)
+        //if (GetComponent<EnemyBase>().enemyData.moveType == EnemyData.MoveType.CircleMove)
             //using UniRx必要
             pScr.prePosDiff.Subscribe(prePosDiff => UpdatePos(pScr));
     }

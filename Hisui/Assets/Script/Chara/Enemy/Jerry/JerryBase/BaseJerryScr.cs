@@ -37,8 +37,8 @@ public class BaseJerryScr : EnemyBase
     {
         //É_ÉÅÅ[ÉW
 
-        if (enemyData.moveType == EnemyData.MoveType.RandomMove)
-            return (int)BaseJerryCtr.State.BaseJerry_Move;
+        //if (enemyData.moveType == EnemyData.MoveType.RandomMove)
+        //    return (int)BaseJerryCtr.State.BaseJerry_Move;
 
         //if (enemyData.moveType == EnemyData.MoveType.random)
         //    return (int)BaseJerryCtr.State.BaseJerry_Move;

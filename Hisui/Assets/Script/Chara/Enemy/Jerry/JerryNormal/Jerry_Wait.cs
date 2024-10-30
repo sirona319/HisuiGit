@@ -45,7 +45,7 @@ public class Jerry_Wait : StateChildBase
         //else if (GetComponent<EnemyBase>().moveType == EnemyBase.MoveType.point)
         //    return (int)SlimeCtr.State.Slime_MovePoint;//　ポイントムーブ
 
-        return GetComponent<JerryScr>().ReturnStateType(StateType);
+        return GetComponent<JerryScr>().JerryReturnStateType(StateType);
 
 
         //return StateType;

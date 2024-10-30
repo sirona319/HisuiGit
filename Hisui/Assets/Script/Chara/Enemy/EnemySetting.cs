@@ -26,7 +26,7 @@ public class EnemyData
 
     //public EnemyBase a;
 
-    public MoveType moveType;
+    public MoveType[] moveType;
     public AttackType[] attackType;
 
     //public MoveType moveType = MoveType.random;

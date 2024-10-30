@@ -16,15 +16,13 @@ public class RandomMove : BaseMove
     {
         base.Initialize();
 
-        movePos = new Vector3[4];
-
-        //pos2D.x = transform.position.x;
-        //pos2D.y = transform.position.y;
-
 
         var bPos = GetComponent<EnemyBase>().basePosition;
 
         MOVEXY = GetComponent<JerryScr>().moveRandXZ;
+
+
+        movePos = new Vector3[4];
 
         movePos[0] = bPos;
         movePos[0].x += MOVEXY;
@@ -38,26 +36,13 @@ public class RandomMove : BaseMove
 
     public override void MoveEnter()
     {
-        //m_rb.linearVelocity = Vector3.zero;
-        var moveRandomValue = Random.Range(0, movePos.Length);
-
-
-
-        targetPos =
-        movePos[moveRandomValue] + new Vector3
-        (Random.Range(-MOVEXY, MOVEXY),
-        Random.Range(-MOVEXY, MOVEXY),
-        0);
+        MovePointSet();
     }
 
     public override void MoveUpdate()
     {
 
         Vector3 movement = transform.up * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
-
-        //2D
-        //movement.y = movement.z;
-        movement.z = 0;
 
         m_rb.MovePosition(m_rb.position + movement);
 
@@ -70,8 +55,26 @@ public class RandomMove : BaseMove
         //2DÅ@Vector3.forwardÅ®Vector3.up
         Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, targetDirection.normalized);
 
-
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, INTERPOLANT * Time.deltaTime);
+
+
+        float len = Vector3.Distance(transform.position, targetPos);
+        if (len < ENDMOVELEN)
+        {
+            //à⁄ìÆínì_ÇÃçƒê›íË
+            MovePointSet();
+        }
+    }
+
+    void MovePointSet()
+    {
+        var moveRandomValue = Random.Range(0, movePos.Length);
+
+        targetPos =
+        movePos[moveRandomValue] + new Vector3
+        (Random.Range(-MOVEXY, MOVEXY),
+        Random.Range(-MOVEXY, MOVEXY),
+        0);
     }
 
 

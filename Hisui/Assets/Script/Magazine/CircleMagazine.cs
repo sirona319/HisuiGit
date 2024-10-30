@@ -25,16 +25,16 @@ public class CircleMagazine : BaseMagazine
 
     public override void MagazineUpdate()
     {
-        bulletInterval -= Time.deltaTime;
+        //bulletInterval -= Time.deltaTime;
 
 
-        if (bulletInterval > SHOTTIME)
-            return;
+        //if (bulletInterval > SHOTTIME)
+        //    return;
 
         CircleShot();
 
-        if(bulletInterval <= 0)
-        bulletInterval = MAXBULLETINTERVAL;
+        //if(bulletInterval <= 0)
+        //bulletInterval = MAXBULLETINTERVAL;
     }
 
 

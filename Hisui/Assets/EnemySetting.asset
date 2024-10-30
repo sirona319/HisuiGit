@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DataList:
   - Id: JerryNormal
-    moveType: 0
-    attackType: 0200000000000000
+    moveType: 00000000
+    attackType: 01000000
     Speed: 3
     HpMax: 1
     Hp: 1
-    AtkInterval: 1
+    AtkInterval: 0
     FirstTargetPlayer: 0
   - Id: JerryFive
-    moveType: 0
+    moveType: 
     attackType: 
     Speed: 3
     HpMax: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
     AtkInterval: 1
     FirstTargetPlayer: 0
   - Id: JerryMoveCircle
-    moveType: 0
+    moveType: 
     attackType: 
     Speed: 3
     HpMax: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     AtkInterval: 1
     FirstTargetPlayer: 0
   - Id: JerryMovePoint
-    moveType: 1
+    moveType: 
     attackType: 
     Speed: 3
     HpMax: 1
