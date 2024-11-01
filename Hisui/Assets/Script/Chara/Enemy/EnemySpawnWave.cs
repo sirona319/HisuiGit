@@ -47,7 +47,7 @@ public class EnemySpawnWave : MonoBehaviour
         if(triggerEnemys==null)
         {
             var enemy = Instantiate(spawns[enemyCount], transform.position, Quaternion.identity);
-            enemy.GetComponent<EnemyBase>().basePosition = spawnLocations[enemyCount].transform.position;
+            //enemy.GetComponent<EnemyBase>().basePosition = spawnLocations[enemyCount].transform.position;
 
             return;
         }
@@ -158,10 +158,11 @@ public class EnemySpawnWave : MonoBehaviour
         //}
 
         //else
-            enemy = Instantiate(obj, transform.position, Quaternion.identity);
+        //var playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        enemy = Instantiate(obj, transform.position, Quaternion.identity);
 
 
-        enemy.GetComponent<EnemyBase>().basePosition = bPos;
+        //enemy.GetComponent<EnemyBase>().basePosition = bPos;
 
         enemy.GetComponent<EnemyBase>().findName = obj.name;
 

@@ -44,20 +44,19 @@ public class Jerry_Move : StateChildBase
         if (GetComponent<EnemyBase>().IsDamage)
             GetComponent<EnemyBase>().ReturnStateTypeDamage();
 
-        //マガジンの更新
-        GetComponent<JerryScr>().AttackMagazineUpdateAll();
-
 
         //移動の更新
         foreach (var move in GetComponent<JerryScr>().baseMove)
             move.MoveUpdate();
 
+        //マガジンの更新
+        GetComponent<JerryScr>().AttackMagazineUpdateAll();
 
 
         //if (stateTime > GetComponent<EnemyBase>().enemyData.AtkInterval)
         //{
-            //GetComponent<JerryScr>().IsAttack = true;
-            //return GetComponent<JerryScr>().JerryReturnStateType(StateType);
+        //GetComponent<JerryScr>().IsAttack = true;
+        //return GetComponent<JerryScr>().JerryReturnStateType(StateType);
         //}
 
         return (int)StateType;

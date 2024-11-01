@@ -59,7 +59,7 @@ public class BaseJerry_Damage : StateChildBase
 
         if (gameObject.GetComponent<EnemyBase>().IsDead)
         {
-            const int DEAD = 1;
+            const int DEAD = 4;
             return DEAD;
         }
 

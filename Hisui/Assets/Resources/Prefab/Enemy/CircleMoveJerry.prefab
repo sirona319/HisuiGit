@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8548548469705174974}
   - component: {fileID: 8931737795480566989}
   m_Layer: 7
-  m_Name: JerryMoveCircle
+  m_Name: CircleMoveJerry
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

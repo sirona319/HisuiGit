@@ -10,22 +10,10 @@ public class Jerry_Dead : StateChildBase
 
     private ParticleSystem deadParticle;//パーティクル
 
-    //        fireParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/MyCFXR4 Sun")
-
-    //private TresureBox tresureBox;//宝箱
-
-    //void Start()
-    //{
-    //    tresureBox = MyLib.GetComponentLoad<TresureBox>("prefab/Item/MyChest_0002");
-
-    //    deadParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/MyCFXR Explosion Smoke 2 Solo (HDR)");
-    //}
 
     public override void Initialize(int stateNo)
     {
         base.Initialize(stateNo);
-
-        //tresureBox = MyLib.GetComponentLoad<TresureBox>("prefab/Item/MyChest_0002");
 
         deadParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/Flash_star_ellow_green");
     }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7200834672426336003}
   - component: {fileID: 4713162415367765511}
   m_Layer: 7
-  m_Name: JerryMovePoint
+  m_Name: PointMoveJerry
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1138339843234153113}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &174074681257356876
@@ -152,7 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateController: {fileID: 4713162415367765511}
-  movePoints: []
+  movePoints:
+  - {fileID: 1138339843234153113}
 --- !u!114 &4713162415367765511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +167,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70f7ee64e7446e48bb6e798b1d78a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8837308029540357026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1138339843234153113}
+  m_Layer: 7
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1138339843234153113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837308029540357026}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 882662953647236581}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

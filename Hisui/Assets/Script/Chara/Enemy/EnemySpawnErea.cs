@@ -119,7 +119,7 @@ public class EnemySpawnErea : MonoBehaviour
         //Instantiate(obj, transform.position, Quaternion.identity);
 
         var enemy = Instantiate(obj, transform.position, Quaternion.identity);
-        enemy.GetComponent<EnemyBase>().basePosition = bPos;
+        //enemy.GetComponent<EnemyBase>().basePosition = bPos;
 
     }
 

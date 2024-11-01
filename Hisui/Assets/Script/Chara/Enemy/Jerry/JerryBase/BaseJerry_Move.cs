@@ -24,9 +24,9 @@ public class BaseJerry_Move : StateChildBase
         //pos2D.y = transform.position.y;
 
 
-        var bPos = GetComponent<EnemyBase>().basePosition;
+        Vector3 bPos = Vector3.zero;
 
-        MOVEXY = GetComponent<JerryScr>().moveRandXZ;
+        MOVEXY = 0;
 
         movePos[0] = bPos;
         movePos[0].x += MOVEXY;

@@ -19,24 +19,25 @@ public class BaseJerry_MovePoint : StateChildBase
     public override void Initialize(int stateType)
     {
         base.Initialize(stateType);
+        m_rb = GetComponent<Rigidbody>();
 
         var eBase = GetComponent<JerryScr>();
-        m_rb = GetComponent<Rigidbody>();
+
         //m_anim = GetComponent<Animator>();
 
 
 
 
 
-        if (eBase.enemyData.FirstTargetPlayer)
-        {
-            var p = GameObject.FindGameObjectWithTag("Player");
+        //if (eBase.enemyData.FirstTargetPlayer)
+        //{
+        //    var p = GameObject.FindGameObjectWithTag("Player");
 
-            moveTrans = new Transform[1];
-            moveTrans[0] = p.transform;
-        }
-        else
-            moveTrans = eBase.movePoints;
+        //    moveTrans = new Transform[1];
+        //    moveTrans[0] = p.transform;
+        //}
+        //else
+        //    moveTrans = eBase.movePoints;
 
 
         //if (moveTrans.Length <= 0)
@@ -44,7 +45,7 @@ public class BaseJerry_MovePoint : StateChildBase
 
 
 
-        targetNo = eBase.firstTargetPoints;
+        targetNo = 0;
 
     }
 
@@ -107,8 +108,8 @@ public class BaseJerry_MovePoint : StateChildBase
         float len = Vector3.Distance(transform.position, moveTrans[targetNo].position);
         if (len < ENDMOVELEN)
         {
-            if (GetComponent<BaseJerryScr>().enemyData.FirstTargetPlayer)
-                return GetComponent<BaseJerryScr>().ReturnStateMoveType(StateType);
+            //if (GetComponent<BaseJerryScr>().enemyData.FirstTargetPlayer)
+           //     return GetComponent<BaseJerryScr>().ReturnStateMoveType(StateType);
 
             targetNo++;
             if (targetNo > moveTrans.Length - 1)

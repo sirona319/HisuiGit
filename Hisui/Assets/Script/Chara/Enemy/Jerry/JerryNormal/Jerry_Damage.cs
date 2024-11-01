@@ -26,7 +26,7 @@ public class Jerry_Damage : StateChildBase
         StartCoroutine(MyLib.DoShake(0.25f, 0.1f, transform));
 
         //Ž€‚ñ‚Å‚¢‚½‚ç
-        if (gameObject.GetComponent<EnemyBase>().IsDead) return;
+        //if (gameObject.GetComponent<EnemyBase>().IsDead) return;
 
 
         //if (GetComponent<EnemyBase>().HitCol.enabled)
@@ -59,7 +59,7 @@ public class Jerry_Damage : StateChildBase
 
         if (gameObject.GetComponent<EnemyBase>().IsDead)
         {
-            const int DEAD = 1;
+            const int DEAD = 2;
             return DEAD;
         }
 

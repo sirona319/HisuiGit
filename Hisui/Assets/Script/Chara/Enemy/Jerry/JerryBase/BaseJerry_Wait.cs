@@ -6,6 +6,7 @@ using UnityEngine;
 using static EnemyBase;
 
 
+
 public class BaseJerry_Wait : StateChildBase
 {
     public override void OnEnter()

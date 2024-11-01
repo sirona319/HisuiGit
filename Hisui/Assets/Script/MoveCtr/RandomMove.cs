@@ -4,39 +4,41 @@ using Random = UnityEngine.Random;
 
 public class RandomMove : BaseMove
 {
-    [SerializeField] float MOVEXY = 100;
+    //[NonSerialized] public Vector3 basePosition = Vector3.zero;
+
+    //[SerializeField] float MOVEXY = 100;
     [SerializeField] Vector3[] movePos;
     [SerializeField] Vector3 targetPos;
-    [SerializeField] float moveSaveTime = 0;
 
-
+    float moveRangeXZ = 3;
     const float ENDMOVELEN = 1f;
 
+    const float INTERPOLANT = 5f;
     public override void Initialize()
     {
         base.Initialize();
 
+        //basePosition = transform.position;
+        //var bPos = transform.position;
 
-        var bPos = GetComponent<EnemyBase>().basePosition;
-
-        MOVEXY = GetComponent<JerryScr>().moveRandXZ;
+        //MOVEXY = moveRangeXZ;
 
 
         movePos = new Vector3[4];
 
-        movePos[0] = bPos;
-        movePos[0].x += MOVEXY;
-        movePos[1] = bPos;
-        movePos[1].x -= MOVEXY;
-        movePos[2] = bPos;
-        movePos[2].y += MOVEXY;
-        movePos[3] = bPos;
-        movePos[3].y -= MOVEXY;
+        movePos[0] = transform.position;
+        movePos[0].x += moveRangeXZ;
+        movePos[1] = transform.position;
+        movePos[1].x -= moveRangeXZ;
+        movePos[2] = transform.position;
+        movePos[2].y += moveRangeXZ;
+        movePos[3] = transform.position;
+        movePos[3].y -= moveRangeXZ;
     }
 
     public override void MoveEnter()
     {
-        MovePointSet();
+        MoveRandomSet();
     }
 
     public override void MoveUpdate()
@@ -48,8 +50,6 @@ public class RandomMove : BaseMove
 
 
         //âÒì]
-        const float INTERPOLANT = 5f;
-
         Vector3 targetDirection = targetPos - transform.position;
 
         //2DÅ@Vector3.forwardÅ®Vector3.up
@@ -62,18 +62,18 @@ public class RandomMove : BaseMove
         if (len < ENDMOVELEN)
         {
             //à⁄ìÆínì_ÇÃçƒê›íË
-            MovePointSet();
+            MoveRandomSet();
         }
     }
 
-    void MovePointSet()
+    void MoveRandomSet()
     {
         var moveRandomValue = Random.Range(0, movePos.Length);
 
         targetPos =
         movePos[moveRandomValue] + new Vector3
-        (Random.Range(-MOVEXY, MOVEXY),
-        Random.Range(-MOVEXY, MOVEXY),
+        (Random.Range(-moveRangeXZ, moveRangeXZ),
+        Random.Range(-moveRangeXZ, moveRangeXZ),
         0);
     }
 

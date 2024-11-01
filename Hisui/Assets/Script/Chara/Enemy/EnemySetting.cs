@@ -41,7 +41,8 @@ public class EnemyData
     //public float AtkRandTimeMin;
     //public int Attack;
 
-    public bool FirstTargetPlayer=false;
+    //public bool FirstTargetPlayer=false;
+    public Transform[] movePointsSet;
 }
 
 [CreateAssetMenu(fileName = "EnemySetting", menuName = "Scriptable Objects/Enemy Setting")]

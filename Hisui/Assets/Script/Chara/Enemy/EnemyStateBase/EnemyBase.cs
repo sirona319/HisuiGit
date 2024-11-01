@@ -15,10 +15,7 @@ public class EnemyBase : MonoBehaviour
     }
     #endregion
 
-    [NonSerialized] public Vector3 basePosition = Vector3.zero;
-
-
-    protected int hpPoint;
+    //protected int hpPoint;
 
     [NonSerialized] public bool IsDead = false;
     [NonSerialized] public bool IsDamage = false;
@@ -30,8 +27,8 @@ public class EnemyBase : MonoBehaviour
     [NonSerialized] public string findName;
 
 
-    List<BaseMagazine> baseMagazine=new List<BaseMagazine>();
-    [NonSerialized] public List<BaseMove> baseMove = new List<BaseMove>();
+    List<BaseMagazine> baseMagazine=new ();
+    [NonSerialized] public List<BaseMove> baseMove = new ();
 
 
     //呼び出し先でキャストして使用する
@@ -155,12 +152,34 @@ public class EnemyBase : MonoBehaviour
 
     public int ReturnStateTypeDamage()
     {
-        const int DAMAGE = 2;
-        return DAMAGE;
+        const int DAMAGESTATE = 1;
+        return DAMAGESTATE;
     }
+
+    //public int ReturnStateMoveType(int stateType)
+    //{
+
+    //    return stateType;
+    //}
 
     public int ReturnStateMoveType(int stateType)
     {
+        if (IsAttack)
+            return (int)JerryCtr.State.Jerry_Attack;
+
+        else if (IsMove)
+            return (int)JerryCtr.State.Jerry_Move;
+
+
+        //if (enemyData.moveType == EnemyData.MoveType.random)
+        //    return (int)JerryCtr.State.Jerry_Move;
+
+        //if (enemyData.moveType == EnemyData.MoveType.random)
+        //    return (int)BaseJerryCtr.State.BaseJerry_Move;
+        //else if (enemyData.moveType == EnemyData.MoveType.point)
+        //    return (int)BaseJerryCtr.State.BaseJerry_MovePoint;
+        //else if (enemyData.moveType == EnemyData.MoveType.circle)
+        //    return (int)BaseJerryCtr.State.BaseJerry_MoveCircle;
 
         return stateType;
     }

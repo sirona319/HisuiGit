@@ -13,35 +13,36 @@ MonoBehaviour:
   m_Name: EnemySetting
   m_EditorClassIdentifier: 
   DataList:
-  - Id: JerryNormal
+  - Id: NormalJerry
+    moveType: 00000000
+    attackType: 00000000
+    Speed: 3
+    HpMax: 1
+    Hp: 1
+    AtkInterval: 0
+    movePointsSet: []
+  - Id: FiveJerry
     moveType: 00000000
     attackType: 01000000
     Speed: 3
     HpMax: 1
     Hp: 1
     AtkInterval: 0
-    FirstTargetPlayer: 0
-  - Id: JerryFive
-    moveType: 
-    attackType: 
+    movePointsSet: []
+  - Id: CircleMoveJerry
+    moveType: 02000000
+    attackType: 00000000
     Speed: 3
     HpMax: 1
     Hp: 1
-    AtkInterval: 1
-    FirstTargetPlayer: 0
-  - Id: JerryMoveCircle
-    moveType: 
-    attackType: 
+    AtkInterval: 0
+    movePointsSet: []
+  - Id: PointMoveJerry
+    moveType: 01000000
+    attackType: 00000000
     Speed: 3
     HpMax: 1
     Hp: 1
-    AtkInterval: 1
-    FirstTargetPlayer: 0
-  - Id: JerryMovePoint
-    moveType: 
-    attackType: 
-    Speed: 3
-    HpMax: 1
-    Hp: 1
-    AtkInterval: 1
-    FirstTargetPlayer: 1
+    AtkInterval: 0
+    movePointsSet:
+    - {fileID: 4336502173488555593, guid: 79511d050035b5d459db5376b7e4899b, type: 3}

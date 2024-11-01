@@ -171,11 +171,11 @@ public class PlayerScr2D : MonoBehaviour
         //m_moveDirection.y = m_moveDirection.z;
         //m_moveDirection.z = 0;
         //
-
+        transform.position = m_rb.position + m_moveDirection * Time.deltaTime;
         m_rb.MovePosition(m_rb.position + m_moveDirection * Time.deltaTime);
 
         //1fëOÇÃç¿ïWÇ∆ÇÃç∑Çï€ë∂
-        prePosDiff.Value = m_rb.position-prePos;
+        prePosDiff.Value = m_moveDirection * Time.deltaTime;
     }
 
     void RotationControl()

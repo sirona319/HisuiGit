@@ -7,17 +7,17 @@ public class JerryScr : EnemyBase
 {
 
 
-    [NonSerialized] public float moveRandXZ = 3;
+    //[NonSerialized] public float moveRangeXZ = 3;
 
     public Transform[] movePoints;
-    [NonSerialized] public int firstTargetPoints = 0;
+    //[NonSerialized] public int firstTargetPoints = 0;
 
     void Start()
     {
         base.StartInit();
         base.Init();
 
-        basePosition = transform.position;
+
 
         stateController.Initialize((int)JerryCtr.State.Jerry_Wait);
     }

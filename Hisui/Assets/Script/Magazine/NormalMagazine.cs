@@ -49,8 +49,7 @@ public class NormalMagazine : BaseMagazine
 
         Vector2 direction = targetTrans.position - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        var bulletComp = ebullet.GetComponent<Bullet>();
-        bulletComp.angle = pAngle;
+        ebullet.GetComponent<Bullet>().angle = pAngle;
     }
 
     public void ChangeShotNum()
