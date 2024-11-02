@@ -57,15 +57,15 @@ public class PlayerScr2D : MonoBehaviour
     //public Transform front;
 
 
-    public ReactiveProperty<Vector3> prePosDiff;    //using UniRx必要
-
+    //public ReactiveProperty<Vector3> prePosDiff;    //using UniRx必要
+    //public Dictionary<Transform, Transform> aa;
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
 
         bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/PBulletNormal");
 
-        prePosDiff.Value = Vector3.zero;
+        //prePosDiff.Value = Vector3.zero;
     }
 
     void Update()
@@ -171,11 +171,26 @@ public class PlayerScr2D : MonoBehaviour
         //m_moveDirection.y = m_moveDirection.z;
         //m_moveDirection.z = 0;
         //
-        transform.position = m_rb.position + m_moveDirection * Time.deltaTime;
-        m_rb.MovePosition(m_rb.position + m_moveDirection * Time.deltaTime);
+
+        var resultPos = MoveLimit(m_rb.position + m_moveDirection * Time.deltaTime);
+
+        transform.position = resultPos;
+        m_rb.MovePosition(resultPos);
 
         //1f前の座標との差を保存
-        prePosDiff.Value = m_moveDirection * Time.deltaTime;
+        //prePosDiff.Value = m_moveDirection * Time.deltaTime;
+    }
+
+    Vector3 MoveLimit(Vector3 pos)
+    {
+
+        const float XLIMIT = 8.5f;
+        const float YLIMIT = 4.5f;
+        //Vector3 resultPos = pos;
+        pos.x = Mathf.Clamp(pos.x, -XLIMIT, XLIMIT);
+        pos.y = Mathf.Clamp(pos.y, -YLIMIT, YLIMIT);
+
+        return pos;
     }
 
     void RotationControl()

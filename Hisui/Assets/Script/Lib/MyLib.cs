@@ -44,26 +44,36 @@ public static class MyLib
         trans.localPosition = pos;
     }
 
-    public static Quaternion TargetRotation(Transform target, Transform myTrans, float interpolant)
+    public static Quaternion TargetRotation(Transform target, Transform myTrans, float interpolant, Vector3 axis)
     {
         //•ûŒü‚ğŒü‚­‰ñ“]‚Ìˆ—
         var dir = target.position - myTrans.position;
 
-        var lookAtRotation = Quaternion.LookRotation(dir, Vector3.up);
+        var lookAtRotation = Quaternion.LookRotation(dir, axis);
 
         return Quaternion.Lerp(myTrans.rotation, lookAtRotation, Time.deltaTime * interpolant);
 
     }
 
-    public static Quaternion TargetRotation(Vector3 targetPos, Transform myTrans, float interpolant)
+    public static Quaternion TargetRotation(Vector3 targetPos, Transform myTrans, float interpolant,Vector3 axis)
     {
         //•ûŒü‚ğŒü‚­‰ñ“]‚Ìˆ—
         var dir = targetPos - myTrans.position;
 
-        var lookAtRotation = Quaternion.LookRotation(dir, Vector3.up);
+        var lookAtRotation = Quaternion.LookRotation(dir, axis);
 
         return Quaternion.Lerp(myTrans.rotation, lookAtRotation, Time.deltaTime * interpolant);
 
+    }
+
+    public static Quaternion TargetRotation2D(Vector3 targetPos, Transform myTrans, float interpolant=5f)
+    {
+        //const float INTERPOLANT = 5f;
+
+        Vector3 targetDirection = targetPos - myTrans.position;
+        Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, targetDirection.normalized);
+
+        return Quaternion.Slerp(myTrans.rotation, targetRotation, interpolant * Time.deltaTime);
     }
 
 

@@ -12,6 +12,7 @@ public class JerryCtr : StateControllerBase
         Jerry_Dead,
         Jerry_Attack,
         Jerry_Move,
+        //Jerry_Circle,
 
 
         NumStates

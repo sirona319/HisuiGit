@@ -18,15 +18,20 @@ public class EnemyManager : Singleton<EnemyManager>
         //                FirstOrDefault(enemy => enemy.Id == "JerryNormal");
         //Debug.Log($"IDÅF{slimeData.Id}");
 
+
+        
     }
 
     private async void Start()
     {
         await UniStart();
+
     }
 
     public EnemyData GetEnemyData(string name)
     {
+        //enemySetting = Resources.Load<EnemySetting>("EnemySetting");
+
         var data = enemySetting.DataList.
               FirstOrDefault(enemy => enemy.Id == name);
 

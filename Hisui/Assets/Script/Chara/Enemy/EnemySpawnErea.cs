@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemySpawnErea : MonoBehaviour
 {
     //ボスかどうか
-    //
 
     [SerializeField] GameObject[] spawns; //敵　生成位置
 

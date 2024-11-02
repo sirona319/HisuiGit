@@ -23,8 +23,8 @@ public class NormalMagazine : BaseMagazine
     {
         bulletInterval -= Time.deltaTime;
 
-        if (bulletInterval > 0f)
-            return;
+        //if (bulletInterval > 0f)
+        //    return;
 
 
         NormalShot();

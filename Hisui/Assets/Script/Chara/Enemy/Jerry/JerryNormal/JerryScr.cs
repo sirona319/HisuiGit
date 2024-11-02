@@ -9,7 +9,9 @@ public class JerryScr : EnemyBase
 
     //[NonSerialized] public float moveRangeXZ = 3;
 
-    public Transform[] movePoints;
+    //public Transform[] movePoints;
+
+    //public Transform front;
     //[NonSerialized] public int firstTargetPoints = 0;
 
     void Start()
@@ -24,21 +26,32 @@ public class JerryScr : EnemyBase
 
     void Update()
     {
+        AttackTimeUpdate();
+
         stateController.UpdateSequence();
     }
 
 
+    void AttackTimeUpdate()
+    {
+        if (!IsAttack) return;
 
+        enemyData.AtkInterval -= Time.deltaTime;
+
+        //if(enemyData.AtkInterval<=0)
+
+    }
 
 
 
     public int JerryReturnStateType(int stateType)
     {
-        if (IsAttack)
-            return (int)JerryCtr.State.Jerry_Attack;
-
-        else if (IsMove)
+        if (IsMove)
             return (int)JerryCtr.State.Jerry_Move;
+        else if(enemyData.AtkInterval <= 0)
+            return (int)JerryCtr.State.Jerry_Attack;
+        else
+            return (int)JerryCtr.State.Jerry_Wait;
 
 
         //if (enemyData.moveType == EnemyData.MoveType.random)

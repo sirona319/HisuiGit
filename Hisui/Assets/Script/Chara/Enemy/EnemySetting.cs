@@ -24,8 +24,6 @@ public class EnemyData
         //NumAttackType,
     }
 
-    //public EnemyBase a;
-
     public MoveType[] moveType;
     public AttackType[] attackType;
 
@@ -36,13 +34,16 @@ public class EnemyData
     public int HpMax;
     public int Hp;
 
-    public float AtkInterval=1;
+    public float AtkIntervalMax = 1;
+    public float AtkInterval = 1;
     //public float AtkRandTimeMax;
     //public float AtkRandTimeMin;
     //public int Attack;
 
     //public bool FirstTargetPlayer=false;
-    public Transform[] movePointsSet;
+    public List<Transform> movePointsSet;
+
+
 }
 
 [CreateAssetMenu(fileName = "EnemySetting", menuName = "Scriptable Objects/Enemy Setting")]

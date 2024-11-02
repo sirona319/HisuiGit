@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,8 +9,8 @@ public class EnemySpawnWave : MonoBehaviour
 {
     //ボスかどうか
     //
-
-    [SerializeField] GameObject[] triggerEnemys; //この敵たちが倒されたら　スポーンする　登録方法を考える
+    //この敵たちが倒されたら　範囲外に出たら破棄する？　スポーンする　登録方法を考える
+    [SerializeField] GameObject[] triggerEnemys; 
 
     [SerializeField] GameObject[] spawns; //敵　生成位置
 
@@ -17,7 +18,10 @@ public class EnemySpawnWave : MonoBehaviour
 
     int enemyCount = 0;
 
-    [SerializeField] float SPWNTIME = 2f;　//敵の生成タイム設定できるようにする
+    [SerializeField] float SPWNTIME = 2f; //敵の生成タイム設定できるようにする
+
+
+    public List<Transform> movePointsSet;
 
     //ParticleSystem spawnParticle;//パーティクル
 
@@ -44,13 +48,13 @@ public class EnemySpawnWave : MonoBehaviour
             GameSceneControl.I.enemyAllCount += spawns.Length;
 
 
-        if(triggerEnemys==null)
-        {
-            var enemy = Instantiate(spawns[enemyCount], transform.position, Quaternion.identity);
-            //enemy.GetComponent<EnemyBase>().basePosition = spawnLocations[enemyCount].transform.position;
+        //if(triggerEnemys.Length<=0)
+        //{
+        //    var enemy = Instantiate(spawns[enemyCount], transform.position, Quaternion.identity);
+        //    //enemy.GetComponent<EnemyBase>().basePosition = spawnLocations[enemyCount].transform.position;
 
-            return;
-        }
+        //    return;
+        //}
 
 
         //if (!colTrigger.isActiveTrigger) return;
@@ -78,40 +82,40 @@ public class EnemySpawnWave : MonoBehaviour
 
     void Update()
     {
-        bool isEnemyAllLost = false;
-        foreach (GameObject enemy in triggerEnemys)
-        {
-            isEnemyAllLost=enemy.activeInHierarchy;
-        }
-
-        if (!isEnemyAllLost)
-            return;
-
-        //if (!colTrigger.isActiveTrigger) return;
-        //if (other.transform.CompareTag("Player"))
+        //bool isEnemyAllLost = false;
+        //foreach (GameObject enemy in triggerEnemys)
         //{
+        //    isEnemyAllLost=enemy.activeInHierarchy;
+        //}
 
-        //if (enemyCount >= spawns.Length)
-        //  return;
+        //if (!isEnemyAllLost)
+        //    return;
 
-        //時間を間隔を開けて生成する？
-        while (true)
-        {
-            if (enemyCount >= spawns.Length)
-                break;
+        ////if (!colTrigger.isActiveTrigger) return;
+        ////if (other.transform.CompareTag("Player"))
+        ////{
 
-            DelaySpawnAsyncWave
-                (SPWNTIME, spawns[enemyCount], spawnLocations[enemyCount].transform.position).Forget();
+        ////if (enemyCount >= spawns.Length)
+        ////  return;
+
+        ////時間を間隔を開けて生成する？
+        //while (true)
+        //{
+        //    if (enemyCount >= spawns.Length)
+        //        break;
+
+        //    DelaySpawnAsyncWave
+        //        (SPWNTIME, spawns[enemyCount], spawnLocations[enemyCount].transform.position).Forget();
 
 
-            // 生成ディレイコルーチンの起動
-            //StartCoroutine(DelaySpawnCoroutineWave
-            //    (SPWNTIME /** enemyCount + 1*/, spawns[enemyCount], spawnLocations[enemyCount].transform.position));
+        //    // 生成ディレイコルーチンの起動
+        //    //StartCoroutine(DelaySpawnCoroutineWave
+        //    //    (SPWNTIME /** enemyCount + 1*/, spawns[enemyCount], spawnLocations[enemyCount].transform.position));
 
-            enemyCount++;
+        //    enemyCount++;
 
 
-        }
+        //}
 
         //}
 
@@ -165,6 +169,8 @@ public class EnemySpawnWave : MonoBehaviour
         //enemy.GetComponent<EnemyBase>().basePosition = bPos;
 
         enemy.GetComponent<EnemyBase>().findName = obj.name;
+
+        enemy.GetComponent<EnemyBase>().movePointsInit = movePointsSet;
 
     }
 

@@ -4,10 +4,17 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using static EnemyBase;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class Jerry_Wait : StateChildBase
 {
+    public override void Initialize(int stateNo)
+    {
+        base.Initialize(stateNo);
+
+    }
+
     public override void OnEnter()
     {
         stateTime = 0f;
@@ -20,9 +27,9 @@ public class Jerry_Wait : StateChildBase
 
     public override int StateUpdate()
     {
-        //return (int)SlimeCtr.State.Slime_CircleAttack;
 
-        //var randValue = Random.Range(0,3);
+        transform.rotation = MyLib.TargetRotation2D((transform.position + Vector3.up), transform, 5f);
+
 
         if (GetComponent<EnemyBase>().IsDamage)
             GetComponent<EnemyBase>().ReturnStateTypeDamage();

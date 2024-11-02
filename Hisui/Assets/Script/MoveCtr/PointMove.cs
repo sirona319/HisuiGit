@@ -7,7 +7,7 @@ public class PointMove : BaseMove
     int targetNo = 0;
     const float ENDMOVELEN = 0.5f;
 
-    bool IsPoint = false;
+    //bool IsPoint = false;
 
     public override void Initialize()
     {
@@ -15,7 +15,7 @@ public class PointMove : BaseMove
 
         //targetNo = eBase.firstTargetPoints;
 
-        moveTrans = GetComponent<EnemyBase>().enemyData.movePointsSet;
+        //moveTrans = GetComponent<EnemyBase>().enemyData.movePointsSet;
 
 
         if (moveTrans.Length <= 0)
@@ -29,8 +29,8 @@ public class PointMove : BaseMove
 
     public override void MoveUpdate()
     {
-        if (IsPoint)
-            return;
+        //if (IsPoint)
+         //  return;
 
         var moveSpd = GetComponent<EnemyBase>().enemyData.Speed;
         m_rb.MovePosition(m_rb.position + transform.up * moveSpd * Time.deltaTime);
@@ -52,12 +52,15 @@ public class PointMove : BaseMove
             //if (GetComponent<BaseJerryScr>().enemyData.FirstTargetPlayer)
             //     return GetComponent<BaseJerryScr>().ReturnStateMoveType(StateType);
 
+                            IsMove = false;
 
             targetNo++;
             if (targetNo > moveTrans.Length - 1)
             {
+                //ここに処理を追加できるようにしたい
+                //IsPoint = true;
 
-                IsPoint = true;
+
                 targetNo = 0;
             }
             //GetComponent<JerryScr>().IsMove = false;

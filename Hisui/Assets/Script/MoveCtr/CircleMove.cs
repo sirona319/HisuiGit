@@ -2,13 +2,13 @@ using UnityEngine;
 using UniRx;
 using UnityEngine.EventSystems;
 using static UnityEditor.PlayerSettings;
-public class CircleMove : BaseMove
+public abstract class CircleMove : BaseMove
 {
     //https://nekojara.city/unity-circular-motion
 
 
     // 中心点
-    [SerializeField] private Vector3 targetPos = Vector3.zero;
+    //[SerializeField] private Vector3 targetPos = Vector3.zero;
 
     // 回転軸
     [SerializeField] private Vector3 _axis = Vector3.forward;
@@ -28,28 +28,28 @@ public class CircleMove : BaseMove
 
         var player = GameObject.FindGameObjectWithTag("Player");
 
-        targetPos = player.transform.position;
+        //targetPos = player.transform.position;
         targetTrans = player.transform;
 
 
-        var pScr = player.GetComponent<PlayerScr2D>();
+        //var pScr = player.GetComponent<PlayerScr2D>();
 
-        transform.parent = player.transform;
+
         //if (GetComponent<EnemyBase>().enemyData.moveType == EnemyData.MoveType.CircleMove)
         //using UniRx必要
         //pScr.prePosDiff.Subscribe(prePosDiff => UpdatePos(pScr));
     }
 
-    void UpdatePos(PlayerScr2D p)
-    {
+    //void UpdatePos(PlayerScr2D p)
+   // {
         //transform.position += p.GetComponent<PlayerScr2D>().prePosDiff.Value;
 
         //targetPos = p.transform.position;
-    }
+   // }
 
     public override void MoveEnter()
     {
-
+        transform.parent = targetTrans;
     }
 
     public override void MoveUpdate()
@@ -104,7 +104,7 @@ public class CircleMove : BaseMove
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, INTERPOLANT * Time.deltaTime);
 
 
-        Vector3 movement = transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
+        //Vector3 movement = transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
 
         //2D
         //m_rb.MovePosition(m_rb.position + movement);

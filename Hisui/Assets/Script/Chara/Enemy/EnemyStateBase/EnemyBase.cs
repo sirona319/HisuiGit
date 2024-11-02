@@ -31,6 +31,9 @@ public class EnemyBase : MonoBehaviour
     [NonSerialized] public List<BaseMove> baseMove = new ();
 
 
+    public List<Transform> movePointsInit;
+
+
     //呼び出し先でキャストして使用する
     public BaseMove MoveTypeSelect(MoveType mt)
     {
@@ -110,6 +113,8 @@ public class EnemyBase : MonoBehaviour
 
         //ステータスの初期化
         enemyData.Hp = enemyData.HpMax;
+
+        enemyData.movePointsSet = movePointsInit;
 
     }
 
