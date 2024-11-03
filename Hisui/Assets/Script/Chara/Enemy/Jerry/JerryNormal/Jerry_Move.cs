@@ -17,8 +17,8 @@ public class Jerry_Move : StateChildBase
     {
         base.Initialize(stateNo);
 
-        foreach (var move in GetComponent<JerryScr>().baseMove)
-            move.Initialize();
+        //foreach (var move in GetComponent<JerryScr>().baseMove)
+        //    move.Initialize();
 
 
         //GetComponent<JerryScr>().baseMove.move
@@ -55,14 +55,16 @@ public class Jerry_Move : StateChildBase
         }
 
         //マガジンの更新
-        //GetComponent<JerryScr>().AttackMagazineUpdateAll();
+
 
 
         if (!GetComponent<JerryScr>().IsMove)
-        {
             GetComponent<JerryScr>().IsAttack = true;
-            return GetComponent<JerryScr>().JerryReturnStateType(StateType);
-        }
+
+        //GetComponent<JerryScr>().AttackMagazineUpdateAll();
+
+        return GetComponent<JerryScr>().JerryReturnStateType(StateType);
+
 
         return (int)StateType;
 

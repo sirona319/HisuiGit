@@ -15,8 +15,6 @@ public class EnemyBase : MonoBehaviour
     }
     #endregion
 
-    //protected int hpPoint;
-
     [NonSerialized] public bool IsDead = false;
     [NonSerialized] public bool IsDamage = false;
     [NonSerialized] public bool IsAttack = false;
@@ -27,11 +25,14 @@ public class EnemyBase : MonoBehaviour
     [NonSerialized] public string findName;
 
 
-    List<BaseMagazine> baseMagazine=new ();
+    [NonSerialized] public List<BaseMagazine> baseMagazine=new ();
     [NonSerialized] public List<BaseMove> baseMove = new ();
 
 
-    public List<Transform> movePointsInit;
+    public Transform[] movePointsDatas;
+
+    int Hp = 0;
+    public float AtkInterval=1;
 
 
     //呼び出し先でキャストして使用する
@@ -47,7 +48,6 @@ public class EnemyBase : MonoBehaviour
 
         return null;
     }
-
 
     public void AttackMagazineUpdate(AttackType atkType)
     {
@@ -80,6 +80,7 @@ public class EnemyBase : MonoBehaviour
         if ((int)enemyData.moveType.Length <= 0)
             throw new System.Exception(findName + "スクリプタルオブジェクト　moveType 空");
     }
+
     protected virtual void Init()
     {
 
@@ -112,9 +113,9 @@ public class EnemyBase : MonoBehaviour
 
 
         //ステータスの初期化
-        enemyData.Hp = enemyData.HpMax;
+        Hp = enemyData.HpMax;
 
-        enemyData.movePointsSet = movePointsInit;
+        //enemyData.movePointsSet = movePointsInit;
 
     }
 
@@ -145,11 +146,11 @@ public class EnemyBase : MonoBehaviour
 
 
         Debug.Log(gameObject.name + "へのダメージ" + damage.ToString());
-        enemyData.Hp -= damage;        //HP減少処理
+        Hp -= damage;        //HP減少処理
 
         IsDamage = true;
 
-        if (enemyData.Hp <= 0)
+        if (Hp <= 0)
             IsDead = true;
     }
 
@@ -157,15 +158,15 @@ public class EnemyBase : MonoBehaviour
 
     public int ReturnStateTypeDamage()
     {
+        if (gameObject.GetComponent<EnemyBase>().IsDead)
+        {
+            const int DEAD = 2;
+            return DEAD;
+        }
+
         const int DAMAGESTATE = 1;
         return DAMAGESTATE;
     }
-
-    //public int ReturnStateMoveType(int stateType)
-    //{
-
-    //    return stateType;
-    //}
 
     public int ReturnStateMoveType(int stateType)
     {

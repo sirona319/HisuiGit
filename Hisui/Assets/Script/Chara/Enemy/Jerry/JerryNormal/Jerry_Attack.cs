@@ -12,14 +12,15 @@ public class Jerry_Attack : StateChildBase
     {
 
         base.Initialize(stateType);
-        GetComponent<JerryScr>().enemyData.AtkInterval = GetComponent<JerryScr>().enemyData.AtkIntervalMax;
+        GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().enemyData.AtkIntervalMax;
     }
 
     public override void OnEnter()
     {
 
         stateTime = 0f;
-
+        foreach (var magazine in GetComponent<JerryScr>().baseMagazine)
+            magazine.MagazineEnter();
     }
 
     public override void OnExit()
@@ -42,15 +43,15 @@ public class Jerry_Attack : StateChildBase
 
 
 
-        //if (stateTime > GetComponent<JerryScr>().enemyData.AtkInterval)
-        //{
-            GetComponent<JerryScr>().enemyData.AtkInterval = GetComponent<JerryScr>().enemyData.AtkIntervalMax;
+        if (stateTime > GetComponent<JerryScr>().baseMagazine[0].bulletShotTime)
+        {
+            GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().enemyData.AtkIntervalMax;
             //GetComponent<JerryScr>().IsAttack = false;
             return GetComponent<JerryScr>().JerryReturnStateType(StateType);
-        //}
-          
+        }
 
-        
+
+
 
         return (int)StateType;
     }

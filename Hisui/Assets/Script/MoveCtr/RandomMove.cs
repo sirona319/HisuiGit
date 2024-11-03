@@ -49,13 +49,8 @@ public class RandomMove : BaseMove
         m_rb.MovePosition(m_rb.position + movement);
 
 
-        //âÒì]
-        Vector3 targetDirection = targetPos - transform.position;
 
-        //2DÅ@Vector3.forwardÅ®Vector3.up
-        Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, targetDirection.normalized);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, INTERPOLANT * Time.deltaTime);
+        transform.rotation = MyLib.TargetRotation2D(targetPos, transform);        //âÒì]
 
 
         float len = Vector3.Distance(transform.position, targetPos);

@@ -133,7 +133,7 @@ public class BaseJerry_MoveCircle : StateChildBase
         //}
 
 
-        if (moveSaveTime > GetComponent<EnemyBase>().enemyData.AtkInterval)
+        if (moveSaveTime > GetComponent<EnemyBase>().AtkInterval)
         {
             moveSaveTime = 0;
 

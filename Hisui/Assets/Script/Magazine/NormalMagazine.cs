@@ -5,7 +5,7 @@ public class NormalMagazine : BaseMagazine
 
     Transform targetTrans;
 
-    const float MAXBULLETINTERVAL = 1f;
+    //const float MAXBULLETINTERVAL = 1f;
 
     public override void Initialize()
     {
@@ -16,21 +16,27 @@ public class NormalMagazine : BaseMagazine
 
 
 
-        bulletInterval = MAXBULLETINTERVAL;
+        //bulletInterval = 0;
     }
+
+    public override void MagazineEnter()
+    {
+        NormalShot();
+    }
+
 
     public override void MagazineUpdate()
     {
-        bulletInterval -= Time.deltaTime;
+        //bulletInterval -= Time.deltaTime;
 
         //if (bulletInterval > 0f)
         //    return;
 
 
-        NormalShot();
+        //NormalShot();
 
 
-        bulletInterval = MAXBULLETINTERVAL;
+        //bulletInterval = MAXBULLETINTERVAL;
 
     }
 

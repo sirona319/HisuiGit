@@ -8,9 +8,9 @@ public class CircleMagazine : BaseMagazine
 
     Transform targetTrans;
 
-    const float SHOTTIME = 3f;
+    //const float SHOTTIME = 3f;
 
-    const float MAXBULLETINTERVAL = SHOTTIME+1f;
+    const float BULLETTIMEMAX = 4f;
 
 
     public override void Initialize()
@@ -20,7 +20,14 @@ public class CircleMagazine : BaseMagazine
         var player = GameObject.FindGameObjectWithTag("Player");
         targetTrans = player.transform;
 
-        bulletInterval = MAXBULLETINTERVAL;
+        //bulletInterval = 0;
+
+        bulletShotTime = BULLETTIMEMAX;
+    }
+
+    public override void MagazineEnter()
+    {
+
     }
 
     public override void MagazineUpdate()

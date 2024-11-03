@@ -10,7 +10,7 @@ public class PlayerScr2D : MonoBehaviour
 
     #region　入力
     [SerializeField] float SPEED = 3f;   //移動速度
-    const float ROTSPEED = 3f;
+    //const float ROTSPEED = 3f;
 
     Rigidbody m_rb;      //剛体
     Vector3 m_moveDirection;
@@ -30,35 +30,24 @@ public class PlayerScr2D : MonoBehaviour
     //#endregion
 
 
-    #region ロックオン
-    //[NonSerialized]public EnemyBase m_rockOnEnemy;
-    //private bool m_isEnemyRock = false;
-    #endregion
-
-    #region　ダメージ
-
-    public bool m_isDamage = false;
-    #endregion
-
-
-    #region HP
-    //private const int MAXHP = 3;
-    //private int m_hp = MAXHP;
+    bool m_isDamage = false;
     bool m_isDead = false;
 
-    //[SerializeField]private SkinnedMeshRenderer[] m_hpSkin;
-    #endregion
+    Bullet bulletObj;
 
+    [SerializeField] float bulletSpeed = 6f;
     //private ParticleSystem bubbleParticle;//泡パーティクル
 
-    Bullet bulletObj;//パーティクル
-                     //[SerializeField] private float bSPEED = 0.02f;
+
+    //[SerializeField] private float bSPEED = 0.02f;
 
     //public Transform front;
 
 
     //public ReactiveProperty<Vector3> prePosDiff;    //using UniRx必要
     //public Dictionary<Transform, Transform> aa;
+
+
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
@@ -85,7 +74,7 @@ public class PlayerScr2D : MonoBehaviour
 
             //生成
             var pbullet = Instantiate(bulletObj.gameObject, bulletPos, bulletRot);
-            var bulletComp = pbullet.GetComponent<Bullet>();
+            pbullet.GetComponent<Bullet>().speed= bulletSpeed;
 
             //transform.up==pForward.normalized
             //var pForward = front.position - transform.position;
@@ -193,19 +182,19 @@ public class PlayerScr2D : MonoBehaviour
         return pos;
     }
 
-    void RotationControl()
-    {
-        Vector3 rotateDirection = m_moveDirection;
+    //void RotationControl()
+    //{
+    //    Vector3 rotateDirection = m_moveDirection;
 
-        //それなりに移動方向が変化する場合のみ移動方向を変える
-        if (rotateDirection.sqrMagnitude > 0.01)
-        {
-            //緩やかに移動方向を変える
-            float step = ROTSPEED * Time.deltaTime;
-            Vector3 newDir = Vector3.Slerp(transform.forward, rotateDirection, step);
-            transform.rotation = Quaternion.LookRotation(newDir);
-        }
-    }
+    //    //それなりに移動方向が変化する場合のみ移動方向を変える
+    //    if (rotateDirection.sqrMagnitude > 0.01)
+    //    {
+    //        //緩やかに移動方向を変える
+    //        float step = ROTSPEED * Time.deltaTime;
+    //        Vector3 newDir = Vector3.Slerp(transform.forward, rotateDirection, step);
+    //        transform.rotation = Quaternion.LookRotation(newDir);
+    //    }
+    //}
 
     public void PlayerDamage(int damage)
     {
@@ -258,6 +247,9 @@ public class PlayerScr2D : MonoBehaviour
             {
                 m_isDead = true;
                 // skin.enabled = false;
+
+
+                //循環参照してしまっている？
                 //死亡処理
                 Debug.Log("死んだよタイトル遷移するよ！");
                 GameObject.Find("GAMEOVERTEXT").GetComponent<DOFade>().ShowWindow();

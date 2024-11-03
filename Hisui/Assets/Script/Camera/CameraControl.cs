@@ -65,7 +65,7 @@ public class CameraControl : MonoBehaviour
 
     private void RotateCmaeraAngle()
     {
-        Vector3 angle;
+        Vector3 angle=Vector3.zero;
 #if UNITY_ANDROID
 
         if (UnityEngine.Device.SystemInfo.operatingSystem.Contains("Android"))

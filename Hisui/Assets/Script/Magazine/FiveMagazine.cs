@@ -6,7 +6,7 @@ public class FiveMagazine : BaseMagazine
     const float ONEWEYLENGTH = 15f;
     const float TWOWEYLENGTH = 30f;
 
-    const float MAXBULLETINTERVAL = 1f;
+    //const float MAXBULLETINTERVAL = 1f;
 
     public override void Initialize()
     {
@@ -17,21 +17,26 @@ public class FiveMagazine : BaseMagazine
 
 
 
-        bulletInterval = MAXBULLETINTERVAL;
+        //bulletInterval = MAXBULLETINTERVAL;
+    }
+
+    public override void MagazineEnter()
+    {
+        FiveShot();
     }
     public override void MagazineUpdate()
     {
 
-        bulletInterval -= Time.deltaTime;
+        //bulletInterval -= Time.deltaTime;
 
-        if (bulletInterval > 0f)
-            return;
-
-
-        FiveShot();
+        //if (bulletInterval > 0f)
+        //    return;
 
 
-        bulletInterval = MAXBULLETINTERVAL;
+        //FiveShot();
+
+
+        //bulletInterval = MAXBULLETINTERVAL;
     }
 
     void FiveShot()

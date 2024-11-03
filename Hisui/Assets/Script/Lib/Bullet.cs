@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float angle; // Šp“x
-    [SerializeField] float speed; // ‘¬“x
+    public float speed; // ‘¬“x
     Vector3 velocity; // ˆÚ“®—Ê
 
     int damage = 1;

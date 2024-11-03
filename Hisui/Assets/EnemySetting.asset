@@ -14,38 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DataList:
   - Id: NormalJerry
-    moveType: 00000000
-    attackType: 00000000
-    Speed: 3
+    moveType: 01000000
+    attackType: 02000000
+    Speed: 6
     HpMax: 1
-    Hp: 1
     AtkIntervalMax: 1
-    AtkInterval: 0
-    movePointsSet: []
   - Id: FiveJerry
     moveType: 00000000
     attackType: 01000000
     Speed: 3
     HpMax: 1
-    Hp: 1
     AtkIntervalMax: 1
-    AtkInterval: 0
-    movePointsSet: []
   - Id: CircleMoveJerry
-    moveType: 02000000
+    moveType: 03000000
     attackType: 00000000
-    Speed: 3
+    Speed: 7
     HpMax: 1
-    Hp: 1
     AtkIntervalMax: 1
-    AtkInterval: 0
-    movePointsSet: []
   - Id: PointMoveJerry
     moveType: 01000000
     attackType: 00000000
     Speed: 9
     HpMax: 1
-    Hp: 1
     AtkIntervalMax: 1
-    AtkInterval: 0.81059295
-    movePointsSet: []

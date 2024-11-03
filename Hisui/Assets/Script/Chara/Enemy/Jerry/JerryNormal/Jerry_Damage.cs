@@ -23,7 +23,7 @@ public class Jerry_Damage : StateChildBase
         damageTime = 0f;
         stateTime = 0f;
         //オブジェクトを揺らしオン
-        StartCoroutine(MyLib.DoShake(0.25f, 0.1f, transform));
+        //StartCoroutine(MyLib.DoShake(0.25f, 0.1f, transform));
 
         //死んでいたら
         //if (gameObject.GetComponent<EnemyBase>().IsDead) return;

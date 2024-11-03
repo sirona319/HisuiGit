@@ -12,7 +12,7 @@ public class MobileAttack : MonoBehaviour
         var trigger = GetComponent<EventTrigger>();
         var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
 
-        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScr>();
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScr2D>();
         //entry.callback.AddListener((eventData) => { player.MobileAttackControl(); });
         trigger.triggers.Add(entry);
     }

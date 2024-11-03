@@ -20,7 +20,7 @@ public class DOFade : MonoBehaviour
 
             if (textUgui.text == "START")
             {
-                transform.GetComponent<TitleEvent>().enabled = true;
+                //transform.GetComponent<TitleEvent>().enabled = true;
             }
 
             IsShowEnd = true;
@@ -46,7 +46,7 @@ public class DOFade : MonoBehaviour
         if (IsShowEnd) return;
         if (textUgui.text == "START")
         {
-            transform.GetComponent<TitleEvent>().enabled = true;
+            //transform.GetComponent<TitleEvent>().enabled = true;
         }
 
         IsShowEnd = true;

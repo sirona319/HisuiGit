@@ -13,7 +13,9 @@ public abstract class BaseMagazine : MonoBehaviour
 
     //protected float bulletSpeed = 0.02f;
 
-    public float bulletInterval = 0f;
+    //public float bulletInterval = 0f;
+
+    public float bulletShotTime = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -28,6 +30,8 @@ public abstract class BaseMagazine : MonoBehaviour
     {
         bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/EBulletNormalEX");
     }
+
+    public abstract void MagazineEnter();
 
     // Update is called once per frame
     public abstract void MagazineUpdate();

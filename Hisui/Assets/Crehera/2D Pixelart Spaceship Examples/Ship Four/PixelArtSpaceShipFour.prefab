@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3746220097298854422}
   - component: {fileID: 3746220097298854421}
   - component: {fileID: 4478142085877833844}
-  - component: {fileID: 8266499170138442288}
   - component: {fileID: 2191569371651337474}
+  - component: {fileID: 8266499170138442288}
   m_Layer: 3
   m_Name: PixelArtSpaceShipFour
   m_TagString: Player
@@ -141,22 +141,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8266499170138442288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3746220097298854420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0923b745e88f1a643b08e1165844c29c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDebugNoLife: 1
-  SPEED: 3.5
-  m_isDamage: 0
-  front: {fileID: 6042556741781459283}
 --- !u!65 &2191569371651337474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -178,6 +162,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.53, y: 2.05, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8266499170138442288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3746220097298854420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0923b745e88f1a643b08e1165844c29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDebugNoLife: 1
+  SPEED: 3.5
+  m_isDamage: 0
+  bulletSpeed: 6
 --- !u!1 &6908733059665422747
 GameObject:
   m_ObjectHideFlags: 0

@@ -126,7 +126,7 @@ public class BaseJerry_Move : StateChildBase
         //var eBase = gameObject.GetComponent<EnemyBase>();
         //var atkRand = 1;//Random.Range(eBase.enemyData.AtkRandTimeMin, eBase.enemyData.AtkRandTimeMax);
 
-        if (moveSaveTime > GetComponent<EnemyBase>().enemyData.AtkInterval)//GetComponent<EnemyBase>().enemyData.AtkInterval
+        if (moveSaveTime > GetComponent<EnemyBase>().enemyData.AtkIntervalMax)//GetComponent<EnemyBase>().enemyData.AtkInterval
         {
             moveSaveTime = 0;
 

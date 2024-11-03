@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
 
 
 public class PointMove : BaseMove
 {
     Transform[] moveTrans;
+    //Transform[] moveTrans;
     int targetNo = 0;
     const float ENDMOVELEN = 0.5f;
 
@@ -15,7 +18,7 @@ public class PointMove : BaseMove
 
         //targetNo = eBase.firstTargetPoints;
 
-        //moveTrans = GetComponent<EnemyBase>().enemyData.movePointsSet;
+        moveTrans = GetComponent<EnemyBase>().movePointsDatas;
 
 
         if (moveTrans.Length <= 0)
@@ -29,20 +32,16 @@ public class PointMove : BaseMove
 
     public override void MoveUpdate()
     {
-        //if (IsPoint)
-         //  return;
+        if (!IsMove)
+            return;
 
         var moveSpd = GetComponent<EnemyBase>().enemyData.Speed;
         m_rb.MovePosition(m_rb.position + transform.up * moveSpd * Time.deltaTime);
 
 
 
-        const float INTERPOLANT = 5f;
 
-        Vector3 targetDirection = moveTrans[targetNo].position - transform.position;
-        Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, targetDirection.normalized);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, INTERPOLANT * Time.deltaTime);
+        transform.rotation = MyLib.TargetRotation2D(moveTrans[targetNo].position, transform);
 
 
 

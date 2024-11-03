@@ -2,7 +2,7 @@ using UnityEngine;
 using UniRx;
 using UnityEngine.EventSystems;
 using static UnityEditor.PlayerSettings;
-public abstract class CircleMove : BaseMove
+public class CircleMove : BaseMove
 {
     //https://nekojara.city/unity-circular-motion
 
@@ -31,7 +31,7 @@ public abstract class CircleMove : BaseMove
         //targetPos = player.transform.position;
         targetTrans = player.transform;
 
-
+        //moveTrans = GetComponent<EnemyBase>().movePointsDatas;
         //var pScr = player.GetComponent<PlayerScr2D>();
 
 
@@ -92,16 +92,8 @@ public abstract class CircleMove : BaseMove
 
 
 
-        ////âÒì]
-        const float INTERPOLANT = 5f;
 
-        Vector3 targetDirection = targetTrans.position - transform.position;
-
-        //2DÅ@Vector3.forwardÅ®Vector3.up
-        Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, targetDirection.normalized);
-
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, INTERPOLANT * Time.deltaTime);
+        transform.rotation = MyLib.TargetRotation2D(targetTrans.position, transform);        ////âÒì]
 
 
         //Vector3 movement = transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;

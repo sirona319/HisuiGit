@@ -22,18 +22,30 @@ public class Jerry_Dead : StateChildBase
     {
         stateTime = 0f;
 
-        Instantiate(deadParticle, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
 
-        StartCoroutine(MyLib.DelayCoroutine(DEADTIME, () =>
-        {
+        //Instantiate(deadParticle, transform.position, Quaternion.identity);
 
-            if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
-                GameSceneControl.I.UpdateEnemyCount();
+        //GameObject spawn = GameObject.Find("WaveSpawn");
+        //spawn.GetComponent<EnemySpawnWave>().UpdateCount();
 
-            gameObject.SetActive(false);
-            //Destroy(gameObject);
+        if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
+            GameSceneControl.I.UpdateEnemyCount();
 
-        }));
+
+
+        //StartCoroutine(MyLib.DelayCoroutine(DEADTIME, () =>
+        //{
+        //    GameObject spawn = GameObject.Find("WaveSpawn");
+        //    spawn.GetComponent<EnemySpawnWave>().UpdateCount();
+
+        //    if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
+        //        GameSceneControl.I.UpdateEnemyCount();
+
+        //    gameObject.SetActive(false);
+        //    //Destroy(gameObject);
+
+        //}));
 
         //クリアチェック　スコア加算　
         //if (SceneManager.GetActiveScene().name.Contains(GManager.SceneNameType.NormalScene.ToString()))

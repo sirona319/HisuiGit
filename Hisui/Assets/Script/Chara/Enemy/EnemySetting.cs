@@ -11,9 +11,10 @@ public class EnemyData
     {
         RandomMove,
         PointMove,
-        CircleMove
+        CircleMove,
+        PointCircleMove
         //randomApoint,
-        
+
     }
 
     public enum AttackType
@@ -32,16 +33,17 @@ public class EnemyData
 
     public float Speed;
     public int HpMax;
-    public int Hp;
+    //public int Hp;
 
     public float AtkIntervalMax = 1;
-    public float AtkInterval = 1;
+
+    //public float AtkInterval = 1;
     //public float AtkRandTimeMax;
     //public float AtkRandTimeMin;
     //public int Attack;
 
     //public bool FirstTargetPlayer=false;
-    public List<Transform> movePointsSet;
+    //public Transform[] movePointsSet;
 
 
 }

@@ -123,12 +123,12 @@ public class BaseJerry_MovePoint : StateChildBase
 
 
 
-        if (moveSaveTime > GetComponent<EnemyBase>().enemyData.AtkInterval)
-        {
-            moveSaveTime = 0;
+        //if (moveSaveTime > GetComponent<EnemyBase>().AtkInterval)
+        //{
+        //    moveSaveTime = 0;
 
-            //return GetComponent<EnemyBase>().ReturnStateMoveTypeAttack(StateType);
-        }
+        //    //return GetComponent<EnemyBase>().ReturnStateMoveTypeAttack(StateType);
+        //}
 
         return StateType;
 
