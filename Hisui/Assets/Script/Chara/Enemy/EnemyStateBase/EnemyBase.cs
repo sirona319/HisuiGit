@@ -84,7 +84,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Init()
     {
 
-        //baseMagazine初期化
+        //baseMagazine初期化　　攻撃クラスに持っていく？
         for (int i = 0; i < (int)enemyData.attackType.Length; i++)
         {
             Type typeClass = Type.GetType(enemyData.attackType[i].ToString());
@@ -98,7 +98,7 @@ public class EnemyBase : MonoBehaviour
             magazine.Initialize();
 
 
-        //baseMove初期化
+        //baseMove初期化　移動クラスに持っていく？
         for (int i = 0; i < (int)enemyData.moveType.Length; i++)
         {
             Type typeClass = Type.GetType(enemyData.moveType[i].ToString());
@@ -109,7 +109,13 @@ public class EnemyBase : MonoBehaviour
         }
 
         foreach (var move in baseMove)
+        {
+            if (enemyData.IsMovePointSet)
+                move.targets = movePointsDatas;
+
             move.Initialize();
+        }
+
 
 
         //ステータスの初期化

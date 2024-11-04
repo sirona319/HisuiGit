@@ -22,6 +22,7 @@ public class Jerry_Move : StateChildBase
 
 
         //GetComponent<JerryScr>().baseMove.move
+
     }
 
     public override void OnEnter()
@@ -66,7 +67,7 @@ public class Jerry_Move : StateChildBase
         return GetComponent<JerryScr>().JerryReturnStateType(StateType);
 
 
-        return (int)StateType;
+        //return (int)StateType;
 
     }
 }

@@ -15,24 +15,28 @@ MonoBehaviour:
   DataList:
   - Id: NormalJerry
     moveType: 01000000
+    IsMovePointSet: 1
     attackType: 02000000
     Speed: 6
     HpMax: 1
     AtkIntervalMax: 1
   - Id: FiveJerry
     moveType: 00000000
+    IsMovePointSet: 0
     attackType: 01000000
     Speed: 3
     HpMax: 1
     AtkIntervalMax: 1
   - Id: CircleMoveJerry
     moveType: 03000000
+    IsMovePointSet: 1
     attackType: 00000000
     Speed: 7
     HpMax: 1
     AtkIntervalMax: 1
   - Id: PointMoveJerry
     moveType: 01000000
+    IsMovePointSet: 1
     attackType: 00000000
     Speed: 9
     HpMax: 1

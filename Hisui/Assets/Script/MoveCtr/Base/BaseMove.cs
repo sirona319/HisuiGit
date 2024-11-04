@@ -9,6 +9,8 @@ public abstract class BaseMove : MonoBehaviour
     protected Rigidbody m_rb;
     public bool IsMove = true;
 
+    public Transform[] targets;
+
     public virtual void Initialize()
     {
         m_rb = GetComponent<Rigidbody>();

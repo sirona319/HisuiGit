@@ -17,6 +17,9 @@ public class EnemyData
 
     }
 
+    public MoveType[] moveType;
+    public bool IsMovePointSet = false;
+
     public enum AttackType
     {
         NormalMagazine,
@@ -25,7 +28,7 @@ public class EnemyData
         //NumAttackType,
     }
 
-    public MoveType[] moveType;
+
     public AttackType[] attackType;
 
     //public MoveType moveType = MoveType.random;

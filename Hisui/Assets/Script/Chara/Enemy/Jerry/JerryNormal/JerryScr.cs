@@ -48,7 +48,7 @@ public class JerryScr : EnemyBase
         else
             return (int)JerryCtr.State.Jerry_Wait;
 
-        return stateType;
+        //return stateType;
     }
 
 }

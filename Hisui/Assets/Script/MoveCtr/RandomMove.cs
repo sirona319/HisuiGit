@@ -26,6 +26,7 @@ public class RandomMove : BaseMove
 
         movePos = new Vector3[4];
 
+        //transformÇÕtargetsÇ…Ç»ÇÈÇÊÇ§Ç…Ç∑ÇÈÅHÅH
         movePos[0] = transform.position;
         movePos[0].x += moveRangeXZ;
         movePos[1] = transform.position;
@@ -43,8 +44,8 @@ public class RandomMove : BaseMove
 
     public override void MoveUpdate()
     {
-
-        Vector3 movement = transform.up * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
+        const float speed = 6f;
+        Vector3 movement = transform.up * Time.deltaTime * speed;
 
         m_rb.MovePosition(m_rb.position + movement);
 

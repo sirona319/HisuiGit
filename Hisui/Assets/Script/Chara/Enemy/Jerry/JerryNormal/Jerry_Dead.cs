@@ -24,7 +24,7 @@ public class Jerry_Dead : StateChildBase
 
         gameObject.SetActive(false);
 
-        //Instantiate(deadParticle, transform.position, Quaternion.identity);
+        Instantiate(deadParticle, transform.position, Quaternion.identity);
 
         //GameObject spawn = GameObject.Find("WaveSpawn");
         //spawn.GetComponent<EnemySpawnWave>().UpdateCount();

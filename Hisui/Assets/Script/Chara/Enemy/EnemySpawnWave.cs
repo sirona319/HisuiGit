@@ -103,14 +103,7 @@ public class EnemySpawnWave: MonoBehaviour
     {
         if(idx>0)
         {
-            //if (spawnData[idx - 1].enemyCount > 0)
-            //    return;
-
-            ///
-            //await UniTask.WaitUntil(() => spawnData[idx - 1].enemyCount <= 0);
             CountSpawnAsyncWave(idx).Forget();
-
-
             return;
         }
 

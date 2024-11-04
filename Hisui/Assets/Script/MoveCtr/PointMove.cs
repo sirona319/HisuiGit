@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PointMove : BaseMove
 {
-    Transform[] moveTrans;
+    //Transform[] moveTrans;
     //Transform[] moveTrans;
     int targetNo = 0;
     const float ENDMOVELEN = 0.5f;
@@ -18,11 +18,11 @@ public class PointMove : BaseMove
 
         //targetNo = eBase.firstTargetPoints;
 
-        moveTrans = GetComponent<EnemyBase>().movePointsDatas;
+        //targetTrans = GetComponent<EnemyBase>().movePointsDatas;
 
 
-        if (moveTrans.Length <= 0)
-            throw new System.Exception(GetComponent<EnemyBase>().findName + "ムーブポイント未設定");
+        if (targets.Length <= 0)
+            throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
     }
 
     public override void MoveEnter()
@@ -35,17 +35,17 @@ public class PointMove : BaseMove
         if (!IsMove)
             return;
 
-        var moveSpd = GetComponent<EnemyBase>().enemyData.Speed;
-        m_rb.MovePosition(m_rb.position + transform.up * moveSpd * Time.deltaTime);
+        const float speed = 6f;
+        m_rb.MovePosition(m_rb.position + transform.up * speed * Time.deltaTime);
 
 
 
 
-        transform.rotation = MyLib.TargetRotation2D(moveTrans[targetNo].position, transform);
+        transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
 
 
 
-        float len = Vector3.Distance(transform.position, moveTrans[targetNo].position);
+        float len = Vector3.Distance(transform.position, targets[targetNo].position);
         if (len < ENDMOVELEN)
         {
             //if (GetComponent<BaseJerryScr>().enemyData.FirstTargetPlayer)
@@ -54,7 +54,7 @@ public class PointMove : BaseMove
                             IsMove = false;
 
             targetNo++;
-            if (targetNo > moveTrans.Length - 1)
+            if (targetNo > targets.Length - 1)
             {
                 //ここに処理を追加できるようにしたい
                 //IsPoint = true;

@@ -20,18 +20,24 @@ public class CircleMove : BaseMove
     [SerializeField] private bool _updateRotation = true;
 
 
-    Transform targetTrans;
+    public Transform targetTrans;
+
+    //bool IsTargetMove = false;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        var player = GameObject.FindGameObjectWithTag("Player");
+        //var player = GameObject.FindGameObjectWithTag("Player");
 
         //targetPos = player.transform.position;
-        targetTrans = player.transform;
+
+        //targets = GetComponent<EnemyBase>().movePointsDatas[0];
+        targetTrans = targets[0];
 
         //moveTrans = GetComponent<EnemyBase>().movePointsDatas;
+
+
         //var pScr = player.GetComponent<PlayerScr2D>();
 
 
@@ -49,6 +55,7 @@ public class CircleMove : BaseMove
 
     public override void MoveEnter()
     {
+        //対象が動くときなど
         transform.parent = targetTrans;
     }
 
@@ -122,43 +129,43 @@ public class CircleMove : BaseMove
     }
 
 
-    private void FixedUpdate()
-    {
-        //Vector3 movement= Vector3.zero; //= transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
+    //private void FixedUpdate()
+    //{
+    //    //Vector3 movement= Vector3.zero; //= transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
 
-        ////2D
-        ////m_rb.MovePosition(m_rb.position + movement);
+    //    ////2D
+    //    ////m_rb.MovePosition(m_rb.position + movement);
 
-        //const float ENDMOVELEN = 3f;
-        //float len = Vector3.Distance(transform.position, targetTrans.position);
-        //if (len < ENDMOVELEN)
-        //{
-        //    //移動地点の再設定
-        //    //MoveRandomSet();
+    //    //const float ENDMOVELEN = 3f;
+    //    //float len = Vector3.Distance(transform.position, targetTrans.position);
+    //    //if (len < ENDMOVELEN)
+    //    //{
+    //    //    //移動地点の再設定
+    //    //    //MoveRandomSet();
 
-        //    //var MoveDir = GameObject.Find("CirclePoint").transform.position;
+    //    //    //var MoveDir = GameObject.Find("CirclePoint").transform.position;
 
-        //    //movement = transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
+    //    //    //movement = transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
 
-        //}
-        //else
-        //{
-        //    Vector3 direction = targetTrans.position - transform.position;
+    //    //}
+    //    //else
+    //    //{
+    //    //    Vector3 direction = targetTrans.position - transform.position;
 
-        //    //transform.position += direction * 2f * Time.deltaTime;
-        //    //movement += direction * 2f * Time.deltaTime;
-        //}
+    //    //    //transform.position += direction * 2f * Time.deltaTime;
+    //    //    //movement += direction * 2f * Time.deltaTime;
+    //    //}
 
-        //var MovePos = GameObject.Find("CirclePoint").transform.position;
+    //    //var MovePos = GameObject.Find("CirclePoint").transform.position;
 
-        //var distance = Vector3.Distance(transform.position, MovePos);
-        //float present_Location = (Time.time * 0.1f) / distance;
+    //    //var distance = Vector3.Distance(transform.position, MovePos);
+    //    //float present_Location = (Time.time * 0.1f) / distance;
 
-        //var movePoint= Vector3.Slerp(transform.position, MovePos, present_Location);
+    //    //var movePoint= Vector3.Slerp(transform.position, MovePos, present_Location);
 
-        //transform.position = movePoint;
-        ////m_rb.MovePosition(movePoint);
-        //Debug.Log("Fixed");
-    }
+    //    //transform.position = movePoint;
+    //    ////m_rb.MovePosition(movePoint);
+    //    //Debug.Log("Fixed");
+    //}
 
 }

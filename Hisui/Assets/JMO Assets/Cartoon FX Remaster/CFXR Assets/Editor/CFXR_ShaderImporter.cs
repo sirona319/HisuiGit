@@ -8,6 +8,8 @@ using System.Reflection;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEditor.AssetImporters;//Ž©•ª‚Å’Ç‰Á**
+
 #if UNITY_2020_2_OR_NEWER
 using UnityEditor.AssetImporters;
 #else
