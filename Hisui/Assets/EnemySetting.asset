@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemySetting
   m_EditorClassIdentifier: 
   DataList:
-  - Id: NormalJerry
+  - Id: PointJerry
     moveType: 01000000
     IsMovePointSet: 1
     attackType: 02000000
@@ -21,23 +21,16 @@ MonoBehaviour:
     HpMax: 1
     AtkIntervalMax: 1
   - Id: FiveJerry
-    moveType: 00000000
+    moveType: 01000000
     IsMovePointSet: 0
     attackType: 01000000
-    Speed: 3
+    Speed: 6
     HpMax: 1
     AtkIntervalMax: 1
   - Id: CircleMoveJerry
     moveType: 03000000
     IsMovePointSet: 1
     attackType: 00000000
-    Speed: 7
-    HpMax: 1
-    AtkIntervalMax: 1
-  - Id: PointMoveJerry
-    moveType: 01000000
-    IsMovePointSet: 1
-    attackType: 00000000
-    Speed: 9
+    Speed: 6
     HpMax: 1
     AtkIntervalMax: 1

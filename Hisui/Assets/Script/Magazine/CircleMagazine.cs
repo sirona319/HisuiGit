@@ -15,7 +15,7 @@ public class CircleMagazine : BaseMagazine
 
     public override void Initialize()
     {
-        base.Initialize();
+        //base.Initialize();
 
         var player = GameObject.FindGameObjectWithTag("Player");
         targetTrans = player.transform;

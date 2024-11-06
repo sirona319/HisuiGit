@@ -66,7 +66,7 @@ public class Jerry_Damage : StateChildBase
         if (stateTime >= damageTime)
         {
 
-            return GetComponent<EnemyBase>().ReturnStateMoveType(StateType);
+            return GetComponent<JerryScr>().JerryReturnStateType(StateType);
         }
 
         return StateType;

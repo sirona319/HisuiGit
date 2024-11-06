@@ -19,7 +19,7 @@ public abstract class StateControllerBase : MonoBehaviour
         AutoStateTransitionSequence(nextState);
     }
 
-    public void AutoStateTransitionSequence(int nextState)
+    protected void AutoStateTransitionSequence(int nextState)
     {
         if(CurrentState == nextState)
         {

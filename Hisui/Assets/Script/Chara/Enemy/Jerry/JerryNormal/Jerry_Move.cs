@@ -44,8 +44,8 @@ public class Jerry_Move : StateChildBase
         stateTime += Time.deltaTime;
         //moveSaveTime += Time.deltaTime;
 
-        if (GetComponent<JerryScr>().IsDamage)
-            GetComponent<JerryScr>().ReturnStateTypeDamage();
+        if (GetComponent<EnemyBase>().IsDamage)
+            return GetComponent<JerryScr>().ReturnStateTypeDamage();
 
 
         //ˆÚ“®‚ÌXV

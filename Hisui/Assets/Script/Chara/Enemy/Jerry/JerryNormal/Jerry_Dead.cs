@@ -22,17 +22,17 @@ public class Jerry_Dead : StateChildBase
     {
         stateTime = 0f;
 
-        gameObject.SetActive(false);
 
+        
         Instantiate(deadParticle, transform.position, Quaternion.identity);
 
-        //GameObject spawn = GameObject.Find("WaveSpawn");
-        //spawn.GetComponent<EnemySpawnWave>().UpdateCount();
+        GameObject spawn = GameObject.Find("WaveSpawn");
+        spawn.GetComponent<EnemySpawnWave>().UpdateCount();
 
         if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
             GameSceneControl.I.UpdateEnemyCount();
 
-
+        gameObject.SetActive(false);
 
         //StartCoroutine(MyLib.DelayCoroutine(DEADTIME, () =>
         //{

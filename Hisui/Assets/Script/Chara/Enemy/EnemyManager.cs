@@ -8,6 +8,7 @@ public class EnemyManager : Singleton<EnemyManager>
 {
     EnemySetting enemySetting;
 
+    //public EnemyBase aa;
     private async UniTask UniStart()
     {
         enemySetting = await Addressables.

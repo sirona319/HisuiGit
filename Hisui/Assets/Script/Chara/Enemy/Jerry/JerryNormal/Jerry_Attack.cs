@@ -33,7 +33,7 @@ public class Jerry_Attack : StateChildBase
 
         stateTime += Time.deltaTime;
 
-        if (GetComponent<JerryScr>().IsDamage)
+        if (GetComponent<EnemyBase>().IsDamage)
             return GetComponent<JerryScr>().ReturnStateTypeDamage();
 
 

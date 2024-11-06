@@ -55,7 +55,9 @@ public class CircleMove : BaseMove
 
     public override void MoveEnter()
     {
-        //‘ÎÛ‚ª“®‚­‚Æ‚«‚È‚Ç
+        Debug.Log(targetTrans);
+
+        if(targetTrans != null )
         transform.parent = targetTrans;
     }
 

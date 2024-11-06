@@ -70,7 +70,7 @@ public static class MyLib
     {
         //const float INTERPOLANT = 5f;
 
-        Vector3 targetDirection = targetPos - myTrans.position;
+        Vector2 targetDirection = targetPos - myTrans.position;
         Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, targetDirection.normalized);
 
         return Quaternion.Slerp(myTrans.rotation, targetRotation, interpolant * Time.deltaTime);

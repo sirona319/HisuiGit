@@ -36,8 +36,6 @@ public class EnemyData
 
     public float Speed;
     public int HpMax;
-    //public int Hp;
-
     public float AtkIntervalMax = 1;
 
     //public float AtkInterval = 1;

@@ -28,13 +28,14 @@ public class Jerry_Wait : StateChildBase
     public override int StateUpdate()
     {
 
-        transform.rotation = MyLib.TargetRotation2D((transform.position + Vector3.up), transform, 5f);
 
 
         if (GetComponent<EnemyBase>().IsDamage)
-            GetComponent<EnemyBase>().ReturnStateTypeDamage();
+            return GetComponent<JerryScr>().ReturnStateTypeDamage();
 
         stateTime += Time.deltaTime;
+
+        transform.rotation = MyLib.TargetRotation2D((transform.position + Vector3.up), transform, 5f);
 
 
         //return GetComponent<EnemyBase>().ReturnStateMoveTypeAttack(StateType);

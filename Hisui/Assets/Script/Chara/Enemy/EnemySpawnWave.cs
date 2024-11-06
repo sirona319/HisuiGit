@@ -247,7 +247,7 @@ public class EnemySpawnWave: MonoBehaviour
         //var playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
 
 
-
+        //transform.position‚Í¶¬À•W
         enemy = Instantiate(obj, transform.position, Quaternion.identity);
 
 

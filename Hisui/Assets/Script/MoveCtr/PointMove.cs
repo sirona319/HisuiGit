@@ -10,6 +10,7 @@ public class PointMove : BaseMove
     int targetNo = 0;
     const float ENDMOVELEN = 0.5f;
 
+    float speed = 6f;
     //bool IsPoint = false;
 
     public override void Initialize()
@@ -32,10 +33,9 @@ public class PointMove : BaseMove
 
     public override void MoveUpdate()
     {
-        if (!IsMove)
-            return;
+        //if (!IsMove)
+        //    return;
 
-        const float speed = 6f;
         m_rb.MovePosition(m_rb.position + transform.up * speed * Time.deltaTime);
 
 
@@ -46,6 +46,13 @@ public class PointMove : BaseMove
 
 
         float len = Vector3.Distance(transform.position, targets[targetNo].position);
+
+        //重力テスト
+        if(len<2f&&speed>4f)
+        {
+            speed *= (len * 0.4f);
+        }
+
         if (len < ENDMOVELEN)
         {
             //if (GetComponent<BaseJerryScr>().enemyData.FirstTargetPlayer)

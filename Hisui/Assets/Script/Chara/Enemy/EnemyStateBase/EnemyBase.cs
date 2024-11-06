@@ -29,10 +29,10 @@ public class EnemyBase : MonoBehaviour
     [NonSerialized] public List<BaseMove> baseMove = new ();
 
 
-    public Transform[] movePointsDatas;
+   /* [NonSerialized] */public Transform[] movePointsDatas;
 
     int Hp = 0;
-    public float AtkInterval=1;
+    [NonSerialized] public float AtkInterval=1;
 
 
     //呼び出し先でキャストして使用する
@@ -95,7 +95,11 @@ public class EnemyBase : MonoBehaviour
         }
 
         foreach (var magazine in baseMagazine)
+        {
+            //magazine.BulletLoad("prefab/EBulletNormalEX");
             magazine.Initialize();
+
+        }
 
 
         //baseMove初期化　移動クラスに持っていく？
@@ -115,7 +119,6 @@ public class EnemyBase : MonoBehaviour
 
             move.Initialize();
         }
-
 
 
         //ステータスの初期化
@@ -174,26 +177,28 @@ public class EnemyBase : MonoBehaviour
         return DAMAGESTATE;
     }
 
-    public int ReturnStateMoveType(int stateType)
-    {
-        if (IsAttack)
-            return (int)JerryCtr.State.Jerry_Attack;
-
-        else if (IsMove)
-            return (int)JerryCtr.State.Jerry_Move;
 
 
-        //if (enemyData.moveType == EnemyData.MoveType.random)
-        //    return (int)JerryCtr.State.Jerry_Move;
+    //public int ReturnStateMoveType(int stateType)
+    //{
+    //    if (IsAttack)
+    //        return (int)JerryCtr.State.Jerry_Attack;
 
-        //if (enemyData.moveType == EnemyData.MoveType.random)
-        //    return (int)BaseJerryCtr.State.BaseJerry_Move;
-        //else if (enemyData.moveType == EnemyData.MoveType.point)
-        //    return (int)BaseJerryCtr.State.BaseJerry_MovePoint;
-        //else if (enemyData.moveType == EnemyData.MoveType.circle)
-        //    return (int)BaseJerryCtr.State.BaseJerry_MoveCircle;
+    //    else if (IsMove)
+    //        return (int)JerryCtr.State.Jerry_Move;
 
-        return stateType;
-    }
+
+    //    //if (enemyData.moveType == EnemyData.MoveType.random)
+    //    //    return (int)JerryCtr.State.Jerry_Move;
+
+    //    //if (enemyData.moveType == EnemyData.MoveType.random)
+    //    //    return (int)BaseJerryCtr.State.BaseJerry_Move;
+    //    //else if (enemyData.moveType == EnemyData.MoveType.point)
+    //    //    return (int)BaseJerryCtr.State.BaseJerry_MovePoint;
+    //    //else if (enemyData.moveType == EnemyData.MoveType.circle)
+    //    //    return (int)BaseJerryCtr.State.BaseJerry_MoveCircle;
+
+    //    return stateType;
+    //}
 
 }

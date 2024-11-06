@@ -26,10 +26,15 @@ public abstract class BaseMagazine : MonoBehaviour
     //    var player = GameObject.FindGameObjectWithTag("Player");
     //    targetTrans = player.transform;
     //}
-    public virtual void Initialize()
+
+    public virtual void BulletLoad(string name)
     {
-        bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/EBulletNormalEX");
+        bulletObj = MyLib.GetComponentLoad<Bullet>(name);
     }
+    public abstract void Initialize();
+    //{
+        //bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/EBulletNormalEX");
+    //}
 
     public abstract void MagazineEnter();
 

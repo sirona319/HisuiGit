@@ -13,13 +13,18 @@ public class JerryScr : EnemyBase
         base.StartInit();
         base.Init();
 
-
+        //if文で弾の種類分けれる　攻撃ごとに　ボスなど
+        foreach (var magazine in baseMagazine)
+            magazine.BulletLoad("prefab/EBulletNormalEX");
+        
 
         stateController.Initialize((int)JerryCtr.State.Jerry_Wait);
     }
 
     void Update()
     {
+        //stateController.AutoStateTransitionSequence(0);
+
         AttackTimeUpdate();
 
         stateController.UpdateSequence();
