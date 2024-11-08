@@ -8,14 +8,19 @@ public class JerryScr : EnemyBase
 
     //public Transform front;
 
+
+    [SerializeField]float floatSpeed = .005f;
+    //[SerializeField] Vector3 flaotVector;
     void Start()
     {
         base.StartInit();
         base.Init();
 
+        //isFloat=enemyData.
+
         //if文で弾の種類分けれる　攻撃ごとに　ボスなど
-        foreach (var magazine in baseMagazine)
-            magazine.BulletLoad("prefab/EBulletNormalEX");
+        //foreach (var magazine in baseMagazine)
+        //    magazine.BulletLoad("prefab/EBulletNormalEX");
         
 
         stateController.Initialize((int)JerryCtr.State.Jerry_Wait);
@@ -28,6 +33,10 @@ public class JerryScr : EnemyBase
         AttackTimeUpdate();
 
         stateController.UpdateSequence();
+
+        if(!IsMove&& enemyData.isFloat)
+        MyLib.LoopMotionSinVector(transform, floatSpeed, enemyData.flaotVector);
+
     }
 
 
@@ -49,11 +58,26 @@ public class JerryScr : EnemyBase
             return (int)JerryCtr.State.Jerry_Attack;
         else if (IsMove)
             return (int)JerryCtr.State.Jerry_Move;
-
         else
             return (int)JerryCtr.State.Jerry_Wait;
 
         //return stateType;
     }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+
+    //    if (other.CompareTag("ExitErea"))
+    //    {
+
+    //        //Debug.Log("エリア外消去");
+
+    //        this.gameObject.SetActive(false);
+
+    //        Destroy(this.gameObject);
+    //        return;
+    //    }
+
+    //}
 
 }

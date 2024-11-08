@@ -4,9 +4,30 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
+//utility
 public static class MyLib
 {
     #region　便利な関数まとめ
+
+
+    //コルーチンで登録する？
+    public static void LoopMotionSinWait(Transform t,float up)
+    {
+        float sin = Mathf.Sin(Time.time);
+        t.position = new Vector3(t.position.x, t.position.y+(sin*up), 0);
+    }
+    //コルーチンで登録する？
+
+    public static void LoopMotionSinVector(Transform t, float up,Vector3 vec)
+    {
+        float sin = Mathf.Sin(Time.time);
+        t.position = new Vector3(t.position.x, t.position.y + (sin * up), 0);
+
+        var tp = t.position;
+        tp += vec;
+        t.position = tp;
+
+    }
 
     public static void SetClickTrigger(EventTrigger.Entry clickEvent, EventTrigger trigger, Action action)
     {
@@ -42,6 +63,27 @@ public static class MyLib
         }
 
         trans.localPosition = pos;
+    }
+
+    //使い方　持続的に揺らすときなどに　Start関数などでループコルーチンを登録
+    //const float power = 0.03f;
+    //const int frame = 25;
+    //StartCoroutine(MyLib.LoopDelayCoroutine(Time.deltaTime* frame, () =>
+    //    {
+    //    MyLib.DoShakeUpdate2D(power, transform);
+    //}));
+    public static void DoShakeUpdate2D(float magnitude, Transform trans)
+    {
+
+        var pos = trans.localPosition;
+
+
+        var x = pos.x + Random.Range(-1f, 1f) * magnitude;
+        var y = pos.y + Random.Range(-1f, 1f) * magnitude;
+
+        trans.localPosition = new Vector3(x, y, pos.z);
+
+
     }
 
     public static Quaternion TargetRotation(Transform target, Transform myTrans, float interpolant, Vector3 axis)
@@ -154,6 +196,7 @@ public static class MyLib
         return nearVec;
     }
 
+    /// 一番近い敵を返す
     public static EnemyBase EnemysNearScr(Vector3 pos)
     {
         var Enemys = GameObject.FindGameObjectsWithTag("Enemy");

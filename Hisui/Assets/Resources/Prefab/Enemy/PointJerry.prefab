@@ -184,7 +184,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateController: {fileID: 3561205148021999994}
-  movePoints: []
+  isFloat: 1
+  floatSpeed: 0.003
+  flaotVector: {x: -0.003, y: 0, z: 0}
 --- !u!114 &3561205148021999994
 MonoBehaviour:
   m_ObjectHideFlags: 0

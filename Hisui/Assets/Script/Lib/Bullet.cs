@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
 
     int damage = 1;
 
+    [SerializeField]bool IsShake = false;
     void Start()
     {
 
@@ -26,11 +27,21 @@ public class Bullet : MonoBehaviour
 
         // 5秒後に削除
         //Destroy(gameObject, 5.0f);
+
+        if(IsShake)
+        {
+            const float power = 0.03f;            //揺らす力
+            const int frame = 25;            //揺らすタイミング
+            StartCoroutine(MyLib.LoopDelayCoroutine(Time.deltaTime * frame, () =>
+            {
+                MyLib.DoShakeUpdate2D(power, transform);
+            }));
+        }
+        
+
     }
     void Update()
     {
-        //rigidbody　無し
-
         // 毎フレーム、弾を移動させる
         transform.position += velocity * Time.deltaTime;
     }

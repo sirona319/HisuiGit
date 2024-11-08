@@ -15,22 +15,25 @@ MonoBehaviour:
   DataList:
   - Id: PointJerry
     moveType: 01000000
-    IsMovePointSet: 1
-    attackType: 02000000
+    attackType: 00000000
+    isFloat: 0
+    flaotVector: {x: -0.005, y: 0, z: 0}
     Speed: 6
     HpMax: 1
     AtkIntervalMax: 1
   - Id: FiveJerry
     moveType: 01000000
-    IsMovePointSet: 0
-    attackType: 01000000
+    attackType: 02000000
+    isFloat: 0
+    flaotVector: {x: 0, y: 0, z: 0}
     Speed: 6
     HpMax: 1
     AtkIntervalMax: 1
   - Id: CircleMoveJerry
-    moveType: 03000000
-    IsMovePointSet: 1
+    moveType: 0200000001000000
     attackType: 00000000
+    isFloat: 0
+    flaotVector: {x: 0, y: 0, z: 0}
     Speed: 6
     HpMax: 1
     AtkIntervalMax: 1

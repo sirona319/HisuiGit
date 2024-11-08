@@ -12,7 +12,7 @@ public class CircleMagazine : BaseMagazine
 
     const float BULLETTIMEMAX = 4f;
 
-
+    //ãtâÒÇËçÏÇÈ
     public override void Initialize()
     {
         //base.Initialize();

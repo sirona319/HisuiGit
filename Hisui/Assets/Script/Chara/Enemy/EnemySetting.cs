@@ -12,24 +12,28 @@ public class EnemyData
         RandomMove,
         PointMove,
         CircleMove,
-        PointCircleMove
+        //PointCircleMove
         //randomApoint,
 
     }
 
     public MoveType[] moveType;
-    public bool IsMovePointSet = false;
+    //public bool IsMovePointSet = false;
 
     public enum AttackType
     {
         NormalMagazine,
         FiveMagazine,
-        CircleMagazine,
+        CircleMagazine,//ãtâÒÇËçÏÇÈinverse
+        CircleMagazineInverse,
         //NumAttackType,
     }
 
 
     public AttackType[] attackType;
+
+    public bool isFloat = false;
+    public Vector3 flaotVector;
 
     //public MoveType moveType = MoveType.random;
     //public AttackType attackType = AttackType.normal;

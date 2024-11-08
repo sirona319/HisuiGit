@@ -12,7 +12,12 @@ public class Jerry_Attack : StateChildBase
     {
 
         base.Initialize(stateType);
-        GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().enemyData.AtkIntervalMax;
+        GetComponent<EnemyBase>().AtkInterval = GetComponent<EnemyBase>().enemyData.AtkIntervalMax;
+
+        foreach (var magazine in GetComponent<EnemyBase>().baseMagazine)
+        {
+            magazine.BulletLoad("prefab/Bullet/JerryBullet");
+        }
     }
 
     public override void OnEnter()
@@ -46,7 +51,6 @@ public class Jerry_Attack : StateChildBase
         if (stateTime > GetComponent<JerryScr>().baseMagazine[0].bulletShotTime)
         {
             GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().enemyData.AtkIntervalMax;
-            //GetComponent<JerryScr>().IsAttack = false;
             return GetComponent<JerryScr>().JerryReturnStateType(StateType);
         }
 

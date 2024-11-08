@@ -1,4 +1,5 @@
 using UnityEngine;
+using static EnemyData;
 
 public class Jerry_Move : StateChildBase
 {
@@ -12,6 +13,7 @@ public class Jerry_Move : StateChildBase
 
     //Rigidbody m_rb;
 
+    PointMove pointMove;
 
     public override void Initialize(int stateNo)
     {
@@ -20,7 +22,11 @@ public class Jerry_Move : StateChildBase
         //foreach (var move in GetComponent<JerryScr>().baseMove)
         //    move.Initialize();
 
+        pointMove = GetComponent<JerryScr>().MoveTypeSelect(MoveType.PointMove) as PointMove;
+        pointMove.IsLoop = false;
+        pointMove.TargetSet(GetComponent<EnemyBase>().movePointsDatas);
 
+        //pointMove.endLength = 3f;
         //GetComponent<JerryScr>().baseMove.move
 
     }
@@ -29,8 +35,8 @@ public class Jerry_Move : StateChildBase
     {
         stateTime = 0f;
 
-        foreach (var move in GetComponent<JerryScr>().baseMove)
-            move.MoveEnter();
+        //foreach (var move in GetComponent<JerryScr>().baseMove)
+            pointMove.MoveEnter();
 
     }
 
@@ -49,25 +55,23 @@ public class Jerry_Move : StateChildBase
 
 
         //移動の更新
-        foreach (var move in GetComponent<JerryScr>().baseMove)
+        pointMove.MoveUpdate();
+
+        //コルーチンで登録するようにする
+        //if(pointMove.IsPointMoveEnd)
+
+
+
+        if (pointMove.IsPointMoveEnd)
         {
-            move.MoveUpdate();
-            GetComponent<JerryScr>().IsMove = move.IsMove;
-        }
-
-        //マガジンの更新
-
-
-
-        if (!GetComponent<JerryScr>().IsMove)
             GetComponent<JerryScr>().IsAttack = true;
+            GetComponent<JerryScr>().IsMove = false;
+            return (int)GetComponent<JerryScr>().JerryReturnStateType(StateType);
+        }
+            
 
-        //GetComponent<JerryScr>().AttackMagazineUpdateAll();
 
-        return GetComponent<JerryScr>().JerryReturnStateType(StateType);
-
-
-        //return (int)StateType;
+        return StateType;
 
     }
 }

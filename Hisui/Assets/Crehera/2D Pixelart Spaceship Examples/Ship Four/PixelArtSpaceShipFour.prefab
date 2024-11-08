@@ -139,7 +139,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &2191569371651337474
 BoxCollider:
@@ -160,7 +160,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.53, y: 2.05, z: 0.2}
+  m_Size: {x: 1.53, y: 1.5503991, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8266499170138442288
 MonoBehaviour:
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDebugNoLife: 1
   SPEED: 3.5
-  m_isDamage: 0
   bulletSpeed: 6
 --- !u!1 &6908733059665422747
 GameObject:
@@ -203,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 6908733059665422747}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -33,7 +33,7 @@ public class CircleMove : BaseMove
         //targetPos = player.transform.position;
 
         //targets = GetComponent<EnemyBase>().movePointsDatas[0];
-        targetTrans = targets[0];
+        //targetTrans = targets[0];
 
         //moveTrans = GetComponent<EnemyBase>().movePointsDatas;
 
@@ -55,9 +55,9 @@ public class CircleMove : BaseMove
 
     public override void MoveEnter()
     {
-        Debug.Log(targetTrans);
+        //Debug.Log(targetTrans);
 
-        if(targetTrans != null )
+        //if(targetTrans != null )
         transform.parent = targetTrans;
     }
 

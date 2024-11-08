@@ -29,13 +29,16 @@ public class EnemyBase : MonoBehaviour
     [NonSerialized] public List<BaseMove> baseMove = new ();
 
 
-   /* [NonSerialized] */public Transform[] movePointsDatas;
+    [NonSerialized] public Transform[] movePointsDatas;
 
-    int Hp = 0;
+    public int Hp = 0;
     [NonSerialized] public float AtkInterval=1;
 
-
-    //呼び出し先でキャストして使用する
+    /// <summary>
+    /// 呼び出し先でキャストして使用する
+    /// </summary>
+    /// <param name="mt"></param>
+    /// <returns>BaseMove</returns>
     public BaseMove MoveTypeSelect(MoveType mt)
     {
         foreach (var move in baseMove)
@@ -114,15 +117,15 @@ public class EnemyBase : MonoBehaviour
 
         foreach (var move in baseMove)
         {
-            if (enemyData.IsMovePointSet)
-                move.targets = movePointsDatas;
+            //if (enemyData.IsMovePointSet)
+            //    move.targets = movePointsDatas;
 
             move.Initialize();
         }
 
 
         //ステータスの初期化
-        Hp = enemyData.HpMax;
+        //Hp = enemyData.HpMax;
 
         //enemyData.movePointsSet = movePointsInit;
 
@@ -167,17 +170,32 @@ public class EnemyBase : MonoBehaviour
 
     public int ReturnStateTypeDamage()
     {
-        if (gameObject.GetComponent<EnemyBase>().IsDead)
-        {
-            const int DEAD = 2;
-            return DEAD;
-        }
+        const int DEAD = 2;
+
+        if (IsDead)
+        return DEAD;
 
         const int DAMAGESTATE = 1;
+
         return DAMAGESTATE;
+
     }
 
+    private void OnTriggerExit(Collider other)
+    {
 
+        if (other.CompareTag("ExitErea"))
+        {
+
+            //Debug.Log("エリア外消去");
+
+            this.gameObject.SetActive(false);
+
+            Destroy(this.gameObject);
+            return;
+        }
+
+    }
 
     //public int ReturnStateMoveType(int stateType)
     //{

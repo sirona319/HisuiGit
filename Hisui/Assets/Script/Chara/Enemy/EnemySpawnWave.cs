@@ -18,7 +18,7 @@ public class EnemySpawnWave: MonoBehaviour
 
     //public GameObject[] spawnLocations;//敵の移動範囲　位置
 
-    const float SPWNTIME = 1f; //敵の生成タイム設定できるようにする
+
                                //public ChildTrans[] movePointsSet;
 
     //public int enemyCount = 0;
@@ -134,8 +134,10 @@ public class EnemySpawnWave: MonoBehaviour
         while (true)
         {
             DelaySpawnAsyncWave
-                (SPWNTIME * spawnData[No].enemyCount + 1,
+                (spawnData[No].spawnTime[spawnData[No].enemyCount] * spawnData[No].enemyCount + 1,//float型
+
                 spawnData[No].spawns[spawnData[No].enemyCount],
+                spawnData[No].spawnLocations[spawnData[No].enemyCount].position,
                 spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray
                 ).Forget();
 
@@ -227,8 +229,8 @@ public class EnemySpawnWave: MonoBehaviour
     //    }
 
     //}
-
-    public async UniTask DelaySpawnAsyncWave(float seconds, GameObject obj,Transform[] movePoint)
+    EnemyData tt;
+    public async UniTask DelaySpawnAsyncWave(float seconds, GameObject obj,Vector3 spawnPos,Transform[] movePoint)
     {
 
 
@@ -248,7 +250,7 @@ public class EnemySpawnWave: MonoBehaviour
 
 
         //transform.positionは生成座標
-        enemy = Instantiate(obj, transform.position, Quaternion.identity);
+        enemy = Instantiate(obj, spawnPos, Quaternion.identity);
 
 
 
@@ -259,6 +261,8 @@ public class EnemySpawnWave: MonoBehaviour
 
         enemy.GetComponent<EnemyBase>().movePointsDatas = movePoint;
 
+        tt = EnemyManager.I.GetEnemyData(obj.name);
+        enemy.GetComponent<EnemyBase>().Hp = tt.HpMax;
     }
 
     //public IEnumerator DelaySpawnCoroutineWave(float seconds, GameObject obj, Vector3 bPos)

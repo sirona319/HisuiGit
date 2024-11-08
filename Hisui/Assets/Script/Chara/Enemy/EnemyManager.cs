@@ -38,4 +38,14 @@ public class EnemyManager : Singleton<EnemyManager>
 
         return data;
     }
+
+    //public EnemyData GetEnemyDataSpeed(string name)
+    //{
+    //    //enemySetting = Resources.Load<EnemySetting>("EnemySetting");
+
+    //    var data = enemySetting.DataList.
+    //          FirstOrDefault(enemy => enemy.Id == name);
+
+    //    return data;
+    //}
 }

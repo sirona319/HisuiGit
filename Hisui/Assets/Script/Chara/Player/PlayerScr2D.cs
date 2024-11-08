@@ -45,14 +45,14 @@ public class PlayerScr2D : MonoBehaviour
 
 
     //public ReactiveProperty<Vector3> prePosDiff;    //using UniRx•K—v
-    //public Dictionary<Transform, Transform> aa;
+
 
 
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();
 
-        bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/PBulletNormal");
+        bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/Bullet/PBulletNormal");
 
         //prePosDiff.Value = Vector3.zero;
     }

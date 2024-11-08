@@ -5,6 +5,10 @@ public class SpawnWaveData
 {
     public string DataName = "WAVE";
 
+    public int enemyCount = 0;
+
+    public float[] spawnTime; //敵の生成タイム設定できるようにする
+
     //この敵たちが倒されたら　範囲外に出たら破棄する？　スポーンする　登録方法を考える
     //public GameObject[] triggerEnemys;
 
@@ -16,7 +20,7 @@ public class SpawnWaveData
 
     public ChildTrans[] movePointsSet;
 
-    public int enemyCount = 0;
+
 
 }
 
