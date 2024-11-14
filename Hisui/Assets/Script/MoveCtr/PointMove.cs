@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 
@@ -7,15 +8,15 @@ public class PointMove : BaseMove
 {
 
     int targetNo = 0;
-    public float endLength = 0.5f;
+    public float endLength = 0.7f;
 
-    float speed = 6f;
+    public float speed = 40f;
 
-    Transform[] targets;
+    public Transform[] targets;
 
-    public bool IsLoop = true;
-    public bool IsPointMoveEnd = false;
-
+    //public bool IsLoop = false;
+    //public bool IsPointMoveEnd = false;
+    public ReactiveProperty<bool> IsPointMoveEnd = new ReactiveProperty<bool>(false);
     //リセットできるようにする？　移動後停止してまた使えるようにするため
 
     public void TargetSet(Transform[] t)
@@ -26,10 +27,21 @@ public class PointMove : BaseMove
             throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
     }
 
-    public override void Initialize()
-    {
-        base.Initialize();
+    //public bool GetMoveEnd()
+    //{
+    //    return IsPointMoveEnd.Value;
+    //}
 
+    public void SetMoveEndLength(float len)
+    {
+        endLength = len;
+    }
+
+    public override void Initialize(Rigidbody2D rb)
+    {
+        m_rb = rb;
+        //base.Initialize();
+        
     }
 
     public override void MoveEnter()
@@ -40,18 +52,17 @@ public class PointMove : BaseMove
 
     public override void MoveUpdate()
     {
-        //if (!IsMove)
-        //    return;
+        if (IsPointMoveEnd.Value) return;
 
-        m_rb.MovePosition(m_rb.position + transform.up * speed * Time.deltaTime);
-        transform.position= transform.position + transform.up * speed * Time.deltaTime;
+        PointUpdate();
 
-
+        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
 
         transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
+    }
 
-
-
+    void PointUpdate()
+    {
         float len = Vector3.Distance(transform.position, targets[targetNo].position);
 
         //重力テスト
@@ -62,26 +73,18 @@ public class PointMove : BaseMove
 
         if (len < endLength)
         {
-            //if (GetComponent<BaseJerryScr>().enemyData.FirstTargetPlayer)
-            //     return GetComponent<BaseJerryScr>().ReturnStateMoveType(StateType);
-
-                           // IsMove = false;
 
             targetNo++;
             if (targetNo > targets.Length - 1)
             {
-                //ここに処理を追加できるようにしたい
-                //IsPoint = true;
-                if (!IsLoop)
-                    IsPointMoveEnd = true;
+                if (!IsKeepMove)
+                    IsPointMoveEnd.Value = true;
 
                 targetNo = 0;
             }
-            //GetComponent<JerryScr>().IsMove = false;
-            //return StateType;
+
         }
-
-
+        
     }
 
 }

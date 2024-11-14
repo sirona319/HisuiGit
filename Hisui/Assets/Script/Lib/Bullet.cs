@@ -14,20 +14,23 @@ public class Bullet : MonoBehaviour
     void Start()
     {
 
-        // X方向の移動量を設定する
-        velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
+        SetAngle();
+        //// X方向の移動量を設定する
+        //velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
 
-        // Y方向の移動量を設定する
-        velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
+        //// Y方向の移動量を設定する
+        //velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
 
 
-        // 弾の向きを設定する
-        float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;
-        transform.rotation = Quaternion.Euler(0, 0, zAngle);
+        //// 弾の向きを設定する
+        //float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;
+        //transform.rotation = Quaternion.Euler(0, 0, zAngle);
 
         // 5秒後に削除
         //Destroy(gameObject, 5.0f);
 
+
+        //クラス化？　コンポーネント
         if(IsShake)
         {
             const float power = 0.03f;            //揺らす力
@@ -55,8 +58,52 @@ public class Bullet : MonoBehaviour
     }
 
 
+    //PoolMangagerで使用するときangleの再設定時　角度を変更させる
+    public void SetAngle()
+    {
+        // X方向の移動量を設定する
+        velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
 
-    private void OnTriggerEnter(Collider other)
+        // Y方向の移動量を設定する
+        velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
+
+
+        // 弾の向きを設定する
+        float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;
+        transform.rotation = Quaternion.Euler(0, 0, zAngle);
+    }
+
+
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+
+    //    if (other.CompareTag("Player"))
+    //    {
+
+    //        //プレイヤーへのダメージ処理
+    //        other.transform.GetComponent<PlayerScr2D>().PlayerDamage(damage);
+
+    //       // Debug.Log("攻撃がPlayerにHIT");
+
+    //        Destroy(this.gameObject);
+    //        return;
+    //    }
+
+    //    if (other.CompareTag("Enemy"))
+    //    {
+    //        other.GetComponent<EnemyBase>().EnemyDamage(1);
+
+
+    //        Destroy(this.gameObject);
+    //        return;
+    //    }
+
+
+    //}
+
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
 
         if (other.CompareTag("Player"))
@@ -65,7 +112,7 @@ public class Bullet : MonoBehaviour
             //プレイヤーへのダメージ処理
             other.transform.GetComponent<PlayerScr2D>().PlayerDamage(damage);
 
-           // Debug.Log("攻撃がPlayerにHIT");
+            Debug.Log("攻撃がPlayerにHIT");
 
             Destroy(this.gameObject);
             return;
@@ -73,9 +120,9 @@ public class Bullet : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyBase>().EnemyDamage(1);
+            other.transform.GetComponent<EnemyBase>().EnemyDamage(1);
 
-
+            Debug.Log("攻撃が敵にHIT");
             Destroy(this.gameObject);
             return;
         }
@@ -85,9 +132,9 @@ public class Bullet : MonoBehaviour
 
 
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-
+        return;
         if (other.CompareTag("ExitErea"))
         {
 

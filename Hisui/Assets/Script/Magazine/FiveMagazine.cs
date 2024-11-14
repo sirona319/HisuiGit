@@ -22,6 +22,7 @@ public class FiveMagazine : BaseMagazine
 
     public override void MagazineEnter()
     {
+        if (targetTrans == null) return;
         FiveShot();
     }
     public override void MagazineUpdate()
@@ -61,12 +62,19 @@ public class FiveMagazine : BaseMagazine
         Vector2 direction = targetTrans.position - transform.position;
         float playerAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        AngleShot(playerAngle, 0);
+        BulletAtk(playerAngle + 0);
+        BulletAtk(playerAngle + ONEWEYLENGTH);
+        BulletAtk(playerAngle + TWOWEYLENGTH);
+        BulletAtk(playerAngle + -ONEWEYLENGTH);
+        BulletAtk(playerAngle + -TWOWEYLENGTH);
 
-        AngleShot(playerAngle,ONEWEYLENGTH);
-        AngleShot(playerAngle,TWOWEYLENGTH);
-        AngleShot(playerAngle,-ONEWEYLENGTH);
-        AngleShot(playerAngle,-TWOWEYLENGTH);
+
+        //AngleShot(playerAngle, 0);
+
+        //AngleShot(playerAngle,ONEWEYLENGTH);
+        //AngleShot(playerAngle,TWOWEYLENGTH);
+        //AngleShot(playerAngle,-ONEWEYLENGTH);
+        //AngleShot(playerAngle,-TWOWEYLENGTH);
 
 
         //var tarRot = Quaternion.AngleAxis(-ONEWEYLENGTH, -Vector3.forward) * bulletRot;
@@ -87,17 +95,34 @@ public class FiveMagazine : BaseMagazine
         //ebullet.GetComponent<Bullet>().angle = pAngle - TWOWEYLENGTH;
     }
 
-    void AngleShot(float targetAngle, float angleValue)
-    {
+    //void AngleShot(float targetAngle, float angleValue)
+    //{
 
 
-        //var tarRot = Quaternion.AngleAxis(shotAngle, -Vector3.forward) * firstBulletRot;
+    //    //var tarRot = Quaternion.AngleAxis(shotAngle, -Vector3.forward) * firstBulletRot;
 
 
-        var ebullet = Instantiate(bulletObj.gameObject, transform.position, Quaternion.identity);
+    //    //var ebullet = Instantiate(bulletObj.gameObject, transform.position, Quaternion.identity);
 
 
-        ebullet.GetComponent<Bullet>().angle = targetAngle + angleValue;
-    }
+    //    //ebullet.GetComponent<Bullet>().angle = targetAngle + angleValue;
+
+    //    BulletAtk(targetAngle + angleValue);
+    //}
+
+    //void BulletAtk(float angle)
+    //{
+
+    //    var bullet = poolManager.GetGameObject(bulletObj.gameObject, transform.position, transform.rotation);
+    //    bullet.GetComponent<Bullet>().angle = angle;
+
+    //    var destroyer = bullet.GetComponent<Destroyer>();
+    //    destroyer.PoolManager = poolManager;
+
+    //    if (destroyer != null)
+    //        destroyer.StartDestroyTimer(7);
+
+
+    //}
 
 }

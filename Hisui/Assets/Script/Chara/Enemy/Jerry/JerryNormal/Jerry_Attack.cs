@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.GridBrushBase;
 
 public class Jerry_Attack : StateChildBase
 {
@@ -12,12 +13,14 @@ public class Jerry_Attack : StateChildBase
     {
 
         base.Initialize(stateType);
-        GetComponent<EnemyBase>().AtkInterval = GetComponent<EnemyBase>().enemyData.AtkIntervalMax;
+        //GetComponent<EnemyBase>().AtkInterval = GetComponent<EnemyBase>().enemyData.AtkIntervalMax;
 
-        foreach (var magazine in GetComponent<EnemyBase>().baseMagazine)
-        {
-            magazine.BulletLoad("prefab/Bullet/JerryBullet");
-        }
+        //foreach (var magazine in GetComponent<EnemyBase>().baseMagazine)
+        //{
+        //    magazine.BulletLoad("prefab/Bullet/JerryBullet");
+
+        //    magazine.SetPool(GetComponent<EnemyBase>().pool);
+        //}
     }
 
     public override void OnEnter()
@@ -47,14 +50,19 @@ public class Jerry_Attack : StateChildBase
         GetComponent<JerryScr>().AttackMagazineUpdateAll();
 
 
+        foreach (var move in GetComponent<JerryScr>().baseMove)
+        {
+            if(move.IsKeepMove)
+                move.MoveUpdate();
+        }
 
-        if (stateTime > GetComponent<JerryScr>().baseMagazine[0].bulletShotTime)
+
+
+        if (stateTime > GetComponent<JerryScr>().baseMagazine[0].shotTime)
         {
             GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().enemyData.AtkIntervalMax;
             return GetComponent<JerryScr>().JerryReturnStateType(StateType);
         }
-
-
 
 
         return (int)StateType;

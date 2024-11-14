@@ -2,7 +2,8 @@ using UnityEngine;
 using UniRx;
 using UnityEngine.EventSystems;
 using static UnityEditor.PlayerSettings;
-public class CircleMove : BaseMove
+using static UnityEngine.GraphicsBuffer;
+public class CircleMove : BaseMove, ICircleMove
 {
     //https://nekojara.city/unity-circular-motion
 
@@ -20,14 +21,32 @@ public class CircleMove : BaseMove
     [SerializeField] private bool _updateRotation = true;
 
 
-    public Transform targetTrans;
+    public Transform targets;
+    //public void TargetSet(Transform[] t)
+    //{
+    //    targets = t[0];
+
+    //    if (targets==null)
+    //        throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
+    //}
+
+    //bool GetMoveEnd()
+    //{
+    //    return false;
+    //}
 
     //bool IsTargetMove = false;
 
-    public override void Initialize()
+    public void SetParent(Transform t)
     {
-        base.Initialize();
+        transform.parent = t;
+    }
 
+    public override void Initialize(Rigidbody2D rb)
+    {
+        base.Initialize(rb);
+
+        IsKeepMove = true;
         //var player = GameObject.FindGameObjectWithTag("Player");
 
         //targetPos = player.transform.position;
@@ -47,21 +66,40 @@ public class CircleMove : BaseMove
     }
 
     //void UpdatePos(PlayerScr2D p)
-   // {
-        //transform.position += p.GetComponent<PlayerScr2D>().prePosDiff.Value;
+    //{
+    //    transform.position += p.GetComponent<PlayerScr2D>().prePosDiff.Value;
 
-        //targetPos = p.transform.position;
-   // }
+    //    targetPos = p.transform.position;
+    //}
 
     public override void MoveEnter()
     {
         //Debug.Log(targetTrans);
 
         //if(targetTrans != null )
-        transform.parent = targetTrans;
+        SetParent(targets);
     }
 
     public override void MoveUpdate()
+    {
+
+        CircleUpdate();
+        // 中心点centerの周りを、軸axisで、period周期で円運動
+        //transform.RotateAround(
+        //    targetPos,
+        //    _axis,
+        //    360 / _period * Time.deltaTime
+        //);
+
+
+
+        transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////回転
+
+
+
+    }
+
+    void CircleUpdate()
     {
         //ターゲットとの距離は初期位置で決まる！！
         var tr = transform;
@@ -71,9 +109,9 @@ public class CircleMove : BaseMove
         // 円運動の位置計算
         var pos = tr.position;
 
-        pos -= targetTrans.position;
+        pos -= targets.position;
         pos = angleAxis * pos;
-        pos += targetTrans.position;
+        pos += targets.position;
 
 
         tr.position = pos;
@@ -85,89 +123,6 @@ public class CircleMove : BaseMove
         {
             tr.rotation = tr.rotation * angleAxis;
         }
-
-
-
-
-
-
-        // 中心点centerの周りを、軸axisで、period周期で円運動
-        //transform.RotateAround(
-        //    targetPos,
-        //    _axis,
-        //    360 / _period * Time.deltaTime
-        //);
-
-
-
-
-
-        transform.rotation = MyLib.TargetRotation2D(targetTrans.position, transform);        ////回転
-
-
-        //Vector3 movement = transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
-
-        //2D
-        //m_rb.MovePosition(m_rb.position + movement);
-
-        //const float ENDMOVELEN = 3f;
-        //float len = Vector3.Distance(transform.position, targetTrans.position);
-        //if (len < ENDMOVELEN)
-        //{
-        //    //移動地点の再設定
-        //    //MoveRandomSet();
-        //}
-        //else
-        //{
-        //    Vector3 direction = targetTrans.position - transform.position;
-
-        //    //transform.position += direction * 2f * Time.deltaTime;
-        //    movement += direction * 1f * Time.deltaTime;
-        //}
-
-        ////transform.position = m_rb.position + movement;
-        //m_rb.MovePosition(m_rb.position + movement);
-        //Debug.Log("Fixed");
     }
-
-
-    //private void FixedUpdate()
-    //{
-    //    //Vector3 movement= Vector3.zero; //= transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
-
-    //    ////2D
-    //    ////m_rb.MovePosition(m_rb.position + movement);
-
-    //    //const float ENDMOVELEN = 3f;
-    //    //float len = Vector3.Distance(transform.position, targetTrans.position);
-    //    //if (len < ENDMOVELEN)
-    //    //{
-    //    //    //移動地点の再設定
-    //    //    //MoveRandomSet();
-
-    //    //    //var MoveDir = GameObject.Find("CirclePoint").transform.position;
-
-    //    //    //movement = transform.right * Time.deltaTime * GetComponent<EnemyBase>().enemyData.Speed;
-
-    //    //}
-    //    //else
-    //    //{
-    //    //    Vector3 direction = targetTrans.position - transform.position;
-
-    //    //    //transform.position += direction * 2f * Time.deltaTime;
-    //    //    //movement += direction * 2f * Time.deltaTime;
-    //    //}
-
-    //    //var MovePos = GameObject.Find("CirclePoint").transform.position;
-
-    //    //var distance = Vector3.Distance(transform.position, MovePos);
-    //    //float present_Location = (Time.time * 0.1f) / distance;
-
-    //    //var movePoint= Vector3.Slerp(transform.position, MovePos, present_Location);
-
-    //    //transform.position = movePoint;
-    //    ////m_rb.MovePosition(movePoint);
-    //    //Debug.Log("Fixed");
-    //}
 
 }

@@ -15,24 +15,34 @@ public class EnemyBase : MonoBehaviour
     }
     #endregion
 
-    [NonSerialized] public bool IsDead = false;
-    [NonSerialized] public bool IsDamage = false;
-    [NonSerialized] public bool IsAttack = false;
-    [NonSerialized] public bool IsMove = true;
+    //public Rigidbody2D rb;
+
+    public bool IsDead { get; private set;} =false;
+
+    public bool IsDamage { get; set; } = false;
+
+    protected bool IsAttack { get; private set; } = false;
+
+    public bool IsMove { get; private set; } = true;
 
 
-    [NonSerialized] public EnemyData enemyData;//スクリプタルオブジェクト　リスト
-    [NonSerialized] public string findName;
+    public EnemyData enemyData;//スクリプタルオブジェクト　リスト
+    //[NonSerialized] public string findName;
 
 
-    [NonSerialized] public List<BaseMagazine> baseMagazine=new ();
-    [NonSerialized] public List<BaseMove> baseMove = new ();
+    public List<BaseMagazine> baseMagazine=new ();
+    public List<BaseMove> baseMove = new ();
+    //public BaseMove[] baseMoveS;
 
-
-    [NonSerialized] public Transform[] movePointsDatas;
+    //public Transform[] movePointsDatas=null;
 
     public int Hp = 0;
-    [NonSerialized] public float AtkInterval=1;
+    [SerializeField] public float AtkInterval=1;
+
+    //\[NonSerialized] public PoolManager pool;
+
+
+
 
     /// <summary>
     /// 呼び出し先でキャストして使用する
@@ -66,62 +76,76 @@ public class EnemyBase : MonoBehaviour
             magazine.MagazineUpdate();
     }
 
+    //protected virtual void EnemyDataInit()
+    //{
+    //    //スクリプタルオブジェクトのデータを取得
+    //    enemyData = EnemyManager.I.GetEnemyData(findName);
 
-    protected virtual void StartInit()
-    {
-        //スクリプタルオブジェクトのデータを取得
-        enemyData = EnemyManager.I.GetEnemyData(findName);
-
-        //enemyDataのnullチェック
-        if (enemyData == null)
-            throw new System.Exception(findName + "　Data null");
+    //    //enemyDataのnullチェック
+    //    if (enemyData == null)
+    //        throw new System.Exception(findName + "　Data null");
 
 
-        if((int)enemyData.attackType.Length<=0)
-            throw new System.Exception(findName + "　スクリプタルオブジェクトattackType　空");
+    //    if ((int)enemyData.attackType.Length <= 0)
+    //        throw new System.Exception(findName + "　スクリプタルオブジェクトattackType　空");
 
-        if ((int)enemyData.moveType.Length <= 0)
-            throw new System.Exception(findName + "スクリプタルオブジェクト　moveType 空");
-    }
+    //    if ((int)enemyData.moveType.Length <= 0)
+    //        throw new System.Exception(findName + "スクリプタルオブジェクト　moveType 空");
+    //}
 
     protected virtual void Init()
     {
 
-        //baseMagazine初期化　　攻撃クラスに持っていく？
-        for (int i = 0; i < (int)enemyData.attackType.Length; i++)
-        {
-            Type typeClass = Type.GetType(enemyData.attackType[i].ToString());
+        ////baseMagazine初期化　　攻撃クラスに持っていく？
+        //for (int i = 0; i < (int)enemyData.attackType.Length; i++)
+        //{
+        //    Type typeClass = Type.GetType(enemyData.attackType[i].ToString());
 
-            if (typeClass != null)
-                baseMagazine.Add((BaseMagazine)gameObject.AddComponent(typeClass));
+        //    if (typeClass != null)
+        //        baseMagazine.Add((BaseMagazine)gameObject.AddComponent(typeClass));
 
-        }
+        //}
 
-        foreach (var magazine in baseMagazine)
-        {
-            //magazine.BulletLoad("prefab/EBulletNormalEX");
-            magazine.Initialize();
+        //foreach (var magazine in baseMagazine)
+        //{
+        //    //magazine.BulletLoad("prefab/EBulletNormalEX");
+        //    magazine.Initialize();
 
-        }
+        //}
+
+        ////baseMove初期化　移動クラスに持っていく？
+        //for (int i = 0; i < (int)enemyData.moveType.Length; i++)
+        //{
+        //    Type typeClass = Type.GetType(enemyData.moveType[i].ToString());
 
 
-        //baseMove初期化　移動クラスに持っていく？
-        for (int i = 0; i < (int)enemyData.moveType.Length; i++)
-        {
-            Type typeClass = Type.GetType(enemyData.moveType[i].ToString());
 
-            if (typeClass != null)
-                baseMove.Add((BaseMove)gameObject.AddComponent(typeClass));
+        //    if (typeClass != null)
+        //    {
+        //        baseMove.Add((BaseMove)gameObject.AddComponent(typeClass));
+        //    }
 
-        }
+        //    //baseMove.Add((BaseMove)gameObject.GetComponent(typeClass));
+        //}
 
-        foreach (var move in baseMove)
-        {
-            //if (enemyData.IsMovePointSet)
-            //    move.targets = movePointsDatas;
+        //foreach (var move in baseMove)
+        //{
+        //    //初期化
+        //    move.Initialize(rb);
 
-            move.Initialize();
-        }
+
+        //    var movePointComp = move.GetComponent<IPointMove>();
+
+        //    // の処理が必須
+        //    if (movePointComp != null)
+        //    {
+        //        //movePointComp.TargetSet(movePointsDatas);
+        //        movePointComp.SetMoveEndLength(enemyData.PointEndLength);
+        //    }
+
+
+
+        //}
 
 
         //ステータスの初期化
@@ -170,10 +194,10 @@ public class EnemyBase : MonoBehaviour
 
     public int ReturnStateTypeDamage()
     {
-        const int DEAD = 2;
+        //const int DEAD = 2;
 
-        if (IsDead)
-        return DEAD;
+        //if (IsDead)
+        //return DEAD;
 
         const int DAMAGESTATE = 1;
 
@@ -181,21 +205,30 @@ public class EnemyBase : MonoBehaviour
 
     }
 
-    private void OnTriggerExit(Collider other)
+    public void SetEndMove(bool moveEnd)
     {
+        //if (!moveEnd) return;
+        GetComponent<JerryScr>().IsAttack = true;
 
-        if (other.CompareTag("ExitErea"))
-        {
-
-            //Debug.Log("エリア外消去");
-
-            this.gameObject.SetActive(false);
-
-            Destroy(this.gameObject);
-            return;
-        }
+        GetComponent<JerryScr>().IsMove = false;
 
     }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+
+    //    if (other.CompareTag("ExitErea"))
+    //    {
+
+    //        //Debug.Log("エリア外消去");
+
+    //        this.gameObject.SetActive(false);
+
+    //        Destroy(this.gameObject);
+    //        return;
+    //    }
+
+    //}
 
     //public int ReturnStateMoveType(int stateType)
     //{

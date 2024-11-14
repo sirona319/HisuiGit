@@ -21,6 +21,7 @@ public class NormalMagazine : BaseMagazine
 
     public override void MagazineEnter()
     {
+        if (targetTrans == null) return;
         NormalShot();
     }
 
@@ -51,11 +52,13 @@ public class NormalMagazine : BaseMagazine
         //var bulletRot = Quaternion.FromToRotation(Vector3.up, toDirection);
 
 
-        var ebullet = Instantiate(bulletObj.gameObject, transform.position, Quaternion.identity);
+        //var ebullet = Instantiate(bulletObj.gameObject, transform.position, Quaternion.identity);
 
         Vector2 direction = targetTrans.position - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        ebullet.GetComponent<Bullet>().angle = pAngle;
+        //ebullet.GetComponent<Bullet>().angle = pAngle;
+
+        BulletAtk(pAngle);
     }
 
     public void ChangeShotNum()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class JerryScr : EnemyBase
@@ -9,19 +10,19 @@ public class JerryScr : EnemyBase
     //public Transform front;
 
 
-    [SerializeField]float floatSpeed = .005f;
+    //[SerializeField] float floatSpeed = 0.005f;
     //[SerializeField] Vector3 flaotVector;
     void Start()
     {
-        base.StartInit();
-        base.Init();
+        //base.EnemyDataInit();
+        //base.Init();
 
         //isFloat=enemyData.
 
         //if文で弾の種類分けれる　攻撃ごとに　ボスなど
         //foreach (var magazine in baseMagazine)
         //    magazine.BulletLoad("prefab/EBulletNormalEX");
-        
+        //rb = GetComponent<Rigidbody2D>();
 
         stateController.Initialize((int)JerryCtr.State.Jerry_Wait);
     }
@@ -34,8 +35,8 @@ public class JerryScr : EnemyBase
 
         stateController.UpdateSequence();
 
-        if(!IsMove&& enemyData.isFloat)
-        MyLib.LoopMotionSinVector(transform, floatSpeed, enemyData.flaotVector);
+        //if (!IsMove && enemyData.isFloat)
+        //    MyLib.LoopMotionSinVector(transform, floatSpeed, enemyData.flaotVector);
 
     }
 
@@ -63,6 +64,8 @@ public class JerryScr : EnemyBase
 
         //return stateType;
     }
+
+
 
     //private void OnTriggerExit(Collider other)
     //{

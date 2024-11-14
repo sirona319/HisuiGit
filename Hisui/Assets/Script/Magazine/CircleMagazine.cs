@@ -1,3 +1,4 @@
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class CircleMagazine : BaseMagazine
@@ -6,7 +7,7 @@ public class CircleMagazine : BaseMagazine
     float timeCount = 0;
     float shotAngle = 0;
 
-    Transform targetTrans;
+    //Transform targetTrans;
 
     //const float SHOTTIME = 3f;
 
@@ -17,17 +18,17 @@ public class CircleMagazine : BaseMagazine
     {
         //base.Initialize();
 
-        var player = GameObject.FindGameObjectWithTag("Player");
-        targetTrans = player.transform;
+        ///var player = GameObject.FindGameObjectWithTag("Player");
+       // targetTrans = player.transform;
 
         //bulletInterval = 0;
 
-        bulletShotTime = BULLETTIMEMAX;
+        shotTime = BULLETTIMEMAX;
     }
 
     public override void MagazineEnter()
     {
-
+        shotAngle = 0;
     }
 
     public override void MagazineUpdate()
@@ -51,25 +52,44 @@ public class CircleMagazine : BaseMagazine
         // 前フレームからの時間の差を加算
         timeCount += Time.deltaTime;
 
+        const int angleChangeVal = 10;
+        const float shotTiming = 0.1f;
         // 0.1秒を超えているか
-        if (timeCount > 0.1f)
+        if (timeCount > shotTiming)
         {
             timeCount = 0; // 再発射のために時間をリセット
 
-            shotAngle += 10;
+            shotAngle += angleChangeVal;
+
+            BulletAtk(shotAngle);
 
             // GameObjectを新たに生成する
             // 第一引数：生成するGameObject
             // 第二引数：生成する座標
             // 第三引数：生成する角度
             // 戻り値：生成したGameObject
-            var createObject = Instantiate(bulletObj.gameObject, transform.position, Quaternion.identity);
+            //var createObject = Instantiate(bulletObj.gameObject, transform.position, Quaternion.identity);
 
             // 生成したGameObjectに設定されている、Bulletスクリプトを取得する
-            Bullet bulletScript = createObject.GetComponent<Bullet>();
+            //Bullet bulletScript = createObject.GetComponent<Bullet>();
 
             // BulletスクリプトのInitを呼び出す
-            bulletScript.Init(shotAngle, 3);
+            //bulletScript.Init(shotAngle, 3);
         }
     }
+
+    //void BulletAtk(float angle)
+    //{
+
+    //    var bullet = poolManager.GetGameObject(bulletObj.gameObject, transform.position, transform.rotation);
+    //    bullet.GetComponent<Bullet>().Init(angle, 3);
+
+    //    var destroyer = bullet.GetComponent<Destroyer>();
+    //    destroyer.PoolManager = poolManager;
+
+    //    if (destroyer != null)
+    //        destroyer.StartDestroyTimer(3);
+
+
+    //}
 }

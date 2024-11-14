@@ -14,9 +14,9 @@ public class RandomMove : BaseMove
     const float ENDMOVELEN = 1f;
 
     const float INTERPOLANT = 5f;
-    public override void Initialize()
+    public override void Initialize(Rigidbody2D rb)
     {
-        base.Initialize();
+        base.Initialize(rb);
 
         //basePosition = transform.position;
         //var bPos = transform.position;
@@ -35,6 +35,8 @@ public class RandomMove : BaseMove
         movePos[2].y += moveRangeXZ;
         movePos[3] = transform.position;
         movePos[3].y -= moveRangeXZ;
+
+        IsKeepMove = true;
     }
 
     public override void MoveEnter()
@@ -45,7 +47,7 @@ public class RandomMove : BaseMove
     public override void MoveUpdate()
     {
         const float speed = 6f;
-        Vector3 movement = transform.up * Time.deltaTime * speed;
+        Vector2 movement = transform.up * Time.deltaTime * speed;
 
         m_rb.MovePosition(m_rb.position + movement);
 

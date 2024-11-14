@@ -33,19 +33,21 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         //enemySetting = Resources.Load<EnemySetting>("EnemySetting");
 
+        //enemyDataのnullチェック
+        if (enemySetting == null)
+            throw new System.Exception("enemySetting　Data null");
+
         var data = enemySetting.DataList.
               FirstOrDefault(enemy => enemy.Id == name);
 
         return data;
     }
 
-    //public EnemyData GetEnemyDataSpeed(string name)
+    //public PoolManager GetPool()
     //{
-    //    //enemySetting = Resources.Load<EnemySetting>("EnemySetting");
+    //    //PoolManager a = new();
+    //    //enemySetting.PoolManager = a;
 
-    //    var data = enemySetting.DataList.
-    //          FirstOrDefault(enemy => enemy.Id == name);
-
-    //    return data;
+    //    //return enemySetting.PoolManager;
     //}
 }

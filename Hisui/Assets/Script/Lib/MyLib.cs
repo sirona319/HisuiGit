@@ -10,21 +10,21 @@ public static class MyLib
     #region　便利な関数まとめ
 
 
-    //コルーチンで登録する？
-    public static void LoopMotionSinWait(Transform t,float up)
+    //上下　浮遊のような動き
+    public static void LoopMotionSinWait(Transform t,float addX,float addY)
     {
         float sin = Mathf.Sin(Time.time);
-        t.position = new Vector3(t.position.x, t.position.y+(sin*up), 0);
+        t.position = new Vector3(t.position.x + (sin * addX), t.position.y+(sin * addY), 0);
     }
-    //コルーチンで登録する？
 
-    public static void LoopMotionSinVector(Transform t, float up,Vector3 vec)
+    //Vector3で移動方向　周期的なカーブ移動
+    public static void LoopMotionSinVector(Transform t, float addX, float addY, Vector3 v)
     {
         float sin = Mathf.Sin(Time.time);
-        t.position = new Vector3(t.position.x, t.position.y + (sin * up), 0);
+        t.position = new Vector3(t.position.x + (sin * addX), t.position.y + (sin * addY), 0);
 
         var tp = t.position;
-        tp += vec;
+        tp += v;
         t.position = tp;
 
     }
@@ -40,6 +40,9 @@ public static class MyLib
     //{
     //    StartCoroutine(DoShake(duration, magnitude));
     //}
+
+    #region 揺れ
+
 
     //オブジェクトを揺らし使い方
     /*StartCoroutine(MyLib.DoShake(0.25f, 0.1f, transform));*/
@@ -81,10 +84,14 @@ public static class MyLib
         var x = pos.x + Random.Range(-1f, 1f) * magnitude;
         var y = pos.y + Random.Range(-1f, 1f) * magnitude;
 
-        trans.localPosition = new Vector3(x, y, pos.z);
+        trans.localPosition = new Vector3(x, y, 0f);
 
 
     }
+
+    #endregion
+
+    #region 回転
 
     public static Quaternion TargetRotation(Transform target, Transform myTrans, float interpolant, Vector3 axis)
     {
@@ -118,6 +125,9 @@ public static class MyLib
         return Quaternion.Slerp(myTrans.rotation, targetRotation, interpolant * Time.deltaTime);
     }
 
+    #endregion
+
+    #region　エネミー
 
     /// <summary>
     /// メインカメラからレイを飛ばして確認
@@ -230,6 +240,11 @@ public static class MyLib
         return saveEnemy;
     }
 
+    #endregion
+
+    #region　コルーチン
+
+
     /// <summary>
     /// 一定時間後に処理を呼び出すコルーチン
     /// </summary>
@@ -257,6 +272,27 @@ public static class MyLib
         }
 
     }
+
+
+    /// <summary>
+    /// 条件がtrueなら呼び出すコルーチン
+    /// </summary>
+    /// <param name="seconds">秒</param>
+    /// <param name="action">関数内の処理</param>
+    /// <returns></returns>
+    //public static IEnumerator BoolDelayCoroutine(float seconds, Action action)
+    //{
+
+    //        //yield return new WaitUntil(条件);trueなら
+    //        //yield return new WaitWhile(条件);falseなら
+
+    //        //action?.Invoke();
+    //}
+
+    #endregion
+
+    #region　ロード　インスタンス生成
+
 
     /// <summary>
     /// インスタンスを生成して指定のComponentを取得する
@@ -286,6 +322,9 @@ public static class MyLib
         return UnityEngine.Object.Instantiate(go, trans).GetComponent<T>(); ;
     }
 
+    #endregion
+
+    #region　サウンド
 
 
     /// <summary>
@@ -326,6 +365,9 @@ public static class MyLib
         if (!audioSource.isPlaying)
             audioSource.PlayOneShot(sound);
     }
+
+    #endregion
+
 
     #endregion
 }

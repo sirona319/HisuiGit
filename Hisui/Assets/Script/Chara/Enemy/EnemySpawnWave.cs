@@ -3,32 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static BaseEnemyFactory;
+using System;
 
-
-public class EnemySpawnWave: MonoBehaviour
+public class EnemySpawnWave : MonoBehaviour
 {
+    public enum LoadState
+    {
+        NormalJerry,
+        FiveJerry,
+        CircleJerry,
+        CircleOneJerry,
+
+
+        CircleMoveJerry
+
+
+    }
+
     public SpawnWaveData[] spawnData;
 
+    //[SerializeField] PoolManager poolManager;
+
     //ボスかどうか
-    //
     ////この敵たちが倒されたら　範囲外に出たら破棄する？　スポーンする　登録方法を考える
     //public GameObject[] triggerEnemys; 
-
-    //public GameObject[] spawns; //敵　生成位置
-
-    //public GameObject[] spawnLocations;//敵の移動範囲　位置
-
-
-                               //public ChildTrans[] movePointsSet;
-
-    //public int enemyCount = 0;
-
-    //ParticleSystem spawnParticle;//パーティクル
-
-    //[SerializeField] bool playerLengeSpawn = false;
-    //[SerializeField] CollisionTrigger colTrigger;
-
-    //int enemyCount = 0;
 
     int CountIndex = 0;
     public void UpdateCount()
@@ -41,67 +40,14 @@ public class EnemySpawnWave: MonoBehaviour
     //アップキャスト
     void Start()
     {
-        for(int i=0; i < spawnData.Length;i++)
-        EnemysWaveStart(i);
-
-        //spawnParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/MyCFXR Magic Poof");
-
-        //if (spawnData[0].spawns.Length != spawnData[0].spawnLocations.Length)
-        //{
-
-        //    throw new System.Exception("生成する敵の移動基点座標が全て指定されていない");
-        //    //Debug.Log("生成する敵の移動基点座標が全て指定されていない");
-        //}
-
-
-        ////if (spawns == null) return;
-
-        //if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
-        //    GameSceneControl.I.enemyAllCount += spawnData[0].spawns.Length;
-
-
-        ////if (spawnData[0].triggerEnemys.Length <= 0)
-        ////{
-        ////    var enemy = Instantiate(spawns[enemyCount], transform.position, Quaternion.identity);
-        ////    //enemy.GetComponent<EnemyBase>().basePosition = spawnLocations[enemyCount].transform.position;
-
-        ////    return;
-        ////}
-        ////Instantiate(spawnData[0].spawns[enemyCount], transform.position, Quaternion.identity);
-
-        ////if (!colTrigger.isActiveTrigger) return;
-
-        //////if (spawns.Length> 0)
-        //// //{
-
-        ////1回目はenemyCountは0から始まる
-        //while (true)
-        //{
-        //    DelaySpawnAsyncWave
-        //        (SPWNTIME* spawnData[0].enemyCount +1,
-        //        spawnData[0].spawns[spawnData[0].enemyCount],
-        //        //spawnData[0].spawnLocations[enemyCount].
-        //        //transform.position,
-        //        spawnData[0].movePointsSet[spawnData[0].enemyCount].childArray
-        //        ).Forget();
-
-        //    // 生成ディレイコルーチンの起動
-        //    //StartCoroutine(DelaySpawnCoroutineWave
-        //    //   (SPWNTIME * enemyCount + 1, spawns[enemyCount], spawnLocations[enemyCount].transform.position));
-
-        //    spawnData[0].enemyCount++;
-        //    if (spawnData[0].enemyCount >= spawnData[0].spawns.Length)
-        //        break;
-
-        //}
-
-        ////}
+        for (int i = 0; i < spawnData.Length; i++)
+            EnemysWaveStart(i);
 
     }
 
     void EnemysWaveStart(int idx)
     {
-        if(idx>0)
+        if (idx > 0)
         {
             CountSpawnAsyncWave(idx).Forget();
             return;
@@ -112,12 +58,12 @@ public class EnemySpawnWave: MonoBehaviour
 
     void SpawnWave(int No)
     {
-        if (spawnData[No].spawns.Length != spawnData[No].spawnLocations.Length)
-        {
+        //if (spawnData[No].spawns.Length != spawnData[No].spawnLocations.Length)
+        //{
 
-            throw new System.Exception("生成する敵の移動基点座標が全て指定されていない");
-            //Debug.Log("生成する敵の移動基点座標が全て指定されていない");
-        }
+        //    throw new System.Exception("生成する敵の移動基点座標が全て指定されていない");
+        //    //Debug.Log("生成する敵の移動基点座標が全て指定されていない");
+        //}
 
         //if(spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray==null)
         //{
@@ -126,7 +72,7 @@ public class EnemySpawnWave: MonoBehaviour
 
 
         if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
-            GameSceneControl.I.enemyAllCount += spawnData[No].spawns.Length;
+            GameSceneControl.I.enemyAllCount += spawnData[No].LoadState.Length;
 
 
 
@@ -136,13 +82,15 @@ public class EnemySpawnWave: MonoBehaviour
             DelaySpawnAsyncWave
                 (spawnData[No].spawnTime[spawnData[No].enemyCount] * spawnData[No].enemyCount + 1,//float型
 
-                spawnData[No].spawns[spawnData[No].enemyCount],
-                spawnData[No].spawnLocations[spawnData[No].enemyCount].position,
-                spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray
+                spawnData[No].LoadState[spawnData[No].enemyCount],//ステート
+
+                //spawnData[No].spawns[spawnData[No].enemyCount],
+                spawnData[No].spawnLocations[spawnData[No].enemyCount],//生成座標
+                spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray//目標座標
                 ).Forget();
 
             spawnData[No].enemyCount++;
-            if (spawnData[No].enemyCount >= spawnData[No].spawns.Length)
+            if (spawnData[No].enemyCount >= spawnData[No].LoadState.Length)
                 break;
 
         }
@@ -152,7 +100,6 @@ public class EnemySpawnWave: MonoBehaviour
     public async UniTask CountSpawnAsyncWave(int No)
     {
         await UniTask.WaitUntil(() => spawnData[No - 1].enemyCount <= 0);
-
 
         SpawnWave(No);
         CountIndex++;
@@ -209,72 +156,120 @@ public class EnemySpawnWave: MonoBehaviour
         //colTrigger.isActiveTrigger = false;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (!playerLengeSpawn) return;
-    //    if (other.transform.CompareTag("Player"))
-    //    {
-    //        while (true)
-    //        {
-    //            // 生成ディレイコルーチンの起動
-    //            StartCoroutine(DelaySpawnCoroutine
-    //                (SPWNTIME * enemyCount + 1, spawns[enemyCount], spawnLocations[enemyCount].transform.position));
-
-    //            enemyCount++;
-    //            if (enemyCount >= spawns.Length)
-    //                break;
-
-    //        }
-
-    //    }
-
-    //}
-    EnemyData tt;
-    public async UniTask DelaySpawnAsyncWave(float seconds, GameObject obj,Vector3 spawnPos,Transform[] movePoint)
+    public async UniTask DelaySpawnAsyncWave(float seconds, LoadState loadState,Transform spawnTrans, Transform[] movePoint)
     {
 
 
         await UniTask.WaitForSeconds(seconds);
-        //Instantiate(spawnParticle, transform.position, Quaternion.identity);//パーティクル
-        //Instantiate(obj, transform.position, Quaternion.identity);
-        GameObject enemy;
-        //if (obj.name.Contains("MoveCircle"))
-        //{
-        //    var playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
 
-        //    enemy = Instantiate(obj, transform.position, Quaternion.identity, playerTrans);
+        //List<JerryBuilder>[] builders=new ();
+
+        //JerryBuilder a=new(new JerryPointFactory());
+        //JerryBuilder b=new(new JerryPointFactory()); ;
+
+        // builders.AddRange(a);
+
+
+
+
+        //string eName = loadState.ToString();
+        //Type typeClass = Type.GetType(eName+"Factory");
+        //var bFac = typeClass.ConvertTo<BaseJerryEnemyFactory>();
+
+        //JerryBuilder builder=GetComponent<JerryBuilder>();
+        //builder.Init(gameObject.GetComponent<JerryPointFactory>());
+
+        //builder.InitData(movePoint);
+
+        //builder.Build(spawnTrans);
+
+
+        ////BaseEnemyFactory enemyFactory;
+        //if(loadState==FactoryState.JerryPointFactory)
+        //{
+        //    eObj = (JerryPointFactory)eObj;
+        //}
+        ////JerryScr eBase = eObj.Load();
+        ////JerryState.PointJerryFactory
+
+
+        //Factory Builder
+        /////////////////////
+        var eData = EnemyManager.I.GetEnemyData(loadState.ToString());
+
+        var bBuilder = eData.builder.GetComponent<BaseBuilder>();
+        bBuilder.Build(eData, spawnTrans, movePoint, GetComponent<PoolManager>());
+
+
+        //var enemy = Instantiate(eData.go, spawnTrans.position, Quaternion.identity);
+        //var eBase = enemy.GetComponent<EnemyBase>();
+
+        ////eBase.movePointsDatas = movePoint;//nullになる場合？
+        //eBase.Hp = eData.HpMax;
+
+        ////eBase.pool = poolManager;
+
+
+        ////baseMagazine初期化　　攻撃クラスに持っていく？
+        //for (int i = 0; i < (int)eData.attackType.Length; i++)
+        //{
+        //    Type typeClass = Type.GetType(eData.attackType[i].ToString());
+
+        //    if (typeClass != null)
+        //        eBase.baseMagazine.Add((BaseMagazine)enemy.AddComponent(typeClass));
+
         //}
 
-        //else
-        //var playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        //foreach (var magazine in eBase.baseMagazine)
+        //{
+        //    //magazine.BulletLoad("prefab/EBulletNormalEX");
+        //    magazine.Initialize();
+        //    magazine.BulletLoad("prefab/Bullet/JerryBullet");
+
+        //    magazine.SetPool(poolManager);
+        //}
+
+        ////baseMove初期化　移動クラスに持っていく？
+        //for (int i = 0; i < (int)eData.moveType.Length; i++)
+        //{
+        //    Type typeClass = Type.GetType(eData.moveType[i].ToString());
+
+        //    if (typeClass != null)
+        //    {
+        //        eBase.baseMove.Add((BaseMove)enemy.AddComponent(typeClass));
+        //    }
+
+        //}
+
+        //foreach (var move in eBase.baseMove)
+        //{
+        //    //初期化
+        //    move.Initialize(enemy.GetComponent<Rigidbody2D>());
 
 
-        //transform.positionは生成座標
-        enemy = Instantiate(obj, spawnPos, Quaternion.identity);
+        //    var movePointComp = move.GetComponent<IPointMove>();
 
+        //    // の処理が必須
+        //    if (movePointComp != null)
+        //    {
+        //        movePointComp.TargetSet(movePoint);
+        //        movePointComp.SetMoveEndLength(eData.PointEndLength);
+        //    }
 
+        //}
 
-
-        //enemy.GetComponent<EnemyBase>().basePosition = bPos;
-
-        enemy.GetComponent<EnemyBase>().findName = obj.name;
-
-        enemy.GetComponent<EnemyBase>().movePointsDatas = movePoint;
-
-        tt = EnemyManager.I.GetEnemyData(obj.name);
-        enemy.GetComponent<EnemyBase>().Hp = tt.HpMax;
+        //eBase.enemyData = eData;
+        //ステータスの初期化
+        //Hp = eData.HpMax;
     }
 
-    //public IEnumerator DelaySpawnCoroutineWave(float seconds, GameObject obj, Vector3 bPos)
+
+    //public static JerryBuilder[] CreateLevel1EnemyBuilders()
     //{
-    //    yield return new WaitForSeconds(seconds);
-    //    //Instantiate(spawnParticle, transform.position, Quaternion.identity);//パーティクル
-    //    //Instantiate(obj, transform.position, Quaternion.identity);
-
-    //    var enemy = Instantiate(obj, transform.position, Quaternion.identity);
-    //    enemy.GetComponent<EnemyBase>().basePosition = bPos;
-
-    //    enemy.GetComponent<EnemyBase>().findName = obj.name;
-
+    //    // Level1 は雑魚スケルトン3体
+    //    return new JerryBuilder[]{
+    //        JerryBuilder( new JerryPointFactory() );
+    //    //JerryBuilder(new NormalSkeletonFactory());
+    //    //JerryBuilder(new NormalSkeletonFactory());
     //}
 }

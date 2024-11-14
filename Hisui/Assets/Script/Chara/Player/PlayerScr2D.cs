@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
+using UnityEditor.EditorTools;
 
 public class PlayerScr2D : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class PlayerScr2D : MonoBehaviour
     [SerializeField] float SPEED = 3f;   //移動速度
     //const float ROTSPEED = 3f;
 
-    Rigidbody m_rb;      //剛体
+    Rigidbody2D m_rb;      //剛体
     Vector3 m_moveDirection;
     Vector3 m_targetDirection;
 
@@ -36,21 +38,18 @@ public class PlayerScr2D : MonoBehaviour
     Bullet bulletObj;
 
     [SerializeField] float bulletSpeed = 6f;
-    //private ParticleSystem bubbleParticle;//泡パーティクル
-
-
-    //[SerializeField] private float bSPEED = 0.02f;
-
-    //public Transform front;
-
 
     //public ReactiveProperty<Vector3> prePosDiff;    //using UniRx必要
 
+    [SerializeField]Vector2 movement;
 
+
+    [SerializeField] PoolManager poolManager;
+    [SerializeField] float bulletDeadTime = 3f;
 
     void Start()
     {
-        m_rb = GetComponent<Rigidbody>();
+        m_rb = GetComponent<Rigidbody2D>();
 
         bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/Bullet/PBulletNormal");
 
@@ -63,111 +62,135 @@ public class PlayerScr2D : MonoBehaviour
 
         //デバッグダメージ
         if (Input.GetKeyDown(KeyCode.F))
-        {
-            var bulletPos = transform.position;
-
-            //front.position==transform.up
-            // 対象物へのベクトルを算出
-            Vector3 toDirection = transform.up - bulletPos;
-            // 対象物へ回転する
-            var bulletRot = Quaternion.FromToRotation(Vector3.up, toDirection);
-
-            //生成
-            var pbullet = Instantiate(bulletObj.gameObject, bulletPos, bulletRot);
-            pbullet.GetComponent<Bullet>().speed= bulletSpeed;
-
-            //transform.up==pForward.normalized
-            //var pForward = front.position - transform.position;
+            BulletAtk();
 
 
-            //bulletComp.Initialize(transform.up, bSPEED);
-
-        }
-
-
-        //点滅処理
-        //if (m_isDamage)
-        // skin.material.color = Color.Lerp(startColor, endColor, Mathf.PingPong(Time.time / duration, 1.0f));
-
-        MoveControl();     //移動用関数
-
-        //RotationControl(); //旋回用関数
-
-        // RockOnControl();   //ロックオン処理
-
-        //Camera.main.transform.position = new Vector3(m_rb.position.x, m_rb.position.y + 2, m_rb.position.z - 2);
+        MoveControl();
 
     }
 
-    //void FixedUpdate()
-    //{
-    //    //　キャラクターを移動させる処理
-    //    //m_rb.MovePosition(m_rb.position + m_velocity * Time.fixedDeltaTime);
-    //}
+    void BulletAtk()
+    {
+        // 対象物へのベクトルを算出
+        //Vector3 toDirection = transform.up - transform.position;
+        // 対象物へ回転する
+        //var bulletRot = Quaternion.FromToRotation(Vector3.up, toDirection);
+
+
+        var bullet = poolManager.GetGameObject(bulletObj.gameObject, transform.position, transform.rotation);
+        bullet.GetComponent<Bullet>().speed = bulletSpeed;
+
+        var destroyer = bullet.GetComponent<Destroyer>();
+        destroyer.PoolManager = poolManager;
+
+        if (destroyer != null)
+            destroyer.StartDestroyTimer(bulletDeadTime);
+        
+    }
+
+    void FixedUpdate()
+    {
+        var mPos = MoveLimit(m_rb.position + movement * SPEED * Time.fixedDeltaTime);
+
+        // 物理計算による移動
+//        if (Input.GetKey(KeyCode.W) ||
+//Input.GetKey(KeyCode.A) ||
+//Input.GetKey(KeyCode.S) ||
+//Input.GetKey(KeyCode.D))
+        m_rb.MovePosition(mPos);
+    }
 
     void MoveControl()
     {
-        var prePos = m_rb.position;
-        //m_input = new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0f, UnityEngine.Input.GetAxis("Vertical"));
+        if (Input.GetKey(KeyCode.W))
+            movement.y = 1f;
 
-        //進行方向計算
-        //キーボード入力を取得
-        float v;
-        float h;
-#if UNITY_IOS
-//対象プラットフォームがiOSの時だけコンパイルされる	
-#elif UNITY_ANDROID
-        //v = m_variableJoystick.Vertical;
-        //h = m_variableJoystick.Horizontal;
-        if (UnityEngine.Device.SystemInfo.operatingSystem.Contains("Android"))
-        {
-            //v = m_variableJoystick.Vertical;
-            //h = m_variableJoystick.Horizontal;
+        if (Input.GetKeyUp(KeyCode.W))
+            movement.y = 0f;
 
-            //カメラの正面方向ベクトルからY成分を除き、正規化してキャラが走る方向を取得
-            Vector3 forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-            //if(m_isWater)Sword
-            //   forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 1, 1)).normalized;
+        if (Input.GetKey(KeyCode.S))
+            movement.y = -1f;
 
-            Vector3 right = Camera.main.transform.right; //カメラの右方向を取得
+        if (Input.GetKeyUp(KeyCode.S))
+            movement.y = 0f;
 
-            //var targetDirection = Vector3.zero;
-            //カメラの方向を考慮したキャラの進行方向を計算
-            m_targetDirection = m_variableJoystick.Horizontal * right + m_variableJoystick.Vertical * forward;
-            //m_input = new Vector3(m_variableJoystick.Horizontal, 0f, m_variableJoystick.Vertical);//対象プラットフォームがAndroidの時だけコンパイルされる
-        }
-        SPEED = 4f;
-#else
-        v = Input.GetAxisRaw("Vertical");         //InputManagerの↑↓の入力
-        h = Input.GetAxisRaw("Horizontal");       //InputManagerの←→の入力 
 
-        //カメラの正面方向ベクトルからY成分を除き、正規化してキャラが走る方向を取得
-        Vector3 forward = Vector3.Scale(Camera.main.transform.up, new Vector3(1, 1, 0)).normalized;
-        //if(m_isWater)Sword
-        //   forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 1, 1)).normalized;
+        if (Input.GetKey(KeyCode.A))
+            movement.x = -1f;
 
-        Vector3 right = Camera.main.transform.right; //カメラの右方向を取得
+        if (Input.GetKeyUp(KeyCode.A))
+            movement.x = 0f;
 
-        //var targetDirection = Vector3.zero;
-        //カメラの方向を考慮したキャラの進行方向を計算
-        m_targetDirection = h * right + v * forward;
-#endif
+        if (Input.GetKey(KeyCode.D))
+            movement.x = 1f;
 
-        //移動のベクトルを計算
-        m_moveDirection = m_targetDirection * SPEED;
+        if (Input.GetKeyUp(KeyCode.D))
+            movement.x = 0f;
 
-        //2D処理
-        //m_moveDirection.y = m_moveDirection.z;
-        //m_moveDirection.z = 0;
-        //
+        movement = movement.normalized;
 
-        var resultPos = MoveLimit(m_rb.position + m_moveDirection * Time.deltaTime);
+//        //var prePos = m_rb.position;
+//        //m_input = new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0f, UnityEngine.Input.GetAxis("Vertical"));
 
-        transform.position = resultPos;
-        m_rb.MovePosition(resultPos);
+//        //進行方向計算
+//        //キーボード入力を取得
+//        float v;
+//        float h;
+//#if UNITY_IOS
+////対象プラットフォームがiOSの時だけコンパイルされる	
+//#elif UNITY_ANDROID
+//        //v = m_variableJoystick.Vertical;
+//        //h = m_variableJoystick.Horizontal;
+//        if (UnityEngine.Device.SystemInfo.operatingSystem.Contains("Android"))
+//        {
+//            //v = m_variableJoystick.Vertical;
+//            //h = m_variableJoystick.Horizontal;
 
-        //1f前の座標との差を保存
-        //prePosDiff.Value = m_moveDirection * Time.deltaTime;
+//            //カメラの正面方向ベクトルからY成分を除き、正規化してキャラが走る方向を取得
+//            Vector3 forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+//            //if(m_isWater)Sword
+//            //   forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 1, 1)).normalized;
+
+//            Vector3 right = Camera.main.transform.right; //カメラの右方向を取得
+
+//            //var targetDirection = Vector3.zero;
+//            //カメラの方向を考慮したキャラの進行方向を計算
+//            m_targetDirection = m_variableJoystick.Horizontal * right + m_variableJoystick.Vertical * forward;
+//            //m_input = new Vector3(m_variableJoystick.Horizontal, 0f, m_variableJoystick.Vertical);//対象プラットフォームがAndroidの時だけコンパイルされる
+//        }
+//        SPEED = 4f;
+//#else
+//        v = Input.GetAxisRaw("Vertical");         //InputManagerの↑↓の入力
+//        h = Input.GetAxisRaw("Horizontal");       //InputManagerの←→の入力 
+
+//        //カメラの正面方向ベクトルからY成分を除き、正規化してキャラが走る方向を取得
+//        Vector3 forward = Vector3.Scale(Camera.main.transform.up, new Vector3(1, 1, 0)).normalized;
+//        //if(m_isWater)Sword
+//        //   forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 1, 1)).normalized;
+
+//        Vector3 right = Camera.main.transform.right; //カメラの右方向を取得
+
+//        //var targetDirection = Vector3.zero;
+//        //カメラの方向を考慮したキャラの進行方向を計算
+//        m_targetDirection = h * right + v * forward;
+//#endif
+
+//        //移動のベクトルを計算
+//        m_moveDirection = m_targetDirection * SPEED;
+
+//        //2D処理
+//        //m_moveDirection.y = m_moveDirection.z;
+//        //m_moveDirection.z = 0;
+//        //
+//        Vector2 movement2D = m_moveDirection;
+
+//        var resultPos = MoveLimit(m_rb.position + movement2D * Time.deltaTime);
+
+//        transform.position = resultPos;
+//        //m_rb.MovePosition(resultPos);
+
+//        //1f前の座標との差を保存
+//        //prePosDiff.Value = m_moveDirection * Time.deltaTime;
     }
 
     Vector3 MoveLimit(Vector3 pos)

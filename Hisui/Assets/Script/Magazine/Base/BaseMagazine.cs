@@ -10,12 +10,13 @@ public abstract class BaseMagazine : MonoBehaviour
 
 
     protected Bullet bulletObj;
+    protected PoolManager poolManager;
 
     //protected float bulletSpeed = 0.02f;
 
     //public float bulletInterval = 0f;
 
-    public float bulletShotTime = 0;
+    public float shotTime = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -31,6 +32,12 @@ public abstract class BaseMagazine : MonoBehaviour
         bulletObj = MyLib.GetComponentLoad<Bullet>(name);
         
     }
+
+    public virtual void SetPool(PoolManager pool)
+    {
+        poolManager = pool;
+
+    }
     public abstract void Initialize();
     //{
         //bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/EBulletNormalEX");
@@ -43,8 +50,22 @@ public abstract class BaseMagazine : MonoBehaviour
 
 
 
-    
+    protected void BulletAtk(float angle)
+    {
+
+        var bullet = poolManager.GetGameObject(bulletObj.gameObject, transform.position, transform.rotation);
+        bullet.GetComponent<Bullet>().angle = angle;
+        bullet.GetComponent<Bullet>().SetAngle();
+
+        var destroyer = bullet.GetComponent<Destroyer>();
+        destroyer.PoolManager = poolManager;
+
+        if (destroyer != null)
+            destroyer.StartDestroyTimer();
 
 
-    
+    }
+
+
+
 }

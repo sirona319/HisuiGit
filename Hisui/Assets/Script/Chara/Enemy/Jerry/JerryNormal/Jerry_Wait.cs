@@ -35,7 +35,7 @@ public class Jerry_Wait : StateChildBase
 
         stateTime += Time.deltaTime;
 
-        transform.rotation = MyLib.TargetRotation2D((transform.position + Vector3.up), transform, 5f);
+        transform.rotation = MyLib.TargetRotation2D((transform.position + Vector3.up), transform, 10f);
 
         //MyLib.LoopMotionSin(transform);
         //return GetComponent<EnemyBase>().ReturnStateMoveTypeAttack(StateType);
