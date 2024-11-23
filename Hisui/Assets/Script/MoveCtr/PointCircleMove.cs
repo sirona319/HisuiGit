@@ -1,14 +1,12 @@
 using System;
+using System.Runtime.CompilerServices;
 using UniRx;
 using UnityEngine;
 
-public class PointCircleMove : BaseMove, ICircleMove
+public class PointCircleMove : BaseMove
 {
 
-    //CircleMove circle;
-    //PointMove point;
-    public float speed = 40f;
-
+    public float speed = 10f;
 
     // 回転軸
     [SerializeField] private Vector3 _axis = Vector3.forward;
@@ -19,10 +17,8 @@ public class PointCircleMove : BaseMove, ICircleMove
     // 向きを更新するかどうか
     [SerializeField] private bool _updateRotation = true;
 
-
+    //指定座標への到達判定距離
     float pointEndLength = 2f;
-    //bool IsPointMoveEnd = false;
-    //bool IsLoop = false;
     int targetNo = 0;
 
     Transform[] targets;
@@ -30,21 +26,17 @@ public class PointCircleMove : BaseMove, ICircleMove
 
     public ReactiveProperty<bool> IsPointMoveEnd = new ReactiveProperty<bool>(false);
 
+    bool isLoop = false;
+
     public void TargetSet(Transform[] t)
     {
         targets = t;
 
         target = targets[0];
-        //circle.targets = t[0];
-        //point.TargetSet(t);
+
         if (targets.Length <= 0)
             throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
     }
-
-    //public bool GetMoveEnd()
-    //{
-    //    return IsPointMoveEnd.Value;
-    //}
 
     public void SetMoveEndLength(float len)
     {
@@ -61,12 +53,7 @@ public class PointCircleMove : BaseMove, ICircleMove
         base.Initialize(rb);
 
         IsKeepMove = true;
-        //point = new PointMove();
-        //circle = new CircleMove();
-        //point = gameObject.AddComponent<PointMove>();
-        //circle = gameObject.AddComponent<CircleMove>();
-        //circle.Initialize();
-        //point.Initialize();
+
     }
 
 
@@ -79,34 +66,18 @@ public class PointCircleMove : BaseMove, ICircleMove
     {
         if (IsPointMoveEnd.Value)
         {
-            //IsNotMoveAction(() =>
-            //{
             CircleUpdate();
             return;
-            //});
-
-            //return;
         }
-
+        else
         PointUpdate();
 
-        //float len = Vector3.Distance(transform.position, circle.targetTrans.position);
-        //if (!point.IsMove)
-        //{
+
         if (IsPointMoveEnd.Value)
-        {
-            //if (transform.tag == "Enemy")
-            //    GetComponent<JerryScr>().IsAttack = true;
+            SetParent(targets[0]);//ポイント移動を終了
 
 
-            //point.enabled = false;//ポイント移動を終了
-            SetParent(targets[0]);
-        }
 
-
-        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
-
-        transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
     }
 
     void PointUpdate()
@@ -119,13 +90,24 @@ public class PointCircleMove : BaseMove, ICircleMove
             targetNo++;
             if (targetNo > targets.Length - 1)
             {
-                if (!IsKeepMove)
+                //if (!IsKeepMove)
                     IsPointMoveEnd.Value = true;
 
-                targetNo = 0;
+                if (isLoop)
+                    targetNo = 0;
+                else
+                    targetNo--;
+
             }
 
         }
+
+        //transform.position = m_rb.position + (Vector2)transform.up * speed * Time.deltaTime;
+        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+
+ 
+
+        transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
 
     }
 
@@ -153,6 +135,11 @@ public class PointCircleMove : BaseMove, ICircleMove
         {
             tr.rotation = tr.rotation * angleAxis;
         }
+
+
+        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+
+        transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
     }
 
 }

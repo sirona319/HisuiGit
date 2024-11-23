@@ -1,0 +1,13 @@
+IK Plus
+Developed by: Hristo Ivanov
+Asset Store Publisher: Kris Development
+
+HOW TO USE:
+Navigate to "Kris Development > Favorite Assets".
+Dock the window somewhere you see fit.
+Click on an asset and press "Pin Selected Assets" to add an asset to the list.
+Press an asset from the list to instantly locate it it in the editor
+or press "Open" to instantly open the asset with the according software;
+"X" will remove the asset from the pinned assets list.
+
+Support e-mail: krisdevmail@gmail.com

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -8,96 +8,93 @@ using UnityEditor.EditorTools;
 
 public class PlayerScr2D : MonoBehaviour
 {
+    //ãƒ‡ãƒãƒƒã‚°ç”¨
     [SerializeField] bool IsDebugNoLife = false;
 
-    #region@“ü—Í
-    [SerializeField] float SPEED = 3f;   //ˆÚ“®‘¬“x
-    //const float ROTSPEED = 3f;
-
-    Rigidbody2D m_rb;      //„‘Ì
-    Vector3 m_moveDirection;
-    Vector3 m_targetDirection;
-
-    public bool IsDash { get; private set; } = false;
-
+    #regionã€€å…¥åŠ›
+    Rigidbody2D m_rb;                    //å‰›ä½“
+    [SerializeField] float SPEED = 3f;   //ç§»å‹•é€Ÿåº¦
+    [SerializeField] Vector2 movement;
     #endregion
-
-    //#region ƒ{ƒbƒNƒXƒRƒ‰ƒCƒ_[
-    //private BoxCollider m_boxColider;
-    //private Vector3 m_boxStartCenter;
-    //private Vector3 m_boxStartSize;
-
-    //private Vector3 m_boxWaterSize = new (0.8f, 0.5f, 1.5f);
-    //private Vector3 m_boxWaterCenter = new (0, 0.25f, 0);
-    //#endregion
 
 
     bool m_isDamage = false;
     bool m_isDead = false;
 
-    Bullet bulletObj;
 
-    [SerializeField] float bulletSpeed = 6f;
-
-    //public ReactiveProperty<Vector3> prePosDiff;    //using UniRx•K—v
-
-    [SerializeField]Vector2 movement;
-
-
+    //ãƒãƒ¬ãƒƒãƒˆ
+    //Bullet bulletObj;
     [SerializeField] PoolManager poolManager;
     [SerializeField] float bulletDeadTime = 3f;
+    [SerializeField] TargetMagazine nMag;
+    [SerializeField] Transform front;           //å¼¾ã®ç™ºå°„æ–¹å‘
+    //
 
+    const string pBulletPath = "prefab/Bullet/PBulletNormal";
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
+        //bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/Bullet/PBulletNormal");
 
-        bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/Bullet/PBulletNormal");
 
-        //prePosDiff.Value = Vector3.zero;
+        nMag.Initialize();
+        nMag.bulletPath = pBulletPath;
+        nMag.Target = front;
+        nMag.SetPool(poolManager, bulletDeadTime);
+
+
+        //nMag.targetT = (transform.position + Vector3.up);
+        //nMag.targetPos = (transform.position + Vector3.right);
     }
 
     void Update()
     {
         if (m_isDead) return;
 
-        //ƒfƒoƒbƒOƒ_ƒ[ƒW
+        //ãƒ‡ãƒãƒƒã‚°ãƒ€ãƒ¡ãƒ¼ã‚¸
         if (Input.GetKeyDown(KeyCode.F))
-            BulletAtk();
-
+        {
+            //nMag.targetPos = (transform.position + Vector3.up) - transform.position;
+            nMag.MagazineEnter();
+        }
 
         MoveControl();
 
     }
 
-    void BulletAtk()
-    {
-        // ‘ÎÛ•¨‚Ö‚ÌƒxƒNƒgƒ‹‚ğZo
-        //Vector3 toDirection = transform.up - transform.position;
-        // ‘ÎÛ•¨‚Ö‰ñ“]‚·‚é
-        //var bulletRot = Quaternion.FromToRotation(Vector3.up, toDirection);
+    //void BulletAtk()
+    //{
+    //    // å¯¾è±¡ç‰©ã¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ç®—å‡º
+    //    //Vector3 toDirection = transform.up - transform.position;
+    //    // å¯¾è±¡ç‰©ã¸å›è»¢ã™ã‚‹
+    //    //var bulletRot = Quaternion.FromToRotation(Vector3.up, toDirection);
+
+    //    //nMag.Initialize();
+    //    //nMag.BulletLoad("prefab/Bullet/PBulletNormal");
+    //    //nMag.targetPos = transform.up - transform.position;
+    //    //nMag.SetPool(poolManager);
+
+    //    //var bullet = poolManager.GetGameObject(bulletObj.gameObject, transform.position, transform.rotation);
+    //    //bullet.GetComponent<Bullet>().speed = bulletSpeed;
+
+    //    //var destroyer = bullet.GetComponent<Destroyer>();
+    //    //destroyer.PoolManager = poolManager;
 
 
-        var bullet = poolManager.GetGameObject(bulletObj.gameObject, transform.position, transform.rotation);
-        bullet.GetComponent<Bullet>().speed = bulletSpeed;
 
-        var destroyer = bullet.GetComponent<Destroyer>();
-        destroyer.PoolManager = poolManager;
-
-        if (destroyer != null)
-            destroyer.StartDestroyTimer(bulletDeadTime);
-        
-    }
+    //}
 
     void FixedUpdate()
     {
         var mPos = MoveLimit(m_rb.position + movement * SPEED * Time.fixedDeltaTime);
 
-        // •¨—ŒvZ‚É‚æ‚éˆÚ“®
+        // ç‰©ç†è¨ˆç®—ã«ã‚ˆã‚‹ç§»å‹•
 //        if (Input.GetKey(KeyCode.W) ||
 //Input.GetKey(KeyCode.A) ||
 //Input.GetKey(KeyCode.S) ||
 //Input.GetKey(KeyCode.D))
         m_rb.MovePosition(mPos);
+        //transform.position=mPos;
     }
 
     void MoveControl()
@@ -132,12 +129,12 @@ public class PlayerScr2D : MonoBehaviour
 //        //var prePos = m_rb.position;
 //        //m_input = new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0f, UnityEngine.Input.GetAxis("Vertical"));
 
-//        //is•ûŒüŒvZ
-//        //ƒL[ƒ{[ƒh“ü—Í‚ğæ“¾
+//        //é€²è¡Œæ–¹å‘è¨ˆç®—
+//        //ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›ã‚’å–å¾—
 //        float v;
 //        float h;
 //#if UNITY_IOS
-////‘ÎÛƒvƒ‰ƒbƒgƒtƒH[ƒ€‚ªiOS‚Ì‚¾‚¯ƒRƒ“ƒpƒCƒ‹‚³‚ê‚é	
+////å¯¾è±¡ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ ãŒiOSã®æ™‚ã ã‘ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚Œã‚‹	
 //#elif UNITY_ANDROID
 //        //v = m_variableJoystick.Vertical;
 //        //h = m_variableJoystick.Horizontal;
@@ -146,39 +143,39 @@ public class PlayerScr2D : MonoBehaviour
 //            //v = m_variableJoystick.Vertical;
 //            //h = m_variableJoystick.Horizontal;
 
-//            //ƒJƒƒ‰‚Ì³–Ê•ûŒüƒxƒNƒgƒ‹‚©‚çY¬•ª‚ğœ‚«A³‹K‰»‚µ‚ÄƒLƒƒƒ‰‚ª‘–‚é•ûŒü‚ğæ“¾
+//            //ã‚«ãƒ¡ãƒ©ã®æ­£é¢æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‹ã‚‰Yæˆåˆ†ã‚’é™¤ãã€æ­£è¦åŒ–ã—ã¦ã‚­ãƒ£ãƒ©ãŒèµ°ã‚‹æ–¹å‘ã‚’å–å¾—
 //            Vector3 forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 //            //if(m_isWater)Sword
 //            //   forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 1, 1)).normalized;
 
-//            Vector3 right = Camera.main.transform.right; //ƒJƒƒ‰‚Ì‰E•ûŒü‚ğæ“¾
+//            Vector3 right = Camera.main.transform.right; //ã‚«ãƒ¡ãƒ©ã®å³æ–¹å‘ã‚’å–å¾—
 
 //            //var targetDirection = Vector3.zero;
-//            //ƒJƒƒ‰‚Ì•ûŒü‚ğl—¶‚µ‚½ƒLƒƒƒ‰‚Ìis•ûŒü‚ğŒvZ
+//            //ã‚«ãƒ¡ãƒ©ã®æ–¹å‘ã‚’è€ƒæ…®ã—ãŸã‚­ãƒ£ãƒ©ã®é€²è¡Œæ–¹å‘ã‚’è¨ˆç®—
 //            m_targetDirection = m_variableJoystick.Horizontal * right + m_variableJoystick.Vertical * forward;
-//            //m_input = new Vector3(m_variableJoystick.Horizontal, 0f, m_variableJoystick.Vertical);//‘ÎÛƒvƒ‰ƒbƒgƒtƒH[ƒ€‚ªAndroid‚Ì‚¾‚¯ƒRƒ“ƒpƒCƒ‹‚³‚ê‚é
+//            //m_input = new Vector3(m_variableJoystick.Horizontal, 0f, m_variableJoystick.Vertical);//å¯¾è±¡ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ ãŒAndroidã®æ™‚ã ã‘ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚Œã‚‹
 //        }
 //        SPEED = 4f;
 //#else
-//        v = Input.GetAxisRaw("Vertical");         //InputManager‚Ìª«‚Ì“ü—Í
-//        h = Input.GetAxisRaw("Horizontal");       //InputManager‚Ì©¨‚Ì“ü—Í 
+//        v = Input.GetAxisRaw("Vertical");         //InputManagerã®â†‘â†“ã®å…¥åŠ›
+//        h = Input.GetAxisRaw("Horizontal");       //InputManagerã®â†â†’ã®å…¥åŠ› 
 
-//        //ƒJƒƒ‰‚Ì³–Ê•ûŒüƒxƒNƒgƒ‹‚©‚çY¬•ª‚ğœ‚«A³‹K‰»‚µ‚ÄƒLƒƒƒ‰‚ª‘–‚é•ûŒü‚ğæ“¾
+//        //ã‚«ãƒ¡ãƒ©ã®æ­£é¢æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‹ã‚‰Yæˆåˆ†ã‚’é™¤ãã€æ­£è¦åŒ–ã—ã¦ã‚­ãƒ£ãƒ©ãŒèµ°ã‚‹æ–¹å‘ã‚’å–å¾—
 //        Vector3 forward = Vector3.Scale(Camera.main.transform.up, new Vector3(1, 1, 0)).normalized;
 //        //if(m_isWater)Sword
 //        //   forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 1, 1)).normalized;
 
-//        Vector3 right = Camera.main.transform.right; //ƒJƒƒ‰‚Ì‰E•ûŒü‚ğæ“¾
+//        Vector3 right = Camera.main.transform.right; //ã‚«ãƒ¡ãƒ©ã®å³æ–¹å‘ã‚’å–å¾—
 
 //        //var targetDirection = Vector3.zero;
-//        //ƒJƒƒ‰‚Ì•ûŒü‚ğl—¶‚µ‚½ƒLƒƒƒ‰‚Ìis•ûŒü‚ğŒvZ
+//        //ã‚«ãƒ¡ãƒ©ã®æ–¹å‘ã‚’è€ƒæ…®ã—ãŸã‚­ãƒ£ãƒ©ã®é€²è¡Œæ–¹å‘ã‚’è¨ˆç®—
 //        m_targetDirection = h * right + v * forward;
 //#endif
 
-//        //ˆÚ“®‚ÌƒxƒNƒgƒ‹‚ğŒvZ
+//        //ç§»å‹•ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—
 //        m_moveDirection = m_targetDirection * SPEED;
 
-//        //2Dˆ—
+//        //2Då‡¦ç†
 //        //m_moveDirection.y = m_moveDirection.z;
 //        //m_moveDirection.z = 0;
 //        //
@@ -189,7 +186,7 @@ public class PlayerScr2D : MonoBehaviour
 //        transform.position = resultPos;
 //        //m_rb.MovePosition(resultPos);
 
-//        //1f‘O‚ÌÀ•W‚Æ‚Ì·‚ğ•Û‘¶
+//        //1få‰ã®åº§æ¨™ã¨ã®å·®ã‚’ä¿å­˜
 //        //prePosDiff.Value = m_moveDirection * Time.deltaTime;
     }
 
@@ -209,10 +206,10 @@ public class PlayerScr2D : MonoBehaviour
     //{
     //    Vector3 rotateDirection = m_moveDirection;
 
-    //    //‚»‚ê‚È‚è‚ÉˆÚ“®•ûŒü‚ª•Ï‰»‚·‚éê‡‚Ì‚İˆÚ“®•ûŒü‚ğ•Ï‚¦‚é
+    //    //ãã‚Œãªã‚Šã«ç§»å‹•æ–¹å‘ãŒå¤‰åŒ–ã™ã‚‹å ´åˆã®ã¿ç§»å‹•æ–¹å‘ã‚’å¤‰ãˆã‚‹
     //    if (rotateDirection.sqrMagnitude > 0.01)
     //    {
-    //        //ŠÉ‚â‚©‚ÉˆÚ“®•ûŒü‚ğ•Ï‚¦‚é
+    //        //ç·©ã‚„ã‹ã«ç§»å‹•æ–¹å‘ã‚’å¤‰ãˆã‚‹
     //        float step = ROTSPEED * Time.deltaTime;
     //        Vector3 newDir = Vector3.Slerp(transform.forward, rotateDirection, step);
     //        transform.rotation = Quaternion.LookRotation(newDir);
@@ -223,23 +220,23 @@ public class PlayerScr2D : MonoBehaviour
     {
         if (IsDebugNoLife) return;
 
-        //‰ñ”ğ‚ÌÀs’†‚È‚ç–³Œø‚Ü‚½‚Íƒ_ƒ[ƒW’†‚È‚ç–³Œø@–³“G
+        //å›é¿ã®å®Ÿè¡Œä¸­ãªã‚‰ç„¡åŠ¹ã¾ãŸã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ä¸­ãªã‚‰ç„¡åŠ¹ã€€ç„¡æ•µ
 
         if (m_isDead) return;
         if (m_isDamage) return;
-        //if (m_isDash) return;@ƒ_ƒbƒVƒ…–³“G
+        //if (m_isDash) return;ã€€ãƒ€ãƒƒã‚·ãƒ¥æ™‚ç„¡æ•µ
 
 
         Destroy(this.gameObject);
         return;
 
 
-        #region ƒJƒƒ‰ƒVƒFƒCƒN
+        #region ã‚«ãƒ¡ãƒ©ã‚·ã‚§ã‚¤ã‚¯
         //https://baba-s.hatenablog.com/entry/2018/03/14/170400
 
-        //—h‚ç‚·’·‚³
+        //æºã‚‰ã™é•·ã•
         const float shakeLength = 0.3f;
-        //—h‚ç‚·—Í
+        //æºã‚‰ã™åŠ›
         const float power = 0.3f;
 
         StartCoroutine(MyLib.DoShake(shakeLength, power, transform));
@@ -247,7 +244,7 @@ public class PlayerScr2D : MonoBehaviour
 
         #endregion
 
-        //HPŒ¸­ˆ—
+        //HPæ¸›å°‘å‡¦ç†
         var hpUI = GetComponent<HPUIControl>();
         var hpValue = hpUI.GetHp() - damage;
         hpUI.SetHp(hpValue);
@@ -256,14 +253,14 @@ public class PlayerScr2D : MonoBehaviour
 
         const float volumeAtk = 0.1f;
         var audioSource = this.GetComponent<AudioSource>();
-        var soundAtk = (AudioClip)Resources.Load("SE/" + "¬ƒpƒ“ƒ`");
+        var soundAtk = (AudioClip)Resources.Load("SE/" + "å°ãƒ‘ãƒ³ãƒ");
         audioSource.PlayOneShot(soundAtk, volumeAtk);
-        //  m_hpSkin[m_hp].enabled = false;        //HPUI‚Ì”ñ•\¦
+        //  m_hpSkin[m_hp].enabled = false;        //HPUIã®éè¡¨ç¤º
 
         const float DAMAGETIME = 1.5f;
         StartCoroutine(MyLib.DelayCoroutine(DAMAGETIME, () =>
         {
-            // DAMAGETIME•bŒã‚É‚±‚±‚Ìˆ—‚ªÀs‚³‚ê‚é
+            // DAMAGETIMEç§’å¾Œã«ã“ã“ã®å‡¦ç†ãŒå®Ÿè¡Œã•ã‚Œã‚‹
             //skin.material.color = startColor;
             m_isDamage = false;
             if (hpUI.GetHp() <= 0)
@@ -272,25 +269,25 @@ public class PlayerScr2D : MonoBehaviour
                 // skin.enabled = false;
 
 
-                //zŠÂQÆ‚µ‚Ä‚µ‚Ü‚Á‚Ä‚¢‚éH
-                //€–Sˆ—
-                Debug.Log("€‚ñ‚¾‚æƒ^ƒCƒgƒ‹‘JˆÚ‚·‚é‚æI");
+                //å¾ªç’°å‚ç…§ã—ã¦ã—ã¾ã£ã¦ã„ã‚‹ï¼Ÿ
+                //æ­»äº¡å‡¦ç†
+                Debug.Log("æ­»ã‚“ã ã‚ˆã‚¿ã‚¤ãƒˆãƒ«é·ç§»ã™ã‚‹ã‚ˆï¼");
                 GameObject.Find("GAMEOVERTEXT").GetComponent<DOFade>().ShowWindow();
-                //€–SUI•\¦
+                //æ­»äº¡UIè¡¨ç¤º
                 //GameObject.Find("DeadText").GetComponent<DOFade>().ShowWindow();
 
-                //ƒGƒNƒXƒgƒ‰ƒ‚[ƒh‚Ìê‡ƒ‰ƒ“ƒLƒ“ƒO•\¦
-                //ƒNƒŠƒAƒ`ƒFƒbƒN@ƒXƒRƒA‰ÁZ@ƒGƒNƒXƒgƒ‰ƒV[ƒ“
+                //ã‚¨ã‚¯ã‚¹ãƒˆãƒ©ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆãƒ©ãƒ³ã‚­ãƒ³ã‚°è¡¨ç¤º
+                //ã‚¯ãƒªã‚¢ãƒã‚§ãƒƒã‚¯ã€€ã‚¹ã‚³ã‚¢åŠ ç®—ã€€ã‚¨ã‚¯ã‚¹ãƒˆãƒ©ã‚·ãƒ¼ãƒ³
                 if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
                 {
-                    //ƒNƒŠƒA¸”s‚È‚Ì‚Åfalse
+                    //ã‚¯ãƒªã‚¢å¤±æ•—ãªã®ã§false
                     //  ExtraControl.I.ShowRanking(false);
                     GManager.I.SceneChangeTimerSet(GManager.SceneNameType.TitleScene.ToString());
 
                 }
                 else
                 {
-                    //ƒ^ƒCƒgƒ‹ƒV[ƒ“‘JˆÚ
+                    //ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³é·ç§»
                     GManager.I.SceneChangeTimerSet(GManager.SceneNameType.TitleScene.ToString());
                 }
 
@@ -302,7 +299,7 @@ public class PlayerScr2D : MonoBehaviour
 
 
 
-    #region@„‘ÌŠÖ˜A
+    #regionã€€å‰›ä½“é–¢é€£
     //private void OnCollisionEnter(Collision collision)
     //{
 

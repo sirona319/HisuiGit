@@ -1,14 +1,11 @@
-using DG.Tweening;
-using System;
-using System.Drawing;
-using Unity.VisualScripting;
-using UnityEditor.EditorTools;
+ï»¿using System;
 using UnityEngine;
-using static EnemySpawnWave;
 using UniRx;
 
 public class JerryNormalBuilder : BaseBuilder
 {
+
+    //[SerializeField] MagazineCreate mgCreate;
     #region //
 
     //BaseJerryEnemyFactory _factory = null;
@@ -47,36 +44,32 @@ public class JerryNormalBuilder : BaseBuilder
 
     #endregion
 
-    //pScr.prePosDiff.Subscribe(prePosDiff => UpdatePos(pScr));@ŠÖ”“o˜^
-
-    //public ReactiveProperty<Vector3> prePosDiff;    //using UniRx•K—v
-
     public override void Build(EnemyData eData,Transform s, Transform[] movePoint,PoolManager pool)
     {
-        var enemy = Instantiate(eData.go, s.position, Quaternion.identity);
+        //"prefab/Bullet/JerryBullet"
+        var loadObj=(GameObject)Resources.Load("prefab/Enemy/Jerry/NormalJerry");
+        var enemy = Instantiate(loadObj, s.position, Quaternion.identity);
         var eBase = enemy.GetComponent<EnemyBase>();
 
         eBase.AtkInterval = eData.AtkIntervalMax;
         eBase.Hp = eData.HpMax;
-        //eBase.movePointsDatas = movePoint;//null‚É‚È‚éê‡H
+        //eBase.movePointsDatas = movePoint;//nullã«ãªã‚‹å ´åˆï¼Ÿ
 
 
-        //var test = eBase.GetComponent<JerryScr>().JerryReturnStateType(0);
+        GetComponent<MagazineCreate>().MagazineCreateInit(eData, pool, enemy);
+        //MagazineCreate(eData, pool, enemy);
 
-
-        MagazineInit(eData, pool, enemy);
-
-        MoveInit(eData, movePoint, enemy);
+        MoveCreate(eData, movePoint, enemy);
         
 
         eBase.enemyData = eData;
     }
 
-    void MagazineInit(EnemyData eData,PoolManager pool,GameObject enemy)
+    void MagazineCreate(EnemyData eData,PoolManager pool,GameObject enemy)
     {
         var eBase = enemy.GetComponent<EnemyBase>();
 
-        //baseMagazine‰Šú‰»@@UŒ‚ƒNƒ‰ƒX‚É‚Á‚Ä‚¢‚­H
+        //baseMagazineåˆæœŸåŒ–ã€€ã€€æ”»æ’ƒã‚¯ãƒ©ã‚¹ã«æŒã£ã¦ã„ãï¼Ÿ
         for (int i = 0; i < (int)eData.attackType.Length; i++)
         {
             Type typeClass = Type.GetType(eData.attackType[i].ToString());
@@ -85,22 +78,29 @@ public class JerryNormalBuilder : BaseBuilder
                 eBase.baseMagazine.Add((BaseMagazine)enemy.AddComponent(typeClass));
         }
 
+        //////////////////
+
+        //magazine.attackType
         foreach (var magazine in eBase.baseMagazine)
         {
             //magazine.BulletLoad("prefab/EBulletNormalEX");
             magazine.Initialize();
-            magazine.BulletLoad("prefab/Bullet/JerryBullet");
-
+            
+            //magazine.BulletLoad("prefab/Bullet/JerryBullet");
             magazine.SetPool(pool);
+
+            var iTarget = magazine as ITarget;
+            if (iTarget != null)
+                iTarget.Target = GameObject.FindGameObjectWithTag("Player").transform;
         }
     }
 
-    void MoveInit(EnemyData eData, Transform[] movePoint, GameObject enemy)
+    void MoveCreate(EnemyData eData, Transform[] movePoint, GameObject enemy)
     {
 
         var eBase = enemy.GetComponent<EnemyBase>();
 
-        //baseMove‰Šú‰»@ˆÚ“®ƒNƒ‰ƒX‚É‚Á‚Ä‚¢‚­H
+        //baseMoveåˆæœŸåŒ–ã€€ç§»å‹•ã‚¯ãƒ©ã‚¹ã«æŒã£ã¦ã„ãï¼Ÿ
         for (int i = 0; i < (int)eData.moveType.Length; i++)
         {
             Type typeClass = Type.GetType(eData.moveType[i].ToString());
@@ -112,32 +112,41 @@ public class JerryNormalBuilder : BaseBuilder
 
         }
 
+
+
+
         foreach (var move in eBase.baseMove)
         {
-            //‰Šú‰»
+            //åˆæœŸåŒ–
             move.Initialize(enemy.GetComponent<Rigidbody2D>());
 
-            var pMove = move as PointMove;
-            //var movePointComp = move.GetComponent<IPointMove>();
 
-            // ‚Ìˆ—‚ª•K{
-            ///if (movePointComp != null)
-            //{
 
+
+
+
+            var pMove = move as PointFloatMove;
 
             //pMove.IsPointMoveEnd.Skip(1).Subscribe(count => Debug.Log(count));
-            //ŠÖ”‚ª‚±‚±‚Åˆê“xŒÄ‚Ño‚³‚ê‚épMove.IsPointMoveEnd.Skip(1)‰‰ñ‚ğƒXƒLƒbƒv‚·‚é
-            pMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool =>enemy.GetComponent<EnemyBase>().SetEndMove(pointBool));
+            //é–¢æ•°ãŒã“ã“ã§ä¸€åº¦å‘¼ã³å‡ºã•ã‚Œã‚‹pMove.IsPointMoveEnd.Skip(1)åˆå›ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
+            pMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
+            {
+                enemy.GetComponent<EnemyBase>().SetEndMoveKeep();
+                enemy.GetComponent<JerryScr>().SetEndTrail();
+            }
+            );
 
             pMove.TargetSet(movePoint);
-            pMove.SetMoveEndLength(eData.PointEndLength);
+
+            pMove.speed = eData.Speed;
+            //pMove.SetMoveEndLength(eData.PointEndLength);
         }
 
 
 
         //}
 
-        //•ÊƒNƒ‰ƒX‚Åƒtƒ[ƒgƒ€[ƒuİ’è‚ğ‚·‚é
+        //åˆ¥ã‚¯ãƒ©ã‚¹ã§ãƒ•ãƒ­ãƒ¼ãƒˆãƒ ãƒ¼ãƒ–è¨­å®šã‚’ã™ã‚‹
 
 
 

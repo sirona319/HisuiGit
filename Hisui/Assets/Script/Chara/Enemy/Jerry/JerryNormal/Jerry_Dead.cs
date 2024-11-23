@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Jerry_Dead : StateChildBase
 {
     const float DEADTIME = 0.1f;
 
-    private ParticleSystem deadParticle;//ƒp[ƒeƒBƒNƒ‹
+    private ParticleSystem deadParticle;//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 
 
     public override void Initialize(int stateNo)
@@ -47,7 +43,7 @@ public class Jerry_Dead : StateChildBase
 
         //}));
 
-        //ƒNƒŠƒAƒ`ƒFƒbƒN@ƒXƒRƒA‰ÁZ@
+        //ã‚¯ãƒªã‚¢ãƒã‚§ãƒƒã‚¯ã€€ã‚¹ã‚³ã‚¢åŠ ç®—ã€€
         //if (SceneManager.GetActiveScene().name.Contains(GManager.SceneNameType.NormalScene.ToString()))
         //{
         //    //GameSceneControl.I.UpdateEnemyCount();

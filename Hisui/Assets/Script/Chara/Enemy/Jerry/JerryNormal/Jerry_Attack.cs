@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.GridBrushBase;
+ï»¿using UnityEngine;
 
 public class Jerry_Attack : StateChildBase
 {
@@ -13,14 +7,7 @@ public class Jerry_Attack : StateChildBase
     {
 
         base.Initialize(stateType);
-        //GetComponent<EnemyBase>().AtkInterval = GetComponent<EnemyBase>().enemyData.AtkIntervalMax;
 
-        //foreach (var magazine in GetComponent<EnemyBase>().baseMagazine)
-        //{
-        //    magazine.BulletLoad("prefab/Bullet/JerryBullet");
-
-        //    magazine.SetPool(GetComponent<EnemyBase>().pool);
-        //}
     }
 
     public override void OnEnter()
@@ -33,7 +20,7 @@ public class Jerry_Attack : StateChildBase
 
     public override void OnExit()
     {
-        // Debug.Log("UŒ‚I—¹");
+        // Debug.Log("æ”»æ’ƒçµ‚äº†");
     }
 
     public override int StateUpdate()
@@ -46,7 +33,7 @@ public class Jerry_Attack : StateChildBase
 
 
 
-        //ƒ}ƒKƒWƒ“‚ÌXV
+        //ãƒã‚¬ã‚¸ãƒ³ã®æ›´æ–°
         GetComponent<JerryScr>().AttackMagazineUpdateAll();
 
 

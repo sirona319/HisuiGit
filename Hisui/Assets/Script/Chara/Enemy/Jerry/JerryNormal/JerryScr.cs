@@ -1,28 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class JerryScr : EnemyBase
 {
 
-    //public Transform front;
-
-
-    //[SerializeField] float floatSpeed = 0.005f;
-    //[SerializeField] Vector3 flaotVector;
     void Start()
     {
-        //base.EnemyDataInit();
-        //base.Init();
-
-        //isFloat=enemyData.
-
-        //ifï∂Ç≈íeÇÃéÌóﬁï™ÇØÇÍÇÈÅ@çUåÇÇ≤Ç∆Ç…Å@É{ÉXÇ»Ç«
-        //foreach (var magazine in baseMagazine)
-        //    magazine.BulletLoad("prefab/EBulletNormalEX");
-        //rb = GetComponent<Rigidbody2D>();
 
         stateController.Initialize((int)JerryCtr.State.Jerry_Wait);
     }
@@ -47,7 +29,6 @@ public class JerryScr : EnemyBase
 
         AtkInterval -= Time.deltaTime;
 
-        //if(enemyData.AtkInterval<=0)
 
     }
 
@@ -62,25 +43,38 @@ public class JerryScr : EnemyBase
         else
             return (int)JerryCtr.State.Jerry_Wait;
 
-        //return stateType;
     }
 
+    float IntensityVal = 1;
+    const float TrailEndSpeed = 0.02f;
+    public void SetEndTrail()
+    {
+        var color=GetComponent<TrailRenderer>().material.GetColor("_EmissionColor");
+
+        //GetComponent<TrailRenderer>().material.SetVector("_EmissionColor", aa);
+
+        //GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", aa*1);
+        StartCoroutine(MyLib.LoopDelayCoroutineIf(Time.deltaTime, (IntensityVal - TrailEndSpeed) <= 0, () =>
+        {
+            IntensityVal -= TrailEndSpeed;//Time.deltaTime;
+            if (IntensityVal <= 0)
+                IntensityVal = 0;
+            //return;
+
+            GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", color * IntensityVal);
+        }));
+
+        //GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", color * 0);
+
+        //GetComponent<TrailRenderer>().material.GetColor("_EmissionColor");
 
 
-    //private void OnTriggerExit(Collider other)
-    //{
+        //GetComponent<TrailRenderer>().enabled = false;
+        //if (!moveEnd) return;
+        //GetComponent<JerryScr>().IsAttack = true;
 
-    //    if (other.CompareTag("ExitErea"))
-    //    {
+        //GetComponent<JerryScr>().IsMove = true;
 
-    //        //Debug.Log("ÉGÉäÉAäOè¡ãé");
-
-    //        this.gameObject.SetActive(false);
-
-    //        Destroy(this.gameObject);
-    //        return;
-    //    }
-
-    //}
+    }
 
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [System.Serializable]
 public class SpawnWaveData
@@ -7,17 +7,17 @@ public class SpawnWaveData
 
     public int enemyCount = 0;
 
-    public float[] spawnTime; //“G‚Ì¶¬ƒ^ƒCƒ€İ’è‚Å‚«‚é‚æ‚¤‚É‚·‚é
+    public float[] spawnTime; //æ•µã®ç”Ÿæˆã‚¿ã‚¤ãƒ è¨­å®šã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 
-    //‚±‚Ì“G‚½‚¿‚ª“|‚³‚ê‚½‚ç@”ÍˆÍŠO‚Éo‚½‚ç”jŠü‚·‚éH@ƒXƒ|[ƒ“‚·‚é@“o˜^•û–@‚ğl‚¦‚é
+    //ã“ã®æ•µãŸã¡ãŒå€’ã•ã‚ŒãŸã‚‰ã€€ç¯„å›²å¤–ã«å‡ºãŸã‚‰ç ´æ£„ã™ã‚‹ï¼Ÿã€€ã‚¹ãƒãƒ¼ãƒ³ã™ã‚‹ã€€ç™»éŒ²æ–¹æ³•ã‚’è€ƒãˆã‚‹
     //public GameObject[] triggerEnemys;
 
     public EnemySpawnWave.LoadState[] LoadState;
-    //public GameObject[] spawns; //“G@¶¬ˆÊ’u
+    //public GameObject[] spawns; //æ•µã€€ç”Ÿæˆä½ç½®
 
-    public Transform[] spawnLocations;//“G‚ÌˆÚ“®”ÍˆÍ@ˆÊ’u
+    public Transform[] spawnLocations;//æ•µã®ç§»å‹•ç¯„å›²ã€€ä½ç½®
 
-    //public float SPWNTIME = 2f; //“G‚Ì¶¬ƒ^ƒCƒ€İ’è‚Å‚«‚é‚æ‚¤‚É‚·‚é
+    //public float SPWNTIME = 2f; //æ•µã®ç”Ÿæˆã‚¿ã‚¤ãƒ è¨­å®šã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 
     public ChildTrans[] movePointsSet;
 
@@ -25,7 +25,7 @@ public class SpawnWaveData
 
 }
 
-//ƒVƒŠƒAƒ‰ƒCƒY‚³‚ê‚½q—v‘fƒNƒ‰ƒX
+//ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã•ã‚ŒãŸå­è¦ç´ ã‚¯ãƒ©ã‚¹
 [System.Serializable]
 public class ChildTrans
 {

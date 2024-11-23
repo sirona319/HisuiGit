@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using System;
 
 public class JerryCtr : StateControllerBase
 {
@@ -12,7 +9,6 @@ public class JerryCtr : StateControllerBase
         Jerry_Dead,
         Jerry_Attack,
         Jerry_Move,
-        //Jerry_Circle,
 
 
         NumStates
@@ -21,7 +17,7 @@ public class JerryCtr : StateControllerBase
     public override void Initialize(int initializeStateType)
     {
 
-        for (int i = 0; i < (int)State.NumStates; i++) //NumStates‚ðŽg‚¤ê‡
+        for (int i = 0; i < (int)State.NumStates; i++) //NumStatesã‚’ä½¿ã†å ´åˆ
         {
             State type = (State)i;
             string className = type.ToString();
@@ -42,10 +38,4 @@ public class JerryCtr : StateControllerBase
         stateDic[CurrentState].OnEnter();
     }
 
-    //protected void BaseJerryStateSet(State enemyState)
-    //{
-    //    AutoStateTransitionSequence((int)enemyState);
-    //}
 }
-
-//public class BaseJerry_Move : EnemyStateChildBaseMove2D{}

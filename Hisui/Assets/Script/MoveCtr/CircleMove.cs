@@ -3,7 +3,7 @@ using UniRx;
 using UnityEngine.EventSystems;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.GraphicsBuffer;
-public class CircleMove : BaseMove, ICircleMove
+public class CircleMove : BaseMove
 {
     //https://nekojara.city/unity-circular-motion
 
@@ -22,20 +22,7 @@ public class CircleMove : BaseMove, ICircleMove
 
 
     public Transform targets;
-    //public void TargetSet(Transform[] t)
-    //{
-    //    targets = t[0];
 
-    //    if (targets==null)
-    //        throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
-    //}
-
-    //bool GetMoveEnd()
-    //{
-    //    return false;
-    //}
-
-    //bool IsTargetMove = false;
 
     public void SetParent(Transform t)
     {
@@ -47,36 +34,13 @@ public class CircleMove : BaseMove, ICircleMove
         base.Initialize(rb);
 
         IsKeepMove = true;
-        //var player = GameObject.FindGameObjectWithTag("Player");
 
-        //targetPos = player.transform.position;
-
-        //targets = GetComponent<EnemyBase>().movePointsDatas[0];
-        //targetTrans = targets[0];
-
-        //moveTrans = GetComponent<EnemyBase>().movePointsDatas;
-
-
-        //var pScr = player.GetComponent<PlayerScr2D>();
-
-
-        //if (GetComponent<EnemyBase>().enemyData.moveType == EnemyData.MoveType.CircleMove)
-        //using UniRx必要
-        //pScr.prePosDiff.Subscribe(prePosDiff => UpdatePos(pScr));
     }
 
-    //void UpdatePos(PlayerScr2D p)
-    //{
-    //    transform.position += p.GetComponent<PlayerScr2D>().prePosDiff.Value;
-
-    //    targetPos = p.transform.position;
-    //}
 
     public override void MoveEnter()
     {
         //Debug.Log(targetTrans);
-
-        //if(targetTrans != null )
         SetParent(targets);
     }
 
@@ -84,18 +48,8 @@ public class CircleMove : BaseMove, ICircleMove
     {
 
         CircleUpdate();
-        // 中心点centerの周りを、軸axisで、period周期で円運動
-        //transform.RotateAround(
-        //    targetPos,
-        //    _axis,
-        //    360 / _period * Time.deltaTime
-        //);
-
-
 
         transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////回転
-
-
 
     }
 

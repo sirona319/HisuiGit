@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9185340535075716043}
   - component: {fileID: 1660741264998231965}
-  - component: {fileID: 7910057208378867901}
   - component: {fileID: 1372904476738841711}
   - component: {fileID: 185438691607815936}
+  - component: {fileID: 2574284371767712820}
   m_Layer: 12
   m_Name: JerryBullet
   m_TagString: Untagged
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: -230103395
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 696e1a1afd4b6ec44b587c48a75ccb3a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1576bb58244eb514196663a1f5dc9aec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -90,21 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7910057208378867901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8764880274935360633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b44183949b2cf224492781507d43ba9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angle: 0
-  speed: 3
-  IsShake: 1
 --- !u!58 &1372904476738841711
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,7 +103,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 16448
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 640
@@ -153,3 +138,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88bb0b25be4bcda4bb56440b7f1d4cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsRelease: 0
+--- !u!114 &2574284371767712820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764880274935360633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945255f85b1b40a4aa6085bb7a47e3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0
+  speed: 4
+  velocity: {x: 0, y: 0, z: 0}

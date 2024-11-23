@@ -1,10 +1,5 @@
-using Cysharp.Threading.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+ï»¿using Cysharp.Threading.Tasks;
 using UnityEngine;
-using static BaseEnemyFactory;
-using System;
 
 public class EnemySpawnWave : MonoBehaviour
 {
@@ -15,8 +10,8 @@ public class EnemySpawnWave : MonoBehaviour
         CircleJerry,
         CircleOneJerry,
 
-
-        CircleMoveJerry
+        FloatVectorJerry,
+        CircleMoveJerry,
 
 
     }
@@ -25,8 +20,8 @@ public class EnemySpawnWave : MonoBehaviour
 
     //[SerializeField] PoolManager poolManager;
 
-    //ƒ{ƒX‚©‚Ç‚¤‚©
-    ////‚±‚Ì“G‚½‚¿‚ª“|‚³‚ê‚½‚ç@”ÍˆÍŠO‚Éo‚½‚ç”jŠü‚·‚éH@ƒXƒ|[ƒ“‚·‚é@“o˜^•û–@‚ğl‚¦‚é
+    //ãƒœã‚¹ã‹ã©ã†ã‹
+    ////ã“ã®æ•µãŸã¡ãŒå€’ã•ã‚ŒãŸã‚‰ã€€ç¯„å›²å¤–ã«å‡ºãŸã‚‰ç ´æ£„ã™ã‚‹ï¼Ÿã€€ã‚¹ãƒãƒ¼ãƒ³ã™ã‚‹ã€€ç™»éŒ²æ–¹æ³•ã‚’è€ƒãˆã‚‹
     //public GameObject[] triggerEnemys; 
 
     int CountIndex = 0;
@@ -36,8 +31,8 @@ public class EnemySpawnWave : MonoBehaviour
     }
 
 
-    //ƒCƒ“ƒfƒbƒNƒXg—p@ŠÖ”
-    //ƒAƒbƒvƒLƒƒƒXƒg
+    //ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä½¿ç”¨ã€€é–¢æ•°
+    //ã‚¢ãƒƒãƒ—ã‚­ãƒ£ã‚¹ãƒˆ
     void Start()
     {
         for (int i = 0; i < spawnData.Length; i++)
@@ -61,13 +56,13 @@ public class EnemySpawnWave : MonoBehaviour
         //if (spawnData[No].spawns.Length != spawnData[No].spawnLocations.Length)
         //{
 
-        //    throw new System.Exception("¶¬‚·‚é“G‚ÌˆÚ“®Šî“_À•W‚ª‘S‚Äw’è‚³‚ê‚Ä‚¢‚È‚¢");
-        //    //Debug.Log("¶¬‚·‚é“G‚ÌˆÚ“®Šî“_À•W‚ª‘S‚Äw’è‚³‚ê‚Ä‚¢‚È‚¢");
+        //    throw new System.Exception("ç”Ÿæˆã™ã‚‹æ•µã®ç§»å‹•åŸºç‚¹åº§æ¨™ãŒå…¨ã¦æŒ‡å®šã•ã‚Œã¦ã„ãªã„");
+        //    //Debug.Log("ç”Ÿæˆã™ã‚‹æ•µã®ç§»å‹•åŸºç‚¹åº§æ¨™ãŒå…¨ã¦æŒ‡å®šã•ã‚Œã¦ã„ãªã„");
         //}
 
         //if(spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray==null)
         //{
-        //    throw new System.Exception("ˆÚ“®æ‚ªw’è‚³‚ê‚Ä‚¢‚È‚¢");
+        //    throw new System.Exception("ç§»å‹•å…ˆãŒæŒ‡å®šã•ã‚Œã¦ã„ãªã„");
         //}
 
 
@@ -76,17 +71,17 @@ public class EnemySpawnWave : MonoBehaviour
 
 
 
-        //1‰ñ–ÚˆÈ~
+        //1å›ç›®ä»¥é™
         while (true)
         {
             DelaySpawnAsyncWave
-                (spawnData[No].spawnTime[spawnData[No].enemyCount] * spawnData[No].enemyCount + 1,//floatŒ^
+                (spawnData[No].spawnTime[spawnData[No].enemyCount] * spawnData[No].enemyCount + 1,//floatå‹
 
-                spawnData[No].LoadState[spawnData[No].enemyCount],//ƒXƒe[ƒg
+                spawnData[No].LoadState[spawnData[No].enemyCount],//ã‚¹ãƒ†ãƒ¼ãƒˆ
 
                 //spawnData[No].spawns[spawnData[No].enemyCount],
-                spawnData[No].spawnLocations[spawnData[No].enemyCount],//¶¬À•W
-                spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray//–Ú•WÀ•W
+                spawnData[No].spawnLocations[spawnData[No].enemyCount],//ç”Ÿæˆåº§æ¨™
+                spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray//ç›®æ¨™åº§æ¨™
                 ).Forget();
 
             spawnData[No].enemyCount++;
@@ -124,7 +119,7 @@ public class EnemySpawnWave : MonoBehaviour
         ////if (enemyCount >= spawns.Length)
         ////  return;
 
-        ////ŠÔ‚ğŠÔŠu‚ğŠJ‚¯‚Ä¶¬‚·‚éH
+        ////æ™‚é–“ã‚’é–“éš”ã‚’é–‹ã‘ã¦ç”Ÿæˆã™ã‚‹ï¼Ÿ
         //while (true)
         //{
         //    if (enemyCount >= spawns.Length)
@@ -134,7 +129,7 @@ public class EnemySpawnWave : MonoBehaviour
         //        (SPWNTIME, spawns[enemyCount], spawnLocations[enemyCount].transform.position).Forget();
 
 
-        //    // ¶¬ƒfƒBƒŒƒCƒRƒ‹[ƒ`ƒ“‚Ì‹N“®
+        //    // ç”Ÿæˆãƒ‡ã‚£ãƒ¬ã‚¤ã‚³ãƒ«ãƒ¼ãƒãƒ³ã®èµ·å‹•
         //    //StartCoroutine(DelaySpawnCoroutineWave
         //    //    (SPWNTIME /** enemyCount + 1*/, spawns[enemyCount], spawnLocations[enemyCount].transform.position));
 
@@ -204,13 +199,13 @@ public class EnemySpawnWave : MonoBehaviour
         //var enemy = Instantiate(eData.go, spawnTrans.position, Quaternion.identity);
         //var eBase = enemy.GetComponent<EnemyBase>();
 
-        ////eBase.movePointsDatas = movePoint;//null‚É‚È‚éê‡H
+        ////eBase.movePointsDatas = movePoint;//nullã«ãªã‚‹å ´åˆï¼Ÿ
         //eBase.Hp = eData.HpMax;
 
         ////eBase.pool = poolManager;
 
 
-        ////baseMagazine‰Šú‰»@@UŒ‚ƒNƒ‰ƒX‚É‚Á‚Ä‚¢‚­H
+        ////baseMagazineåˆæœŸåŒ–ã€€ã€€æ”»æ’ƒã‚¯ãƒ©ã‚¹ã«æŒã£ã¦ã„ãï¼Ÿ
         //for (int i = 0; i < (int)eData.attackType.Length; i++)
         //{
         //    Type typeClass = Type.GetType(eData.attackType[i].ToString());
@@ -229,7 +224,7 @@ public class EnemySpawnWave : MonoBehaviour
         //    magazine.SetPool(poolManager);
         //}
 
-        ////baseMove‰Šú‰»@ˆÚ“®ƒNƒ‰ƒX‚É‚Á‚Ä‚¢‚­H
+        ////baseMoveåˆæœŸåŒ–ã€€ç§»å‹•ã‚¯ãƒ©ã‚¹ã«æŒã£ã¦ã„ãï¼Ÿ
         //for (int i = 0; i < (int)eData.moveType.Length; i++)
         //{
         //    Type typeClass = Type.GetType(eData.moveType[i].ToString());
@@ -243,13 +238,13 @@ public class EnemySpawnWave : MonoBehaviour
 
         //foreach (var move in eBase.baseMove)
         //{
-        //    //‰Šú‰»
+        //    //åˆæœŸåŒ–
         //    move.Initialize(enemy.GetComponent<Rigidbody2D>());
 
 
         //    var movePointComp = move.GetComponent<IPointMove>();
 
-        //    // ‚Ìˆ—‚ª•K{
+        //    // ã®å‡¦ç†ãŒå¿…é ˆ
         //    if (movePointComp != null)
         //    {
         //        movePointComp.TargetSet(movePoint);
@@ -259,14 +254,14 @@ public class EnemySpawnWave : MonoBehaviour
         //}
 
         //eBase.enemyData = eData;
-        //ƒXƒe[ƒ^ƒX‚Ì‰Šú‰»
+        //ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®åˆæœŸåŒ–
         //Hp = eData.HpMax;
     }
 
 
     //public static JerryBuilder[] CreateLevel1EnemyBuilders()
     //{
-    //    // Level1 ‚ÍG‹›ƒXƒPƒ‹ƒgƒ“3‘Ì
+    //    // Level1 ã¯é›‘é­šã‚¹ã‚±ãƒ«ãƒˆãƒ³3ä½“
     //    return new JerryBuilder[]{
     //        JerryBuilder( new JerryPointFactory() );
     //    //JerryBuilder(new NormalSkeletonFactory());

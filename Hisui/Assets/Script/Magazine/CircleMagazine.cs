@@ -1,5 +1,6 @@
-using UnityEditor.EditorTools;
+ï»¿using UnityEditor.EditorTools;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class CircleMagazine : BaseMagazine
 {
@@ -7,21 +8,11 @@ public class CircleMagazine : BaseMagazine
     float timeCount = 0;
     float shotAngle = 0;
 
-    //Transform targetTrans;
-
-    //const float SHOTTIME = 3f;
-
     const float BULLETTIMEMAX = 4f;
 
-    //‹t‰ñ‚èì‚é
+    //é€†å›ã‚Šä½œã‚‹
     public override void Initialize()
     {
-        //base.Initialize();
-
-        ///var player = GameObject.FindGameObjectWithTag("Player");
-       // targetTrans = player.transform;
-
-        //bulletInterval = 0;
 
         shotTime = BULLETTIMEMAX;
     }
@@ -33,63 +24,30 @@ public class CircleMagazine : BaseMagazine
 
     public override void MagazineUpdate()
     {
-        //bulletInterval -= Time.deltaTime;
-
-
-        //if (bulletInterval > SHOTTIME)
-        //    return;
-
         CircleShot();
-
-        //if(bulletInterval <= 0)
-        //bulletInterval = MAXBULLETINTERVAL;
     }
-
-
 
     void CircleShot()
     {
-        // ‘OƒtƒŒ[ƒ€‚©‚ç‚ÌŠÔ‚Ì·‚ğ‰ÁZ
+        // å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ã®æ™‚é–“ã®å·®ã‚’åŠ ç®—
         timeCount += Time.deltaTime;
 
         const int angleChangeVal = 10;
         const float shotTiming = 0.1f;
-        // 0.1•b‚ğ’´‚¦‚Ä‚¢‚é‚©
+        // 0.1ç§’ã‚’è¶…ãˆã¦ã„ã‚‹ã‹
         if (timeCount > shotTiming)
         {
-            timeCount = 0; // Ä”­Ë‚Ì‚½‚ß‚ÉŠÔ‚ğƒŠƒZƒbƒg
+            timeCount = 0; // å†ç™ºå°„ã®ãŸã‚ã«æ™‚é–“ã‚’ãƒªã‚»ãƒƒãƒˆ
 
             shotAngle += angleChangeVal;
 
-            BulletAtk(shotAngle);
+            //æ’ƒã¡åˆã‚ã®è§’åº¦ã®è¨­å®šã€€å‘ã
+            Vector2 direction =(transform.position+Vector3.up) - transform.position;
+            float tAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¸ã®è§’åº¦ã‚’å–å¾—ã™ã‚‹
 
-            // GameObject‚ğV‚½‚É¶¬‚·‚é
-            // ‘æˆêˆø”F¶¬‚·‚éGameObject
-            // ‘æ“ñˆø”F¶¬‚·‚éÀ•W
-            // ‘æOˆø”F¶¬‚·‚éŠp“x
-            // –ß‚è’lF¶¬‚µ‚½GameObject
-            //var createObject = Instantiate(bulletObj.gameObject, transform.position, Quaternion.identity);
+            BulletAtk(tAngle + shotAngle);
 
-            // ¶¬‚µ‚½GameObject‚Éİ’è‚³‚ê‚Ä‚¢‚éABulletƒXƒNƒŠƒvƒg‚ğæ“¾‚·‚é
-            //Bullet bulletScript = createObject.GetComponent<Bullet>();
-
-            // BulletƒXƒNƒŠƒvƒg‚ÌInit‚ğŒÄ‚Ño‚·
-            //bulletScript.Init(shotAngle, 3);
         }
     }
 
-    //void BulletAtk(float angle)
-    //{
-
-    //    var bullet = poolManager.GetGameObject(bulletObj.gameObject, transform.position, transform.rotation);
-    //    bullet.GetComponent<Bullet>().Init(angle, 3);
-
-    //    var destroyer = bullet.GetComponent<Destroyer>();
-    //    destroyer.PoolManager = poolManager;
-
-    //    if (destroyer != null)
-    //        destroyer.StartDestroyTimer(3);
-
-
-    //}
 }

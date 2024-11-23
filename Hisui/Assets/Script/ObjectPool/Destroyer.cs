@@ -4,27 +4,83 @@ using UnityEngine;
 public class Destroyer : MonoBehaviour
 {
 
-    public PoolManager PoolManager { get; set; }
+    public PoolManager pool { get; set; }
 
     const float DESTIME = 7f;
 
-    public void StartDestroyTimer(float time= DESTIME)
+    public bool IsRelease = false;
+
+    public void StartDestroyTimer(float time = DESTIME)
     {
-        StartCoroutine(DestroyTimer(time));
+        //StartCoroutine(DestroyTimer(time));
     }
 
     IEnumerator DestroyTimer(float time)
     {
         yield return new WaitForSeconds(time);
 
-        if (PoolManager != null)
+        PoolDestroy();
+    }
+
+    public void PoolDestroy()
+    {
+        //var pool = GetComponent<Destroyer>().PoolManager;
+        if (pool != null)
         {
-            PoolManager.ReleaseGameObject(gameObject);
+            if (IsRelease)
+            {
+                Debug.Log("二重リリース回避");
+                return;
+            }
+
+            IsRelease = true;
+            pool.ReleaseGameObject(gameObject);
+            return;
+            //Debug.Log(gameObject.name+"POOLした");
         }
         else
         {
+            //Debug.Log("Erea消去");
             Destroy(gameObject);
+            return;
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            //プレイヤーへのダメージ処理
+            other.transform.GetComponent<PlayerScr2D>().PlayerDamage(1);
+
+            //Debug.Log("攻撃がPlayerにHIT");
+
+            PoolDestroy();
+            return;
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            other.transform.GetComponent<EnemyBase>().EnemyDamage(1);
+
+            //Debug.Log("攻撃が敵にHIT");
+            PoolDestroy();
+            return;
+        }
+
+
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        //return;
+
+        if (other.CompareTag("ExitErea"))
+        {
+            PoolDestroy();
+            return;
+        }
+
+    }
 }

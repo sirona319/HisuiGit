@@ -14,52 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DataList:
   - Id: NormalJerry
-    moveType: 01000000
-    attackType: 00000000
-    IsMyDead: 0
-    MyDeadTimeMax: 1
-    HpMax: 1
-    AtkIntervalMax: 1
+    moveType: 03000000
+    attackType: 02000000
+    bulletType: 0000000001000000
+    speed: 4
+    hpMax: 1
+    atkIntervalMax: 1
     PointEndLength: 0.5
-    go: {fileID: 6746387532269590872, guid: 501658a93c1924a4d9d01ab3b20122d7, type: 3}
-    builder: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
-  - Id: FiveJerry
-    moveType: 01000000
-    attackType: 01000000
-    IsMyDead: 0
-    MyDeadTimeMax: 1
-    HpMax: 1
-    AtkIntervalMax: 1
-    PointEndLength: 0.5
-    go: {fileID: 6746387532269590872, guid: 5590b1e281d8dbf4593e47a489116e1d, type: 3}
     builder: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
   - Id: CircleJerry
-    moveType: 01000000
-    attackType: 02000000
-    IsMyDead: 0
-    MyDeadTimeMax: 1
-    HpMax: 1
-    AtkIntervalMax: 1
+    moveType: 03000000
+    attackType: 03000000
+    bulletType: 
+    speed: 4
+    hpMax: 1
+    atkIntervalMax: 1
     PointEndLength: 0.5
-    go: {fileID: 6746387532269590872, guid: 659e46d3f256b1b4182a9493ef5dc80c, type: 3}
     builder: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
   - Id: CircleOneJerry
-    moveType: 01000000
+    moveType: 03000000
     attackType: 04000000
-    IsMyDead: 0
-    MyDeadTimeMax: 1
-    HpMax: 1
-    AtkIntervalMax: 1
+    bulletType: 
+    speed: 8
+    hpMax: 1
+    atkIntervalMax: 1
     PointEndLength: 0.5
-    go: {fileID: 6746387532269590872, guid: 1a43069031e013346ae486f854d42fc4, type: 3}
     builder: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
   - Id: CircleMoveJerry
-    moveType: 03000000
+    moveType: 04000000
     attackType: 00000000
-    IsMyDead: 0
-    MyDeadTimeMax: 1
-    HpMax: 1
-    AtkIntervalMax: 1
-    PointEndLength: 3
-    go: {fileID: 6746387532269590872, guid: b2c39086c16c0a8419f96f81f549fef8, type: 3}
-    builder: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
+    bulletType: 
+    speed: 8
+    hpMax: 1
+    atkIntervalMax: 1
+    PointEndLength: 2
+    builder: {fileID: 181301032464577783, guid: 820bcb6c97d32c9449b26383fe22939b, type: 3}
+  - Id: FloatVectorJerry
+    moveType: 05000000
+    attackType: 00000000
+    bulletType: 
+    speed: 8
+    hpMax: 1
+    atkIntervalMax: 1
+    PointEndLength: 2
+    builder: {fileID: 181301032464577783, guid: 20d39b3231972d34299611fad33f76b4, type: 3}

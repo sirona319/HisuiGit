@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8f73ea897e5c9624ca27d72a98c230c8
+labels:
+- IKP
+timeCreated: 1534635619
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143105
+  packageName: Kris' Favorite Assets
+  packageVersion: 1.2
+  assetPath: Assets/KrisDevelopment/FavoriteAssets/How To Use.txt
+  uploadId: 551084

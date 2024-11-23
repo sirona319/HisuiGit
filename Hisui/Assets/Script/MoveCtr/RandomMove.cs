@@ -4,7 +4,6 @@ using Random = UnityEngine.Random;
 
 public class RandomMove : BaseMove
 {
-    //[NonSerialized] public Vector3 basePosition = Vector3.zero;
 
     //[SerializeField] float MOVEXY = 100;
     [SerializeField] Vector3[] movePos;
@@ -18,11 +17,7 @@ public class RandomMove : BaseMove
     {
         base.Initialize(rb);
 
-        //basePosition = transform.position;
-        //var bPos = transform.position;
-
         //MOVEXY = moveRangeXZ;
-
 
         movePos = new Vector3[4];
 

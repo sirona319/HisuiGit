@@ -1,47 +1,25 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using UnityEngine;
 
 public abstract class BaseMove : MonoBehaviour
 {
 
-
     protected Rigidbody2D m_rb;
-    void SetRb2D(Rigidbody2D rb2)
-    {
-        m_rb = rb2;
-    }
-
-    public bool IsKeepMove = false;//ìÆÇ´ë±ÇØÇÈà⁄ìÆ
-
-    //public void SetRb(Rigidbody2D rb)
+    //void SetRb2D(Rigidbody2D rb2)
     //{
-    //    m_rb = rb;
+    //    m_rb = rb2;
     //}
-    //public bool IsMove = true;
 
-    //public Transform[] targets;
+    public bool IsKeepMove = false;//Âãï„ÅçÁ∂ö„Åë„ÇãÁßªÂãï
 
     public virtual void Initialize(Rigidbody2D rb)
     {
         m_rb = rb;
-        //base.Initialize();
-
     }
 
     public abstract void MoveEnter();
-    //public virtual void MoveExit()
-    //{
-
-    //}
-
 
     public abstract void MoveUpdate();
 
-
-    //public IEnumerator ExCoroutine(float seconds, Action action)
-    //{
-    //    yield return new WaitForSeconds(seconds);
-    //    action?.Invoke();
-    //}
 }

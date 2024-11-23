@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: aa3fb5da8b722fe448ec1854901c568e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143105
+  packageName: Kris' Favorite Assets
+  packageVersion: 1.2
+  assetPath: Assets/KrisDevelopment/FavoriteAssets/Editor/FavoriteAssets.cs
+  uploadId: 551084

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 72cb06f64d821a046b3d5c825b860e24
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 143105
+  packageName: Kris' Favorite Assets
+  packageVersion: 1.2
+  assetPath: Assets/KrisDevelopment/FavoriteAssets/Editor/KrisDevelopment.FavoriteAssets.asmdef
+  uploadId: 551084

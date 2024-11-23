@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.AddressableAssets;
 //using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -14,10 +14,10 @@ public class EnemyManager : Singleton<EnemyManager>
         enemySetting = await Addressables.
                LoadAssetAsync<EnemySetting>("Assets/EnemySetting.asset");
 
-        //ÉXÉâÉCÉÄÇÃÉfÅ[É^ÇéÊìæ
+        //„Çπ„É©„Ç§„É†„ÅÆ„Éá„Éº„Çø„ÇíÂèñÂæó
         //var slimeData = enemySetting.DataList.
         //                FirstOrDefault(enemy => enemy.Id == "JerryNormal");
-        //Debug.Log($"IDÅF{slimeData.Id}");
+        //Debug.Log($"IDÔºö{slimeData.Id}");
 
 
         
@@ -33,9 +33,9 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         //enemySetting = Resources.Load<EnemySetting>("EnemySetting");
 
-        //enemyDataÇÃnullÉ`ÉFÉbÉN
+        //enemyData„ÅÆnull„ÉÅ„Çß„ÉÉ„ÇØ
         if (enemySetting == null)
-            throw new System.Exception("enemySettingÅ@Data null");
+            throw new System.Exception("enemySetting„ÄÄData null");
 
         var data = enemySetting.DataList.
               FirstOrDefault(enemy => enemy.Id == name);

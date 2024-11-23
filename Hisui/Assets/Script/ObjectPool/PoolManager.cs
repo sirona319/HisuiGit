@@ -50,6 +50,7 @@ public class PoolManager : MonoBehaviour
 
     public void ReleaseGameObject(GameObject obj)
     {
+        
         pool.Release(obj);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +9,8 @@ public class EnemyAtkCol : MonoBehaviour
 
     [SerializeField] bool hitErase = true;
 
-    [SerializeField] int ATKVAL;//UŒ‚—Í
-    //UŒ‚—p‚ÌƒRƒŠƒWƒ‡ƒ“‚Ìİ’è@–³‚¢“G‚à‚¢‚é
+    [SerializeField] int ATKVAL;//æ”»æ’ƒåŠ›
+    //æ”»æ’ƒç”¨ã®ã‚³ãƒªã‚¸ãƒ§ãƒ³ã®è¨­å®šã€€ç„¡ã„æ•µã‚‚ã„ã‚‹test
     private void OnTriggerStay(Collider other)
     {
 
@@ -25,7 +25,7 @@ public class EnemyAtkCol : MonoBehaviour
             col = GetComponent<BoxCollider>();
 
 
-        //ƒvƒŒƒCƒ„[‚Ö‚Ìƒ_ƒ[ƒWˆ—
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¸ã®ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
         other.transform.GetComponent<PlayerScr>().PlayerDamage(ATKVAL);
 
         if (hitErase)

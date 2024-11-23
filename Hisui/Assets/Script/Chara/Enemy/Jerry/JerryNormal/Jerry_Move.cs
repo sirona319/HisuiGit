@@ -1,7 +1,4 @@
-using DG.Tweening;
-using System;
-using UnityEngine;
-using static EnemyData;
+Ôªøusing UnityEngine;
 
 
 public class Jerry_Move : StateChildBase
@@ -11,38 +8,6 @@ public class Jerry_Move : StateChildBase
     public override void Initialize(int stateNo)
     {
         base.Initialize(stateNo);
-
-        //foreach (var move in GetComponent<JerryScr>().baseMove)
-        //{
-        //    //move.Initialize();
-
-        //    IsKeepMove = move.IsKeepMove;
-
-
-        //    //var pMove = move as PointMove;
-        //    //var movePointComp = move.GetComponent<IPointMove>();
-
-        //    // ÇÃèàóùÇ™ïKê{
-        //    ///if (movePointComp != null)
-        //    //{
-
-        //    //pMove.IsPointMoveEnd.Subscribe(x => StateUpdate());
-        //}
-
-
-
-            //ï ÉNÉâÉXÇ≈ÉtÉçÅ[ÉgÉÄÅ[Éuê›íËÇÇ∑ÇÈ
-
-        
-        //pointMove = GetComponent<JerryScr>().MoveTypeSelect(MoveType.PointMove) as PointMove;
-        //pointMove.IsLoop = false;
-        //pointMove.TargetSet(GetComponent<EnemyBase>().movePointsDatas);
-
-        //pointMove.endLength = 3f;
-
-
-        //GetComponent<JerryScr>().baseMove.move
-
     }
 
     public override void OnEnter()
@@ -62,40 +27,21 @@ public class Jerry_Move : StateChildBase
     public override int StateUpdate()
     {
         stateTime += Time.deltaTime;
-        //moveSaveTime += Time.deltaTime;
 
         if (GetComponent<EnemyBase>().IsDamage)
             return GetComponent<JerryScr>().ReturnStateTypeDamage();
 
-        //bool IsPointMoveEnd = false;
-        //à⁄ìÆÇÃçXêV
+
+        //ÁßªÂãï„ÅÆÊõ¥Êñ∞
         foreach (var move in GetComponent<JerryScr>().baseMove)
         {
             move.MoveUpdate();
 
-            //var movePointComp = move.GetComponent<IPointMove>();
-
-            //if (movePointComp != null)
-            //    IsPointMoveEnd = movePointComp.GetMoveEnd();
-
         }
 
 
-        //ÉRÉãÅ[É`ÉìÇ≈ìoò^Ç∑ÇÈÇÊÇ§Ç…Ç∑ÇÈ?
-        //if(pointMove.IsPointMoveEnd)
-
-        //if (IsCircleMove && IsPointMoveEnd)
-        //{
-        //    GetComponent<JerryScr>().IsAttack = true;
-        //    return (int)GetComponent<JerryScr>().JerryReturnStateType(StateType);
-        //}
-
         if (GetComponent<JerryScr>().AtkInterval <= 0|| !GetComponent<JerryScr>().IsMove)
         {
-            //GetComponent<JerryScr>().IsAttack = true;
-
-            //if(!IsKeepMove)
-            //GetComponent<JerryScr>().IsMove = false;
 
             return (int)GetComponent<JerryScr>().JerryReturnStateType(StateType);
         }

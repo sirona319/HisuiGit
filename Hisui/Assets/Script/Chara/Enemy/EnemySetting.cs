@@ -1,19 +1,23 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
 
 [Serializable]
 public class EnemyData
 {
-    public string Id;//string�@�Œ�
+    public string Id;//string　固定
 
     public enum MoveType
     {
         RandomMove,
         PointMove,
         CircleMove,
+
+        PointFloatMove,
         PointCircleMove,
+
         FloatVectorMove,
+
         //randomApoint,
 
     }
@@ -23,18 +27,34 @@ public class EnemyData
 
     public enum AttackType
     {
-        NormalMagazine,
+        TargetMagazine,
         FiveMagazine,
+        TwoMagazine,
         CircleMagazine,
-        CircleInverseMagazine,
+        //CircleInverseMagazine,
         CircleOneMagazine,
+        //NearMagazine,
+
         //NumAttackType,
     }
     public AttackType[] attackType;
 
-    public bool IsMyDead = false;
+    public enum BulletType
+    {
+        ShakeModule,
+        CarveModule,//パラメータ設定できるようにしたい曲がる量　敵ごとに
+
+        //分裂団
+        //遅延弾
+        //拡大弾
+        //
+
+    }
+    public BulletType[] bulletType;
+
+    //public bool IsMyDead = false;
     //[HideInInspector] 
-    public float MyDeadTimeMax = 1f;
+    //public float MyDeadTimeMax = 1f;
 
     //public bool isFloat = false;
     //public Vector3 flaotVector;
@@ -42,13 +62,19 @@ public class EnemyData
     //public MoveType moveType = MoveType.random;
     //public AttackType attackType = AttackType.normal;
 
-    //public float Speed;
-    public int HpMax;
-    public float AtkIntervalMax = 1;
+
+
+    [SerializeField]private float speed;
+    public float Speed { get=> speed; }
+    [SerializeField] int hpMax;
+    public int HpMax { get => hpMax; }
+
+    [SerializeField] float atkIntervalMax = 1;
+    public float AtkIntervalMax { get => atkIntervalMax; }
 
     public float PointEndLength = 0.5f;
 
-    public GameObject go;
+    //public GameObject go;
 
     public GameObject builder;
 

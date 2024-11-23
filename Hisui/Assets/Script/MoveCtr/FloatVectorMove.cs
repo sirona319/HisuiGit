@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class FloatVectorMove : BaseMove
 {
-    [SerializeField] float floatSpeed = 0.005f;
-    [SerializeField] Vector3 floatVector;
+    public Vector3 addVec = Vector3.zero;
+    public Vector3 floatVector;
     public override void Initialize(Rigidbody2D rb)
     {
         base.Initialize(rb);
@@ -21,8 +21,8 @@ public class FloatVectorMove : BaseMove
 
     public override void MoveUpdate()
     {
-        MyLib.LoopMotionSinVector(transform,0, floatSpeed, floatVector);
-        //transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////‰ñ“]
+        MyLib.LoopMotionSinVector(transform, addVec, floatVector);
+        //transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////å›žè»¢
 
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System;
 using static EnemyData;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class EnemyBase : MonoBehaviour
 {
-    #region ƒXƒe[ƒgƒRƒ“ƒgƒ[ƒ‰[
+    #region ã‚¹ãƒ†ãƒ¼ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
     [SerializeField] protected StateControllerBase stateController = default;
 
     public int GetState()
@@ -26,50 +26,44 @@ public class EnemyBase : MonoBehaviour
     public bool IsMove { get; private set; } = true;
 
 
-    public EnemyData enemyData;//ƒXƒNƒŠƒvƒ^ƒ‹ƒIƒuƒWƒFƒNƒg@ƒŠƒXƒg
-    //[NonSerialized] public string findName;
+    public EnemyData enemyData;//ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€ãƒªã‚¹ãƒˆä¸­èº«
 
 
     public List<BaseMagazine> baseMagazine=new ();
     public List<BaseMove> baseMove = new ();
-    //public BaseMove[] baseMoveS;
 
-    //public Transform[] movePointsDatas=null;
 
     public int Hp = 0;
     [SerializeField] public float AtkInterval=1;
 
-    //\[NonSerialized] public PoolManager pool;
-
-
-
 
     /// <summary>
-    /// ŒÄ‚Ño‚µæ‚ÅƒLƒƒƒXƒg‚µ‚Äg—p‚·‚é
+    /// å‘¼ã³å‡ºã—å…ˆã§ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ä½¿ç”¨ã™ã‚‹
     /// </summary>
     /// <param name="mt"></param>
     /// <returns>BaseMove</returns>
-    public BaseMove MoveTypeSelect(MoveType mt)
-    {
-        foreach (var move in baseMove)
-        {
+    //public BaseMove MoveTypeSelect(MoveType mt)
+    //{
+    //    foreach (var move in baseMove)
+    //    {
 
-            if (move.GetType().FullName == mt.ToString())
-                return move;
-        }
+    //        if (move.GetType().FullName == mt.ToString())
+    //            return move;
+    //    }
 
 
-        return null;
-    }
+    //    return null;
+    //}
 
-    public void AttackMagazineUpdate(AttackType atkType)
-    {
 
-        foreach (var magazine in baseMagazine)
-            if (magazine.GetType().FullName == atkType.ToString())
-                magazine.MagazineUpdate();
+    //public void AttackMagazineUpdate(AttackType atkType)
+    //{
+
+    //    foreach (var magazine in baseMagazine)
+    //        if (magazine.GetType().FullName == atkType.ToString())
+    //            magazine.MagazineUpdate();
         
-    }
+    //}
     public void AttackMagazineUpdateAll()
     {
         foreach (var magazine in baseMagazine)
@@ -78,25 +72,25 @@ public class EnemyBase : MonoBehaviour
 
     //protected virtual void EnemyDataInit()
     //{
-    //    //ƒXƒNƒŠƒvƒ^ƒ‹ƒIƒuƒWƒFƒNƒg‚Ìƒf[ƒ^‚ğæ“¾
+    //    //ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
     //    enemyData = EnemyManager.I.GetEnemyData(findName);
 
-    //    //enemyData‚Ìnullƒ`ƒFƒbƒN
+    //    //enemyDataã®nullãƒã‚§ãƒƒã‚¯
     //    if (enemyData == null)
-    //        throw new System.Exception(findName + "@Data null");
+    //        throw new System.Exception(findName + "ã€€Data null");
 
 
     //    if ((int)enemyData.attackType.Length <= 0)
-    //        throw new System.Exception(findName + "@ƒXƒNƒŠƒvƒ^ƒ‹ƒIƒuƒWƒFƒNƒgattackType@‹ó");
+    //        throw new System.Exception(findName + "ã€€ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆattackTypeã€€ç©º");
 
     //    if ((int)enemyData.moveType.Length <= 0)
-    //        throw new System.Exception(findName + "ƒXƒNƒŠƒvƒ^ƒ‹ƒIƒuƒWƒFƒNƒg@moveType ‹ó");
+    //        throw new System.Exception(findName + "ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€moveType ç©º");
     //}
 
     protected virtual void Init()
     {
 
-        ////baseMagazine‰Šú‰»@@UŒ‚ƒNƒ‰ƒX‚É‚Á‚Ä‚¢‚­H
+        ////baseMagazineåˆæœŸåŒ–ã€€ã€€æ”»æ’ƒã‚¯ãƒ©ã‚¹ã«æŒã£ã¦ã„ãï¼Ÿ
         //for (int i = 0; i < (int)enemyData.attackType.Length; i++)
         //{
         //    Type typeClass = Type.GetType(enemyData.attackType[i].ToString());
@@ -113,7 +107,7 @@ public class EnemyBase : MonoBehaviour
 
         //}
 
-        ////baseMove‰Šú‰»@ˆÚ“®ƒNƒ‰ƒX‚É‚Á‚Ä‚¢‚­H
+        ////baseMoveåˆæœŸåŒ–ã€€ç§»å‹•ã‚¯ãƒ©ã‚¹ã«æŒã£ã¦ã„ãï¼Ÿ
         //for (int i = 0; i < (int)enemyData.moveType.Length; i++)
         //{
         //    Type typeClass = Type.GetType(enemyData.moveType[i].ToString());
@@ -130,13 +124,13 @@ public class EnemyBase : MonoBehaviour
 
         //foreach (var move in baseMove)
         //{
-        //    //‰Šú‰»
+        //    //åˆæœŸåŒ–
         //    move.Initialize(rb);
 
 
         //    var movePointComp = move.GetComponent<IPointMove>();
 
-        //    // ‚Ìˆ—‚ª•K{
+        //    // ã®å‡¦ç†ãŒå¿…é ˆ
         //    if (movePointComp != null)
         //    {
         //        //movePointComp.TargetSet(movePointsDatas);
@@ -148,20 +142,20 @@ public class EnemyBase : MonoBehaviour
         //}
 
 
-        //ƒXƒe[ƒ^ƒX‚Ì‰Šú‰»
+        //ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®åˆæœŸåŒ–
         //Hp = enemyData.HpMax;
 
         //enemyData.movePointsSet = movePointsInit;
 
     }
 
-    #region ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg
+    #region ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
 
     //public void OnEnemyAttack()
     //{
 
     //    Debug.Log("OnEnemyAttack");
-    //    //UŒ‚ƒRƒŠƒWƒ‡ƒ“‚ğ—LŒø‚É‚·‚é
+    //    //æ”»æ’ƒã‚³ãƒªã‚¸ãƒ§ãƒ³ã‚’æœ‰åŠ¹ã«ã™ã‚‹
     //    //HitCol.enabled = true;
 
     //}
@@ -181,8 +175,8 @@ public class EnemyBase : MonoBehaviour
         if (IsDead) return;
 
 
-        Debug.Log(gameObject.name + "‚Ö‚Ìƒ_ƒ[ƒW" + damage.ToString());
-        Hp -= damage;        //HPŒ¸­ˆ—
+        Debug.Log(gameObject.name + "ã¸ã®ãƒ€ãƒ¡ãƒ¼ã‚¸" + damage.ToString());
+        Hp -= damage;        //HPæ¸›å°‘å‡¦ç†
 
         IsDamage = true;
 
@@ -205,13 +199,27 @@ public class EnemyBase : MonoBehaviour
 
     }
 
-    public void SetEndMove(bool moveEnd)
+    //public void SetEndMove()
+    //{
+    //    //if (!moveEnd) return;
+    //    GetComponent<JerryScr>().IsAttack = true;
+
+    //    GetComponent<JerryScr>().IsMove = false;
+
+    //}
+
+    public void SetEndMoveKeep()
     {
         //if (!moveEnd) return;
         GetComponent<JerryScr>().IsAttack = true;
 
-        GetComponent<JerryScr>().IsMove = false;
+        GetComponent<JerryScr>().IsMove = true;
 
+    }
+
+    public void SetIsAttack()
+    {
+        GetComponent<JerryScr>().IsAttack = true;
     }
 
     //private void OnTriggerExit(Collider other)
@@ -220,7 +228,7 @@ public class EnemyBase : MonoBehaviour
     //    if (other.CompareTag("ExitErea"))
     //    {
 
-    //        //Debug.Log("ƒGƒŠƒAŠOÁ‹");
+    //        //Debug.Log("ã‚¨ãƒªã‚¢å¤–æ¶ˆå»");
 
     //        this.gameObject.SetActive(false);
 
