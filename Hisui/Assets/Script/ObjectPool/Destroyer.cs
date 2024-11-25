@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class Destroyer : MonoBehaviour
@@ -10,17 +10,17 @@ public class Destroyer : MonoBehaviour
 
     public bool IsRelease = false;
 
-    public void StartDestroyTimer(float time = DESTIME)
-    {
-        //StartCoroutine(DestroyTimer(time));
-    }
+    //public void StartDestroyTimer(float time = DESTIME)
+    //{
+    //    //StartCoroutine(DestroyTimer(time));
+    //}
 
-    IEnumerator DestroyTimer(float time)
-    {
-        yield return new WaitForSeconds(time);
+    //IEnumerator DestroyTimer(float time)
+    //{
+    //    yield return new WaitForSeconds(time);
 
-        PoolDestroy();
-    }
+    //    PoolDestroy();
+    //}
 
     public void PoolDestroy()
     {
@@ -29,18 +29,18 @@ public class Destroyer : MonoBehaviour
         {
             if (IsRelease)
             {
-                Debug.Log("“ñdƒŠƒŠ[ƒX‰ñ”ğ");
+                Debug.Log("äºŒé‡ãƒªãƒªãƒ¼ã‚¹å›é¿");
                 return;
             }
 
             IsRelease = true;
             pool.ReleaseGameObject(gameObject);
             return;
-            //Debug.Log(gameObject.name+"POOL‚µ‚½");
+            //Debug.Log(gameObject.name+"POOLã—ãŸ");
         }
         else
         {
-            //Debug.Log("EreaÁ‹");
+            //Debug.Log("Ereaæ¶ˆå»");
             Destroy(gameObject);
             return;
         }
@@ -51,10 +51,10 @@ public class Destroyer : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            //ƒvƒŒƒCƒ„[‚Ö‚Ìƒ_ƒ[ƒWˆ—
+            //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¸ã®ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
             other.transform.GetComponent<PlayerScr2D>().PlayerDamage(1);
 
-            //Debug.Log("UŒ‚‚ªPlayer‚ÉHIT");
+            //Debug.Log("æ”»æ’ƒãŒPlayerã«HIT");
 
             PoolDestroy();
             return;
@@ -64,7 +64,7 @@ public class Destroyer : MonoBehaviour
         {
             other.transform.GetComponent<EnemyBase>().EnemyDamage(1);
 
-            //Debug.Log("UŒ‚‚ª“G‚ÉHIT");
+            //Debug.Log("æ”»æ’ƒãŒæ•µã«HIT");
             PoolDestroy();
             return;
         }

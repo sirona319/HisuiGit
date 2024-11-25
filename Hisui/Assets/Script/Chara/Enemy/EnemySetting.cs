@@ -1,67 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using static BaseMagazine;
+using static BaseBullet;
+using static BaseMove;
 
 [Serializable]
 public class EnemyData
 {
     public string Id;//string　固定
 
-    public enum MoveType
+    public enum BuilderType
     {
-        RandomMove,
-        PointMove,
-        CircleMove,
-
-        PointFloatMove,
-        PointCircleMove,
-
-        FloatVectorMove,
-
-        //randomApoint,
-
+        JERRY,
     }
+    public BuilderType builderType;
 
     public MoveType[] moveType;
 
+    public MagazineType[] magazineType;
 
-    public enum AttackType
-    {
-        TargetMagazine,
-        FiveMagazine,
-        TwoMagazine,
-        CircleMagazine,
-        //CircleInverseMagazine,
-        CircleOneMagazine,
-        //NearMagazine,
-
-        //NumAttackType,
-    }
-    public AttackType[] attackType;
-
-    public enum BulletType
-    {
-        ShakeModule,
-        CarveModule,//パラメータ設定できるようにしたい曲がる量　敵ごとに
-
-        //分裂団
-        //遅延弾
-        //拡大弾
-        //
-
-    }
     public BulletType[] bulletType;
-
-    //public bool IsMyDead = false;
-    //[HideInInspector] 
-    //public float MyDeadTimeMax = 1f;
-
-    //public bool isFloat = false;
-    //public Vector3 flaotVector;
-
-    //public MoveType moveType = MoveType.random;
-    //public AttackType attackType = AttackType.normal;
-
 
 
     [SerializeField]private float speed;
@@ -74,9 +33,6 @@ public class EnemyData
 
     public float PointEndLength = 0.5f;
 
-    //public GameObject go;
-
-    public GameObject builder;
 
     //public float AtkInterval = 1;
     //public float AtkRandTimeMax;
@@ -86,7 +42,15 @@ public class EnemyData
     //public bool FirstTargetPlayer=false;
     //public Transform[] movePointsSet;
 
+    //public bool IsMyDead = false;
+    //[HideInInspector] 
+    //public float MyDeadTimeMax = 1f;
 
+    //public bool isFloat = false;
+    //public Vector3 flaotVector;
+
+    //public MoveType moveType = MoveType.random;
+    //public AttackType attackType = AttackType.normal;
 }
 
 

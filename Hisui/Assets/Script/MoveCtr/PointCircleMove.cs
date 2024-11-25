@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Runtime.CompilerServices;
 using UniRx;
 using UnityEngine;
@@ -8,16 +8,16 @@ public class PointCircleMove : BaseMove
 
     public float speed = 10f;
 
-    // ‰ñ“]²
+    // å›è»¢è»¸
     [SerializeField] private Vector3 _axis = Vector3.forward;
 
-    // ‰~‰^“®üŠú
+    // å††é‹å‹•å‘¨æœŸ
     [SerializeField] private float _period = 2;
 
-    // Œü‚«‚ğXV‚·‚é‚©‚Ç‚¤‚©
+    // å‘ãã‚’æ›´æ–°ã™ã‚‹ã‹ã©ã†ã‹
     [SerializeField] private bool _updateRotation = true;
 
-    //w’èÀ•W‚Ö‚Ì“’B”»’è‹——£
+    //æŒ‡å®šåº§æ¨™ã¸ã®åˆ°é”åˆ¤å®šè·é›¢
     float pointEndLength = 2f;
     int targetNo = 0;
 
@@ -35,7 +35,7 @@ public class PointCircleMove : BaseMove
         target = targets[0];
 
         if (targets.Length <= 0)
-            throw new System.Exception(transform.name + "PointMoveƒ€[ƒuƒ|ƒCƒ“ƒg–¢İ’è");
+            throw new System.Exception(transform.name + "PointMoveãƒ ãƒ¼ãƒ–ãƒã‚¤ãƒ³ãƒˆæœªè¨­å®š");
     }
 
     public void SetMoveEndLength(float len)
@@ -70,11 +70,14 @@ public class PointCircleMove : BaseMove
             return;
         }
         else
-        PointUpdate();
+        {
+            PointUpdate();
+        }
+
 
 
         if (IsPointMoveEnd.Value)
-            SetParent(targets[0]);//ƒ|ƒCƒ“ƒgˆÚ“®‚ğI—¹
+            SetParent(targets[0]);//ãƒã‚¤ãƒ³ãƒˆç§»å‹•ã‚’çµ‚äº†
 
 
 
@@ -105,20 +108,27 @@ public class PointCircleMove : BaseMove
         //transform.position = m_rb.position + (Vector2)transform.up * speed * Time.deltaTime;
         m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
 
- 
 
-        transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
+
+
+        float targetAngle = MyLib.GetTargetAngle(targets[targetNo].position, transform);
+
+        var velocity = MyLib.SetVelocityAngle2D(targetAngle, speed);
+
+        transform.rotation =
+            MyLib.TargetRotation2DZOnlyLerp(transform, velocity, 5f);
+        //transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
 
     }
 
     void CircleUpdate()
     {
-        //ƒ^[ƒQƒbƒg‚Æ‚Ì‹——£‚Í‰ŠúˆÊ’u‚ÅŒˆ‚Ü‚éII
+        //ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã®è·é›¢ã¯åˆæœŸä½ç½®ã§æ±ºã¾ã‚‹ï¼ï¼
         var tr = transform;
-        // ‰ñ“]‚ÌƒNƒH[ƒ^ƒjƒIƒ“ì¬
+        // å›è»¢ã®ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ä½œæˆ
         var angleAxis = Quaternion.AngleAxis(360 / _period * Time.deltaTime, _axis);
 
-        // ‰~‰^“®‚ÌˆÊ’uŒvZ
+        // å††é‹å‹•ã®ä½ç½®è¨ˆç®—
         var pos = tr.position;
 
         pos -= target.position;
@@ -130,7 +140,7 @@ public class PointCircleMove : BaseMove
         m_rb.MovePosition(pos);
 
 
-        // Œü‚«XV
+        // å‘ãæ›´æ–°
         if (_updateRotation)
         {
             tr.rotation = tr.rotation * angleAxis;
@@ -139,7 +149,16 @@ public class PointCircleMove : BaseMove
 
         m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
 
-        transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
+
+
+        float targetAngle = MyLib.GetTargetAngle(targets[targetNo].position, transform);
+
+        var velocity = MyLib.SetVelocityAngle2D(targetAngle, speed);
+
+        transform.rotation =
+            MyLib.TargetRotation2DZOnlyLerp(transform, velocity, 5f);
+        //transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
+
     }
 
 }

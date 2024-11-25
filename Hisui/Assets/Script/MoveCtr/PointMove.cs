@@ -32,12 +32,10 @@ public class PointMove : BaseMove
     public override void Initialize(Rigidbody2D rb)
     {
         m_rb = rb;
-        
     }
 
     public override void MoveEnter()
     {
-
 
     }
 

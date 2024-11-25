@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
+using static UnityEditor.ObjectChangeEventStream;
 
 public class EnemySpawnWave : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class EnemySpawnWave : MonoBehaviour
 
 
     }
+
+    [SerializeField] JerryBuilder jerryBuilder;
 
     public SpawnWaveData[] spawnData;
 
@@ -153,30 +156,11 @@ public class EnemySpawnWave : MonoBehaviour
 
     public async UniTask DelaySpawnAsyncWave(float seconds, LoadState loadState,Transform spawnTrans, Transform[] movePoint)
     {
-
-
         await UniTask.WaitForSeconds(seconds);
-
-        //List<JerryBuilder>[] builders=new ();
-
-        //JerryBuilder a=new(new JerryPointFactory());
-        //JerryBuilder b=new(new JerryPointFactory()); ;
-
-        // builders.AddRange(a);
-
-
-
 
         //string eName = loadState.ToString();
         //Type typeClass = Type.GetType(eName+"Factory");
         //var bFac = typeClass.ConvertTo<BaseJerryEnemyFactory>();
-
-        //JerryBuilder builder=GetComponent<JerryBuilder>();
-        //builder.Init(gameObject.GetComponent<JerryPointFactory>());
-
-        //builder.InitData(movePoint);
-
-        //builder.Build(spawnTrans);
 
 
         ////BaseEnemyFactory enemyFactory;
@@ -192,79 +176,12 @@ public class EnemySpawnWave : MonoBehaviour
         /////////////////////
         var eData = EnemyManager.I.GetEnemyData(loadState.ToString());
 
-        var bBuilder = eData.builder.GetComponent<BaseBuilder>();
-        bBuilder.Build(eData, spawnTrans, movePoint, GetComponent<PoolManager>());
+        if(eData.builderType == EnemyData.BuilderType.JERRY)
+        {
+            jerryBuilder.Build(eData, spawnTrans, movePoint);
+        }
 
 
-        //var enemy = Instantiate(eData.go, spawnTrans.position, Quaternion.identity);
-        //var eBase = enemy.GetComponent<EnemyBase>();
-
-        ////eBase.movePointsDatas = movePoint;//nullになる場合？
-        //eBase.Hp = eData.HpMax;
-
-        ////eBase.pool = poolManager;
-
-
-        ////baseMagazine初期化　　攻撃クラスに持っていく？
-        //for (int i = 0; i < (int)eData.attackType.Length; i++)
-        //{
-        //    Type typeClass = Type.GetType(eData.attackType[i].ToString());
-
-        //    if (typeClass != null)
-        //        eBase.baseMagazine.Add((BaseMagazine)enemy.AddComponent(typeClass));
-
-        //}
-
-        //foreach (var magazine in eBase.baseMagazine)
-        //{
-        //    //magazine.BulletLoad("prefab/EBulletNormalEX");
-        //    magazine.Initialize();
-        //    magazine.BulletLoad("prefab/Bullet/JerryBullet");
-
-        //    magazine.SetPool(poolManager);
-        //}
-
-        ////baseMove初期化　移動クラスに持っていく？
-        //for (int i = 0; i < (int)eData.moveType.Length; i++)
-        //{
-        //    Type typeClass = Type.GetType(eData.moveType[i].ToString());
-
-        //    if (typeClass != null)
-        //    {
-        //        eBase.baseMove.Add((BaseMove)enemy.AddComponent(typeClass));
-        //    }
-
-        //}
-
-        //foreach (var move in eBase.baseMove)
-        //{
-        //    //初期化
-        //    move.Initialize(enemy.GetComponent<Rigidbody2D>());
-
-
-        //    var movePointComp = move.GetComponent<IPointMove>();
-
-        //    // の処理が必須
-        //    if (movePointComp != null)
-        //    {
-        //        movePointComp.TargetSet(movePoint);
-        //        movePointComp.SetMoveEndLength(eData.PointEndLength);
-        //    }
-
-        //}
-
-        //eBase.enemyData = eData;
-        //ステータスの初期化
-        //Hp = eData.HpMax;
     }
 
-
-    //public static JerryBuilder[] CreateLevel1EnemyBuilders()
-    //{
-    //    // Level1 は雑魚スケルトン3体
-    //    return new JerryBuilder[]{
-    //        JerryBuilder( new JerryPointFactory() );
-    //    //JerryBuilder(new NormalSkeletonFactory());
-    //    //JerryBuilder(new NormalSkeletonFactory());
-    //}
 }

@@ -14,47 +14,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DataList:
   - Id: NormalJerry
+    builderType: 0
     moveType: 03000000
-    attackType: 02000000
-    bulletType: 0000000001000000
+    magazineType: 04000000
+    bulletType: 0000000002000000
     speed: 4
     hpMax: 1
     atkIntervalMax: 1
     PointEndLength: 0.5
-    builder: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
+  - Id: FiveJerry
+    builderType: 0
+    moveType: 03000000
+    magazineType: 
+    bulletType: 00000000
+    speed: 4
+    hpMax: 1
+    atkIntervalMax: 1
+    PointEndLength: 2
   - Id: CircleJerry
+    builderType: 0
     moveType: 03000000
-    attackType: 03000000
-    bulletType: 
+    magazineType: 
+    bulletType: 00000000
     speed: 4
     hpMax: 1
     atkIntervalMax: 1
     PointEndLength: 0.5
-    builder: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
   - Id: CircleOneJerry
+    builderType: 0
     moveType: 03000000
-    attackType: 04000000
-    bulletType: 
+    magazineType: 
+    bulletType: 00000000
     speed: 8
     hpMax: 1
     atkIntervalMax: 1
     PointEndLength: 0.5
-    builder: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
   - Id: CircleMoveJerry
+    builderType: 0
     moveType: 04000000
-    attackType: 00000000
-    bulletType: 
+    magazineType: 
+    bulletType: 00000000
     speed: 8
     hpMax: 1
     atkIntervalMax: 1
     PointEndLength: 2
-    builder: {fileID: 181301032464577783, guid: 820bcb6c97d32c9449b26383fe22939b, type: 3}
   - Id: FloatVectorJerry
+    builderType: 0
     moveType: 05000000
-    attackType: 00000000
+    magazineType: 
     bulletType: 
     speed: 8
     hpMax: 1
     atkIntervalMax: 1
     PointEndLength: 2
-    builder: {fileID: 181301032464577783, guid: 20d39b3231972d34299611fad33f76b4, type: 3}

@@ -28,7 +28,7 @@ public class NearMagazine : BaseMagazine,ITarget
         Vector2 direction = Target.position - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        BulletAtk(pAngle);
+        createBullet.BulletAtk(pAngle, transform.position, transform.rotation);
     }
 
 }

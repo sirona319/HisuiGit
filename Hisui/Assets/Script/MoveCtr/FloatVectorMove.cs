@@ -2,7 +2,7 @@
 
 public class FloatVectorMove : BaseMove
 {
-    public Vector3 addVec = Vector3.zero;
+    public Vector3 addSinVec = Vector3.zero;
     public Vector3 floatVector;
     public override void Initialize(Rigidbody2D rb)
     {
@@ -21,7 +21,7 @@ public class FloatVectorMove : BaseMove
 
     public override void MoveUpdate()
     {
-        MyLib.LoopMotionSinVector(transform, addVec, floatVector);
+        MyLib.LoopMotionSinVector(transform, addSinVec, floatVector);
         //transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////回転
 
     }

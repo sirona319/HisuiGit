@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UniRx;
 using UnityEngine.EventSystems;
 using static UnityEditor.PlayerSettings;
@@ -8,16 +8,16 @@ public class CircleMove : BaseMove
     //https://nekojara.city/unity-circular-motion
 
 
-    // ’†S“_
+    // ä¸­å¿ƒç‚¹
     //[SerializeField] private Vector3 targetPos = Vector3.zero;
 
-    // ‰ñ“]²
+    // å›è»¢è»¸
     [SerializeField] private Vector3 _axis = Vector3.forward;
 
-    // ‰~‰^“®üŠú
+    // å††é‹å‹•å‘¨æœŸ
     [SerializeField] private float _period = 2;
 
-    // Œü‚«‚ğXV‚·‚é‚©‚Ç‚¤‚©
+    // å‘ãã‚’æ›´æ–°ã™ã‚‹ã‹ã©ã†ã‹
     [SerializeField] private bool _updateRotation = true;
 
 
@@ -49,18 +49,19 @@ public class CircleMove : BaseMove
 
         CircleUpdate();
 
-        transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////‰ñ“]
+
+        transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////å›è»¢
 
     }
 
     void CircleUpdate()
     {
-        //ƒ^[ƒQƒbƒg‚Æ‚Ì‹——£‚Í‰ŠúˆÊ’u‚ÅŒˆ‚Ü‚éII
+        //ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã®è·é›¢ã¯åˆæœŸä½ç½®ã§æ±ºã¾ã‚‹ï¼ï¼
         var tr = transform;
-        // ‰ñ“]‚ÌƒNƒH[ƒ^ƒjƒIƒ“ì¬
+        // å›è»¢ã®ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ä½œæˆ
         var angleAxis = Quaternion.AngleAxis(360 / _period * Time.deltaTime, _axis);
 
-        // ‰~‰^“®‚ÌˆÊ’uŒvZ
+        // å††é‹å‹•ã®ä½ç½®è¨ˆç®—
         var pos = tr.position;
 
         pos -= targets.position;
@@ -72,7 +73,7 @@ public class CircleMove : BaseMove
         m_rb.MovePosition(pos);
 
 
-        // Œü‚«XV
+        // å‘ãæ›´æ–°
         if (_updateRotation)
         {
             tr.rotation = tr.rotation * angleAxis;

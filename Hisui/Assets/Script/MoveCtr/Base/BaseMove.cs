@@ -5,6 +5,21 @@ using UnityEngine;
 public abstract class BaseMove : MonoBehaviour
 {
 
+    public enum MoveType
+    {
+        RandomMove,
+        PointMove,
+        CircleMove,
+
+        PointFloatMove,
+        PointCircleMove,
+
+        FloatVectorMove,
+
+        //randomApoint,
+
+    }
+
     protected Rigidbody2D m_rb;
     //void SetRb2D(Rigidbody2D rb2)
     //{

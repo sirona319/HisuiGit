@@ -13,9 +13,6 @@ public class EnemyAtkCol : MonoBehaviour
     //攻撃用のコリジョンの設定　無い敵もいるtest
     private void OnTriggerStay(Collider other)
     {
-
-
-
         //Debug.Log("EnemyAtkCol");
         if (!other.transform.CompareTag("Player"))
             return;

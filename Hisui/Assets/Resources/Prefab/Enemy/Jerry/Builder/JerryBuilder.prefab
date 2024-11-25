@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 4419878139958468277}
   - component: {fileID: 1223222125076077870}
   - component: {fileID: -5650023835866050463}
+  - component: {fileID: 8652102761180671813}
+  - component: {fileID: 8588230557491191116}
+  - component: {fileID: -4790520726150187980}
   m_Layer: 0
-  m_Name: JerryNormalBuilder
+  m_Name: JerryBuilder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031d0c710d4b0914bad6de507e777335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mgCreate: {fileID: 0}
 --- !u!114 &-5650023835866050463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,5 +58,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7c6db294136eff4e9c56c45f817b8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8652102761180671813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181301032464577783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7944acaaef4e5f346bef6fda2b75bdf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 5
+  poolManager: {fileID: -4790520726150187980}
+--- !u!114 &8588230557491191116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181301032464577783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e2e7e98978e404490fd583822bd77d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4790520726150187980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181301032464577783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c5c57df08da56438535784ff21bc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

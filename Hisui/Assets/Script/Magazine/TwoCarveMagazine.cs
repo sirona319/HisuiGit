@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using static BaseBullet;
 
-public class TwoMagazine : BaseMagazine,ITarget
+public class TwoCarveMagazine : BaseMagazine,ITarget
 {
     public Transform Target { get; set; }
     const float ONEWEYLENGTH = 7f;
-    const float TWOWEYLENGTH = 30f;
+    //const float TWOWEYLENGTH = 30f;
 
     public override void Initialize()
     {
@@ -31,17 +32,22 @@ public class TwoMagazine : BaseMagazine,ITarget
         Vector2 direction = Target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        //BulletAtk(angle + 0);
-        var rBullet = BulletAtk(angle + ONEWEYLENGTH);
-        //BulletAtk(angle + TWOWEYLENGTH);
-        var lBullet = BulletAtk(angle + -ONEWEYLENGTH);///バレットタイプを上書き　引数追加
+        //createBullet.BulletAtk(angle + 0);
+        var rBullet = createBullet.BulletAtk(angle + ONEWEYLENGTH, transform.position, transform.rotation);
+        //createBullet.BulletAtk(angle + TWOWEYLENGTH);
+        var lBullet = createBullet.BulletAtk(angle - ONEWEYLENGTH, transform.position, transform.rotation);
 
-        lBullet.GetComponent<CarveModule>().angleVal = -40f;
-        rBullet.GetComponent<CarveModule>().angleVal = 40f;
+        createBullet.AddBulletType(rBullet, BulletType.CarveModule);
+        createBullet.AddBulletType(lBullet, BulletType.CarveModule);
+
+        const float rotVal = 2f;
+        const float carveVal = 10f;
+        rBullet.GetComponent<CarveModule>().InitParam(-carveVal, rotVal);
+        lBullet.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
 
 
 
-        //BulletAtk(angle + -TWOWEYLENGTH);
+        //createBullet.BulletAtk(angle + -TWOWEYLENGTH);
 
 
         //AngleShot(playerAngle, 0);

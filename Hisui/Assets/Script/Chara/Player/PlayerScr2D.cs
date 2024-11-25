@@ -5,6 +5,8 @@ using UniRx;
 using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEditor.EditorTools;
+using static UnityEngine.GraphicsBuffer;
+using static BaseBullet;
 
 public class PlayerScr2D : MonoBehaviour
 {
@@ -24,7 +26,7 @@ public class PlayerScr2D : MonoBehaviour
 
     //バレット
     //Bullet bulletObj;
-    [SerializeField] PoolManager poolManager;
+    //[SerializeField] PoolManager poolManager;
     [SerializeField] float bulletDeadTime = 3f;
     [SerializeField] TargetMagazine nMag;
     [SerializeField] Transform front;           //弾の発射方向
@@ -36,11 +38,14 @@ public class PlayerScr2D : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         //bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/Bullet/PBulletNormal");
 
+        nMag.createBullet = GetComponent<CreateBullet>();
+        nMag.createBullet.LoadPath(pBulletPath);
+        //nMag.createBullet.BulletAtk()
 
+        //nMag.createBullet.AddBulletType(BulletType.NormalBullet);
         nMag.Initialize();
-        nMag.bulletPath = pBulletPath;
         nMag.Target = front;
-        nMag.SetPool(poolManager, bulletDeadTime);
+        //nMag.SetPool(poolManager);
 
 
         //nMag.targetT = (transform.position + Vector3.up);
@@ -55,14 +60,14 @@ public class PlayerScr2D : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             //nMag.targetPos = (transform.position + Vector3.up) - transform.position;
-            nMag.MagazineEnter();
+           nMag.MagazineEnter();
         }
 
         MoveControl();
 
     }
 
-    //void BulletAtk()
+    //void createBullet.createBullet.BulletAtk()
     //{
     //    // 対象物へのベクトルを算出
     //    //Vector3 toDirection = transform.up - transform.position;

@@ -13,7 +13,6 @@ public class CircleMagazine : BaseMagazine
     //逆回り作る
     public override void Initialize()
     {
-
         shotTime = BULLETTIMEMAX;
     }
 
@@ -45,7 +44,7 @@ public class CircleMagazine : BaseMagazine
             Vector2 direction =(transform.position+Vector3.up) - transform.position;
             float tAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-            BulletAtk(tAngle + shotAngle);
+            createBullet.BulletAtk(tAngle + shotAngle,transform.position,transform.rotation);
 
         }
     }

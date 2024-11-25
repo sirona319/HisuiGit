@@ -1,6 +1,9 @@
-﻿using System;
+﻿
+/*
+using System;
 using UnityEngine;
 using UniRx;
+
 
 public class JerryFloatVectorBuilder : BaseBuilder
 {
@@ -79,20 +82,21 @@ public class JerryFloatVectorBuilder : BaseBuilder
 
 
 
-            //movePoint　方向？
-            var dir = movePos - go.transform.position;
-
-
-            go.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 
 
             //////var test = go.transform;
             //////test.SetPositionAndRotation(go.transform.position, targetRotation);
 
             var fVecMove = move as FloatVectorMove;
+            //movePoint　方向？
+            var dir = movePos - go.transform.position;
+
+
+            go.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
+
             fVecMove.floatVector = dir.normalized* moveVal;
 
-            fVecMove.addVec = go.transform.right * sinVal;
+            fVecMove.addSinVec = go.transform.right * sinVal;
             //fVecMove.addVec
 
             //Transformのコピー　調べる
@@ -103,3 +107,4 @@ public class JerryFloatVectorBuilder : BaseBuilder
 
     }
 }
+*/

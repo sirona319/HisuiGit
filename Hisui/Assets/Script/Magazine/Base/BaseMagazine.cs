@@ -5,87 +5,81 @@ using static EnemyData;
 
 public abstract class BaseMagazine : MonoBehaviour
 {
+    public enum MagazineType
+    {
+        TargetMagazine,
+        FiveMagazine,
+        CircleOneMagazine,
 
-    //protected BaseBullet bulletObj;
-    protected PoolManager poolManager;
-    float desTime = 5f;
+        CircleMagazine,
+
+        TwoCarveMagazine,
+        //CircleInverseMagazine,
+
+        //NearMagazine,
+
+        //NumAttackType,
+    }
 
     public float shotTime = 0;
 
-    public BulletType[] bulletTypeMagazine;
+    //protected PoolManager poolManager;
+    //float desTime = 5f;
 
-    public string bulletPath;
+    //public string bulletPath;
+    //public BulletType[] bulletTypeMagazine;
 
-    [SerializeField] float changeAngleVal=15f;
-    [SerializeField] float rotSpeed = 1f;
-    [SerializeField] float bulletSpeed = 5f;
+    public CreateBullet createBullet;
+    //GameObject bulletObj;
 
-    public virtual void SetBulletTypes(BulletType[] bulletTypes)
-    {
-        bulletTypeMagazine = bulletTypes;
-    }
+    //[SerializeField] float bulletSpeed = 5f;
+    //[SerializeField] float changeAngleVal=15f;
+    //[SerializeField] float rotSpeed = 1f;
 
-    public virtual void SetPool(PoolManager pool,float time = 5f)
-    {
-        poolManager = pool;
-        desTime = time;
-    }
+
+    //public virtual void SetBulletTypes(BulletType[] bulletTypes)
+    //{
+    //    bulletTypeMagazine = bulletTypes;
+    //}
+    //public virtual void LoadBullet(string bulletPath)
+    //{
+    //    createBullet.Load(bulletPath);
+    //}
+
+    //public virtual void SetPool(PoolManager pool)
+    //{
+    //    createBullet.poolManager = pool;
+    //    //desTime = time;
+    //}
     public abstract void Initialize();
 
     public abstract void MagazineEnter();
 
     public abstract void MagazineUpdate();
 
-
-    //Transform 引数　オーバーロード
     //バレットタイプを上書き　引数追加
-    protected BaseBullet BulletAtk(float angle)
-    {
-        var loadObj = (GameObject)Resources.Load(bulletPath);
-        var bullet = poolManager.GetGameObject(loadObj, transform.position, transform.rotation);
+    //protected BaseBullet createBullet.BulletAtk(float angle)
+    //{
 
-        var bBullet = bullet.GetComponent<BaseBullet>();
-        bBullet.angle = angle;
+    //    var bullet = poolManager.GetGameObject(bulletObj, transform.position, transform.rotation);
 
-        bBullet.BulletInit();
+    //    var bBullet = bullet.GetComponent<BaseBullet>();
+    //    bBullet.angle = angle;
 
-
-        //バレットタイプを追加
-        for (int i = 0; i < (int)bulletTypeMagazine.Length; i++)
-        {
-            Type typeClass = Type.GetType(bulletTypeMagazine[i].ToString());
-
-            if (typeClass != null)
-                bBullet.gameObject.AddComponent(typeClass);
-
-
-        }
-
-        //弾の速度を設定
-        bBullet.GetComponent<NormalBullet>().speed = bulletSpeed;
-
-        var cMod = bBullet.GetComponent<CarveModule>();
-        if (cMod != null)
-        {
-            cMod.angleVal = changeAngleVal;
-            cMod.rotSpeed = rotSpeed;
-            //cMod.speed = bulletSpeed;
-            //var carveITarget = cMod as ITarget;
-            //carveITarget.Target = pTrans;
-        }
+    //    bBullet.BulletInit();
 
 
 
-        var destroyer = bullet.GetComponent<Destroyer>();
-        destroyer.pool = poolManager;//キャラの種類ごとに分けるために引き渡し
-        destroyer.IsRelease = false;//二重リリース回避用フラグ
+    //    var destroyer = bullet.GetComponent<Destroyer>();
+    //    destroyer.pool = poolManager;//キャラの種類ごとに分けるために引き渡し
+    //    destroyer.IsRelease = false;//二重リリース回避用フラグ
 
-        if (destroyer != null)
-            destroyer.StartDestroyTimer(desTime);
+    //    if (destroyer != null)
+    //        destroyer.StartDestroyTimer(desTime);
 
 
-        return bBullet;
-    }
+    //    return createBullet.BulletCreateInit(bBullet);
+    //}
 
 
 }

@@ -31,7 +31,7 @@ public class TargetMagazine : BaseMagazine, ITarget
         Vector2 direction = Target.position - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-        BulletAtk(pAngle); //Target渡す
+        createBullet.BulletAtk(pAngle, transform.position, transform.rotation); //Target渡す
     }
 
 }

@@ -1,6 +1,10 @@
-﻿using UniRx;
+﻿
+/*
+using UniRx;
 using UnityEngine;
 using System;
+
+
 
 public class JerryCircleBuilder : BaseBuilder
 {
@@ -91,3 +95,4 @@ public class JerryCircleBuilder : BaseBuilder
 
 
 }
+*/

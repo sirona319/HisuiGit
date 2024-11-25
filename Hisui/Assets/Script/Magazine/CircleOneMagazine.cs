@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class CircleOneMagazine : BaseMagazine
 {
@@ -8,7 +8,7 @@ public class CircleOneMagazine : BaseMagazine
 
     const float BULLETTIMEMAX = 4f;
 
-    //ãtâÒÇËçÏÇÈ
+    //ÈÄÜÂõû„Çä‰Ωú„Çã
     public override void Initialize()
     {
 
@@ -34,7 +34,7 @@ public class CircleOneMagazine : BaseMagazine
         {
             shotAngle += 10;
 
-            BulletAtk(shotAngle);
+            createBullet.BulletAtk(shotAngle, transform.position, transform.rotation);
 
         }
 

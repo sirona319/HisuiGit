@@ -3,6 +3,19 @@ using UnityEngine;
 
 public abstract class BaseBullet : MonoBehaviour
 {
+    public enum BulletType
+    {
+        NormalBullet,
+        ShakeModule,
+        CarveModule,//パラメータ設定できるようにしたい曲がる量　敵ごとに
+
+        //分裂団
+        //遅延弾
+        //拡大弾
+        //
+
+    }
+
     public float angle; // 角度
     [SerializeField]public float speed; // 速度
     //public Vector2 velocity; // 移動量

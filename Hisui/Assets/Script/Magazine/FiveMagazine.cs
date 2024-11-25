@@ -31,12 +31,12 @@ public class FiveMagazine : BaseMagazine, ITarget
         Vector2 direction = Target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        BulletAtk(angle + 0);
-        BulletAtk(angle + ONEWEYLENGTH);
-        BulletAtk(angle + TWOWEYLENGTH);
-        BulletAtk(angle + -ONEWEYLENGTH);
-        BulletAtk(angle + -TWOWEYLENGTH);
-
+        createBullet.BulletAtk(angle + 0, transform.position, transform.rotation);
+        createBullet.BulletAtk(angle + ONEWEYLENGTH, transform.position, transform.rotation);
+        createBullet.BulletAtk(angle + TWOWEYLENGTH, transform.position, transform.rotation);
+        createBullet.BulletAtk(angle + -ONEWEYLENGTH, transform.position, transform.rotation);
+        createBullet.BulletAtk(angle + -TWOWEYLENGTH, transform.position, transform.rotation);
+    
 
         //AngleShot(playerAngle, 0);
 

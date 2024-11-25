@@ -147,8 +147,9 @@ public static class MyLib
         return angle;
     }
 
-    public static Vector2 SetVelocityAngle2D(Vector2 velocity, float angle, float speed)
+    public static Vector2 SetVelocityAngle2D(float angle, float speed)
     {
+        Vector2 velocity = Vector2.zero;
         // X方向の移動量を設定する
         velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
 

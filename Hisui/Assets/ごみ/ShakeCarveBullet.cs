@@ -48,24 +48,6 @@ public class ShakeCarveBullet : BaseBullet
 
         }));
 
-
-
-        //StartCoroutine(MyLib.DelayCoroutine(Time.deltaTime * 15, () =>
-        //{
-        //    angle += 15f;
-        //    BulletInit();
-
-        //}));
-
-
-
-        //StartCoroutine(MyLib.DelayCoroutine(Time.deltaTime * 20, () =>
-        //{
-        //    angle += 20f;
-        //    BulletInit();
-
-        //}));
-        
     }
 
     public override void BulletUpdate()

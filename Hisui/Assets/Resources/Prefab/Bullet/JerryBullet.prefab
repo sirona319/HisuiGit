@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1660741264998231965}
   - component: {fileID: 1372904476738841711}
   - component: {fileID: 185438691607815936}
-  - component: {fileID: 2574284371767712820}
   m_Layer: 12
   m_Name: JerryBullet
   m_TagString: Untagged
@@ -139,18 +138,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsRelease: 0
---- !u!114 &2574284371767712820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8764880274935360633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945255f85b1b40a4aa6085bb7a47e3af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angle: 0
-  speed: 4
-  velocity: {x: 0, y: 0, z: 0}

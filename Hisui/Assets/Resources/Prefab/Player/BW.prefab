@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4247948621771878604}
   - component: {fileID: 7221941000943408474}
   - component: {fileID: 2972957044511297494}
+  - component: {fileID: 4108127654493571886}
   m_Layer: 6
   m_Name: BW
   m_TagString: Player
@@ -170,9 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDebugNoLife: 1
   SPEED: 5
-  bulletSpeed: 6
   movement: {x: 0, y: 0}
-  poolManager: {fileID: 7221941000943408474}
   bulletDeadTime: 3
   nMag: {fileID: 2972957044511297494}
   front: {fileID: 8052143350490885692}
@@ -201,6 +200,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotTime: 0
+  createBullet: {fileID: 4108127654493571886}
+--- !u!114 &4108127654493571886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850700731729801871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7944acaaef4e5f346bef6fda2b75bdf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 5
+  carveAngleVal: 15
+  carveRotSpeed: 1
+  poolManager: {fileID: 7221941000943408474}
 --- !u!1 &2869504904568345745
 GameObject:
   m_ObjectHideFlags: 0
