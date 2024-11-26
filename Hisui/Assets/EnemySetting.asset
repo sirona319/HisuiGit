@@ -17,20 +17,18 @@ MonoBehaviour:
     builderType: 0
     moveType: 03000000
     magazineType: 04000000
-    bulletType: 0000000002000000
-    speed: 4
-    hpMax: 1
-    atkIntervalMax: 1
-    PointEndLength: 0.5
-  - Id: FiveJerry
-    builderType: 0
-    moveType: 03000000
-    magazineType: 
     bulletType: 00000000
     speed: 4
     hpMax: 1
     atkIntervalMax: 1
-    PointEndLength: 2
+  - Id: FiveJerry
+    builderType: 0
+    moveType: 03000000
+    magazineType: 01000000
+    bulletType: 00000000
+    speed: 4
+    hpMax: 1
+    atkIntervalMax: 1
   - Id: CircleJerry
     builderType: 0
     moveType: 03000000
@@ -39,7 +37,6 @@ MonoBehaviour:
     speed: 4
     hpMax: 1
     atkIntervalMax: 1
-    PointEndLength: 0.5
   - Id: CircleOneJerry
     builderType: 0
     moveType: 03000000
@@ -48,7 +45,6 @@ MonoBehaviour:
     speed: 8
     hpMax: 1
     atkIntervalMax: 1
-    PointEndLength: 0.5
   - Id: CircleMoveJerry
     builderType: 0
     moveType: 04000000
@@ -57,13 +53,11 @@ MonoBehaviour:
     speed: 8
     hpMax: 1
     atkIntervalMax: 1
-    PointEndLength: 2
   - Id: FloatVectorJerry
     builderType: 0
     moveType: 05000000
-    magazineType: 
-    bulletType: 
+    magazineType: 00000000
+    bulletType: 00000000
     speed: 8
     hpMax: 1
     atkIntervalMax: 1
-    PointEndLength: 2

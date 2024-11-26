@@ -29,6 +29,19 @@ public class CreateBullet : MonoBehaviour
         bulletType = bulletTypes;
     }
 
+    public void AddBulletType(BaseBullet bullet, string bulletTypeName)
+    {
+        //for (int i = 0; i < (int)bulletType.Length; i++)
+        //{
+        Type typeClass = Type.GetType(bulletTypeName);
+
+        if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
+            bullet.gameObject.AddComponent(typeClass);
+
+
+        //}
+    }
+
     public BaseBullet BulletAtk(float angle,Vector3 pos,Quaternion rot)
     {
 
@@ -45,10 +58,12 @@ public class CreateBullet : MonoBehaviour
         //バレットタイプを追加
         for (int i = 0; i < (int)bulletType.Length; i++)
         {
-            Type typeClass = Type.GetType(bulletType[i].ToString());
+            //Type typeClass = Type.GetType(bulletType[i].ToString());
 
-            if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
-                bullet.gameObject.AddComponent(typeClass);
+            AddSetParamComponent(bulletType[i], bullet);
+
+            //if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
+            //   bullet.gameObject.AddComponent(typeClass);
 
         }
 
@@ -72,18 +87,44 @@ public class CreateBullet : MonoBehaviour
         return bullet.GetComponent<NormalBullet>();
     }
 
-    public void AddBulletType(BaseBullet bullet ,BulletType bulletType)
+    void AddSetParamComponent(BulletType bulletType,GameObject bullet)
     {
-        //for (int i = 0; i < (int)bulletType.Length; i++)
-        //{
-            Type typeClass = Type.GetType(bulletType.ToString());
 
-            if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
-                bullet.gameObject.AddComponent(typeClass);
+        //左　カーブ弾の作成
+        if (bulletType==BulletType.CarveModuleL)
+        {
 
+            Type carveClass = Type.GetType(ModuleClassName.CarveModule.ToString());
+            if (bullet.gameObject.GetComponent(carveClass) == null)
+                bullet.gameObject.AddComponent(carveClass);
 
-        //}
+            const float carveVal = 15f;
+            const float rotVal = 2f;
+            bullet.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
+            return;
+        }
+
+        //右　カーブ弾の作成
+        if (bulletType == BulletType.CarveModuleR)
+        {
+            Type carveClass = Type.GetType(ModuleClassName.CarveModule.ToString());
+            if (bullet.gameObject.GetComponent(carveClass) == null)
+                bullet.gameObject.AddComponent(carveClass);
+
+            const float carveVal = 15f;
+            const float rotVal = 2f;
+            bullet.GetComponent<CarveModule>().InitParam(-carveVal, rotVal);
+            return;
+        }
+
+        Type typeClass = Type.GetType(bulletType.ToString());
+
+        if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
+           bullet.gameObject.AddComponent(typeClass);
+
     }
+
+
 
     //BaseBullet BulletCreateType(GameObject bBullet)
     //{

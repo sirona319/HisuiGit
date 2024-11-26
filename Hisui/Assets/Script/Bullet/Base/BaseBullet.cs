@@ -7,13 +7,20 @@ public abstract class BaseBullet : MonoBehaviour
     {
         NormalBullet,
         ShakeModule,
-        CarveModule,//パラメータ設定できるようにしたい曲がる量　敵ごとに
+        //CarveModule,//パラメータ設定できるようにしたい曲がる量　敵ごとに
 
+        CarveModuleL,
+        CarveModuleR,
         //分裂団
         //遅延弾
         //拡大弾
         //
 
+    }
+
+    public enum ModuleClassName
+    {
+        CarveModule,//パラメータ設定できるようにしたい曲がる量　敵ごとに
     }
 
     public float angle; // 角度

@@ -113,7 +113,7 @@ public class PointCircleMove : BaseMove
 
         float targetAngle = MyLib.GetTargetAngle(targets[targetNo].position, transform);
 
-        var velocity = MyLib.SetVelocityAngle2D(targetAngle, speed);
+        var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
         transform.rotation =
             MyLib.TargetRotation2DZOnlyLerp(transform, velocity, 5f);
@@ -153,7 +153,7 @@ public class PointCircleMove : BaseMove
 
         float targetAngle = MyLib.GetTargetAngle(targets[targetNo].position, transform);
 
-        var velocity = MyLib.SetVelocityAngle2D(targetAngle, speed);
+        var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
         transform.rotation =
             MyLib.TargetRotation2DZOnlyLerp(transform, velocity, 5f);

@@ -55,25 +55,24 @@ public class PointFloatMove : BaseMove
             MyLib.LoopMotionSinWait(transform, 0, floatSpeed);
 
 
-            m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
-
-
-
-
-
             //ワールド座標　上方向を向かせる
-            float targetAngle = MyLib.GetTargetAngle((transform.position + Vector3.up), transform);
+            //float targetAngle = MyLib.GetTargetAngle((transform.position + Vector3.up), transform);
 
-            var velocity = MyLib.SetVelocityAngle2D(targetAngle, speed);
+            //var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
-            transform.rotation =
-                MyLib.TargetRotation2DZOnlyLerp(transform, velocity, rotSpeed);
+            transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, rotSpeed);
+            //MyLib.TargetRotation2DZOnlyLerp(transform, velocity, rotSpeed);
 
 
-            return;
+            //return;
+        }
+        else
+        {
+            PointUpdate();
         }
 
-        PointUpdate();
+
+        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
 
     }
 
@@ -107,16 +106,16 @@ public class PointFloatMove : BaseMove
         }
 
 
-        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        //m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
 
 
 
-        float targetAngle = MyLib.GetTargetAngle(targets[targetNo].position, transform);
+        //float targetAngle = MyLib.GetTargetAngle(targets[targetNo].position, transform);
 
-        var velocity = MyLib.SetVelocityAngle2D(targetAngle, speed);
+        //var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
-        transform.rotation =
-            MyLib.TargetRotation2DZOnlyLerp(transform, velocity, rotSpeed);
+        transform.rotation = MyLib.GetAngleRotationFuncs(targets[targetNo].position, transform, rotSpeed);
+            //MyLib.TargetRotation2DZOnlyLerp(transform, velocity, rotSpeed);
 
 
     }

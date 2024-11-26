@@ -757,7 +757,7 @@ MonoBehaviour:
     spawnTime:
     - 0
     - 0
-    LoadState: 0000000000000000
+    LoadState: 0100000000000000
     spawnLocations:
     - {fileID: 191460235}
     - {fileID: 1005170856}

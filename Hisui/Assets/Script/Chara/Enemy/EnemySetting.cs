@@ -31,7 +31,7 @@ public class EnemyData
     [SerializeField] float atkIntervalMax = 1;
     public float AtkIntervalMax { get => atkIntervalMax; }
 
-    public float PointEndLength = 0.5f;
+    //public float PointEndLength = 0.5f;
 
 
     //public float AtkInterval = 1;

@@ -29,7 +29,7 @@ public class Destroyer : MonoBehaviour
         {
             if (IsRelease)
             {
-                Debug.Log("二重リリース回避");
+                //Debug.Log("二重リリース回避");
                 return;
             }
 

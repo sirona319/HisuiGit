@@ -28,14 +28,17 @@ public class CreateMove : MonoBehaviour
             move.Initialize(enemy.GetComponent<Rigidbody2D>());
 
 
-            if (CreatePointFloatMove(move as PointFloatMove, movePoint, enemy, eData))
-                break;
+            CreatePointFloatMove(move as PointFloatMove, movePoint, enemy, eData);
+            //if (CreatePointFloatMove(move as PointFloatMove, movePoint, enemy, eData))
+            // break;
 
-            if (CreateFloatVectorMove(move as FloatVectorMove, movePoint[0].position, enemy))
-                break;
+            CreateFloatVectorMove(move as FloatVectorMove, movePoint[0].position, enemy);
+            //if (CreateFloatVectorMove(move as FloatVectorMove, movePoint[0].position, enemy))
+            //break;
 
-            if (CreatePointCircleMove(move as PointCircleMove, movePoint, enemy, eData))
-                break;
+            CreatePointCircleMove(move as PointCircleMove, movePoint, enemy, eData);
+            //if (CreatePointCircleMove(move as PointCircleMove, movePoint, enemy, eData))
+            //break;
 
         }
 
@@ -84,6 +87,7 @@ public class CreateMove : MonoBehaviour
         return true;
     }
 
+    const float cPointEndLen = 2f;
     bool CreatePointCircleMove(PointCircleMove pCircleMove, Transform[] movePoint, GameObject go, EnemyData eData)
     {
         if (pCircleMove == null) return false;
@@ -93,7 +97,7 @@ public class CreateMove : MonoBehaviour
         pCircleMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool => go.GetComponent<EnemyBase>().SetEndMoveKeep());
 
         pCircleMove.TargetSet(movePoint);
-        pCircleMove.SetMoveEndLength(eData.PointEndLength);
+        pCircleMove.SetMoveEndLength(cPointEndLen);
 
         pCircleMove.speed = eData.Speed;
 

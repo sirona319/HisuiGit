@@ -37,8 +37,8 @@ public class TwoCarveMagazine : BaseMagazine,ITarget
         //createBullet.BulletAtk(angle + TWOWEYLENGTH);
         var lBullet = createBullet.BulletAtk(angle - ONEWEYLENGTH, transform.position, transform.rotation);
 
-        createBullet.AddBulletType(rBullet, BulletType.CarveModule);
-        createBullet.AddBulletType(lBullet, BulletType.CarveModule);
+        createBullet.AddBulletType(rBullet, ModuleClassName.CarveModule.ToString());
+        createBullet.AddBulletType(lBullet, ModuleClassName.CarveModule.ToString());
 
         const float rotVal = 2f;
         const float carveVal = 10f;

@@ -4,7 +4,7 @@ using static UnityEngine.GraphicsBuffer;
 //[DisallowMultipleComponent]
 public sealed class CarveModule : MonoBehaviour
 {
-    float speed = 4f;
+    //float speed = 1f;
 
     [SerializeField] float angleVal = 0f;
 
@@ -13,19 +13,19 @@ public sealed class CarveModule : MonoBehaviour
     [SerializeField] float DebugEulerZ=0f;
     [SerializeField] float DebugEulerSetZ = 0f;
 
-    public bool IsParamSet { get; private set; } = false;
+    //public bool IsParamSet { get; private set; } = false;
     public void InitParam(float angle,float s)
     {
-        if (IsParamSet)
-        {
-            Debug.Log(angle);
-        }
+        //if (IsParamSet)
+        //{
+            //Debug.Log(angle);
+        //}
 
         angleVal = angle;
 
         rotSpeed = s;
 
-        IsParamSet = true;
+        //IsParamSet = true;
     }
 
     private void OnEnable()
@@ -53,10 +53,10 @@ public sealed class CarveModule : MonoBehaviour
 
             Vector3 velocity = transform.up;
             // X方向の移動量を設定する
-            velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
+            velocity.x = Mathf.Cos(angle * Mathf.Deg2Rad);
 
             // Y方向の移動量を設定する
-            velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
+            velocity.y = Mathf.Sin(angle * Mathf.Deg2Rad);
 
 
 

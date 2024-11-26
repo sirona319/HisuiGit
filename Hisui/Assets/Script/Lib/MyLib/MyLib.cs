@@ -126,6 +126,15 @@ public static class MyLib
 
     }
 
+    public static Quaternion GetAngleRotationFuncs(Vector3 tPos,Transform myT,float rotSpeed)
+    {
+        float targetAngle = GetTargetAngle(tPos, myT);
+
+        var velocity = SetVelocityAngle2D(targetAngle);
+
+        return TargetRotation2DZOnlyLerp(myT, velocity, rotSpeed); ;
+    }
+
     public static Quaternion TargetRotation2D(Vector3 targetPos, Transform myTrans, float interpolant = 5f)
     {
         //const float INTERPOLANT = 5f;
@@ -147,22 +156,34 @@ public static class MyLib
         return angle;
     }
 
-    public static Vector2 SetVelocityAngle2D(float angle, float speed)
+    public static Vector2 SetVelocityAngle2D(float angle)
     {
         Vector2 velocity = Vector2.zero;
         // X方向の移動量を設定する
-        velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
+        velocity.x = Mathf.Cos(angle * Mathf.Deg2Rad);
 
         // Y方向の移動量を設定する
-        velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
+        velocity.y = Mathf.Sin(angle * Mathf.Deg2Rad);
 
         return velocity;
     }
 
 
     //Vector3用　引数
-    public static Vector2 SetVelocityAngle2D(Vector3 velocity, float angle, float speed)
+    //public static Vector2 SetVelocityAngle2D(Vector3 velocity, float angle, float speed)
+    //{
+    //    // X方向の移動量を設定する
+    //    velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
+
+    //    // Y方向の移動量を設定する
+    //    velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
+
+    //    return velocity;
+    //}
+
+    public static Vector2 SetVelocityAngle2DSpeed(float angle, float speed)
     {
+        Vector2 velocity = Vector2.zero;
         // X方向の移動量を設定する
         velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
 
