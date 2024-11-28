@@ -7,17 +7,25 @@ public abstract class BaseMove : MonoBehaviour
 
     public enum MoveType
     {
-        RandomMove,
-        PointMove,
-        CircleMove,
+        //RandomMove,
+        //PointMove,
+        //CircleMove,
 
         PointFloatMove,
         PointCircleMove,
 
         FloatVectorMove,
 
+        CarveMoveR,
+        CarveMoveL,
+
         //randomApoint,
 
+    }
+
+    public enum MoveClassName
+    {
+        CarveMove,
     }
 
     protected Rigidbody2D m_rb;
@@ -28,10 +36,7 @@ public abstract class BaseMove : MonoBehaviour
 
     public bool IsKeepMove = false;//動き続ける移動
 
-    public virtual void Initialize(Rigidbody2D rb)
-    {
-        m_rb = rb;
-    }
+    public abstract void Initialize(Rigidbody2D rb);
 
     public abstract void MoveEnter();
 

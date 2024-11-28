@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,14 +16,9 @@ public class SpawnManager : Singleton<SpawnManager>
     //{
         
     //}
-
-
-
-
-
     public void ResetSpawns()
     {
-        Debug.Log("“G‚ÌƒXƒ|[ƒ“‚ÌƒŠƒZƒbƒg");
+        Debug.Log("æ•µã®ã‚¹ãƒãƒ¼ãƒ³ã®ãƒªã‚»ãƒƒãƒˆ");
 
         foreach(var s in enemySpawns)
         {

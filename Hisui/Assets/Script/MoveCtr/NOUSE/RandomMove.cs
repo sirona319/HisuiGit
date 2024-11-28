@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,13 +15,13 @@ public class RandomMove : BaseMove
     const float INTERPOLANT = 5f;
     public override void Initialize(Rigidbody2D rb)
     {
-        base.Initialize(rb);
+        m_rb = rb;
 
         //MOVEXY = moveRangeXZ;
 
         movePos = new Vector3[4];
 
-        //transform‚Ítargets‚É‚È‚é‚æ‚¤‚É‚·‚éHH
+        //transformã¯targetsã«ãªã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼Ÿï¼Ÿ
         movePos[0] = transform.position;
         movePos[0].x += moveRangeXZ;
         movePos[1] = transform.position;
@@ -47,15 +47,14 @@ public class RandomMove : BaseMove
         m_rb.MovePosition(m_rb.position + movement);
 
 
-
-        transform.rotation = MyLib.TargetRotation2D(targetPos, transform);        //‰ñ“]
+        transform.rotation = MyLib.TargetRotation2D(targetPos, transform);        //å›è»¢
 
 
         float len = Vector3.Distance(transform.position, targetPos);
         if (len < ENDMOVELEN)
         {
-            //ˆÚ“®’n“_‚ÌÄİ’è
-            MoveRandomSet();
+
+            MoveRandomSet();             //ç§»å‹•åœ°ç‚¹ã®å†è¨­å®š
         }
     }
 

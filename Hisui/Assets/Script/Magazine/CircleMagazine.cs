@@ -4,6 +4,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CircleMagazine : BaseMagazine
 {
+    public int angleChangeVal = 10;
+    public float shotTiming = 0.1f;
 
     float timeCount = 0;
     float shotAngle = 0;
@@ -31,8 +33,7 @@ public class CircleMagazine : BaseMagazine
         // 前フレームからの時間の差を加算
         timeCount += Time.deltaTime;
 
-        const int angleChangeVal = 10;
-        const float shotTiming = 0.1f;
+
         // 0.1秒を超えているか
         if (timeCount > shotTiming)
         {

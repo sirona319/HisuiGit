@@ -5,7 +5,7 @@ using static BaseBullet;
 
 public class CreateBullet : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed = 5f;
+    [SerializeField] public float bulletSpeed = 5f;
 
 
     //[SerializeField] float carveAngleVal = 15f;
@@ -16,7 +16,7 @@ public class CreateBullet : MonoBehaviour
     [SerializeField]BulletType[] bulletType;
 
     GameObject bulletObj;
-    [SerializeField]PoolManager poolManager;
+    [SerializeField] PoolControl poolManager;
 
 
     public void LoadPath(string bulletPath)
@@ -76,7 +76,7 @@ public class CreateBullet : MonoBehaviour
         //CreateShake();
 
 
-        var destroyer = bullet.GetComponent<Destroyer>();
+        var destroyer = bullet.GetComponent<ReleaseDestroyer>();
         destroyer.pool = poolManager;//キャラの種類ごとに分けるために引き渡し
         destroyer.IsRelease = false;//二重リリース回避用フラグ
 
@@ -99,8 +99,7 @@ public class CreateBullet : MonoBehaviour
                 bullet.gameObject.AddComponent(carveClass);
 
             const float carveVal = 15f;
-            const float rotVal = 2f;
-            bullet.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
+            bullet.GetComponent<CarveModule>().SetAngle(carveVal);
             return;
         }
 
@@ -112,8 +111,7 @@ public class CreateBullet : MonoBehaviour
                 bullet.gameObject.AddComponent(carveClass);
 
             const float carveVal = 15f;
-            const float rotVal = 2f;
-            bullet.GetComponent<CarveModule>().InitParam(-carveVal, rotVal);
+            bullet.GetComponent<CarveModule>().SetAngle(carveVal);
             return;
         }
 

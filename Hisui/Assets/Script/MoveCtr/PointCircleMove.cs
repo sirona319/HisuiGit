@@ -50,8 +50,8 @@ public class PointCircleMove : BaseMove
 
     public override void Initialize(Rigidbody2D rb)
     {
-        base.Initialize(rb);
-
+        //base.Initialize(rb);
+        m_rb = rb;
         IsKeepMove = true;
 
     }
@@ -111,7 +111,7 @@ public class PointCircleMove : BaseMove
 
 
 
-        float targetAngle = MyLib.GetTargetAngle(targets[targetNo].position, transform);
+        float targetAngle = MyLib.GetTargetAngle2D(targets[targetNo].position, transform);
 
         var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
@@ -151,7 +151,7 @@ public class PointCircleMove : BaseMove
 
 
 
-        float targetAngle = MyLib.GetTargetAngle(targets[targetNo].position, transform);
+        float targetAngle = MyLib.GetTargetAngle2D(targets[targetNo].position, transform);
 
         var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 

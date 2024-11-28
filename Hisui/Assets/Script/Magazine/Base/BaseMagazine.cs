@@ -5,13 +5,15 @@ using static EnemyData;
 
 public abstract class BaseMagazine : MonoBehaviour
 {
+    //全てがクラス名ではない　AddComponent際にパラメータ変更して扱う
     public enum MagazineType
     {
         TargetMagazine,
         FiveMagazine,
         CircleOneMagazine,
 
-        CircleMagazine,
+        CircleMagazineR,
+        CircleMagazineL,
 
         TwoCarveMagazine,
         //CircleInverseMagazine,
@@ -19,6 +21,11 @@ public abstract class BaseMagazine : MonoBehaviour
         //NearMagazine,
 
         //NumAttackType,
+    }
+
+    public enum MagazineClassName
+    {
+        CircleMagazine,
     }
 
     public float shotTime = 0;
@@ -51,6 +58,12 @@ public abstract class BaseMagazine : MonoBehaviour
     //    createBullet.poolManager = pool;
     //    //desTime = time;
     //}
+    protected string sePath;
+    public void SetLoadSePath(string se)
+    {
+        sePath = se;
+    }
+
     public abstract void Initialize();
 
     public abstract void MagazineEnter();

@@ -6,8 +6,8 @@ public class FloatVectorMove : BaseMove
     public Vector3 floatVector;
     public override void Initialize(Rigidbody2D rb)
     {
-        base.Initialize(rb);
-
+        //base.Initialize(rb);
+        m_rb = rb;
         IsKeepMove = true;
 
     }

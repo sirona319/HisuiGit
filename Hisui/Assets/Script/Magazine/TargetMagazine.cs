@@ -17,9 +17,8 @@ public class TargetMagazine : BaseMagazine, ITarget
     {
         //if (targetTrans == null) return;
         NormalShot();
+        MyLib.MyPlayOneSound(sePath, gameObject);//水滴
     }
-
-
     public override void MagazineUpdate()
     {
 

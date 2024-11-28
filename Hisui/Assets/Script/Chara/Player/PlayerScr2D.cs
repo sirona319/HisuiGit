@@ -27,12 +27,14 @@ public class PlayerScr2D : MonoBehaviour
     //バレット
     //Bullet bulletObj;
     //[SerializeField] PoolManager poolManager;
+    [SerializeField] float bulletSpeed = 6f;
     [SerializeField] float bulletDeadTime = 3f;
     [SerializeField] TargetMagazine nMag;
     [SerializeField] Transform front;           //弾の発射方向
-    //
+    
 
     const string pBulletPath = "prefab/Bullet/PBulletNormal";
+    const string pBulletSePath = "Sound/SE/PlayerNormalShot";
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
@@ -40,6 +42,8 @@ public class PlayerScr2D : MonoBehaviour
 
         nMag.createBullet = GetComponent<CreateBullet>();
         nMag.createBullet.LoadPath(pBulletPath);
+        nMag.createBullet.bulletSpeed = bulletSpeed;
+        nMag.SetLoadSePath(pBulletSePath);
         //nMag.createBullet.BulletAtk()
 
         //nMag.createBullet.AddBulletType(BulletType.NormalBullet);
@@ -61,6 +65,9 @@ public class PlayerScr2D : MonoBehaviour
         {
             //nMag.targetPos = (transform.position + Vector3.up) - transform.position;
            nMag.MagazineEnter();
+
+            //ビーム砲チャージ
+            MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject);
         }
 
         MoveControl();

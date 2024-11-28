@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class FloatMove : BaseMove
 {
@@ -6,7 +6,7 @@ public class FloatMove : BaseMove
 
     public override void Initialize(Rigidbody2D rb)
     {
-        base.Initialize(rb);
+        m_rb = rb;
 
         IsKeepMove = true;
 
@@ -23,7 +23,7 @@ public class FloatMove : BaseMove
     {
         MyLib.LoopMotionSinWait(transform,0, floatSpeed);
 
-        //transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////‰ñ“]
+        //transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////å›žè»¢
 
     }
 

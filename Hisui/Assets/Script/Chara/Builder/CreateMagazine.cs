@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using UnityEngine;
 using static BaseBullet;
 using static BaseMagazine;
@@ -6,6 +7,19 @@ using static EnemyData;
 
 public class CreateMagazine : MonoBehaviour
 {
+
+    string bulletPath;
+    
+
+    string bulletSePath;
+
+    public void SetBulletPath(string bullet, string se)
+    {
+        bulletPath = bullet;
+
+        bulletSePath= se;
+    }
+
     public void MagazineCreateInit(MagazineType[] mType,BulletType[] bType,GameObject go)
     {
         
@@ -17,10 +31,13 @@ public class CreateMagazine : MonoBehaviour
         //baseMagazine初期化
         for (int i = 0; i < (int)mType.Length; i++)
         {
-            Type typeClass = Type.GetType(mType[i].ToString());
+            AddSetParamComponent(mType[i], go);
+            
 
-            if (typeClass != null)
-                eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(typeClass));
+            //    Type typeClass = Type.GetType(mType[i].ToString());
+
+            //if (typeClass != null)
+            //    eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(typeClass));
         }
 
 
@@ -30,12 +47,12 @@ public class CreateMagazine : MonoBehaviour
         {
             magazine.Initialize();
 
-            if(magazine.createBullet==null)
+            //if(magazine.createBullet==null)
             magazine.createBullet = GetComponent<CreateBullet>();
 
-            magazine.createBullet.LoadPath("prefab/Bullet/JerryBullet");
+            magazine.createBullet.LoadPath(bulletPath);
             magazine.createBullet.SetBulletType(bType);
-
+            magazine.SetLoadSePath(bulletSePath);
 
             //ターゲットを設定プレイヤー　エネミー用？
             var iTarget = magazine as ITarget;
@@ -45,5 +62,44 @@ public class CreateMagazine : MonoBehaviour
         
     }
 
+    void AddSetParamComponent(MagazineType magazineType, GameObject go)
+    {
+
+        var eBase = go.GetComponent<EnemyBase>();//CharaBaseにする　最終的に？
+        //左　カーブ弾の作成
+        if (magazineType == MagazineType.CircleMagazineL)
+        {
+
+            Type carveClass = Type.GetType(MagazineClassName.CircleMagazine.ToString());
+            if (eBase.gameObject.GetComponent(carveClass) == null)
+                eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(carveClass));
+
+            const int cirvleVal = 10;
+            go.GetComponent<CircleMagazine>().angleChangeVal = -cirvleVal;
+            //go.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
+            return;
+        }
+
+        //左　カーブ弾の作成
+        if (magazineType == MagazineType.CircleMagazineR)
+        {
+
+            Type carveClass = Type.GetType(MagazineClassName.CircleMagazine.ToString());
+            if (go.gameObject.GetComponent(carveClass) == null)
+                eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(carveClass));
+
+
+            const int cirvleVal = 10;
+            go.GetComponent<CircleMagazine>().angleChangeVal = cirvleVal;
+            //go.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
+            return;
+        }
+
+
+        Type typeClass = Type.GetType(magazineType.ToString());
+
+        if (typeClass != null)
+            eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(typeClass));
+    }
 
 }

@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
 
 
-//ƒv[ƒ‹ƒ}ƒl[ƒWƒƒ[‚Í“G‚Æ–¡•ûUŒ‚”»’è@‚²‚Æ‚É•ª‚¯‚ÄŠ‚·‚é@Player Enemy‚Å“ñ‚Â@Šî–{
-public class PoolManager : MonoBehaviour
+//ãƒ—ãƒ¼ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã¯æ•µã¨å‘³æ–¹æ”»æ’ƒåˆ¤å®šã€€ã”ã¨ã«åˆ†ã‘ã¦æ‰€æŒã™ã‚‹ã€€Player Enemyã§äºŒã¤ã€€åŸºæœ¬
+public class PoolControl : MonoBehaviour
 {
     private ObjectPool<GameObject> pool;
 

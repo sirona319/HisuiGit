@@ -15,24 +15,32 @@ MonoBehaviour:
   DataList:
   - Id: NormalJerry
     builderType: 0
-    moveType: 03000000
-    magazineType: 04000000
-    bulletType: 00000000
-    speed: 4
+    moveType: 00000000
+    magazineType: 00000000
+    bulletType: 0000000001000000
+    speed: 7
     hpMax: 1
     atkIntervalMax: 1
-  - Id: FiveJerry
+  - Id: FloatVectorJerry
     builderType: 0
-    moveType: 03000000
-    magazineType: 01000000
+    moveType: 05000000
+    magazineType: 00000000
     bulletType: 00000000
-    speed: 4
+    speed: 8
     hpMax: 1
     atkIntervalMax: 1
   - Id: CircleJerry
     builderType: 0
     moveType: 03000000
     magazineType: 
+    bulletType: 00000000
+    speed: 4
+    hpMax: 1
+    atkIntervalMax: 1
+  - Id: FiveJerry
+    builderType: 0
+    moveType: 00000000
+    magazineType: 01000000
     bulletType: 00000000
     speed: 4
     hpMax: 1
@@ -49,14 +57,6 @@ MonoBehaviour:
     builderType: 0
     moveType: 04000000
     magazineType: 
-    bulletType: 00000000
-    speed: 8
-    hpMax: 1
-    atkIntervalMax: 1
-  - Id: FloatVectorJerry
-    builderType: 0
-    moveType: 05000000
-    magazineType: 00000000
     bulletType: 00000000
     speed: 8
     hpMax: 1

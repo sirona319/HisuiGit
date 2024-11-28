@@ -33,6 +33,17 @@ public static class MyLib
 
     }
 
+    //public static void LoopMotionCosVector(Transform t, Vector3 addVec/*float addX, float addY*/, Vector3 v)
+    //{
+    //    float sin = Mathf.Cos(Time.time);
+    //    t.position = new Vector3(t.position.x + (sin * addVec.x), t.position.y + (sin * addVec.y), 0);
+
+    //    var tp = t.position;
+    //    tp += v;
+    //    t.position = tp;
+
+    //}
+
     #endregion
 
     #region　トリガー　判定
@@ -126,15 +137,6 @@ public static class MyLib
 
     }
 
-    public static Quaternion GetAngleRotationFuncs(Vector3 tPos,Transform myT,float rotSpeed)
-    {
-        float targetAngle = GetTargetAngle(tPos, myT);
-
-        var velocity = SetVelocityAngle2D(targetAngle);
-
-        return TargetRotation2DZOnlyLerp(myT, velocity, rotSpeed); ;
-    }
-
     public static Quaternion TargetRotation2D(Vector3 targetPos, Transform myTrans, float interpolant = 5f)
     {
         //const float INTERPOLANT = 5f;
@@ -147,7 +149,16 @@ public static class MyLib
         return Quaternion.Lerp(myTrans.rotation, targetRotation, interpolant * Time.deltaTime);
     }
 
-    public static float GetTargetAngle(Vector3 targetPos, Transform myTrans)
+    public static Quaternion GetAngleRotationFuncs(Vector3 tPos, Transform myTrans, float rotSpeed)
+    {
+        float targetAngle = GetTargetAngle2D(tPos, myTrans);
+
+        var velocity = SetVelocityAngle2D(targetAngle);
+
+        return TargetRotation2DZOnlyLerp(myTrans, velocity, rotSpeed); ;
+    }
+
+    public static float GetTargetAngle2D(Vector3 targetPos, Transform myTrans)
     {
         Vector2 direction = targetPos - myTrans.position;
 
@@ -352,6 +363,15 @@ public static class MyLib
         action?.Invoke();
     }
 
+    public static IEnumerator DelayCoroutineIf(bool IfBreak, Action action)
+    {
+
+        yield return new WaitWhile(() => IfBreak);//While  falseで実行
+
+        action?.Invoke();
+
+    }
+
     /// <summary>
     /// 一定時間後に処理を定期的に呼び出すコルーチン
     /// </summary>
@@ -376,7 +396,7 @@ public static class MyLib
     /// <param name="seconds">秒</param>
     /// <param name="action">関数内の処理</param>
     /// <returns></returns>
-    public static IEnumerator LoopDelayCoroutineIf(float seconds,bool IfBreak,Action action)
+    public static IEnumerator LoopDelayCoroutineIf(float seconds, bool IfBreak, Action action)
     {
         while (true)
         {
@@ -384,8 +404,8 @@ public static class MyLib
             yield return new WaitForSeconds(seconds);
             action?.Invoke();
 
-            //yield return new WaitWhile(() => IfBreak);
-            //break;
+            yield return new WaitWhile(() => IfBreak);
+            break;
 
 
         }
@@ -452,11 +472,13 @@ public static class MyLib
     /// <param name="name"></param>
     /// <param name="volume"></param>
     /// <param name="obj"></param>
-    public static void MyPlayOneSound(string name, float volume, GameObject obj)
+    public static AudioSource MyPlayOneSound(string name, float volume, GameObject obj)
     {
         var audioSource = obj.GetComponent<AudioSource>();
         var sound = (AudioClip)Resources.Load(name);
         audioSource.PlayOneShot(sound, volume);
+
+        return audioSource;
     }
 
     /// <summary>
@@ -464,11 +486,13 @@ public static class MyLib
     /// </summary>
     /// <param name="name"></param>
     /// <param name="obj"></param>
-    public static void MyPlayOneSound(string name, GameObject obj)
+    public static AudioSource MyPlayOneSound(string name, GameObject obj)
     {
         var audioSource = obj.GetComponent<AudioSource>();
         var sound = (AudioClip)Resources.Load(name);
         audioSource.PlayOneShot(sound);
+
+        return audioSource;
     }
 
     /// <summary>

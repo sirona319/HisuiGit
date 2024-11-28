@@ -29,8 +29,8 @@ public class CircleOneMagazine : BaseMagazine
     void CircleOneShot()
     {
 
-        const int bNum = 35;
-        for(int i=0;i<= bNum; i++)
+        const int bulletNum = 35;
+        for(int i=0;i<= bulletNum; i++)
         {
             shotAngle += 10;
 

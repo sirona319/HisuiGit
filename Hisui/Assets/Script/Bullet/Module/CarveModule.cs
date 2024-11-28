@@ -8,24 +8,14 @@ public sealed class CarveModule : MonoBehaviour
 
     [SerializeField] float angleVal = 0f;
 
-    [SerializeField] float rotSpeed = 2f;
+    [SerializeField] float rotSpeed = 2.8f;
 
     [SerializeField] float DebugEulerZ=0f;
     [SerializeField] float DebugEulerSetZ = 0f;
 
-    //public bool IsParamSet { get; private set; } = false;
-    public void InitParam(float angle,float s)
+    public void SetAngle(float a)
     {
-        //if (IsParamSet)
-        //{
-            //Debug.Log(angle);
-        //}
-
-        angleVal = angle;
-
-        rotSpeed = s;
-
-        //IsParamSet = true;
+        angleVal = a;
     }
 
     private void OnEnable()

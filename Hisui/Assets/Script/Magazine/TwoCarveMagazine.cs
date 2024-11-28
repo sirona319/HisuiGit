@@ -37,13 +37,14 @@ public class TwoCarveMagazine : BaseMagazine,ITarget
         //createBullet.BulletAtk(angle + TWOWEYLENGTH);
         var lBullet = createBullet.BulletAtk(angle - ONEWEYLENGTH, transform.position, transform.rotation);
 
+
+        //バレットのタイプを上書き　他のモジュールは入る　消す仕様にする後々？？
         createBullet.AddBulletType(rBullet, ModuleClassName.CarveModule.ToString());
         createBullet.AddBulletType(lBullet, ModuleClassName.CarveModule.ToString());
 
-        const float rotVal = 2f;
         const float carveVal = 10f;
-        rBullet.GetComponent<CarveModule>().InitParam(-carveVal, rotVal);
-        lBullet.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
+        rBullet.GetComponent<CarveModule>().SetAngle(-carveVal);
+        lBullet.GetComponent<CarveModule>().SetAngle(carveVal);
 
 
 

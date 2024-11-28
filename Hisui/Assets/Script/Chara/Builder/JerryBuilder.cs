@@ -46,18 +46,22 @@ public sealed class JerryBuilder : BaseBuilder
 
     #endregion
 
+    string trailSePath = "Sound/SE/JerryTrailSe";
+
     public override void Build(EnemyData eData, Transform s, Transform[] movePoint)
     {
         //"prefab/Bullet/JerryBullet"
         var loadObj = (GameObject)Resources.Load("prefab/Enemy/Jerry/NormalJerry");
-        var enemy = Instantiate(loadObj, s.position, Quaternion.identity);
+        var enemy = Instantiate(loadObj, s.position, s.rotation);
         var eBase = enemy.GetComponent<EnemyBase>();
 
-        eBase.AtkInterval = eData.AtkIntervalMax;
+
+        float randAtkVal = UnityEngine.Random.Range(-0.5f, 0.5f);
+        eBase.AtkInterval = eData.AtkIntervalMax+ randAtkVal;
         eBase.Hp = eData.HpMax;
         //eBase.movePointsDatas = movePoint;//nullになる場合？
 
-
+        GetComponent<CreateMagazine>().SetBulletPath("prefab/Bullet/JerryBullet", "Sound/Se/JerryShot");
         GetComponent<CreateMagazine>().MagazineCreateInit(eData.magazineType,eData.bulletType, enemy);
         //MagazineCreate(eData, pool, enemy);
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Destroyer : MonoBehaviour
+public class ReleaseDestroyer : MonoBehaviour
 {
 
-    public PoolManager pool { get; set; }
+    public PoolControl pool { get; set; }
 
     const float DESTIME = 7f;
 
