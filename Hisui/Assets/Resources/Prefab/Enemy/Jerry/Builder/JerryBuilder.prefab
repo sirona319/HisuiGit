@@ -48,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031d0c710d4b0914bad6de507e777335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jerryGo: {fileID: 6746387532269590872, guid: 501658a93c1924a4d9d01ab3b20122d7, type: 3}
+  trailSe: {fileID: 5438698455874821118, guid: e4f9f89a5c8bd5c4eba33617085bd37b, type: 3}
+  bulletGo: {fileID: 8764880274935360633, guid: bf34238dfbc35fd4abb92d9b5fa0a5e3, type: 3}
+  bulletSe: {fileID: 8300000, guid: 771d05f942c5531468f718d8474ab718, type: 3}
 --- !u!114 &-5650023835866050463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c6db294136eff4e9c56c45f817b8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftMiddle: {fileID: 9059207717220486486, guid: 2f95d21d1b5c3224289e79a80ff5d4af, type: 3}
+  target: {fileID: 6297991344610223259, guid: f2e058217ad4f674191358d24890c624, type: 3}
 --- !u!114 &8652102761180671813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
+  bulletType: 
   poolManager: {fileID: -4790520726150187980}
 --- !u!114 &8588230557491191116
 MonoBehaviour:

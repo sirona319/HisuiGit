@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks.Triggers;
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 using static EnemyData;
 
 public abstract class BaseMagazine : MonoBehaviour
@@ -58,10 +59,10 @@ public abstract class BaseMagazine : MonoBehaviour
     //    createBullet.poolManager = pool;
     //    //desTime = time;
     //}
-    protected string sePath;
-    public void SetLoadSePath(string se)
+    protected AudioResource arSe;
+    public void SetLoadSe(AudioResource se)
     {
-        sePath = se;
+        arSe = se;
     }
 
     public abstract void Initialize();

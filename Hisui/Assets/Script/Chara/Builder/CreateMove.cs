@@ -7,6 +7,17 @@ using static BaseMove;
 
 public class CreateMove : MonoBehaviour
 {
+
+    //string trailSePath;
+
+    //AudioSource traileSe;
+
+    float speed = 7;
+
+    //public void SetTraileSe(AudioSource audioS)
+    //{
+    //    traileSe = audioS;
+    //}
     public void MoveCreateInit(EnemyData eData, Transform[] movePoint, GameObject go)
     {
         var eBase = go.GetComponent<EnemyBase>();
@@ -15,7 +26,7 @@ public class CreateMove : MonoBehaviour
         for (int i = 0; i < (int)eData.moveType.Length; i++)
         {
 
-            AddSetParamComponent(eData.moveType[i], go);
+            AddSetParamComponent(eData.moveType[i], movePoint, go);
             //Type typeClass = Type.GetType(eData.moveType[i].ToString());
 
             //if (typeClass != null)
@@ -25,14 +36,14 @@ public class CreateMove : MonoBehaviour
 
         }
 
-
+        return;
         foreach (var move in eBase.baseMove)
         {
             //初期化
             //move.Initialize(go.GetComponent<Rigidbody2D>());
 
 
-            CreatePointFloatMove(move as PointFloatMove, movePoint, go, eData);
+            CreatePointFloatMove(move as PointFloatMove, movePoint, go);
             //if (CreatePointFloatMove(move as PointFloatMove, movePoint, enemy, eData))
             // break;
 
@@ -40,51 +51,74 @@ public class CreateMove : MonoBehaviour
             //if (CreateFloatVectorMove(move as FloatVectorMove, movePoint[0].position, enemy))
             //break;
 
-            CreatePointCircleMove(move as PointCircleMove, movePoint, go, eData);
+            CreatePointCircleMove(move as PointCircleMove, movePoint, go);
             //if (CreatePointCircleMove(move as PointCircleMove, movePoint, enemy, eData))
             //break;
 
-            CreateCarveMove(move as CarveMove, movePoint[0].position, go, eData);
+            CreateCarveMove(move as CarveMove, movePoint[0].position, go);
 
         }
 
     }
 
-    void AddSetParamComponent(MoveType moveType, GameObject go)
+    void AddSetParamComponent(MoveType moveType, Transform[] movePoint,GameObject go)
     {
         var eBase = go.GetComponent<EnemyBase>();
 
-
+        //switch文へ
         if (moveType == MoveType.CarveMoveL)
         {
-            Type carveL = Type.GetType(MoveClassName.CarveMove.ToString());
-            eBase.baseMove.Add((BaseMove)go.AddComponent(carveL));
+            InitFunc(MoveClassName.CarveMove, go);
 
-            go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
             go.GetComponent<CarveMove>().SetCarveVal(15f);
-            return;
-        }
-        if (moveType == MoveType.CarveMoveR)
-        {
-            Type carveR = Type.GetType(MoveClassName.CarveMove.ToString());
-            eBase.baseMove.Add((BaseMove)go.AddComponent(carveR));
 
-            go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+            CreateCarveMove(go.GetComponent<CarveMove>(), movePoint[0].position, go);
+
+            //var dir = movePoint[0].position - go.transform.position;
+            //go.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
+            //go.GetComponent<EnemyBase>().SetIsAttack();
+        }
+        else if (moveType == MoveType.CarveMoveR)
+        {
+            InitFunc(MoveClassName.CarveMove, go);
+
             go.GetComponent<CarveMove>().SetCarveVal(-15f);
-            return;
+
+            CreateCarveMove(go.GetComponent<CarveMove>(), movePoint[0].position, go);
+
         }
-
-        Type typeClass = Type.GetType(moveType.ToString());
-
-        if (typeClass != null)
+        else if(moveType == MoveType.PointFloatMove)
         {
-            eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
+            InitFunc(MoveType.PointFloatMove, go);
 
-            go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+            CreatePointFloatMove(go.GetComponent<PointFloatMove>(), movePoint, go);
         }
+        else if(moveType == MoveType.FloatVectorMove)
+        {
+            InitFunc(MoveType.FloatVectorMove, go);
+
+            CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go);
+
+        }
+        else if( moveType == MoveType.PointCircleMove)
+        {
+            InitFunc(MoveType.PointCircleMove, go);
+
+            CreatePointCircleMove(go.GetComponent<PointCircleMove>(), movePoint, go);
+
+        }
+
+        //Type typeClass = Type.GetType(moveType.ToString());
+
+        //if (typeClass != null)
+        //{
+        //    eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
+
+        //    go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+        //}
     }
 
-    bool CreatePointFloatMove(PointFloatMove pFloatMove,Transform[] movePoint,GameObject go,EnemyData eData)
+    public bool CreatePointFloatMove(PointFloatMove pFloatMove,Transform[] movePoint,GameObject go)
     {
         if(pFloatMove==null) return false;
 
@@ -99,13 +133,12 @@ public class CreateMove : MonoBehaviour
 
         pFloatMove.TargetSet(movePoint);
 
-        pFloatMove.speed = eData.Speed;
-        //pFloatMove.SetMoveEndLength(eData.PointEndLength);
+        pFloatMove.speed = speed;
 
         return true;
     }
 
-    bool CreateFloatVectorMove(FloatVectorMove fVectorMove,Vector3 movePos, GameObject go)
+    public bool CreateFloatVectorMove(FloatVectorMove fVectorMove,Vector3 movePos, GameObject go)
     {
         if (fVectorMove == null) return false;
         const float moveVal = 0.02f;
@@ -127,11 +160,10 @@ public class CreateMove : MonoBehaviour
         return true;
     }
 
-    const float pCircleEndLen = 2f;
-    bool CreatePointCircleMove(PointCircleMove pCircleMove, Transform[] movePoint, GameObject go, EnemyData eData)
+    public bool CreatePointCircleMove(PointCircleMove pCircleMove, Transform[] movePoint, GameObject go)
     {
         if (pCircleMove == null) return false;
-
+        const float pCircleEndLen = 2f;
         //pMove.IsPointMoveEnd.Skip(1).Subscribe(count => Debug.Log(count));
         //関数がここで一度呼び出されるpMove.IsPointMoveEnd.Skip(1)初回をスキップする
         pCircleMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool => go.GetComponent<EnemyBase>().SetEndMoveKeep());
@@ -139,34 +171,40 @@ public class CreateMove : MonoBehaviour
         pCircleMove.TargetSet(movePoint);
         pCircleMove.SetMoveEndLength(pCircleEndLen);
 
-        pCircleMove.speed = eData.Speed;
+        pCircleMove.speed = speed;
 
         return true;
     }
 
-    bool CreateCarveMove(CarveMove cMove, Vector3 movePos, GameObject go, EnemyData eData)
+    public bool CreateCarveMove(CarveMove cMove, Vector3 movePos, GameObject go)
     {
         if (cMove == null) return false;
-        //const float moveVal = 0.02f;
-        //pMove.IsPointMoveEnd.Skip(1).Subscribe(count => Debug.Log(count));
-        //関数がここで一度呼び出されるpMove.IsPointMoveEnd.Skip(1)初回をスキップする
-        //pCircleMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool => go.GetComponent<EnemyBase>().SetEndMoveKeep());
-
-
 
         var dir = movePos - go.transform.position;
-        //cMove.floatVector = dir.normalized;
-        //go.transform.rotation = Quaternion.LookRotation(Vector3.up);
-
 
         go.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 
-        //cMove.SetCarveVal(15f);
-        //pCircleMove.SetMoveEndLength(cPointEndLen);
-
-        //pCircleMove.speed = eData.Speed;
         go.GetComponent<EnemyBase>().SetIsAttack();
         return true;
     }
 
+
+
+    public void InitFunc(MoveType moveType, GameObject go)
+    {
+        var eBase = go.GetComponent<EnemyBase>();
+
+        Type typeClass = Type.GetType(moveType.ToString());
+        eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
+        go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+    }
+
+    public void InitFunc(MoveClassName moveType, GameObject go)
+    {
+        var eBase = go.GetComponent<EnemyBase>();
+
+        Type typeClass = Type.GetType(moveType.ToString());
+        eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
+        go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+    }
 }

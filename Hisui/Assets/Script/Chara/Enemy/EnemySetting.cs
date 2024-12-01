@@ -31,6 +31,24 @@ public class EnemyData
     [SerializeField] float atkIntervalMax = 1;
     public float AtkIntervalMax { get => atkIntervalMax; }
 
+    public enum BulletTarget
+    {
+        Player,
+        LeftMiddle,
+        Up,
+        Right,
+        Left,
+        Down,
+
+        //斜め　四つ　
+        //一番近いエネミーなど？　遠い敵　レーザー
+
+        
+    }
+    public BulletTarget bulletTarget;
+
+    //[SerializeField] public Vector3 bulletTargetDir;
+
     //public float PointEndLength = 0.5f;
 
 

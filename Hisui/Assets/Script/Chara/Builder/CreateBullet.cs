@@ -19,9 +19,9 @@ public class CreateBullet : MonoBehaviour
     [SerializeField] PoolControl poolManager;
 
 
-    public void LoadPath(string bulletPath)
+    public void LoadPath(GameObject bullet)
     {
-        bulletObj=(GameObject)Resources.Load(bulletPath);
+        bulletObj = bullet;
     }
 
     public void SetBulletType(BulletType[] bulletTypes)
@@ -123,48 +123,4 @@ public class CreateBullet : MonoBehaviour
     }
 
 
-
-    //BaseBullet BulletCreateType(GameObject bBullet)
-    //{
-    //    //if(bulletType.Length<=0)
-    //    //{
-    //    //    //throw new System.Exception("バレットが指定されていない");
-    //    //    //Debug.Log("バレットタイプが無し");
-    //    //    return null;
-    //    //}
-    //    ////バレットタイプを追加
-    //    //for (int i = 0; i < (int)bulletType.Length; i++)
-    //    //{
-    //    //    Type typeClass = Type.GetType(bulletType[i].ToString());
-
-    //    //    if (typeClass != null&&bBullet.gameObject.GetComponent(typeClass)==null)
-    //    //        bBullet.gameObject.AddComponent(typeClass);
-
-    //    //}
-
-    //    //bBullet.GetComponent<NormalBullet>().speed = bulletSpeed;
-    //    //bBullet.GetComponent<NormalBullet>().angle = bulletSpeed;
-    //    //bBullet.GetComponent<NormalBullet>().BulletInit();
-    //    ////CreateCarve(bBullet.GetComponent<CarveModule>());
-
-    //    ////CreateShake();
-
-    //    //return bBullet.GetComponent<NormalBullet>();
-
-
-    //}
-
-
-
-    //void CreateCarve(CarveModule carve)
-    //{
-    //    if (carve == null) return;
-    //    if (carve.IsParamSet) return;
-
-    //    carve.InitParam(carveAngleVal, carveRotSpeed);
-
-    //    //carve.angleVal = carveAngleVal;
-    //    //carve.rotSpeed = carveRotSpeed;
-
-    //}
 }

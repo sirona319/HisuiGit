@@ -26,24 +26,14 @@ public class Jerry_Dead : StateChildBase
         //var sound = (AudioClip)Resources.Load("Sound/SE/JerryDestroy");
         //audioSource.PlayOneShot(sound);
 
-       
 
-
-        //var dSe = MyLib.MyPlayOneSound("Sound/SE/JerryDestroy", gameObject);
-        var seGo = Instantiate(deadSound, transform.position, Quaternion.identity);
-
-        seGo.GetComponent<FlagDestroy>().StartDestroyFlg();
-
-;
-
-
-        //StartCoroutine(MyLib.DelayCoroutineIf(deadSound.isPlaying, () =>
-        //{
-        //    Debug.Log("しょうきょ");
-        //    Destroy(seGo);
-        //}));
 
         Instantiate(deadParticle, transform.position, Quaternion.identity);
+
+        var seGo = Instantiate(deadSound, transform.position, Quaternion.identity);
+        seGo.GetComponent<SoundEndDestroy>().StartDestroyFlg();        //削除登録
+
+
 
         GameObject spawn = GameObject.Find("WaveSpawn");
         spawn.GetComponent<EnemySpawnWave>().UpdateCount();

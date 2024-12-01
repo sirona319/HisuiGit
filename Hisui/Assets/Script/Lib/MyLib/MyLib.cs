@@ -2,6 +2,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
@@ -486,14 +487,51 @@ public static class MyLib
     /// </summary>
     /// <param name="name"></param>
     /// <param name="obj"></param>
-    public static AudioSource MyPlayOneSound(string name, GameObject obj)
+    public static AudioSource MyPlayOneSound(string name, AudioSource audio)
     {
-        var audioSource = obj.GetComponent<AudioSource>();
         var sound = (AudioClip)Resources.Load(name);
-        audioSource.PlayOneShot(sound);
+        audio.PlayOneShot(sound);
 
-        return audioSource;
+        return audio;
     }
+
+    /// <summary>
+    /// ボリューム調整なし
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="obj"></param>
+    public static AudioSource MyPlayOneSound(AudioClip clip, AudioSource audio)
+    {
+        audio.PlayOneShot(clip);
+
+        return audio;
+    }
+
+    /// <summary>
+    /// ボリューム調整なし
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="obj"></param>
+    public static AudioSource MyPlayOneSound(AudioResource ar, AudioSource audio)
+    {
+        audio.resource = ar;
+        audio.Play();
+
+        return audio;
+    }
+
+    /// <summary>
+    /// ボリューム調整なし
+    /// </summary>
+    /// <param name="name"></param>
+    ///// <param name="obj"></param>
+    //public static AudioSource MyPlayOneSoundRandom(string name, AudioSource audio)
+    //{
+    //    var sound = (AudioSource)Resources.Load(name);
+    //    audio.Play();
+
+    //    return audio;
+    //}
 
     /// <summary>
     /// サウンドが重複しないように
@@ -507,6 +545,23 @@ public static class MyLib
 
         if (!audioSource.isPlaying)
             audioSource.PlayOneShot(sound);
+    }
+
+    public static IEnumerator SoundFadeOffCoroutine(AudioSource audio, float fadeSpeed)
+    {
+        Debug.Log("サウンドフェード登録");
+        while (audio.volume >= 0)
+        {
+            yield return new WaitForSeconds(Time.deltaTime);
+            audio.volume -= fadeSpeed;
+            if (audio.volume <= 0)
+            {
+                audio.Stop();
+                break;
+            }
+              
+        }
+
     }
 
     #endregion

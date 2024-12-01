@@ -2,6 +2,7 @@
 using UniRx;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using static UnityEngine.GraphicsBuffer;
 
 public class PointFloatMove : BaseMove
@@ -17,7 +18,7 @@ public class PointFloatMove : BaseMove
     [SerializeField] float floatSpeed = 0.005f;
 
     bool isLoop = false;
-    public ReactiveProperty<bool> IsPointMoveEnd = new ReactiveProperty<bool>(false);
+    public ReactiveProperty<bool> IsPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe
 
 
     public void TargetSet(Transform[] t)
@@ -33,21 +34,47 @@ public class PointFloatMove : BaseMove
         endLength = len;
     }
 
+    //AudioSource se;
+    //AudioResource ar;
     public override void Initialize(Rigidbody2D rb)
     {
         m_rb = rb;
 
         IsKeepMove = true;
+
+        //se = gameObject.GetComponent<AudioSource>();
+        //ar = (AudioResource)Resources.Load("Sound/Se/JerryTrailSeRandom");
+        //var ss= (AudioResource)Resources.Load("Sound/Se/JerryTrailSe");
+        //se.resource = ss;
     }
 
     public override void MoveEnter()
     {
+        //
+        //var sound = (AudioRandomContainer)Resources.Load(trailSePath);
+        //sound.Play();
+        //
+        //var audioSource = gameObject.GetComponent<AudioSource>();
+        //var sound = (AudioResource)Resources.Load("prefab/Sound/JerryTrailSeRandom");
+        //audioSource.resource = sound;
+        //audioSource.Play();
+        //sound.GetComponent<AudioSource>().PlayOneShot(sound);
+        //audioSource.p(sound);
+        //se.loop = true;
 
 
+        //se.Play();
     }
+
+
 
     public override void MoveUpdate()
     {
+
+
+
+
+
 
         if (IsPointMoveEnd.Value)
         {
@@ -94,6 +121,7 @@ public class PointFloatMove : BaseMove
             targetNo++;
             if (targetNo > targets.Length - 1)
             {
+
                 //if (!IsKeepMove)
                 IsPointMoveEnd.Value = true;
 

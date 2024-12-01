@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.EditorTools;
 using static UnityEngine.GraphicsBuffer;
 using static BaseBullet;
+using UnityEngine.Audio;
 
 public class PlayerScr2D : MonoBehaviour
 {
@@ -28,22 +29,22 @@ public class PlayerScr2D : MonoBehaviour
     //Bullet bulletObj;
     //[SerializeField] PoolManager poolManager;
     [SerializeField] float bulletSpeed = 6f;
-    [SerializeField] float bulletDeadTime = 3f;
+    //[SerializeField] float bulletDeadTime = 3f;
     [SerializeField] TargetMagazine nMag;
     [SerializeField] Transform front;           //弾の発射方向
-    
 
-    const string pBulletPath = "prefab/Bullet/PBulletNormal";
-    const string pBulletSePath = "Sound/SE/PlayerNormalShot";
+
+    [SerializeField] GameObject pBullet;// = "prefab/Bullet/PBulletNormal";
+    [SerializeField] AudioResource pBulletSe; //="Sound/SE/PlayerNormalShot";
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
         //bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/Bullet/PBulletNormal");
 
         nMag.createBullet = GetComponent<CreateBullet>();
-        nMag.createBullet.LoadPath(pBulletPath);
+        nMag.createBullet.LoadPath(pBullet);
         nMag.createBullet.bulletSpeed = bulletSpeed;
-        nMag.SetLoadSePath(pBulletSePath);
+        nMag.SetLoadSe(pBulletSe);
         //nMag.createBullet.BulletAtk()
 
         //nMag.createBullet.AddBulletType(BulletType.NormalBullet);
@@ -67,7 +68,7 @@ public class PlayerScr2D : MonoBehaviour
            nMag.MagazineEnter();
 
             //ビーム砲チャージ
-            MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject);
+            MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
         }
 
         MoveControl();

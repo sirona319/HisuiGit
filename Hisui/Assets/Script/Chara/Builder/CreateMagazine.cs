@@ -1,26 +1,32 @@
 ﻿using DG.Tweening;
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 using static BaseBullet;
 using static BaseMagazine;
 using static EnemyData;
+using static UnityEngine.GraphicsBuffer;
 
 public class CreateMagazine : MonoBehaviour
 {
 
-    string bulletPath;
-    
+    GameObject bulletGo;
 
-    string bulletSePath;
 
-    public void SetBulletPath(string bullet, string se)
+    AudioResource bulletSe;
+
+    [SerializeField] Transform leftMiddle;
+    [SerializeField] Transform target;
+
+    public void SetBullet(GameObject bullet, AudioResource se)
     {
-        bulletPath = bullet;
+        bulletGo = bullet;
 
-        bulletSePath= se;
+        bulletSe = se;
     }
 
-    public void MagazineCreateInit(MagazineType[] mType,BulletType[] bType,GameObject go)
+    public void MagazineCreateInit
+        (MagazineType[] mType,BulletType[] bType,GameObject go, BulletTarget bulletTarget)
     {
         
         var eBase = go.GetComponent<EnemyBase>();//CharaBaseにする　最終的に？
@@ -41,7 +47,9 @@ public class CreateMagazine : MonoBehaviour
         }
 
 
-        var pTrans= GameObject.FindGameObjectWithTag("Player").transform;
+
+        //左中央　固定オブジェクト
+        //上下左右　ななめ　Instantiate　で空のオブジェクトを子階層に生成　Targetに入れる
 
         foreach (var magazine in eBase.baseMagazine)
         {
@@ -50,14 +58,13 @@ public class CreateMagazine : MonoBehaviour
             //if(magazine.createBullet==null)
             magazine.createBullet = GetComponent<CreateBullet>();
 
-            magazine.createBullet.LoadPath(bulletPath);
+            magazine.createBullet.LoadPath(bulletGo);
             magazine.createBullet.SetBulletType(bType);
-            magazine.SetLoadSePath(bulletSePath);
+            magazine.SetLoadSe(bulletSe);
 
             //ターゲットを設定プレイヤー　エネミー用？
-            var iTarget = magazine as ITarget;
-            if (iTarget != null)
-                iTarget.Target = pTrans;
+            var t=magazine as ITarget;
+            TargetSet(t,bulletTarget,go);
         }
         
     }
@@ -71,7 +78,7 @@ public class CreateMagazine : MonoBehaviour
         {
 
             Type carveClass = Type.GetType(MagazineClassName.CircleMagazine.ToString());
-            if (eBase.gameObject.GetComponent(carveClass) == null)
+            if (go.gameObject.GetComponent(carveClass) == null)
                 eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(carveClass));
 
             const int cirvleVal = 10;
@@ -79,9 +86,8 @@ public class CreateMagazine : MonoBehaviour
             //go.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
             return;
         }
-
         //左　カーブ弾の作成
-        if (magazineType == MagazineType.CircleMagazineR)
+        else if (magazineType == MagazineType.CircleMagazineR)
         {
 
             Type carveClass = Type.GetType(MagazineClassName.CircleMagazine.ToString());
@@ -100,6 +106,38 @@ public class CreateMagazine : MonoBehaviour
 
         if (typeClass != null)
             eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(typeClass));
+    }
+
+
+    void TargetSet(ITarget it, BulletTarget bulletTarget,GameObject go)
+    {
+        if (it == null) return;
+
+        switch(bulletTarget)
+        {
+            case BulletTarget.Player:
+                it.Target = GameObject.FindGameObjectWithTag("Player").transform;
+                break;
+            case BulletTarget.LeftMiddle:
+                it.Target = leftMiddle;
+                break;
+            case BulletTarget.Up:
+                it.Target = go.transform.Find("Up").gameObject.transform;
+                break;
+            case BulletTarget.Right:
+                it.Target = go.transform.Find("Right").gameObject.transform;
+                break;
+            case BulletTarget.Left:
+                it.Target = go.transform.Find("Left").gameObject.transform;
+                break;
+            case BulletTarget.Down:
+                it.Target = go.transform.Find("Down").gameObject.transform;
+                break;
+            default:
+                Debug.Log("TargetDEFAULT");
+                break;
+        }
+
     }
 
 }

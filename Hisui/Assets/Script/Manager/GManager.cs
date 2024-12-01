@@ -1,4 +1,4 @@
-//using Cinemachine;
+ï»¿//using Cinemachine;
 //using GoogleMobileAds.Api;
 using TMPro;
 using UnityEngine;
@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 //https://docs.unity3d.com/ja/2018.4/Manual/PlatformDependentCompilation.html
 
-//ParticlePack‚ÍTextMeshPro‚Ìƒ}ƒeƒŠƒAƒ‹‚à“ü‚Á‚Ä‚¢‚é‚½‚ßg—p@ƒAƒZƒbƒg
+//ParticlePackã¯TextMeshProã®ãƒãƒ†ãƒªã‚¢ãƒ«ã‚‚å…¥ã£ã¦ã„ã‚‹ãŸã‚ä½¿ç”¨ã€€ã‚¢ã‚»ãƒƒãƒˆ
 
 //[DefaultExecutionOrder(-1)]
 public class GManager : Singleton<GManager>
@@ -27,27 +27,27 @@ public class GManager : Singleton<GManager>
 
     //[SerializeField] bool debugHD = false;
 
-    // ’¼‘O‚ÌƒfƒBƒXƒvƒŒƒCŒü‚«
+    // ç›´å‰ã®ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤å‘ã
     DeviceOrientation PrevOrientation;
 
-    public int resoType = 0; //‰ğ‘œ“x@2‚Ü‚Å@‚R‚Â
+    public int resoType = 0; //è§£åƒåº¦ã€€2ã¾ã§ã€€ï¼“ã¤
     //public int resoHeigh = 1080;
 
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
 
-        //1280@720 
+        //1280ã€€720 
         //1920 1080
         //Screen.SetResolution(1920,1080, false);
         //800 450
 
 #if UNITY_ANDROID
-        Debug.Log($"Às‚µ‚Ä‚¢‚éƒfƒoƒCƒX : {UnityEngine.Device.SystemInfo.deviceModel}");
-        Debug.Log($"Às‚µ‚Ä‚¢‚éOS : {UnityEngine.Device.SystemInfo.operatingSystem}");
+        Debug.Log($"å®Ÿè¡Œã—ã¦ã„ã‚‹ãƒ‡ãƒã‚¤ã‚¹ : {UnityEngine.Device.SystemInfo.deviceModel}");
+        Debug.Log($"å®Ÿè¡Œã—ã¦ã„ã‚‹OS : {UnityEngine.Device.SystemInfo.operatingSystem}");
 
 
-        //LŠ‚Ì‰Šú‰»
+        //åºƒå‘Šæ‰€ã®åˆæœŸåŒ–
         GoogleAds.I.StartInit();
 
         if (SceneManager.GetActiveScene().name == SceneNameType.TitleScene.ToString())
@@ -84,11 +84,11 @@ public class GManager : Singleton<GManager>
     {
         DeviceOrientation result = Input.deviceOrientation;
 
-        // Unkown‚È‚çƒsƒNƒZƒ‹”‚©‚ç”»’f
+        // Unkownãªã‚‰ãƒ”ã‚¯ã‚»ãƒ«æ•°ã‹ã‚‰åˆ¤æ–­
         //if (result == DeviceOrientation.Unknown)
         //{
 
-        //    //‹°‚ç‚­@Screen.SetResolution‚ğg—p‚·‚é‚Æ•ÏX‚³‚ê‚é
+        //    //æã‚‰ãã€€Screen.SetResolutionã‚’ä½¿ç”¨ã™ã‚‹ã¨å¤‰æ›´ã•ã‚Œã‚‹
         //    if (Screen.width < Screen.height)
         //    {
         //        result = DeviceOrientation.Portrait;
@@ -126,7 +126,7 @@ public class GManager : Singleton<GManager>
             else if (resoType == 2)
                 Screen.SetResolution(1080, 1920, false);//960 540
                                                                   //Screen.SetResolution(540, 960, false);//960 540
-            Debug.Log("c‚É•ÏX");
+            Debug.Log("ç¸¦ã«å¤‰æ›´");
 
             //GameObject.Find("UICanvas").GetComponent<CanvasScaler>().referenceResolution = new Vector2(1080, 1920);
 
@@ -137,12 +137,12 @@ public class GManager : Singleton<GManager>
                 GameObject.Find("CMVirtualNormal").GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = 100;
 
                 //if(GameObject.Find("CMVirtual (1)")==null)
-                //GameObject.Find("DebugText").GetComponent<TextMeshProUGUI>().text += "CMVirtual (1)æ“¾¸”s";
+                //GameObject.Find("DebugText").GetComponent<TextMeshProUGUI>().text += "CMVirtual (1)å–å¾—å¤±æ•—";
 
 
                 var rt = GameObject.Find("UIPanel").GetComponent<RectTransform>();
                 //if (rt == null)
-                //    GameObject.Find("DebugText").GetComponent<TextMeshProUGUI>().text += "UIPanelæ“¾¸”s";
+                //    GameObject.Find("DebugText").GetComponent<TextMeshProUGUI>().text += "UIPanelå–å¾—å¤±æ•—";
 
                 rt.localScale = Vector3.one * 2;
                 rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 920);
@@ -166,7 +166,7 @@ public class GManager : Singleton<GManager>
 
 
         }
-        else            //‰¡•ûŒü
+        else            //æ¨ªæ–¹å‘
         {
             if (resoType == 0)
                 Screen.SetResolution(960,540, false);//960 540
@@ -177,7 +177,7 @@ public class GManager : Singleton<GManager>
             //Screen.SetResolution(960, 540, false);//960 540
             if (SceneManager.GetActiveScene().name == SceneNameType.NormalScene.ToString())
             {
-                Debug.Log("‚æ‚±‚É•ÏX");
+                Debug.Log("ã‚ˆã“ã«å¤‰æ›´");
 
                 //RectTrans.rect.Set(0, 0, 0, 0);
 
@@ -217,7 +217,7 @@ public class GManager : Singleton<GManager>
         DeviceOrientation currentOrientation = GetOrientation();
         if (PrevOrientation != currentOrientation)
         {
-            // ‰æ–Ê‚ÌŒü‚«‚ª•Ï‚í‚Á‚½ê‡‚Ìˆ—
+            // ç”»é¢ã®å‘ããŒå¤‰ã‚ã£ãŸå ´åˆã®å‡¦ç†
             SetOrientation();
             
 
@@ -228,24 +228,24 @@ public class GManager : Singleton<GManager>
 #endif
 
     /// <summary>
-    /// ‘JˆÚŠÔ‚ğw’è‚µ‚Ä‘JˆÚ‚³‚¹‚éŠÖ”
+    /// é·ç§»æ™‚é–“ã‚’æŒ‡å®šã—ã¦é·ç§»ã•ã›ã‚‹é–¢æ•°
     /// </summary>
-    /// <param name="name">‘JˆÚƒV[ƒ“</param>
-    /// <param name="time">‘JˆÚŠJnŠÔ</param>
+    /// <param name="name">é·ç§»ã‚·ãƒ¼ãƒ³</param>
+    /// <param name="time">é·ç§»é–‹å§‹æ™‚é–“</param>
     public void SceneChangeTimerSet(string name, float time = 3f)
     {
         if (IsSceneChange) return;
         IsSceneChange = true;
 
 
-        const float fadePossibleTime = 2.0f;//Ÿ‚Ì‘JˆÚ‚ª‰Â”\‚É‚È‚é‚Ü‚Å‚ÌŠÔ
+        const float fadePossibleTime = 2.0f;//æ¬¡ã®é·ç§»ãŒå¯èƒ½ã«ãªã‚‹ã¾ã§ã®æ™‚é–“
         StartCoroutine(MyLib.DelayCoroutine(time + fadePossibleTime, () =>
         {
             IsSceneChange = false;
         }));
 
 
-        //ƒRƒ‹[ƒ`ƒ“‚Ì‹N“®@ƒtƒF[ƒh
+        //ã‚³ãƒ«ãƒ¼ãƒãƒ³ã®èµ·å‹•ã€€ãƒ•ã‚§ãƒ¼ãƒ‰
         StartCoroutine(MyLib.DelayCoroutine(time, () =>
         {
             var fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
@@ -262,17 +262,17 @@ public class GManager : Singleton<GManager>
         if (IsSceneChange) return;
         IsSceneChange = true;
 
-        const float fadePossibleTime = 2.0f;//Ÿ‚Ì‘JˆÚ‚ª‰Â”\‚É‚È‚é‚Ü‚Å‚ÌŠÔ
+        const float fadePossibleTime = 2.0f;//æ¬¡ã®é·ç§»ãŒå¯èƒ½ã«ãªã‚‹ã¾ã§ã®æ™‚é–“
         StartCoroutine(MyLib.DelayCoroutine(fadePossibleTime, () =>
         {
             IsSceneChange = false;
         }));
 
-        //Œˆ’è‰¹Ä¶
-        MyLib.MyPlayOneSound("SE/System/" + "Œ•‚Å‘Å‚¿‡‚¤2", TitleControl.I.gameObject);
+        //æ±ºå®šéŸ³å†ç”Ÿ
+        MyLib.MyPlayOneSound("SE/System/" + "å‰£ã§æ‰“ã¡åˆã†2", TitleControl.I.gameObject.GetComponent<AudioSource>());
 
 
-        //ƒRƒ‹[ƒ`ƒ“‚Ì‹N“®@ƒtƒF[ƒh
+        //ã‚³ãƒ«ãƒ¼ãƒãƒ³ã®èµ·å‹•ã€€ãƒ•ã‚§ãƒ¼ãƒ‰
         StartCoroutine(MyLib.DelayCoroutine(time, () =>
         {
             var fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
@@ -283,7 +283,7 @@ public class GManager : Singleton<GManager>
     }
 
 
-    //ƒtƒF[ƒh‚Ì‚İ‚µ‚ÄƒvƒŒƒCƒ„[‚ÌÀ•W‚ğ•ÏX‚·‚éŠÖ”ì¬
+    //ãƒ•ã‚§ãƒ¼ãƒ‰ã®ã¿ã—ã¦ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™ã‚’å¤‰æ›´ã™ã‚‹é–¢æ•°ä½œæˆ
 
     public void PlayerMoveTarget(Vector3 target)
     {
@@ -300,7 +300,7 @@ public class GManager : Singleton<GManager>
 
         //}));
 
-        //L‚Í‚³‚ñ‚¾‚èH@ƒtƒ‰ƒO‚ÅŠÇ—‚È‚Ç
+        //åºƒå‘Šã¯ã•ã‚“ã ã‚Šï¼Ÿã€€ãƒ•ãƒ©ã‚°ã§ç®¡ç†ãªã©
 
 
         //StartCoroutine(MyLib.DelayCoroutine(1.3f, () =>

@@ -97,14 +97,5 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public IEnumerator SoundFadeOffCoroutine(AudioSource audio, float fadeSpeed = 0.001f)
-    {
 
-        while (audio.volume > 0)
-        {
-            audio.volume -= fadeSpeed;
-            yield return new WaitForSeconds(0.1f);
-        }
-
-    }
 }

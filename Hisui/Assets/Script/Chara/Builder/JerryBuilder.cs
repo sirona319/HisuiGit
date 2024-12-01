@@ -1,13 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using DG.Tweening;
+using System;
 using UniRx;
-using DG.Tweening;
-using static EnemyData;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.Audio;
+using static BaseMove;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem;
 
 public sealed class JerryBuilder : BaseBuilder
 {
-
-    //[SerializeField] MagazineCreate mgCreate;
     #region //
 
     //BaseJerryEnemyFactory _factory = null;
@@ -46,136 +48,133 @@ public sealed class JerryBuilder : BaseBuilder
 
     #endregion
 
-    string trailSePath = "Sound/SE/JerryTrailSe";
+    //float speed = 7;
+
+    [SerializeField] GameObject jerryGo;//= "prefab/Enemy/Jerry/NormalJerry";
+
+    //[SerializeField] string trailSePath = "prefab/Sound/JerryTrailSe";
+    [SerializeField] GameObject trailSe;
+
+
+    [SerializeField] GameObject bulletGo;//= "prefab/Bullet/JerryBullet";
+    //[SerializeField] string bulletSePath = "Sound/Se/JerryShot";
+    [SerializeField] AudioResource bulletSe;
+
+    //[SerializeField] AudioResource ar;
+    // [SerializeField] AudioSource ass;
+    //[SerializeField] AudioClip ac;
 
     public override void Build(EnemyData eData, Transform s, Transform[] movePoint)
     {
         //"prefab/Bullet/JerryBullet"
-        var loadObj = (GameObject)Resources.Load("prefab/Enemy/Jerry/NormalJerry");
-        var enemy = Instantiate(loadObj, s.position, s.rotation);
+        //var loadObj = (GameObject)Resources.Load(jerryPath);
+        var enemy = Instantiate(jerryGo, s.position, s.rotation);
+
+        ////トレイルse用オブジェクト生成
+        trailSe = (GameObject)Resources.Load("prefab/Sound/JerryTrailSe");
+        trailSe.transform.position = s.position;
+
+        //var seObj = Instantiate(se, se.transform.position, Quaternion.identity, enemy.transform);
+        //trailSe = seObj.GetComponent<AudioSource>();
+
         var eBase = enemy.GetComponent<EnemyBase>();
-
-
-        float randAtkVal = UnityEngine.Random.Range(-0.5f, 0.5f);
+        const float randAtkRange = 0.5f;
+        float randAtkVal = UnityEngine.Random.Range(-randAtkRange, randAtkRange);
         eBase.AtkInterval = eData.AtkIntervalMax+ randAtkVal;
+
         eBase.Hp = eData.HpMax;
-        //eBase.movePointsDatas = movePoint;//nullになる場合？
 
-        GetComponent<CreateMagazine>().SetBulletPath("prefab/Bullet/JerryBullet", "Sound/Se/JerryShot");
-        GetComponent<CreateMagazine>().MagazineCreateInit(eData.magazineType,eData.bulletType, enemy);
-        //MagazineCreate(eData, pool, enemy);
+        GetComponent<CreateMagazine>().SetBullet(bulletGo, bulletSe);//SeとPrefab設定
+        GetComponent<CreateMagazine>().MagazineCreateInit
+            (eData.magazineType,eData.bulletType, enemy,eData.bulletTarget);
 
-        GetComponent<CreateMove>().MoveCreateInit(eData, movePoint, enemy);
-        //MoveCreate(eData, movePoint, enemy);
+
+        SelectCreateMove(eData.moveType[0], movePoint, enemy);
+
+
+        //GetComponent<CreateMove>().SetTraileSe(trailSe);
+        //GetComponent<CreateMove>().MoveCreateInit(eData, movePoint, enemy);
 
 
         eBase.enemyData = eData;
     }
 
-    //void SetPoolJerry(AttackType eData,PoolManager p)
-    //{
 
-    //    foreach (var magazine in eBase.baseMagazine)
-    //    {
-    //        magazine.Initialize();
+    void SelectCreateMove(MoveType moveType, Transform[] movePoint, GameObject go)
+    {
+        //var eBase = go.GetComponent<EnemyBase>();
 
-    //        if (magazine.createBullet == null)
-    //            magazine.createBullet = GetComponent<CreateBullet>();
+        var createMove=GetComponent<CreateMove>();
 
-    //        magazine.SetPool
+        //switch文へ
+        switch(moveType)
+        {
+            case MoveType.CarveMoveL:
+                createMove.InitFunc(MoveClassName.CarveMove, go);
 
+                go.GetComponent<CarveMove>().SetCarveVal(15f);
 
-    //    }
-    //}
+                createMove.CreateCarveMove(go.GetComponent<CarveMove>(), movePoint[0].position, go);
+                break;
 
-            //magazine.createBullet.poolManager = pool;
+            case MoveType.CarveMoveR:
+                createMove.InitFunc(MoveClassName.CarveMove, go);
 
+                go.GetComponent<CarveMove>().SetCarveVal(-15f);
 
-    //void MagazineCreate(EnemyData eData,PoolManager pool,GameObject enemy)
-    //{
-    //    var eBase = enemy.GetComponent<EnemyBase>();
+                createMove.CreateCarveMove(go.GetComponent<CarveMove>(), movePoint[0].position, go);
+                break;
 
-    //    //baseMagazine初期化　　攻撃クラスに持っていく？
-    //    for (int i = 0; i < (int)eData.attackType.Length; i++)
-    //    {
-    //        Type typeClass = Type.GetType(eData.attackType[i].ToString());
+            case MoveType.PointFloatMove:
+                createMove.InitFunc(MoveType.PointFloatMove, go);
 
-    //        if (typeClass != null)
-    //            eBase.baseMagazine.Add((BaseMagazine)enemy.AddComponent(typeClass));
-    //    }
+                //トレイルサウンド用
+                var seObj = Instantiate(trailSe, trailSe.transform.position, Quaternion.identity, go.transform);
+                seObj.GetComponent<AudioSource>().Play();
 
-    //    //////////////////
+                var pFloatMove = go.GetComponent<PointFloatMove>();
+                pFloatMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
+                {
+                    const float fadeSpeed = 1f;//1秒で止まる
+                    seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+                    //const float fadeSpeed = 0.001f;
+                    //StartCoroutine(MyLib.SoundFadeOffCoroutine(seObj.GetComponent<AudioSource>(), fadeSpeed));
+                });
+                //
 
-    //    //magazine.attackType
-    //    foreach (var magazine in eBase.baseMagazine)
-    //    {
-    //        //magazine.BulletLoad("prefab/EBulletNormalEX");
-    //        magazine.Initialize();
-            
-    //        //magazine.BulletLoad("prefab/Bullet/JerryBullet");
-    //        //magazine.SetPool(pool);
+                createMove.CreatePointFloatMove(pFloatMove, movePoint, go);
+                break;
 
-    //        var iTarget = magazine as ITarget;
-    //        if (iTarget != null)
-    //            iTarget.Target = GameObject.FindGameObjectWithTag("Player").transform;
-    //    }
-    //}
+            case MoveType.FloatVectorMove:
+                createMove.InitFunc(MoveType.FloatVectorMove, go);
 
-    //void MoveCreate(EnemyData eData, Transform[] movePoint, GameObject enemy)
-    //{
+                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go);
+                break;
 
-    //    var eBase = enemy.GetComponent<EnemyBase>();
+            case MoveType.PointCircleMove:
+                createMove.InitFunc(MoveType.PointCircleMove, go);
 
-    //    //baseMove初期化　移動クラスに持っていく？
-    //    for (int i = 0; i < (int)eData.moveType.Length; i++)
-    //    {
-    //        Type typeClass = Type.GetType(eData.moveType[i].ToString());
+                //トレイルサウンド用
+                var seCircleObj = Instantiate(trailSe, trailSe.transform.position, Quaternion.identity, go.transform);
+                seCircleObj.GetComponent<AudioSource>().Play();
 
-    //        if (typeClass != null)
-    //        {
-    //            eBase.baseMove.Add((BaseMove)enemy.AddComponent(typeClass));
-    //        }
+                var pCircleMove = go.GetComponent<PointCircleMove>();
+                pCircleMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
+                {
+                    const float fadeSpeed = 1f;//1秒で止まる
+                    seCircleObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
 
-    //    }
+                });
+                //
 
+                createMove.CreatePointCircleMove(pCircleMove, movePoint, go);
+                break;
 
+            default:
+                Debug.Log("MoveTypeDEFAULT");
+                break;
+        }
 
+    }
 
-    //    foreach (var move in eBase.baseMove)
-    //    {
-    //        //初期化
-    //        move.Initialize(enemy.GetComponent<Rigidbody2D>());
-
-
-
-
-
-
-    //        var pMove = move as PointFloatMove;
-
-    //        //pMove.IsPointMoveEnd.Skip(1).Subscribe(count => Debug.Log(count));
-    //        //関数がここで一度呼び出されるpMove.IsPointMoveEnd.Skip(1)初回をスキップする
-    //        pMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
-    //        {
-    //            enemy.GetComponent<EnemyBase>().SetEndMoveKeep();
-    //            enemy.GetComponent<JerryScr>().SetEndTrail();
-    //        }
-    //        );
-
-    //        pMove.TargetSet(movePoint);
-
-    //        pMove.speed = eData.Speed;
-    //        //pMove.SetMoveEndLength(eData.PointEndLength);
-    //    }
-
-
-
-    //    //}
-
-    //    //別クラスでフロートムーブ設定をする
-
-
-
-
-    //}
 }

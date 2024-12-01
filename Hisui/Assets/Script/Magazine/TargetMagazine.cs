@@ -7,17 +7,13 @@ public class TargetMagazine : BaseMagazine, ITarget
 
     public override void Initialize()
     {
-
-        //var player = GameObject.FindGameObjectWithTag("Player");
-        //targetTrans = player.transform;
-
     }
 
     public override void MagazineEnter()
     {
         //if (targetTrans == null) return;
         NormalShot();
-        MyLib.MyPlayOneSound(sePath, gameObject);//水滴
+        MyLib.MyPlayOneSound(arSe, gameObject.GetComponent<AudioSource>());//水滴
     }
     public override void MagazineUpdate()
     {
