@@ -11,7 +11,8 @@ public class EnemySpawnWave : MonoBehaviour
         CircleJerry,
         CircleOneJerry,
 
-        FloatVectorJerry,
+        FloatVectorJerryUp,
+        FloatVectorJerryDown,
         CircleMoveJerry,
 
 
@@ -31,6 +32,16 @@ public class EnemySpawnWave : MonoBehaviour
     public void UpdateCount()
     {
         spawnData[CountIndex].enemyCount--;
+
+        if(spawnData[CountIndex].enemyCount<=0)
+        {
+            CountIndex++;
+            if (CountIndex == spawnData.Length)
+                return;
+
+            EnemysWaveStart(CountIndex);
+
+        }
     }
 
 
@@ -38,18 +49,18 @@ public class EnemySpawnWave : MonoBehaviour
     //アップキャスト
     void Start()
     {
-        for (int i = 0; i < spawnData.Length; i++)
-            EnemysWaveStart(i);
+        //for (int i = 0; i < spawnData.Length; i++)
+            EnemysWaveStart(0);
 
     }
 
     void EnemysWaveStart(int idx)
     {
-        if (idx > 0)
-        {
-            CountSpawnAsyncWave(idx).Forget();
-            return;
-        }
+        //if (idx > 0)
+        //{
+        //    CountSpawnAsyncWave(idx).Forget();
+        //    return;
+        //}
 
         SpawnWave(idx);
     }
@@ -78,9 +89,9 @@ public class EnemySpawnWave : MonoBehaviour
         while (true)
         {
             DelaySpawnAsyncWave
-                (spawnData[No].spawnTime[spawnData[No].enemyCount] * spawnData[No].enemyCount + 1,//float型
+                (spawnData[No].spawnTime[spawnData[No].enemyCount] /** spawnData[No].enemyCount + 1*/,//float型　生成時間
 
-                spawnData[No].LoadState[spawnData[No].enemyCount],//ステート
+                spawnData[No].LoadState[spawnData[No].enemyCount],//敵の種類
 
                 //spawnData[No].spawns[spawnData[No].enemyCount],
                 spawnData[No].spawnLocations[spawnData[No].enemyCount],//生成座標
@@ -95,13 +106,13 @@ public class EnemySpawnWave : MonoBehaviour
 
     }
 
-    public async UniTask CountSpawnAsyncWave(int No)
-    {
-        await UniTask.WaitUntil(() => spawnData[No - 1].enemyCount <= 0);
+    //public async UniTask CountSpawnAsyncWave(int No)
+    //{
+    //    await UniTask.WaitUntil(() => spawnData[No - 1].enemyCount <= 0);
 
-        SpawnWave(No);
-        CountIndex++;
-    }
+    //    SpawnWave(No);
+    //    CountIndex++;
+    //}
 
 
     void Update()
@@ -148,8 +159,6 @@ public class EnemySpawnWave : MonoBehaviour
     public void ResetEnemySpawn()
     {
         //spawnData[0].enemyCount = 0;
-
-
 
         //colTrigger.isActiveTrigger = false;
     }

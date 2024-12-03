@@ -7,12 +7,6 @@ public class CreateBullet : MonoBehaviour
 {
     [SerializeField] public float bulletSpeed = 5f;
 
-
-    //[SerializeField] float carveAngleVal = 15f;
-    //[SerializeField] float carveRotSpeed = 1f;
-
-    //public EnemyData eData;
-
     [SerializeField]BulletType[] bulletType;
 
     GameObject bulletObj;
@@ -31,15 +25,11 @@ public class CreateBullet : MonoBehaviour
 
     public void AddBulletType(BaseBullet bullet, string bulletTypeName)
     {
-        //for (int i = 0; i < (int)bulletType.Length; i++)
-        //{
         Type typeClass = Type.GetType(bulletTypeName);
 
         if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
             bullet.gameObject.AddComponent(typeClass);
 
-
-        //}
     }
 
     public BaseBullet BulletAtk(float angle,Vector3 pos,Quaternion rot)
@@ -49,8 +39,6 @@ public class CreateBullet : MonoBehaviour
 
         if (bulletType.Length <= 0)
         {
-            //throw new System.Exception("バレットが指定されていない");
-            //Debug.Log("バレットタイプが無し");
             return null;
         }
 
@@ -58,12 +46,8 @@ public class CreateBullet : MonoBehaviour
         //バレットタイプを追加
         for (int i = 0; i < (int)bulletType.Length; i++)
         {
-            //Type typeClass = Type.GetType(bulletType[i].ToString());
 
             AddSetParamComponent(bulletType[i], bullet);
-
-            //if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
-            //   bullet.gameObject.AddComponent(typeClass);
 
         }
 
@@ -71,17 +55,11 @@ public class CreateBullet : MonoBehaviour
         bullet.GetComponent<NormalBullet>().speed = bulletSpeed;
         bullet.GetComponent<NormalBullet>().angle = angle;
         bullet.GetComponent<NormalBullet>().BulletInit();
-        //CreateCarve(bBullet.GetComponent<CarveModule>());
-
-        //CreateShake();
 
 
         var destroyer = bullet.GetComponent<ReleaseDestroyer>();
         destroyer.pool = poolManager;//キャラの種類ごとに分けるために引き渡し
         destroyer.IsRelease = false;//二重リリース回避用フラグ
-
-        //if (destroyer != null)
-           // destroyer.StartDestroyTimer(5);
 
 
         return bullet.GetComponent<NormalBullet>();
@@ -89,7 +67,6 @@ public class CreateBullet : MonoBehaviour
 
     void AddSetParamComponent(BulletType bulletType,GameObject bullet)
     {
-
         //左　カーブ弾の作成
         if (bulletType==BulletType.CarveModuleL)
         {

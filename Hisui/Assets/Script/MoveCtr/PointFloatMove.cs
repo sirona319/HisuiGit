@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using UniRx;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Audio;
 using static UnityEngine.GraphicsBuffer;
@@ -20,7 +21,7 @@ public class PointFloatMove : BaseMove
     bool isLoop = false;
     public ReactiveProperty<bool> IsPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe
 
-
+    float sinTime = 0;
     public void TargetSet(Transform[] t)
     {
         targets = t;
@@ -42,44 +43,20 @@ public class PointFloatMove : BaseMove
 
         IsKeepMove = true;
 
-        //se = gameObject.GetComponent<AudioSource>();
-        //ar = (AudioResource)Resources.Load("Sound/Se/JerryTrailSeRandom");
-        //var ss= (AudioResource)Resources.Load("Sound/Se/JerryTrailSe");
-        //se.resource = ss;
     }
 
     public override void MoveEnter()
     {
-        //
-        //var sound = (AudioRandomContainer)Resources.Load(trailSePath);
-        //sound.Play();
-        //
-        //var audioSource = gameObject.GetComponent<AudioSource>();
-        //var sound = (AudioResource)Resources.Load("prefab/Sound/JerryTrailSeRandom");
-        //audioSource.resource = sound;
-        //audioSource.Play();
-        //sound.GetComponent<AudioSource>().PlayOneShot(sound);
-        //audioSource.p(sound);
-        //se.loop = true;
 
-
-        //se.Play();
     }
-
-
 
     public override void MoveUpdate()
     {
-
-
-
-
-
-
         if (IsPointMoveEnd.Value)
         {
+            sinTime += Time.deltaTime;
             //エネミーにトレイルレンダーがついている場合持続する
-            MyLib.LoopMotionSinWait(transform, 0, floatSpeed);
+            MyLib.LoopMotionSinWait(sinTime,transform, 0, floatSpeed);
 
 
             //ワールド座標　上方向を向かせる

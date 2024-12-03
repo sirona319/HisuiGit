@@ -14,7 +14,8 @@ public abstract class BaseMove : MonoBehaviour
         PointFloatMove,
         PointCircleMove,
 
-        FloatVectorMove,
+        FloatVectorMoveUp,
+        FloatVectorMoveDown,
 
         CarveMoveR,
         CarveMoveL,
@@ -26,6 +27,7 @@ public abstract class BaseMove : MonoBehaviour
     public enum MoveClassName
     {
         CarveMove,
+        FloatVectorMove,
     }
 
     protected Rigidbody2D m_rb;

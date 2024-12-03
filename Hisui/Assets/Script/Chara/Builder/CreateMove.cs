@@ -2,22 +2,15 @@
 using System;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static BaseMagazine;
 using static BaseMove;
+using static UnityEngine.GraphicsBuffer;
 
 public class CreateMove : MonoBehaviour
 {
-
-    //string trailSePath;
-
-    //AudioSource traileSe;
-
     float speed = 7;
 
-    //public void SetTraileSe(AudioSource audioS)
-    //{
-    //    traileSe = audioS;
-    //}
     public void MoveCreateInit(EnemyData eData, Transform[] movePoint, GameObject go)
     {
         var eBase = go.GetComponent<EnemyBase>();
@@ -25,38 +18,7 @@ public class CreateMove : MonoBehaviour
         //baseMove初期化　移動クラスに持っていく？
         for (int i = 0; i < (int)eData.moveType.Length; i++)
         {
-
             AddSetParamComponent(eData.moveType[i], movePoint, go);
-            //Type typeClass = Type.GetType(eData.moveType[i].ToString());
-
-            //if (typeClass != null)
-            //{
-            //    eBase.baseMove.Add((BaseMove)enemy.AddComponent(typeClass));
-            //}
-
-        }
-
-        return;
-        foreach (var move in eBase.baseMove)
-        {
-            //初期化
-            //move.Initialize(go.GetComponent<Rigidbody2D>());
-
-
-            CreatePointFloatMove(move as PointFloatMove, movePoint, go);
-            //if (CreatePointFloatMove(move as PointFloatMove, movePoint, enemy, eData))
-            // break;
-
-            CreateFloatVectorMove(move as FloatVectorMove, movePoint[0].position, go);
-            //if (CreateFloatVectorMove(move as FloatVectorMove, movePoint[0].position, enemy))
-            //break;
-
-            CreatePointCircleMove(move as PointCircleMove, movePoint, go);
-            //if (CreatePointCircleMove(move as PointCircleMove, movePoint, enemy, eData))
-            //break;
-
-            CreateCarveMove(move as CarveMove, movePoint[0].position, go);
-
         }
 
     }
@@ -93,9 +55,20 @@ public class CreateMove : MonoBehaviour
 
             CreatePointFloatMove(go.GetComponent<PointFloatMove>(), movePoint, go);
         }
-        else if(moveType == MoveType.FloatVectorMove)
+        else if(moveType == MoveType.FloatVectorMoveUp)
         {
-            InitFunc(MoveType.FloatVectorMove, go);
+            InitFunc(MoveClassName.FloatVectorMove, go);
+
+            go.GetComponent<FloatVectorMove>().addSinTime=Time.deltaTime;
+
+            CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go);
+
+        }
+        else if (moveType == MoveType.FloatVectorMoveDown)
+        {
+            InitFunc(MoveClassName.FloatVectorMove, go);
+
+            go.GetComponent<FloatVectorMove>().addSinTime = -Time.deltaTime;
 
             CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go);
 
@@ -108,14 +81,6 @@ public class CreateMove : MonoBehaviour
 
         }
 
-        //Type typeClass = Type.GetType(moveType.ToString());
-
-        //if (typeClass != null)
-        //{
-        //    eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
-
-        //    go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
-        //}
     }
 
     public bool CreatePointFloatMove(PointFloatMove pFloatMove,Transform[] movePoint,GameObject go)
@@ -149,6 +114,9 @@ public class CreateMove : MonoBehaviour
 
         go.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 
+        //
+        var spriteTrans = go.transform.Find("Sprite").gameObject.transform;
+        spriteTrans.rotation = Quaternion.FromToRotation(Vector3.up, transform.up);
 
 
         fVectorMove.floatVector = dir.normalized * moveVal;
@@ -157,6 +125,22 @@ public class CreateMove : MonoBehaviour
 
         go.GetComponent<EnemyBase>().SetIsAttack();
 
+        //Destroy(go.GetComponent<CreateDeadSound>());
+
+
+        //go.transform.Find("Sprite").gameObject.transform.rotation = 
+        //    Quaternion.FromToRotation(Vector3.up, go.transform.position+ go.transform.up);
+
+        //spriteTrans.rotation = 
+        //    MyLib.TargetRotation2D((go.transform.position + go.transform.up), spriteTrans, 10f);
+        //int i = 20;
+
+        //while (i > 0)
+        //{
+        //    spriteTrans.rotation = MyLib.GetAngleRotationFuncs(Vector3.up, spriteTrans, 20f);
+        //    i--;
+        //}
+
         return true;
     }
 
@@ -164,8 +148,7 @@ public class CreateMove : MonoBehaviour
     {
         if (pCircleMove == null) return false;
         const float pCircleEndLen = 2f;
-        //pMove.IsPointMoveEnd.Skip(1).Subscribe(count => Debug.Log(count));
-        //関数がここで一度呼び出されるpMove.IsPointMoveEnd.Skip(1)初回をスキップする
+
         pCircleMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool => go.GetComponent<EnemyBase>().SetEndMoveKeep());
 
         pCircleMove.TargetSet(movePoint);
@@ -187,7 +170,6 @@ public class CreateMove : MonoBehaviour
         go.GetComponent<EnemyBase>().SetIsAttack();
         return true;
     }
-
 
 
     public void InitFunc(MoveType moveType, GameObject go)

@@ -10,18 +10,6 @@ public class ReleaseDestroyer : MonoBehaviour
 
     public bool IsRelease = false;
 
-    //public void StartDestroyTimer(float time = DESTIME)
-    //{
-    //    //StartCoroutine(DestroyTimer(time));
-    //}
-
-    //IEnumerator DestroyTimer(float time)
-    //{
-    //    yield return new WaitForSeconds(time);
-
-    //    PoolDestroy();
-    //}
-
     public void PoolDestroy()
     {
         //var pool = GetComponent<Destroyer>().PoolManager;

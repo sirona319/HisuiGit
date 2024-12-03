@@ -19,16 +19,25 @@ MonoBehaviour:
     magazineType: 00000000
     bulletType: 0000000001000000
     speed: 7
-    hpMax: 1
+    hpMax: 3
     atkIntervalMax: 1
     bulletTarget: 0
-  - Id: FloatVectorJerry
+  - Id: FloatVectorJerryUp
     builderType: 0
     moveType: 02000000
     magazineType: 00000000
     bulletType: 00000000
-    speed: 8
-    hpMax: 1
+    speed: 2
+    hpMax: 3
+    atkIntervalMax: 1
+    bulletTarget: 0
+  - Id: FloatVectorJerryDown
+    builderType: 0
+    moveType: 03000000
+    magazineType: 00000000
+    bulletType: 00000000
+    speed: 2
+    hpMax: 3
     atkIntervalMax: 1
     bulletTarget: 0
   - Id: CircleJerry

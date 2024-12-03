@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6847508142168106254}
   - component: {fileID: 6537683953770663733}
   m_Layer: 0
-  m_Name: JerryDestroy
+  m_Name: JerryDestroySound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

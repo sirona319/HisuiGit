@@ -38,24 +38,15 @@ public class CreateMagazine : MonoBehaviour
         for (int i = 0; i < (int)mType.Length; i++)
         {
             AddSetParamComponent(mType[i], go);
-            
-
-            //    Type typeClass = Type.GetType(mType[i].ToString());
-
-            //if (typeClass != null)
-            //    eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(typeClass));
         }
 
 
 
-        //左中央　固定オブジェクト
-        //上下左右　ななめ　Instantiate　で空のオブジェクトを子階層に生成　Targetに入れる
-
+        //ななめ
         foreach (var magazine in eBase.baseMagazine)
         {
             magazine.Initialize();
 
-            //if(magazine.createBullet==null)
             magazine.createBullet = GetComponent<CreateBullet>();
 
             magazine.createBullet.LoadPath(bulletGo);
@@ -76,28 +67,25 @@ public class CreateMagazine : MonoBehaviour
         //左　カーブ弾の作成
         if (magazineType == MagazineType.CircleMagazineL)
         {
-
             Type carveClass = Type.GetType(MagazineClassName.CircleMagazine.ToString());
             if (go.gameObject.GetComponent(carveClass) == null)
                 eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(carveClass));
 
             const int cirvleVal = 10;
             go.GetComponent<CircleMagazine>().angleChangeVal = -cirvleVal;
-            //go.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
+
             return;
         }
         //左　カーブ弾の作成
         else if (magazineType == MagazineType.CircleMagazineR)
         {
-
             Type carveClass = Type.GetType(MagazineClassName.CircleMagazine.ToString());
             if (go.gameObject.GetComponent(carveClass) == null)
                 eBase.baseMagazine.Add((BaseMagazine)go.AddComponent(carveClass));
 
-
             const int cirvleVal = 10;
             go.GetComponent<CircleMagazine>().angleChangeVal = cirvleVal;
-            //go.GetComponent<CarveModule>().InitParam(carveVal, rotVal);
+
             return;
         }
 

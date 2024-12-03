@@ -4,6 +4,7 @@ public class FloatMove : BaseMove
 {
     [SerializeField] float floatSpeed = 0.005f;
 
+    float sinTime = 0;
     public override void Initialize(Rigidbody2D rb)
     {
         m_rb = rb;
@@ -21,7 +22,7 @@ public class FloatMove : BaseMove
 
     public override void MoveUpdate()
     {
-        MyLib.LoopMotionSinWait(transform,0, floatSpeed);
+        MyLib.LoopMotionSinWait(sinTime,transform, 0, floatSpeed);
 
         //transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////回転
 

@@ -10,90 +10,50 @@ using static UnityEngine.ParticleSystem;
 
 public sealed class JerryBuilder : BaseBuilder
 {
-    #region //
 
-    //BaseJerryEnemyFactory _factory = null;
+    [SerializeField] GameObject jerryGo;
 
-    ////Transform startT;
-    //Transform[] targetPosArray;
 
-    ////public JerryBuilder(BaseJerryEnemyFactory factory)
-    ////{
-    ////    _factory = factory;
-    ////}
-
-    //public void Init(BaseJerryEnemyFactory factory)
-    //{
-    //    _factory = factory;
-
-    //}
-
-    //public void InitData(Transform[] point)
-    //{
-    //    targetPosArray = point;
-    //}
-
-    //var enemy = _factory.Load(s);
-
-    //enemy.enemyData = _factory.SetData();
-
-    //enemy.baseMagazine = _factory.SetMagazine();
-
-    //enemy.baseMove = _factory.SetMove(targetPosArray);
-
-    ////foreach (var move in enemy.baseMove)
-    ////   move.SetRb(enemy.GetComponent<Rigidbody2D>());
-
-    //enemy.Hp = _factory.SetMaxHp();
-
-    #endregion
-
-    //float speed = 7;
-
-    [SerializeField] GameObject jerryGo;//= "prefab/Enemy/Jerry/NormalJerry";
-
-    //[SerializeField] string trailSePath = "prefab/Sound/JerryTrailSe";
     [SerializeField] GameObject trailSe;
 
+    [SerializeField] GameObject bulletGo;
 
-    [SerializeField] GameObject bulletGo;//= "prefab/Bullet/JerryBullet";
-    //[SerializeField] string bulletSePath = "Sound/Se/JerryShot";
     [SerializeField] AudioResource bulletSe;
 
-    //[SerializeField] AudioResource ar;
-    // [SerializeField] AudioSource ass;
-    //[SerializeField] AudioClip ac;
+    [SerializeField] CreateDeadSound createSound;
+
 
     public override void Build(EnemyData eData, Transform s, Transform[] movePoint)
     {
-        //"prefab/Bullet/JerryBullet"
-        //var loadObj = (GameObject)Resources.Load(jerryPath);
+
         var enemy = Instantiate(jerryGo, s.position, s.rotation);
 
+        //死亡時のオブジェクトコンポーネント
+        enemy.AddComponent<CreateDeadSound>();
+
         ////トレイルse用オブジェクト生成
-        trailSe = (GameObject)Resources.Load("prefab/Sound/JerryTrailSe");
+        //trailSe = (GameObject)Resources.Load("prefab/Sound/JerryTrailSe");
         trailSe.transform.position = s.position;
 
-        //var seObj = Instantiate(se, se.transform.position, Quaternion.identity, enemy.transform);
-        //trailSe = seObj.GetComponent<AudioSource>();
-
+        //ステータスの設定
         var eBase = enemy.GetComponent<EnemyBase>();
         const float randAtkRange = 0.5f;
         float randAtkVal = UnityEngine.Random.Range(-randAtkRange, randAtkRange);
-        eBase.AtkInterval = eData.AtkIntervalMax+ randAtkVal;
+        eBase.AtkInterval = eData.AtkIntervalMax+ randAtkVal;　　//初回攻撃の設定できる？
 
         eBase.Hp = eData.HpMax;
+        //
 
+        //マガジン設定
         GetComponent<CreateMagazine>().SetBullet(bulletGo, bulletSe);//SeとPrefab設定
         GetComponent<CreateMagazine>().MagazineCreateInit
             (eData.magazineType,eData.bulletType, enemy,eData.bulletTarget);
 
-
+        //ムーブ設定
         SelectCreateMove(eData.moveType[0], movePoint, enemy);
 
 
-        //GetComponent<CreateMove>().SetTraileSe(trailSe);
-        //GetComponent<CreateMove>().MoveCreateInit(eData, movePoint, enemy);
+
 
 
         eBase.enemyData = eData;
@@ -102,7 +62,6 @@ public sealed class JerryBuilder : BaseBuilder
 
     void SelectCreateMove(MoveType moveType, Transform[] movePoint, GameObject go)
     {
-        //var eBase = go.GetComponent<EnemyBase>();
 
         var createMove=GetComponent<CreateMove>();
 
@@ -145,8 +104,18 @@ public sealed class JerryBuilder : BaseBuilder
                 createMove.CreatePointFloatMove(pFloatMove, movePoint, go);
                 break;
 
-            case MoveType.FloatVectorMove:
-                createMove.InitFunc(MoveType.FloatVectorMove, go);
+            case MoveType.FloatVectorMoveUp:
+                createMove.InitFunc(MoveClassName.FloatVectorMove, go);
+
+                go.GetComponent<FloatVectorMove>().addSinTime = Time.deltaTime;
+
+                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go);
+                break;
+
+            case MoveType.FloatVectorMoveDown:
+                createMove.InitFunc(MoveClassName.FloatVectorMove, go);
+
+                go.GetComponent<FloatVectorMove>().addSinTime = -Time.deltaTime;
 
                 createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go);
                 break;

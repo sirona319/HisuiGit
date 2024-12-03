@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Jerry_Dead : StateChildBase
 {
-    const float DEADTIME = 0.1f;
+    //const float DEADTIME = 0.1f;
 
     private ParticleSystem deadParticle;//パーティクル
     AudioSource deadSound;
@@ -14,25 +14,25 @@ public class Jerry_Dead : StateChildBase
 
         deadParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/Flash_star_ellow_green");
 
-        deadSound = MyLib.GetComponentLoad<AudioSource>("prefab/Sound/JerryDestroy");
+        deadSound = MyLib.GetComponentLoad<AudioSource>("prefab/Sound/JerryDestroySound");
     }
 
     public override void OnEnter()
     {
         stateTime = 0f;
 
-        //var audioSource = gameObject.GetComponent<AudioSource>();
-        ////audioSource.pitch = -1f;
-        //var sound = (AudioClip)Resources.Load("Sound/SE/JerryDestroy");
-        //audioSource.PlayOneShot(sound);
-
-
 
         Instantiate(deadParticle, transform.position, Quaternion.identity);
 
-        var seGo = Instantiate(deadSound, transform.position, Quaternion.identity);
-        seGo.GetComponent<SoundEndDestroy>().StartDestroyFlg();        //削除登録
+        //var destroySound = transform.Find("JerryDestroySound").GetComponent<AudioSource>();
+        //destroySound.volume = 1f;
+        //destroySound.Play();
 
+        //
+        //var seGo = Instantiate(deadSound, transform.position, Quaternion.identity);
+        //seGo.GetComponent<SoundEndDestroy>().StartDestroyFlg();//削除登録
+        if(GetComponent<CreateDeadSound>() != null)
+        GetComponent<CreateDeadSound>().Create(deadSound);
 
 
         GameObject spawn = GameObject.Find("WaveSpawn");
@@ -41,7 +41,9 @@ public class Jerry_Dead : StateChildBase
         if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
             GameSceneControl.I.UpdateEnemyCount();
 
-        gameObject.SetActive(false);
+        //サウンドがならない　原因
+        //gameObject.SetActive(false);
+        Destroy(this.gameObject);
 
         //StartCoroutine(MyLib.DelayCoroutine(DEADTIME, () =>
         //{

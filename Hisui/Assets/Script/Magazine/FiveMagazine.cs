@@ -8,7 +8,6 @@ public class FiveMagazine : BaseMagazine, ITarget
 
     public override void Initialize()
     {
-
         //var player = GameObject.FindGameObjectWithTag("Player");
         //targetTrans = player.transform;
 

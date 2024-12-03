@@ -50,7 +50,6 @@ public class PointCircleMove : BaseMove
 
     public override void Initialize(Rigidbody2D rb)
     {
-        //base.Initialize(rb);
         m_rb = rb;
         IsKeepMove = true;
 

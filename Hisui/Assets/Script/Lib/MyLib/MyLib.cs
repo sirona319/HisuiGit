@@ -16,16 +16,17 @@ public static class MyLib
     #region  sin移動
 
     //上下　浮遊のような動き
-    public static void LoopMotionSinWait(Transform t,float addX,float addY)
+    public static void LoopMotionSinWait(float sinTime,Transform t,float addX,float addY)
     {
-        float sin = Mathf.Sin(Time.time);
+        //float sin = Mathf.Sin(Time.time);
+        float sin = Mathf.Sin(sinTime);
         t.position = new Vector3(t.position.x + (sin * addX), t.position.y+(sin * addY), 0);
     }
 
     //Vector3で移動方向　周期的なカーブ移動
-    public static void LoopMotionSinVector(Transform t, Vector3 addVec/*float addX, float addY*/, Vector3 v)
+    public static void LoopMotionSinVector(float sinTime, Transform t, Vector3 addVec/*float addX, float addY*/, Vector3 v)
     {
-        float sin = Mathf.Sin(Time.time);
+        float sin = Mathf.Sin(sinTime);
         t.position = new Vector3(t.position.x + (sin * addVec.x), t.position.y + (sin * addVec.y), 0);
 
         var tp = t.position;

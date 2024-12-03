@@ -211,15 +211,15 @@ public class EnemyBase : MonoBehaviour
     public void SetEndMoveKeep()
     {
         //if (!moveEnd) return;
-        GetComponent<JerryScr>().IsAttack = true;
+        IsAttack = true;
 
-        GetComponent<JerryScr>().IsMove = true;
+        IsMove = true;
 
     }
 
     public void SetIsAttack()
     {
-        GetComponent<JerryScr>().IsAttack = true;
+        IsAttack = true;
     }
 
     //private void OnTriggerExit(Collider other)
