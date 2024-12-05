@@ -16,7 +16,7 @@ public class PlayerScr2D : MonoBehaviour
 
     #region　入力
     Rigidbody2D m_rb;                    //剛体
-    [SerializeField] float SPEED = 3f;   //移動速度
+    [SerializeField] float speed = 3f;   //移動速度
     [SerializeField] Vector2 movement;
     #endregion
 
@@ -99,7 +99,7 @@ public class PlayerScr2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        var mPos = MoveLimit(m_rb.position + movement * SPEED * Time.fixedDeltaTime);
+        var mPos = MoveLimit(m_rb.position + movement * speed * Time.fixedDeltaTime);
 
         // 物理計算による移動
 //        if (Input.GetKey(KeyCode.W) ||

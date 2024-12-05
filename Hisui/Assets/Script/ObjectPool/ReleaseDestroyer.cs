@@ -57,7 +57,6 @@ public class ReleaseDestroyer : MonoBehaviour
             return;
         }
 
-
     }
 
     private void OnTriggerExit2D(Collider2D other)

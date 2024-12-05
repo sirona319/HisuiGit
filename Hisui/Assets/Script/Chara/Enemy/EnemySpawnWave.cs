@@ -13,8 +13,12 @@ public class EnemySpawnWave : MonoBehaviour
 
         FloatVectorJerryUp,
         FloatVectorJerryDown,
+        FloatVectorJerryUpMini,
+        FloatVectorJerryDownMini,
         CircleMoveJerry,
 
+        DirectionMoveJerry,
+        //PlayerFallJerry,
 
     }
 

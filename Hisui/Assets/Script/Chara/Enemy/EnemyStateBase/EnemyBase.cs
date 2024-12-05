@@ -26,7 +26,7 @@ public class EnemyBase : MonoBehaviour
     public bool IsMove { get; private set; } = true;
 
 
-    public EnemyData enemyData;//スクリプタルオブジェクト　リスト中身
+    //public EnemyData enemyData;//スクリプタルオブジェクト　リスト中身
 
 
     public List<BaseMagazine> baseMagazine=new ();
@@ -34,7 +34,11 @@ public class EnemyBase : MonoBehaviour
 
 
     public int Hp = 0;
-    [SerializeField] public float AtkInterval=1;
+    [SerializeField] public float AtkIntervalMax;
+    [SerializeField] public float AtkInterval;
+
+
+    ParticleSystem dmgParticle;//ダメージパーティクル
 
 
     /// <summary>
@@ -62,7 +66,7 @@ public class EnemyBase : MonoBehaviour
     //    foreach (var magazine in baseMagazine)
     //        if (magazine.GetType().FullName == atkType.ToString())
     //            magazine.MagazineUpdate();
-        
+
     //}
     public void AttackMagazineUpdateAll()
     {
@@ -89,7 +93,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Init()
     {
-
+        dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
         ////baseMagazine初期化　　攻撃クラスに持っていく？
         //for (int i = 0; i < (int)enemyData.attackType.Length; i++)
         //{
@@ -169,33 +173,41 @@ public class EnemyBase : MonoBehaviour
     //}
     #endregion
 
+
     public virtual void EnemyDamage(int damage)
     {
 
+
+
         if (IsDead) return;
 
+ 
 
-        Debug.Log(gameObject.name + "へのダメージ" + damage.ToString());
+        //Debug.Log(gameObject.name + "へのダメージ" + damage.ToString());
         Hp -= damage;        //HP減少処理
 
         IsDamage = true;
 
         if (Hp <= 0)
+        {
             IsDead = true;
+            return;
+        }
+
+        //ダメージパーティクル表示
+        Instantiate(dmgParticle, transform.position, Quaternion.identity);
     }
 
 
 
-    public int ReturnStateTypeDamage()
+    public bool ReturnStateTypeDead()
     {
         //const int DEAD = 2;
+        if (IsDead)return true;
 
-        //if (IsDead)
-        //return DEAD;
-
-        const int DAMAGESTATE = 1;
-
-        return DAMAGESTATE;
+        //const int DAMAGESTATE = 1;
+        //return DAMAGESTATE;
+        return false;
 
     }
 

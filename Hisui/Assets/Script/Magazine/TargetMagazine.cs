@@ -3,7 +3,7 @@
 public class TargetMagazine : BaseMagazine, ITarget
 {
 
-    public Transform Target { get; set; }
+    [SerializeField]public Transform Target { get; set; }
 
     public override void Initialize()
     {

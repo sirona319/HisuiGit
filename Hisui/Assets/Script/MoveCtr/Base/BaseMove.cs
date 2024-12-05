@@ -17,9 +17,13 @@ public abstract class BaseMove : MonoBehaviour
         FloatVectorMoveUp,
         FloatVectorMoveDown,
 
+        FloatVectorMoveUpMini,
+        FloatVectorMoveDownMini,
+
         CarveMoveR,
         CarveMoveL,
 
+        DirectionMove
         //randomApoint,
 
     }

@@ -5,7 +5,7 @@ public class JerryScr : EnemyBase
 
     void Start()
     {
-
+        base.Init();
         stateController.Initialize((int)JerryCtr.State.Jerry_Wait);
     }
 
@@ -32,8 +32,6 @@ public class JerryScr : EnemyBase
 
     }
 
-
-
     public int JerryReturnStateType(int stateType)
     {
         if (AtkInterval <= 0)
@@ -51,15 +49,30 @@ public class JerryScr : EnemyBase
     {
         var color=GetComponent<TrailRenderer>().material.GetColor("_EmissionColor");
 
-        //GetComponent<TrailRenderer>().material.SetVector("_EmissionColor", aa);
+        //StartCoroutine(MyLib.LoopDelayCoroutine(Time.deltaTime, () =>
+        //{
+        //    IntensityVal -= TrailEndSpeed;//Time.deltaTime;
+        //    if (IntensityVal <= 0)
+        //    {
+        //        IntensityVal = 0;
+        //        //return;
+        //    }
 
-        //GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", aa*1);
-        StartCoroutine(MyLib.LoopDelayCoroutineIf(Time.deltaTime, (IntensityVal - TrailEndSpeed) <= 0, () =>
+
+        //    GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", color * IntensityVal);
+        //}));
+
+
+
+        StartCoroutine(MyLib.LoopDelayCoroutineIf(Time.deltaTime, IntensityVal > 0, () =>
         {
             IntensityVal -= TrailEndSpeed;//Time.deltaTime;
             if (IntensityVal <= 0)
+            {
                 IntensityVal = 0;
-            //return;
+                //return;
+            }
+
 
             GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", color * IntensityVal);
         }));
@@ -74,6 +87,22 @@ public class JerryScr : EnemyBase
         //GetComponent<JerryScr>().IsAttack = true;
 
         //GetComponent<JerryScr>().IsMove = true;
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            //プレイヤーへのダメージ処理
+            other.transform.GetComponent<PlayerScr2D>().PlayerDamage(1);
+
+            Debug.Log("攻撃がPlayerにHIT Enemyに当たった");
+
+            //PoolDestroy();
+            return;
+        }
 
     }
 

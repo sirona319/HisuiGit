@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7402852724860177887
+--- !u!1 &6655376382840183679
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,104 +8,62 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 588530983902440453}
-  - component: {fileID: 5571344835592774876}
+  - component: {fileID: 3488651075229817168}
+  - component: {fileID: 7895433022813644078}
   m_Layer: 0
-  m_Name: WaveSpawn (1)
+  m_Name: WaveSpawn 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &588530983902440453
+--- !u!4 &3488651075229817168
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7402852724860177887}
+  m_GameObject: {fileID: 6655376382840183679}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.46, y: 9.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6720634672438958408}
+  - {fileID: 923106405787304428}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5571344835592774876
+--- !u!114 &7895433022813644078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7402852724860177887}
+  m_GameObject: {fileID: 6655376382840183679}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f0a57a35150db4fb070fa2f3bb275e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jerryBuilder: {fileID: 8136650383865289427}
+  jerryBuilder: {fileID: 2405139526812222071}
   spawnData:
-  - DataName: WAVE FloatVector
-    enemyCount: 0
-    spawnTime:
-    - 0
-    LoadState: 04000000
-    spawnLocations:
-    - {fileID: 0}
-    movePointsSet:
-    - childArray:
-      - {fileID: 0}
-  - DataName: WAVENormal0
+  - DataName: WAVE FloatVectorMini
     enemyCount: 0
     spawnTime:
     - 0
     - 0
-    - 0
-    - 0
-    LoadState: 00000000000000000000000000000000
+    - 4
+    - 4
+    - 8
+    - 8
+    - 12
+    - 12
+    LoadState: 0700000006000000070000000600000007000000060000000700000006000000
     spawnLocations:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    movePointsSet:
-    - childArray:
-      - {fileID: 0}
-    - childArray:
-      - {fileID: 0}
-    - childArray:
-      - {fileID: 0}
-    - childArray:
-      - {fileID: 0}
-  - DataName: WAVENormal1
-    enemyCount: 0
-    spawnTime:
-    - 0
-    - 0
-    - 0
-    LoadState: 000000000000000000000000
-    spawnLocations:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    movePointsSet:
-    - childArray:
-      - {fileID: 0}
-    - childArray:
-      - {fileID: 0}
-    - childArray:
-      - {fileID: 0}
-  - DataName: WAVENormal2
-    enemyCount: 0
-    spawnTime:
-    - 0
-    - 0
-    - 0
-    - 0
-    LoadState: 00000000000000000000000000000000
-    spawnLocations:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -119,13 +77,21 @@ MonoBehaviour:
       - {fileID: 0}
     - childArray:
       - {fileID: 0}
---- !u!1001 &6922862074462259197
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+--- !u!1001 &3573896174553931609
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 588530983902440453}
+    m_TransformParent: {fileID: 3488651075229817168}
     m_Modifications:
     - target: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
       propertyPath: m_Name
@@ -176,15 +142,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024be932819cfb34aba1af473714f11a, type: 3}
---- !u!4 &6720634672438958408 stripped
+--- !u!4 &923106405787304428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4419878139958468277, guid: 024be932819cfb34aba1af473714f11a, type: 3}
-  m_PrefabInstance: {fileID: 6922862074462259197}
+  m_PrefabInstance: {fileID: 3573896174553931609}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8136650383865289427 stripped
+--- !u!114 &2405139526812222071 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1223222125076077870, guid: 024be932819cfb34aba1af473714f11a, type: 3}
-  m_PrefabInstance: {fileID: 6922862074462259197}
+  m_PrefabInstance: {fileID: 3573896174553931609}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

@@ -5,7 +5,7 @@ public class Jerry_Dead : StateChildBase
 {
     //const float DEADTIME = 0.1f;
 
-    private ParticleSystem deadParticle;//パーティクル
+    ParticleSystem deadParticle;//パーティクル
     AudioSource deadSound;
 
     public override void Initialize(int stateNo)
@@ -32,7 +32,7 @@ public class Jerry_Dead : StateChildBase
         //var seGo = Instantiate(deadSound, transform.position, Quaternion.identity);
         //seGo.GetComponent<SoundEndDestroy>().StartDestroyFlg();//削除登録
         if(GetComponent<CreateDeadSound>() != null)
-        GetComponent<CreateDeadSound>().Create(deadSound);
+            GetComponent<CreateDeadSound>().Create(deadSound);
 
 
         GameObject spawn = GameObject.Find("WaveSpawn");

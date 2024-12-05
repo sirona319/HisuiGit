@@ -375,7 +375,7 @@ public static class MyLib
     }
 
     /// <summary>
-    /// 一定時間後に処理を定期的に呼び出すコルーチン
+    /// 一定時間後に処理を定期的に呼び出すコルーチン　存在する限りずっと
     /// </summary>
     /// <param name="seconds">秒</param>
     /// <param name="action">関数内の処理</param>
@@ -393,24 +393,25 @@ public static class MyLib
     }
 
     /// <summary>
-    /// 一定時間後に処理を定期的に呼び出すコルーチン
+    /// 一定時間後に処理を定期的に呼び出すコルーチン　条件ででループ終了
     /// </summary>
     /// <param name="seconds">秒</param>
     /// <param name="action">関数内の処理</param>
     /// <returns></returns>
     public static IEnumerator LoopDelayCoroutineIf(float seconds, bool IfBreak, Action action)
     {
-        while (true)
+        while (IfBreak)
         {
 
             yield return new WaitForSeconds(seconds);
             action?.Invoke();
 
-            yield return new WaitWhile(() => IfBreak);
-            break;
-
+            //yield return new WaitUntil(() => IfBreak);
+            //break;
 
         }
+
+        Debug.Log("ループコルーチンの終了");
 
     }
 

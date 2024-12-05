@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using static BaseBullet;
 using static BaseMagazine;
+using static CreateBullet;
 using static EnemyData;
 using static UnityEngine.GraphicsBuffer;
 
@@ -28,11 +29,15 @@ public class CreateMagazine : MonoBehaviour
     public void MagazineCreateInit
         (MagazineType[] mType,BulletType[] bType,GameObject go, BulletTarget bulletTarget)
     {
-        
+        if (mType.Length <= 0)
+        {
+            Debug.Log("マガジンタイプが設定なし");
+            return;
+        }
         var eBase = go.GetComponent<EnemyBase>();//CharaBaseにする　最終的に？
 
-        if (mType.Length <= 0)
-            Debug.Log("マガジンタイプが設定されていない");
+
+
 
         //baseMagazine初期化
         for (int i = 0; i < (int)mType.Length; i++)
@@ -54,7 +59,7 @@ public class CreateMagazine : MonoBehaviour
             magazine.SetLoadSe(bulletSe);
 
             //ターゲットを設定プレイヤー　エネミー用？
-            var t=magazine as ITarget;
+            var t = magazine as ITarget;
             TargetSet(t,bulletTarget,go);
         }
         

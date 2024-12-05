@@ -5,6 +5,22 @@ using static BaseBullet;
 
 public class CreateBullet : MonoBehaviour
 {
+    public enum BulletTarget
+    {
+        Player,
+        LeftMiddle,
+        Up,
+        Right,
+        Left,
+        Down,
+
+        //斜め　四つ　
+        //一番近いエネミーなど？　遠い敵　レーザー
+
+
+    }
+
+
     [SerializeField] public float bulletSpeed = 5f;
 
     [SerializeField]BulletType[] bulletType;

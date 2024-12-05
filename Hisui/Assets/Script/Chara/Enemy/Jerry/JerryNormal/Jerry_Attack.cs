@@ -28,8 +28,10 @@ public class Jerry_Attack : StateChildBase
 
         stateTime += Time.deltaTime;
 
-        //if (GetComponent<EnemyBase>().IsDamage)
-         //   return GetComponent<JerryScr>().ReturnStateTypeDamage();
+        if (GetComponent<EnemyBase>().IsDamage)
+            if (GetComponent<EnemyBase>().ReturnStateTypeDead())
+                return (int)JerryCtr.State.Jerry_Dead;
+
 
 
 
@@ -48,7 +50,7 @@ public class Jerry_Attack : StateChildBase
         if (stateTime > GetComponent<JerryScr>().baseMagazine[0].shotTime)
         {
             float randAtkVal = UnityEngine.Random.Range(-0.5f, 0.5f);
-            GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().enemyData.AtkIntervalMax+ randAtkVal;
+            GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().AtkIntervalMax+ randAtkVal;
             return GetComponent<JerryScr>().JerryReturnStateType(StateType);
         }
 

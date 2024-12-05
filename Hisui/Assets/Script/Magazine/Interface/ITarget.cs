@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public interface ITarget
 {
-    Transform Target { get; set; }
+    [SerializeField] Transform Target { get; set; }
 }

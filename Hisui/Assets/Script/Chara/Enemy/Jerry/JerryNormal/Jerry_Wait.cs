@@ -21,11 +21,10 @@ public class Jerry_Wait : StateChildBase
 
     public override int StateUpdate()
     {
-
-
-
         if (GetComponent<EnemyBase>().IsDamage)
-            return GetComponent<JerryScr>().ReturnStateTypeDamage();
+            if (GetComponent<EnemyBase>().ReturnStateTypeDead())
+                return (int)JerryCtr.State.Jerry_Dead;
+        
 
         stateTime += Time.deltaTime;
 

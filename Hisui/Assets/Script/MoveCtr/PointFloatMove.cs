@@ -125,5 +125,19 @@ public class PointFloatMove : BaseMove
 
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
 
+        if (other.CompareTag("ExitErea"))
+        {
+            if (gameObject.tag == "Enemy")
+            {
+                gameObject.GetComponent<CreateDeadSound>().IsSoundEnable = false;
+                gameObject.transform.GetComponent<EnemyBase>().EnemyDamage(10);
+                return;
+            }
+
+        }
+
+    }
 }

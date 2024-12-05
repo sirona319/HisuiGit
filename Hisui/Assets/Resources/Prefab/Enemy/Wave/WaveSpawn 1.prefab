@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4241665984808653905
+--- !u!1 &630490311538982980
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2104438121444468944}
-  - component: {fileID: 654675503641989257}
+  - component: {fileID: 6214929373972517669}
+  - component: {fileID: 1157925928683121753}
   m_Layer: 0
   m_Name: WaveSpawn 1
   m_TagString: Untagged
@@ -17,49 +17,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2104438121444468944
+--- !u!4 &6214929373972517669
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4241665984808653905}
+  m_GameObject: {fileID: 630490311538982980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.46, y: 9.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7947875576630066623}
+  - {fileID: 7817593143643978017}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &654675503641989257
+--- !u!114 &1157925928683121753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4241665984808653905}
+  m_GameObject: {fileID: 630490311538982980}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f0a57a35150db4fb070fa2f3bb275e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jerryBuilder: {fileID: 4891977305174998564}
+  jerryBuilder: {fileID: 4743106528471317178}
   spawnData:
-  - DataName: WAVE FloatVector
+  - DataName: FallJerry
     enemyCount: 0
     spawnTime:
+    - 0
     - 0
     - 2
     - 3
     - 4
     - 6
-    - 8
-    - 9
+    - 7
     - 10
-    LoadState: 0500000004000000040000000400000004000000040000000400000004000000
+    - 10
+    - 11
+    - 12
+    - 0
+    - 4
+    - 7.5
+    - 9
+    LoadState: 090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000
     spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -85,13 +99,27 @@ MonoBehaviour:
       - {fileID: 0}
     - childArray:
       - {fileID: 0}
---- !u!1001 &5988109074178548490
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+--- !u!1001 &5848808446816724884
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2104438121444468944}
+    m_TransformParent: {fileID: 6214929373972517669}
     m_Modifications:
     - target: {fileID: 181301032464577783, guid: 024be932819cfb34aba1af473714f11a, type: 3}
       propertyPath: m_Name
@@ -142,10 +170,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 024be932819cfb34aba1af473714f11a, type: 3}
---- !u!114 &4891977305174998564 stripped
+--- !u!114 &4743106528471317178 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1223222125076077870, guid: 024be932819cfb34aba1af473714f11a, type: 3}
-  m_PrefabInstance: {fileID: 5988109074178548490}
+  m_PrefabInstance: {fileID: 5848808446816724884}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -153,8 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031d0c710d4b0914bad6de507e777335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &7947875576630066623 stripped
+--- !u!4 &7817593143643978017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4419878139958468277, guid: 024be932819cfb34aba1af473714f11a, type: 3}
-  m_PrefabInstance: {fileID: 5988109074178548490}
+  m_PrefabInstance: {fileID: 5848808446816724884}
   m_PrefabAsset: {fileID: 0}

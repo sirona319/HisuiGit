@@ -40,7 +40,7 @@ public sealed class JerryBuilder : BaseBuilder
         const float randAtkRange = 0.5f;
         float randAtkVal = UnityEngine.Random.Range(-randAtkRange, randAtkRange);
         eBase.AtkInterval = eData.AtkIntervalMax+ randAtkVal;　　//初回攻撃の設定できる？
-
+        eBase.AtkIntervalMax = eData.AtkIntervalMax;
         eBase.Hp = eData.HpMax;
         //
 
@@ -56,7 +56,7 @@ public sealed class JerryBuilder : BaseBuilder
 
 
 
-        eBase.enemyData = eData;
+        //eBase.enemyData = eData;
     }
 
 
@@ -65,6 +65,8 @@ public sealed class JerryBuilder : BaseBuilder
 
         var createMove=GetComponent<CreateMove>();
 
+        const float sinVal = 0.04f;
+        const float sinValMini = 0.02f;
         //switch文へ
         switch(moveType)
         {
@@ -109,7 +111,7 @@ public sealed class JerryBuilder : BaseBuilder
 
                 go.GetComponent<FloatVectorMove>().addSinTime = Time.deltaTime;
 
-                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go);
+                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinVal);
                 break;
 
             case MoveType.FloatVectorMoveDown:
@@ -117,7 +119,39 @@ public sealed class JerryBuilder : BaseBuilder
 
                 go.GetComponent<FloatVectorMove>().addSinTime = -Time.deltaTime;
 
-                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go);
+
+                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinVal);
+                break;
+
+            case MoveType.FloatVectorMoveUpMini:
+                createMove.InitFunc(MoveClassName.FloatVectorMove, go);
+
+                go.GetComponent<FloatVectorMove>().addSinTime = Time.deltaTime;
+
+                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinValMini);
+                break;
+
+            case MoveType.FloatVectorMoveDownMini:
+                createMove.InitFunc(MoveClassName.FloatVectorMove, go);
+
+                go.GetComponent<FloatVectorMove>().addSinTime = -Time.deltaTime;
+
+                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinValMini);
+                break;
+
+            case MoveType.DirectionMove:
+                createMove.InitFunc(MoveType.DirectionMove, go);
+
+                const float randSpdRange = 0.8f;
+                float randSpdVal = UnityEngine.Random.Range(0, randSpdRange);
+                go.GetComponent<DirectionMove>().speed += randSpdVal;
+
+                go.GetComponent<DirectionMove>().SetTarget(movePoint[0].position);
+
+
+                //go.transform.rotation = Quaternion.FromToRotation(Vector3.up, movePoint[0].position);
+
+
                 break;
 
             case MoveType.PointCircleMove:

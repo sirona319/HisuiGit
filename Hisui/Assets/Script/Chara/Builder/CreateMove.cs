@@ -25,6 +25,8 @@ public class CreateMove : MonoBehaviour
 
     void AddSetParamComponent(MoveType moveType, Transform[] movePoint,GameObject go)
     {
+
+        /*
         var eBase = go.GetComponent<EnemyBase>();
 
         //switch文へ
@@ -80,6 +82,7 @@ public class CreateMove : MonoBehaviour
             CreatePointCircleMove(go.GetComponent<PointCircleMove>(), movePoint, go);
 
         }
+        */
 
     }
 
@@ -103,43 +106,28 @@ public class CreateMove : MonoBehaviour
         return true;
     }
 
-    public bool CreateFloatVectorMove(FloatVectorMove fVectorMove,Vector3 movePos, GameObject go)
+    public bool CreateFloatVectorMove(FloatVectorMove fVectorMove,Vector3 movePos, GameObject go,float sin)
     {
         if (fVectorMove == null) return false;
         const float moveVal = 0.02f;
-        const float sinVal = 0.04f;
+        //float sinVal = sin;
 
 
         var dir = movePos - go.transform.position;
 
         go.transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 
-        //
+        //見た目だけの回転
         var spriteTrans = go.transform.Find("Sprite").gameObject.transform;
         spriteTrans.rotation = Quaternion.FromToRotation(Vector3.up, transform.up);
 
 
         fVectorMove.floatVector = dir.normalized * moveVal;
 
-        fVectorMove.addSinVec = go.transform.right * sinVal;
+        fVectorMove.addSinVec = go.transform.right * sin;
 
         go.GetComponent<EnemyBase>().SetIsAttack();
 
-        //Destroy(go.GetComponent<CreateDeadSound>());
-
-
-        //go.transform.Find("Sprite").gameObject.transform.rotation = 
-        //    Quaternion.FromToRotation(Vector3.up, go.transform.position+ go.transform.up);
-
-        //spriteTrans.rotation = 
-        //    MyLib.TargetRotation2D((go.transform.position + go.transform.up), spriteTrans, 10f);
-        //int i = 20;
-
-        //while (i > 0)
-        //{
-        //    spriteTrans.rotation = MyLib.GetAngleRotationFuncs(Vector3.up, spriteTrans, 20f);
-        //    i--;
-        //}
 
         return true;
     }
@@ -188,5 +176,14 @@ public class CreateMove : MonoBehaviour
         Type typeClass = Type.GetType(moveType.ToString());
         eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
         go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+    }
+
+    public void AddFunc(MoveType moveType, GameObject go)
+    {
+        var eBase = go.GetComponent<EnemyBase>();
+
+        Type typeClass = Type.GetType(moveType.ToString());
+        eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
+        //go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
     }
 }

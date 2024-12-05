@@ -23,7 +23,7 @@ public class EnemyAtkCol : MonoBehaviour
 
 
         //プレイヤーへのダメージ処理
-        other.transform.GetComponent<PlayerScr>().PlayerDamage(ATKVAL);
+        //other.transform.GetComponent<PlayerScr>().PlayerDamage(ATKVAL);
 
         if (hitErase)
             col.enabled = false;
