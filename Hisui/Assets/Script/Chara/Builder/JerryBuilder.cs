@@ -16,6 +16,11 @@ public sealed class JerryBuilder : BaseBuilder
 
     [SerializeField] GameObject trailSe;
 
+    public GameObject GetTrailSe
+    {
+        get { return trailSe; }
+    }
+
     [SerializeField] GameObject bulletGo;
 
     [SerializeField] AudioResource bulletSe;
@@ -146,7 +151,7 @@ public sealed class JerryBuilder : BaseBuilder
                 float randSpdVal = UnityEngine.Random.Range(0, randSpdRange);
                 go.GetComponent<DirectionMove>().speed += randSpdVal;
 
-                go.GetComponent<DirectionMove>().SetTarget(movePoint[0].position);
+                go.GetComponent<DirectionMove>().TargetSet(movePoint[0].position);
 
 
                 //go.transform.rotation = Quaternion.FromToRotation(Vector3.up, movePoint[0].position);

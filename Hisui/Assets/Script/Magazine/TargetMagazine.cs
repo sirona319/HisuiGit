@@ -5,9 +5,7 @@ public class TargetMagazine : BaseMagazine, ITarget
 
     [SerializeField]public Transform Target { get; set; }
 
-    public override void Initialize()
-    {
-    }
+
 
     public override void MagazineEnter()
     {

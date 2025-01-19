@@ -135,12 +135,12 @@ public class CreateMove : MonoBehaviour
     public bool CreatePointCircleMove(PointCircleMove pCircleMove, Transform[] movePoint, GameObject go)
     {
         if (pCircleMove == null) return false;
-        const float pCircleEndLen = 2f;
+        //const float pCircleEndLen = 2f;
 
         pCircleMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool => go.GetComponent<EnemyBase>().SetEndMoveKeep());
 
         pCircleMove.TargetSet(movePoint);
-        pCircleMove.SetMoveEndLength(pCircleEndLen);
+        //pCircleMove.SetMoveEndLength(pCircleEndLen);
 
         pCircleMove.speed = speed;
 

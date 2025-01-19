@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PointCircleMove : BaseMove
@@ -18,7 +19,7 @@ public class PointCircleMove : BaseMove
     [SerializeField] private bool _updateRotation = true;
 
     //指定座標への到達判定距離
-    float pointEndLength = 2f;
+    [SerializeField] float pointEndLength;
     int targetNo = 0;
 
     Transform[] targets;
@@ -27,6 +28,8 @@ public class PointCircleMove : BaseMove
     public ReactiveProperty<bool> IsPointMoveEnd = new ReactiveProperty<bool>(false);
 
     bool isLoop = false;
+    Vector3 targetDir;
+
 
     public void TargetSet(Transform[] t)
     {
@@ -55,7 +58,6 @@ public class PointCircleMove : BaseMove
 
     }
 
-
     public override void MoveEnter()
     {
 
@@ -65,7 +67,13 @@ public class PointCircleMove : BaseMove
     {
         if (IsPointMoveEnd.Value)
         {
+            //TargetUpdate();
             CircleUpdate();
+
+
+            //対象に近づいて　一定距離まで近づいたら離れる　一定距離まで離れたら近づく
+
+            //m_rb.MovePosition(m_rb.position + (Vector2)targetDir * targetSpeed * Time.deltaTime);
             return;
         }
         else
@@ -74,10 +82,8 @@ public class PointCircleMove : BaseMove
         }
 
 
-
         if (IsPointMoveEnd.Value)
             SetParent(targets[0]);//ポイント移動を終了
-
 
 
     }
@@ -104,22 +110,22 @@ public class PointCircleMove : BaseMove
 
         }
 
-        //transform.position = m_rb.position + (Vector2)transform.up * speed * Time.deltaTime;
         m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        transform.rotation = MyLib.GetAngleRotationFuncs(targets[targetNo].position, transform, 5f);
 
 
 
+        //float targetAngle = MyLib.GetTargetAngle2D(targets[targetNo].position, transform);
 
-        float targetAngle = MyLib.GetTargetAngle2D(targets[targetNo].position, transform);
+        //var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
-        var velocity = MyLib.SetVelocityAngle2D(targetAngle);
-
-        transform.rotation =
-            MyLib.TargetRotation2DZOnlyLerp(transform, velocity, 5f);
+        //transform.rotation =
+        //    MyLib.TargetRotation2DZOnlyLerp(transform, velocity, 5f);
         //transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
 
     }
 
+    bool isTargetLenge = false;
     void CircleUpdate()
     {
         //ターゲットとの距離は初期位置で決まる！！
@@ -135,8 +141,9 @@ public class PointCircleMove : BaseMove
         pos += target.position;
 
 
-        tr.position = pos;
-        m_rb.MovePosition(pos);
+        //tr.position = pos;
+
+        //m_rb.MovePosition((Vector2)pos);
 
 
         // 向き更新
@@ -146,18 +153,92 @@ public class PointCircleMove : BaseMove
         }
 
 
-        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+
+
+        float len = Vector3.Distance(transform.position, targets[targetNo].position);
+        float pointEndLengthShort = 3f;
+        float pointEndLengthLong = 5f;
+        Vector3 dir;
+        if (!isTargetLenge)
+        {
+
+            ////targetNo++;
+            //if (targetNo > targets.Length - 1)
+            //{
+            //    //if (!IsKeepMove)
+            //    //IsPointMoveEnd.Value = true;
+
+            //    //if (isLoop)
+            //    //    targetNo = 0;
+            //    //else
+            //    //    targetNo--;
+
+            //}
+            dir = transform.position - targets[targetNo].position;
+            if (len > pointEndLengthLong)
+                isTargetLenge = true;
+
+        }
+        else
+        {
+            dir = targets[targetNo].position - transform.position;
+            if (len < pointEndLengthShort)
+                isTargetLenge = false;
+
+
+        }
+
+        const float targetSpeed = 0.3f;
+        m_rb.MovePosition((Vector2)pos +((Vector2)dir * targetSpeed) * Time.deltaTime);
+
+        //m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
 
 
 
-        float targetAngle = MyLib.GetTargetAngle2D(targets[targetNo].position, transform);
+        //float targetAngle = MyLib.GetTargetAngle2D(targets[targetNo].position, transform);
 
-        var velocity = MyLib.SetVelocityAngle2D(targetAngle);
+        //var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
-        transform.rotation =
-            MyLib.TargetRotation2DZOnlyLerp(transform, velocity, 5f);
-        //transform.rotation = MyLib.TargetRotation2D(targets[targetNo].position, transform);
+        //transform.rotation =
+        //    MyLib.TargetRotation2DZOnlyLerp(transform, velocity, 5f);
 
+
+        //m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        transform.rotation = MyLib.GetAngleRotationFuncs(targets[targetNo].position, transform, 5f);
+
+    }
+
+    void TargetUpdate()
+    {
+        float len = Vector3.Distance(transform.position, targets[targetNo].position);
+        float pointEndLength = 0.5f;
+
+        Vector3 dir;
+        if (len < pointEndLength)
+        {
+
+            ////targetNo++;
+            //if (targetNo > targets.Length - 1)
+            //{
+            //    //if (!IsKeepMove)
+            //    //IsPointMoveEnd.Value = true;
+
+            //    //if (isLoop)
+            //    //    targetNo = 0;
+            //    //else
+            //    //    targetNo--;
+
+            //}
+            dir = transform.position - targets[targetNo].position;
+        }
+        else
+        {
+            dir = targets[targetNo].position - transform.position;
+
+        }
+
+        const float targetSpeed = 10f;
+        m_rb.MovePosition(m_rb.position + (Vector2) dir * targetSpeed * Time.deltaTime);
     }
 
 }

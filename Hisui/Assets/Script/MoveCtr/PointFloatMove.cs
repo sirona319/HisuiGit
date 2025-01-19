@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using static UnityEngine.GraphicsBuffer;
 
-public class PointFloatMove : BaseMove
+public class PointFloatMove : BaseMove, ITargets
 {
     int targetNo = 0;
     public float endLength = 0.7f;
@@ -14,7 +14,7 @@ public class PointFloatMove : BaseMove
     public float speed = 4f;
     const float rotSpeed = 5f;
 
-    public Transform[] targets;
+    public Transform[] targets { get; set; }
 
     [SerializeField] float floatSpeed = 0.005f;
 
@@ -30,10 +30,10 @@ public class PointFloatMove : BaseMove
             throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
     }
 
-    public void SetMoveEndLength(float len)
-    {
-        endLength = len;
-    }
+    //public void SetMoveEndLength(float len)
+    //{
+    //    endLength = len;
+    //}
 
     //AudioSource se;
     //AudioResource ar;

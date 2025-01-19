@@ -33,8 +33,6 @@ public class Jerry_Attack : StateChildBase
                 return (int)JerryCtr.State.Jerry_Dead;
 
 
-
-
         //マガジンの更新
         GetComponent<JerryScr>().AttackMagazineUpdateAll();
 

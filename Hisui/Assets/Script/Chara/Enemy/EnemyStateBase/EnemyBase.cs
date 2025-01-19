@@ -94,64 +94,55 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Init()
     {
         dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
-        ////baseMagazine初期化　　攻撃クラスに持っていく？
-        //for (int i = 0; i < (int)enemyData.attackType.Length; i++)
-        //{
-        //    Type typeClass = Type.GetType(enemyData.attackType[i].ToString());
-
-        //    if (typeClass != null)
-        //        baseMagazine.Add((BaseMagazine)gameObject.AddComponent(typeClass));
-
-        //}
-
-        //foreach (var magazine in baseMagazine)
-        //{
-        //    //magazine.BulletLoad("prefab/EBulletNormalEX");
-        //    magazine.Initialize();
-
-        //}
-
-        ////baseMove初期化　移動クラスに持っていく？
-        //for (int i = 0; i < (int)enemyData.moveType.Length; i++)
-        //{
-        //    Type typeClass = Type.GetType(enemyData.moveType[i].ToString());
-
-
-
-        //    if (typeClass != null)
-        //    {
-        //        baseMove.Add((BaseMove)gameObject.AddComponent(typeClass));
-        //    }
-
-        //    //baseMove.Add((BaseMove)gameObject.GetComponent(typeClass));
-        //}
-
-        //foreach (var move in baseMove)
-        //{
-        //    //初期化
-        //    move.Initialize(rb);
-
-
-        //    var movePointComp = move.GetComponent<IPointMove>();
-
-        //    // の処理が必須
-        //    if (movePointComp != null)
-        //    {
-        //        //movePointComp.TargetSet(movePointsDatas);
-        //        movePointComp.SetMoveEndLength(enemyData.PointEndLength);
-        //    }
-
-
-
-        //}
-
-
-        //ステータスの初期化
-        //Hp = enemyData.HpMax;
-
-        //enemyData.movePointsSet = movePointsInit;
-
     }
+
+    //public virtual void PrefabInit()
+    //{
+    //    ////baseMagazine初期化　　攻撃クラスに持っていく？
+    //    //for (int i = 0; i < (int)enemyData.attackType.Length; i++)
+    //    //{
+    //    //    Type typeClass = Type.GetType(enemyData.attackType[i].ToString());
+
+    //    //    if (typeClass != null)
+    //    //        baseMagazine.Add((BaseMagazine)gameObject.AddComponent(typeClass));
+
+    //    //}
+
+    //    foreach (var magazine in baseMagazine)
+    //    {
+    //        //magazine.BulletLoad("prefab/EBulletNormalEX");
+    //        magazine.Initialize();
+
+    //    }
+
+    //    ////baseMove初期化　移動クラスに持っていく？
+    //    //for (int i = 0; i < (int)enemyData.moveType.Length; i++)
+    //    //{
+    //    //    Type typeClass = Type.GetType(enemyData.moveType[i].ToString());
+
+
+
+    //    //    if (typeClass != null)
+    //    //    {
+    //    //        baseMove.Add((BaseMove)gameObject.AddComponent(typeClass));
+    //    //    }
+
+    //    //    //baseMove.Add((BaseMove)gameObject.GetComponent(typeClass));
+    //    //}
+
+    //    //foreach (var move in baseMove)
+    //    //{
+    //    //    //初期化
+    //    //    move.Initialize(GetComponent<Rigidbody2D>());
+
+    //    //}
+
+
+    //    //ステータスの初期化
+    //    //Hp = enemyData.HpMax;
+
+    //    //enemyData.movePointsSet = movePointsInit;
+    //}
 
     #region アニメーションイベント
 
@@ -176,12 +167,7 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void EnemyDamage(int damage)
     {
-
-
-
         if (IsDead) return;
-
- 
 
         //Debug.Log(gameObject.name + "へのダメージ" + damage.ToString());
         Hp -= damage;        //HP減少処理
@@ -210,15 +196,6 @@ public class EnemyBase : MonoBehaviour
         return false;
 
     }
-
-    //public void SetEndMove()
-    //{
-    //    //if (!moveEnd) return;
-    //    GetComponent<JerryScr>().IsAttack = true;
-
-    //    GetComponent<JerryScr>().IsMove = false;
-
-    //}
 
     public void SetEndMoveKeep()
     {

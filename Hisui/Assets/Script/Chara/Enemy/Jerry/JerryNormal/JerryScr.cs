@@ -45,6 +45,8 @@ public class JerryScr : EnemyBase
 
     float IntensityVal = 1;
     const float TrailEndSpeed = 0.02f;
+
+    //Emission
     public void SetEndTrail()
     {
         var color=GetComponent<TrailRenderer>().material.GetColor("_EmissionColor");

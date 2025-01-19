@@ -8,6 +8,8 @@ using UnityEditor.EditorTools;
 using static UnityEngine.GraphicsBuffer;
 using static BaseBullet;
 using UnityEngine.Audio;
+using System.Drawing;
+using Color = UnityEngine.Color;
 
 public class PlayerScr2D : MonoBehaviour
 {
@@ -25,31 +27,44 @@ public class PlayerScr2D : MonoBehaviour
     bool m_isDead = false;
 
 
-    //バレット
+
     //Bullet bulletObj;
     //[SerializeField] PoolManager poolManager;
-    [SerializeField] float bulletSpeed = 6f;
     //[SerializeField] float bulletDeadTime = 3f;
+    #region バレット
+    //[SerializeField] float bulletSpeed = 6f;
     [SerializeField] TargetMagazine nMag;
-    [SerializeField] Transform front;           //弾の発射方向
+    //[SerializeField] Transform front;           //弾の発射方向
 
 
-    [SerializeField] GameObject pBullet;// = "prefab/Bullet/PBulletNormal";
-    [SerializeField] AudioResource pBulletSe; //="Sound/SE/PlayerNormalShot";
+    //[SerializeField] GameObject pBullet;// = "prefab/Bullet/PBulletNormal";
+    //[SerializeField] AudioResource pBulletSe; //="Sound/SE/PlayerNormalShot";
+    #endregion
+
+
+    [SerializeField] Warp warp;
+
+
     void Start()
     {
+
+
         m_rb = GetComponent<Rigidbody2D>();
         //bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/Bullet/PBulletNormal");
 
-        nMag.createBullet = GetComponent<CreateBullet>();
-        nMag.createBullet.LoadPath(pBullet);
-        nMag.createBullet.bulletSpeed = bulletSpeed;
-        nMag.SetLoadSe(pBulletSe);
+        //nMag.Initialize();
+        //nMag.createBullet = GetComponent<CreateBullet>();
+        //nMag.createBullet.LoadPath(pBullet);
+        //nMag.createBullet.bulletSpeed = bulletSpeed;
+        //nMag.SetLoadSe(pBulletSe);
+        //nMag.Target = front;
+
+        nMag.TargetSet(nMag, nMag.bulletTarget, this.gameObject);
+
         //nMag.createBullet.BulletAtk()
 
         //nMag.createBullet.AddBulletType(BulletType.NormalBullet);
-        nMag.Initialize();
-        nMag.Target = front;
+
         //nMag.SetPool(poolManager);
 
 
@@ -61,7 +76,7 @@ public class PlayerScr2D : MonoBehaviour
     {
         if (m_isDead) return;
 
-        //デバッグダメージ
+        //攻撃
         if (Input.GetKeyDown(KeyCode.F))
         {
             //nMag.targetPos = (transform.position + Vector3.up) - transform.position;
@@ -70,6 +85,18 @@ public class PlayerScr2D : MonoBehaviour
             //ビーム砲チャージ
             MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
         }
+
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            warp.WarpStart();
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            warp.WarpEnd();
+        }
+
 
         MoveControl();
 
@@ -139,68 +166,6 @@ public class PlayerScr2D : MonoBehaviour
 
         movement = movement.normalized;
 
-//        //var prePos = m_rb.position;
-//        //m_input = new Vector3(UnityEngine.Input.GetAxis("Horizontal"), 0f, UnityEngine.Input.GetAxis("Vertical"));
-
-//        //進行方向計算
-//        //キーボード入力を取得
-//        float v;
-//        float h;
-//#if UNITY_IOS
-////対象プラットフォームがiOSの時だけコンパイルされる	
-//#elif UNITY_ANDROID
-//        //v = m_variableJoystick.Vertical;
-//        //h = m_variableJoystick.Horizontal;
-//        if (UnityEngine.Device.SystemInfo.operatingSystem.Contains("Android"))
-//        {
-//            //v = m_variableJoystick.Vertical;
-//            //h = m_variableJoystick.Horizontal;
-
-//            //カメラの正面方向ベクトルからY成分を除き、正規化してキャラが走る方向を取得
-//            Vector3 forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-//            //if(m_isWater)Sword
-//            //   forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 1, 1)).normalized;
-
-//            Vector3 right = Camera.main.transform.right; //カメラの右方向を取得
-
-//            //var targetDirection = Vector3.zero;
-//            //カメラの方向を考慮したキャラの進行方向を計算
-//            m_targetDirection = m_variableJoystick.Horizontal * right + m_variableJoystick.Vertical * forward;
-//            //m_input = new Vector3(m_variableJoystick.Horizontal, 0f, m_variableJoystick.Vertical);//対象プラットフォームがAndroidの時だけコンパイルされる
-//        }
-//        SPEED = 4f;
-//#else
-//        v = Input.GetAxisRaw("Vertical");         //InputManagerの↑↓の入力
-//        h = Input.GetAxisRaw("Horizontal");       //InputManagerの←→の入力 
-
-//        //カメラの正面方向ベクトルからY成分を除き、正規化してキャラが走る方向を取得
-//        Vector3 forward = Vector3.Scale(Camera.main.transform.up, new Vector3(1, 1, 0)).normalized;
-//        //if(m_isWater)Sword
-//        //   forward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 1, 1)).normalized;
-
-//        Vector3 right = Camera.main.transform.right; //カメラの右方向を取得
-
-//        //var targetDirection = Vector3.zero;
-//        //カメラの方向を考慮したキャラの進行方向を計算
-//        m_targetDirection = h * right + v * forward;
-//#endif
-
-//        //移動のベクトルを計算
-//        m_moveDirection = m_targetDirection * SPEED;
-
-//        //2D処理
-//        //m_moveDirection.y = m_moveDirection.z;
-//        //m_moveDirection.z = 0;
-//        //
-//        Vector2 movement2D = m_moveDirection;
-
-//        var resultPos = MoveLimit(m_rb.position + movement2D * Time.deltaTime);
-
-//        transform.position = resultPos;
-//        //m_rb.MovePosition(resultPos);
-
-//        //1f前の座標との差を保存
-//        //prePosDiff.Value = m_moveDirection * Time.deltaTime;
     }
 
     Vector3 MoveLimit(Vector3 pos)

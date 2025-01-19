@@ -398,7 +398,7 @@ public static class MyLib
     /// <param name="seconds">秒</param>
     /// <param name="action">関数内の処理</param>
     /// <returns></returns>
-    public static IEnumerator LoopDelayCoroutineIf(float seconds, bool IfBreak, Action action)
+    public static IEnumerator LoopDelayCoroutineIf(float seconds, bool IfBreak, Action action,string debug="クラス名など")
     {
         while (IfBreak)
         {
@@ -411,7 +411,7 @@ public static class MyLib
 
         }
 
-        Debug.Log("ループコルーチンの終了");
+        Debug.Log(debug);
 
     }
 

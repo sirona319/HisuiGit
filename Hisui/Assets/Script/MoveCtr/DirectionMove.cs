@@ -13,7 +13,7 @@ public class DirectionMove : BaseMove
     Vector3 targetsVec;
     //Vector2 targetDir;
 
-    public void SetTarget(Vector3 t)
+    public void TargetSet(Vector3 t)
     {
         targetsVec = t;
         //targetDir = (targetsVec - transform.position).normalized;

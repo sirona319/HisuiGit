@@ -1,19 +1,19 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class EnemySpawnErea : MonoBehaviour
 {
-    //ƒ{ƒX‚©‚Ç‚¤‚©
+    //ãƒœã‚¹ã‹ã©ã†ã‹
 
-    [SerializeField] GameObject[] spawns; //“G@¶¬ˆÊ’u
+    [SerializeField] GameObject[] spawns; //æ•µã€€ç”Ÿæˆä½ç½®
 
-    [SerializeField] GameObject[] spawnLocations;//“G‚ÌˆÚ“®”ÍˆÍ@ˆÊ’u
+    [SerializeField] GameObject[] spawnLocations;//æ•µã®ç§»å‹•ç¯„å›²ã€€ä½ç½®
 
     int enemyCount = 0;
 
-    [SerializeField] float SPWNTIME = 2f;@//“G‚Ì¶¬ƒ^ƒCƒ€İ’è‚Å‚«‚é‚æ‚¤‚É‚·‚éHPlayer‚ªƒGƒŠƒA‚É“ü‚Á‚Ä‚©‚ç
+    [SerializeField] float SPWNTIME = 2f;ã€€//æ•µã®ç”Ÿæˆã‚¿ã‚¤ãƒ è¨­å®šã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼ŸPlayerãŒã‚¨ãƒªã‚¢ã«å…¥ã£ã¦ã‹ã‚‰
 
-    //ParticleSystem spawnParticle;//ƒp[ƒeƒBƒNƒ‹
+    //ParticleSystem spawnParticle;//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 
     //[SerializeField] bool playerLengeSpawn = false;
     [SerializeField] CollisionTrigger colTrigger;
@@ -27,8 +27,8 @@ public class EnemySpawnErea : MonoBehaviour
         if (spawns.Length != spawnLocations.Length)
         {
 
-            throw new System.Exception("¶¬‚·‚é“G‚ÌˆÚ“®Šî“_À•W‚ª‘S‚Äw’è‚³‚ê‚Ä‚¢‚È‚¢");
-            //Debug.Log("¶¬‚·‚é“G‚ÌˆÚ“®Šî“_À•W‚ª‘S‚Äw’è‚³‚ê‚Ä‚¢‚È‚¢");
+            throw new System.Exception("ç”Ÿæˆã™ã‚‹æ•µã®ç§»å‹•åŸºç‚¹åº§æ¨™ãŒå…¨ã¦æŒ‡å®šã•ã‚Œã¦ã„ãªã„");
+            //Debug.Log("ç”Ÿæˆã™ã‚‹æ•µã®ç§»å‹•åŸºç‚¹åº§æ¨™ãŒå…¨ã¦æŒ‡å®šã•ã‚Œã¦ã„ãªã„");
         }
 
 
@@ -44,7 +44,7 @@ public class EnemySpawnErea : MonoBehaviour
         //{
         while (true)
         {
-            // ¶¬ƒfƒBƒŒƒCƒRƒ‹[ƒ`ƒ“‚Ì‹N“®
+            // ç”Ÿæˆãƒ‡ã‚£ãƒ¬ã‚¤ã‚³ãƒ«ãƒ¼ãƒãƒ³ã®èµ·å‹•
             StartCoroutine(DelaySpawnCoroutine
                 (SPWNTIME * enemyCount + 1, spawns[enemyCount], spawnLocations[enemyCount].transform.position));
 
@@ -71,12 +71,11 @@ public class EnemySpawnErea : MonoBehaviour
         {
             if (enemyCount >= spawns.Length)
                 break;
-            // ¶¬ƒfƒBƒŒƒCƒRƒ‹[ƒ`ƒ“‚Ì‹N“®
+            // ç”Ÿæˆãƒ‡ã‚£ãƒ¬ã‚¤ã‚³ãƒ«ãƒ¼ãƒãƒ³ã®èµ·å‹•
             StartCoroutine(DelaySpawnCoroutine
                 (SPWNTIME * enemyCount + 1, spawns[enemyCount], spawnLocations[enemyCount].transform.position));
 
             enemyCount++;
-
 
         }
 
@@ -97,7 +96,7 @@ public class EnemySpawnErea : MonoBehaviour
     //    {
     //        while (true)
     //        {
-    //            // ¶¬ƒfƒBƒŒƒCƒRƒ‹[ƒ`ƒ“‚Ì‹N“®
+    //            // ç”Ÿæˆãƒ‡ã‚£ãƒ¬ã‚¤ã‚³ãƒ«ãƒ¼ãƒãƒ³ã®èµ·å‹•
     //            StartCoroutine(DelaySpawnCoroutine
     //                (SPWNTIME * enemyCount + 1, spawns[enemyCount], spawnLocations[enemyCount].transform.position));
 
@@ -114,7 +113,7 @@ public class EnemySpawnErea : MonoBehaviour
     public IEnumerator DelaySpawnCoroutine(float seconds, GameObject obj, Vector3 bPos)
     {
         yield return new WaitForSeconds(seconds);
-        //Instantiate(spawnParticle, transform.position, Quaternion.identity);//ƒp[ƒeƒBƒNƒ‹
+        //Instantiate(spawnParticle, transform.position, Quaternion.identity);//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
         //Instantiate(obj, transform.position, Quaternion.identity);
 
         var enemy = Instantiate(obj, transform.position, Quaternion.identity);
