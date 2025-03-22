@@ -1,12 +1,14 @@
-using UniRx;
+﻿using UniRx;
 using UnityEngine;
 
 public interface IPointMove
 {
-    void TargetSet(Transform[] t);
+    public ReactiveProperty<bool> IsPointMoveEnd { get; set; }
+    //public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe
+    //void TargetSet(Transform[] t);
 
-    bool GetMoveEnd();
+    //bool GetMoveEnd();
 
-    void SetMoveEndLength(float len);
+    //void SetMoveEndLength(float len);
 
 }

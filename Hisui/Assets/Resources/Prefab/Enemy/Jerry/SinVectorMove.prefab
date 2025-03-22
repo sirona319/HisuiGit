@@ -637,8 +637,8 @@ MonoBehaviour:
   stateController: {fileID: 7905859475788872822}
   baseMagazine:
   - {fileID: 9140929948095053310}
-  baseMove:
-  - {fileID: 3092843863183215191}
+  move: {fileID: 3092843863183215191}
+  atkMove: {fileID: 3092843863183215191}
   Hp: 2
   AtkIntervalMax: 1
   AtkInterval: 1
@@ -711,7 +711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3696ecb2e7d7b6d4aad5aa6824207598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsKeepMove: 1
   sinType: 0
   addSinVec: {x: 0, y: 0.04, z: 0}
   floatVector: {x: -0.1, y: 0, z: 0}

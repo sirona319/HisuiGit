@@ -26,8 +26,13 @@ public class CreateBullet : MonoBehaviour
     [SerializeField] BulletType[] bulletType;
 
     [SerializeField] GameObject bulletObj;
-    [SerializeField] public PoolControl poolManager;
+    [SerializeField] public PoolControl poolCtr;
 
+
+    public void SetPool(PoolControl pc)
+    {
+        poolCtr = pc;
+    }
 
     public void LoadPath(GameObject bullet)
     {
@@ -51,7 +56,7 @@ public class CreateBullet : MonoBehaviour
     public BaseBullet BulletAtk(float angle,Vector3 pos,Quaternion rot)
     {
         //Debug.Log(poolManager);
-        var bullet = poolManager.GetGameObject(bulletObj, pos, rot);
+        var bullet = poolCtr.GetGameObject(bulletObj, pos, rot);
 
         if (bulletType.Length <= 0)
         {
@@ -74,8 +79,8 @@ public class CreateBullet : MonoBehaviour
 
 
         var destroyer = bullet.GetComponent<ReleaseDestroyer>();
-        destroyer.pool = poolManager;//キャラの種類ごとに分けるために引き渡し
-        destroyer.IsRelease = false;//二重リリース回避用フラグ
+        destroyer.pool = poolCtr;//キャラの種類ごとに分けるために引き渡し
+        destroyer.isRelease = false;//二重リリース回避用フラグ
 
 
         return bullet.GetComponent<NormalBullet>();

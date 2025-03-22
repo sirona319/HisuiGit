@@ -92,7 +92,7 @@ public class CreateMove : MonoBehaviour
 
         //pMove.IsPointMoveEnd.Skip(1).Subscribe(count => Debug.Log(count));
         //関数がここで一度呼び出されるpMove.IsPointMoveEnd.Skip(1)初回をスキップする
-        pFloatMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
+        pFloatMove.isPointMoveEnd.Skip(1).Subscribe(pointBool =>
         {
             go.GetComponent<EnemyBase>().SetEndMoveKeep();
             go.GetComponent<JerryScr>().SetEndTrail();
@@ -165,7 +165,7 @@ public class CreateMove : MonoBehaviour
         var eBase = go.GetComponent<EnemyBase>();
 
         Type typeClass = Type.GetType(moveType.ToString());
-        eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
+       // eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
         go.GetComponent<BaseMove>().Initialize();
     }
 
@@ -174,7 +174,7 @@ public class CreateMove : MonoBehaviour
         var eBase = go.GetComponent<EnemyBase>();
 
         Type typeClass = Type.GetType(moveType.ToString());
-        eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
+       // eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
         go.GetComponent<BaseMove>().Initialize();
     }
 
@@ -183,7 +183,6 @@ public class CreateMove : MonoBehaviour
         var eBase = go.GetComponent<EnemyBase>();
 
         Type typeClass = Type.GetType(moveType.ToString());
-        eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
-        //go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+       // eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
     }
 }

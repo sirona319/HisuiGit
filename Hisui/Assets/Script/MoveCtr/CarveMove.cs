@@ -15,9 +15,7 @@ public class CarveMove : BaseMove
     }
     public override void Initialize()
     {
-        //base.Initialize(rb);
-        //m_rb = rb;
-        //IsKeepMove = true;
+        rb2 = GetComponent<Rigidbody2D>();
 
         this.gameObject.AddComponent<CarveModule>();
     }

@@ -53,6 +53,7 @@ public class PointCircleMove : BaseMove
 
     public override void Initialize()
     {
+        rb2 = GetComponent<Rigidbody2D>();
         //m_rb = rb;
         //IsKeepMove = true;
 

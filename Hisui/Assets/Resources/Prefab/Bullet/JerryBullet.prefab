@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1660741264998231965}
   - component: {fileID: 1372904476738841711}
   - component: {fileID: 185438691607815936}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: JerryBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 16448
+    m_Bits: 20544
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 640

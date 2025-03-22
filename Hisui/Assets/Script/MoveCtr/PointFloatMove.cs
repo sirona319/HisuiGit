@@ -1,22 +1,23 @@
 ﻿using DG.Tweening;
 using UniRx;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
-public class PointFloatMove : BaseMove, ITargets
+public class PointFloatMove : BaseMove
 {
+    [SerializeField] Transform[] targets;
+
     int targetNo = 0;
     float endLength = 0.7f;
 
     [SerializeField] float speed = 4f;
     const float rotSpeed = 5f;
 
-    public Transform[] targets { get; set; }
+
 
     //[SerializeField] float floatSpeed = 0.005f;
 
     bool isLoop = false;
-    public ReactiveProperty<bool> IsPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe
+    public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe　エネミークラスなど？
 
     Rigidbody2D rb2;
     //float sinTime = 0;
@@ -24,8 +25,10 @@ public class PointFloatMove : BaseMove, ITargets
     {
         targets = t;
 
-        if (targets.Length <= 0)
-            throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
+
+
+       // if (targets.Length <= 0)
+         //   throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
     }
 
     //public void SetMoveEndLength(float len)
@@ -37,10 +40,14 @@ public class PointFloatMove : BaseMove, ITargets
     //AudioResource ar;
     public override void Initialize()
     {
-        //m_rb = rb;
+        rb2 = GetComponent<Rigidbody2D>();
 
-        //IsKeepMove = true;
-
+        //if(this.GetType().FullName=="PointFloatMove")
+        //    {
+        //    Debug.Log("成功");
+        //}
+        if (targets.Length <= 0)
+            throw new System.Exception(transform.name + "PointMoveムーブポイント未設定");
     }
 
     [SerializeField] GameObject trailSe;
@@ -51,7 +58,7 @@ public class PointFloatMove : BaseMove, ITargets
         seObj.GetComponent<AudioSource>().Play();
 
         //var pFloatMove = GetComponent<PointFloatMove>();
-        IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
+        isPointMoveEnd.Skip(1).Subscribe(pointBool =>
         {
             const float fadeSpeed = 1f;//1秒で止まる
             seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
@@ -64,23 +71,11 @@ public class PointFloatMove : BaseMove, ITargets
 
     public override void MoveUpdate()
     {
-        if (IsPointMoveEnd.Value)
+        if (isPointMoveEnd.Value)
         {
-            //sinTime += Time.deltaTime;
-            ////エネミーにトレイルレンダーがついている場合持続する
-            //MyLib.LoopMotionSinWait(sinTime,transform, 0, floatSpeed);
 
-
-            ////ワールド座標　上方向を向かせる
-            ////float targetAngle = MyLib.GetTargetAngle((transform.position + Vector3.up), transform);
-
-            ////var velocity = MyLib.SetVelocityAngle2D(targetAngle);
-
-            //transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, rotSpeed);
-            //MyLib.TargetRotation2DZOnlyLerp(transform, velocity, rotSpeed);
-
-
-            //return;
+            //ポイントムーブ終了　Subscribe
+            
         }
         else
         {
@@ -112,7 +107,7 @@ public class PointFloatMove : BaseMove, ITargets
             {
 
                 //if (!IsKeepMove)
-                IsPointMoveEnd.Value = true;
+                isPointMoveEnd.Value = true;
 
                 if (isLoop)
                     targetNo = 0;
@@ -137,6 +132,8 @@ public class PointFloatMove : BaseMove, ITargets
 
     }
 
+
+    //移行する?s
     private void OnTriggerExit2D(Collider2D other)
     {
 
@@ -152,4 +149,6 @@ public class PointFloatMove : BaseMove, ITargets
         }
 
     }
+
+
 }

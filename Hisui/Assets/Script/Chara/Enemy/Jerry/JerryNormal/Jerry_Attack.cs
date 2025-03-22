@@ -37,7 +37,11 @@ public class Jerry_Attack : StateChildBase
         GetComponent<JerryScr>().AttackMagazineUpdateAll();
 
         if(GetComponent<JerryScr>().atkMove!=null)
-        GetComponent<JerryScr>().atkMove.MoveUpdate();
+        {
+            GetComponent<JerryScr>().atkMove.MoveUpdate();
+            Debug.Log("atkMOVE");
+        }
+
         //foreach (var move in GetComponent<JerryScr>().atkMove)
         //{
         //    //if(move.IsKeepMove)
@@ -45,7 +49,7 @@ public class Jerry_Attack : StateChildBase
         //}
 
 
-
+        //atkMagazine
         if (stateTime > GetComponent<JerryScr>().baseMagazine[0].shotTime)
         {
             float randAtkVal = UnityEngine.Random.Range(-0.5f, 0.5f);

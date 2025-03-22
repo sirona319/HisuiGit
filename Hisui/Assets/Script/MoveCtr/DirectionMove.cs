@@ -20,9 +20,9 @@ public class DirectionMove : BaseMove
 
     public override void Initialize()
     {
-
-       // m_rb = rb;
-       // IsKeepMove = true;
+        rb2 = GetComponent<Rigidbody2D>();
+        // m_rb = rb;
+        // IsKeepMove = true;
     }
 
     public override void MoveEnter()

@@ -8,20 +8,20 @@ public class ReleaseDestroyer : MonoBehaviour
 
     const float DESTIME = 7f;
 
-    public bool IsRelease = false;
+    public bool isRelease = false;
 
     public void PoolDestroy()
     {
         //var pool = GetComponent<Destroyer>().PoolManager;
         if (pool != null)
         {
-            if (IsRelease)
+            if (isRelease)
             {
                 //Debug.Log("二重リリース回避");
                 return;
             }
 
-            IsRelease = true;
+            isRelease = true;
             pool.ReleaseGameObject(gameObject);
             return;
             //Debug.Log(gameObject.name+"POOLした");

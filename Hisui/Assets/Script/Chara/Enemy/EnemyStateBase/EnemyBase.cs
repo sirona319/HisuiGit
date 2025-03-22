@@ -30,7 +30,8 @@ public class EnemyBase : MonoBehaviour
 
 
     public List<BaseMagazine> baseMagazine=new ();
-    public List<BaseMove> baseMove = new ();
+    //public List<BaseMove> baseMove = new ();
+    public BaseMove move = null;
     public BaseMove atkMove=null;
 
     public int Hp = 0;
@@ -210,7 +211,10 @@ public class EnemyBase : MonoBehaviour
     {
         IsAttack = true;
     }
-
+    public void MoveEnd()
+    {
+        IsMove = false;
+    }
     //private void OnTriggerExit(Collider other)
     //{
 
