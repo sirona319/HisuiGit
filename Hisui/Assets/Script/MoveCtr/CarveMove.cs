@@ -7,15 +7,17 @@ public class CarveMove : BaseMove
 
     //public float carveVal = 0f;
 
+    Rigidbody2D rb2;
+
     public void SetCarveVal(float angle)
     {
         gameObject.GetComponent<CarveModule>().SetAngle(angle);
     }
-    public override void Initialize(Rigidbody2D rb)
+    public override void Initialize()
     {
         //base.Initialize(rb);
-        m_rb = rb;
-        IsKeepMove = true;
+        //m_rb = rb;
+        //IsKeepMove = true;
 
         this.gameObject.AddComponent<CarveModule>();
     }
@@ -31,7 +33,7 @@ public class CarveMove : BaseMove
     {
 
         const float speed = 4f;
-        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + (Vector2)transform.up * speed * Time.deltaTime);
 
         //transform.rotation = MyLib.GetAngleRotationFuncs(floatVector, transform, 1);
         //transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////回転

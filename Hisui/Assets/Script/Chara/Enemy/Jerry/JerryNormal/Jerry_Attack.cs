@@ -36,12 +36,13 @@ public class Jerry_Attack : StateChildBase
         //マガジンの更新
         GetComponent<JerryScr>().AttackMagazineUpdateAll();
 
-
-        foreach (var move in GetComponent<JerryScr>().baseMove)
-        {
-            if(move.IsKeepMove)
-                move.MoveUpdate();
-        }
+        if(GetComponent<JerryScr>().atkMove!=null)
+        GetComponent<JerryScr>().atkMove.MoveUpdate();
+        //foreach (var move in GetComponent<JerryScr>().atkMove)
+        //{
+        //    //if(move.IsKeepMove)
+        //        move.MoveUpdate();
+        //}
 
 
 

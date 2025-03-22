@@ -35,8 +35,8 @@ public abstract class BaseMagazine : MonoBehaviour
 
     public BulletTarget bulletTarget;
 
-    [SerializeField]protected AudioResource arSe;
-    public void SetLoadSe(AudioResource se)
+    [SerializeField]protected AudioSource arSe;
+    public void SetLoadSe(AudioSource se)
     {
         arSe = se;
     }

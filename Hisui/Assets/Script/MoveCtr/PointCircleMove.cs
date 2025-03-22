@@ -30,7 +30,7 @@ public class PointCircleMove : BaseMove
     bool isLoop = false;
     Vector3 targetDir;
 
-
+    Rigidbody2D rb2;
     public void TargetSet(Transform[] t)
     {
         targets = t;
@@ -51,10 +51,10 @@ public class PointCircleMove : BaseMove
         transform.parent = t;
     }
 
-    public override void Initialize(Rigidbody2D rb)
+    public override void Initialize()
     {
-        m_rb = rb;
-        IsKeepMove = true;
+        //m_rb = rb;
+        //IsKeepMove = true;
 
     }
 
@@ -110,7 +110,7 @@ public class PointCircleMove : BaseMove
 
         }
 
-        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + (Vector2)transform.up * speed * Time.deltaTime);
         transform.rotation = MyLib.GetAngleRotationFuncs(targets[targetNo].position, transform, 5f);
 
 
@@ -189,7 +189,7 @@ public class PointCircleMove : BaseMove
         }
 
         const float targetSpeed = 0.3f;
-        m_rb.MovePosition((Vector2)pos +((Vector2)dir * targetSpeed) * Time.deltaTime);
+        rb2.MovePosition((Vector2)pos +((Vector2)dir * targetSpeed) * Time.deltaTime);
 
         //m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
 
@@ -238,7 +238,7 @@ public class PointCircleMove : BaseMove
         }
 
         const float targetSpeed = 10f;
-        m_rb.MovePosition(m_rb.position + (Vector2) dir * targetSpeed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + (Vector2) dir * targetSpeed * Time.deltaTime);
     }
 
 }

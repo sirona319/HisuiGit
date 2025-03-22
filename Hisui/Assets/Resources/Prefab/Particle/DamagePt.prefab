@@ -10798,8 +10798,8 @@ ParticleSystem:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           - serializedVersion: 3
             time: 1
             value: 1
@@ -10807,8 +10807,8 @@ ParticleSystem:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -10822,8 +10822,8 @@ ParticleSystem:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           - serializedVersion: 3
             time: 1
             value: 1
@@ -10831,8 +10831,8 @@ ParticleSystem:
             outSlope: 0
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0
-            outWeight: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -15363,7 +15363,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 5
+    maxNumParticles: 0
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -15624,7 +15624,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
@@ -15793,7 +15793,7 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
   SizeModule:
-    enabled: 1
+    enabled: 0
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -16126,7 +16126,7 @@ ParticleSystem:
         m_RotationOrder: 0
     separateAxes: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -16194,7 +16194,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 1
+    enabled: 0
     mode: 1
     timeMode: 0
     fps: 30
@@ -17239,7 +17239,7 @@ ParticleSystem:
       m_Bits: 4294967295
     influenceList: []
   ClampVelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -19678,7 +19678,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6644387731676347951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9205bc1bbacc90040a998067b5643d16, type: 3}
   m_Name: 

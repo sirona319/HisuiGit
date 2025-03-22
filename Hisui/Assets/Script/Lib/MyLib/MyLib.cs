@@ -514,9 +514,9 @@ public static class MyLib
     /// </summary>
     /// <param name="name"></param>
     /// <param name="obj"></param>
-    public static AudioSource MyPlayOneSound(AudioResource ar, AudioSource audio)
+    public static AudioSource MyPlayOneSound(AudioSource ar, AudioSource audio)
     {
-        audio.resource = ar;
+        //audio.resource = ar;
         audio.Play();
 
         return audio;

@@ -31,7 +31,7 @@ public class EnemyBase : MonoBehaviour
 
     public List<BaseMagazine> baseMagazine=new ();
     public List<BaseMove> baseMove = new ();
-
+    public BaseMove atkMove=null;
 
     public int Hp = 0;
     [SerializeField] public float AtkIntervalMax;

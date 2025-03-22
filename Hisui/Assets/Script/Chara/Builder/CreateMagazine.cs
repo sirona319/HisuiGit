@@ -14,12 +14,12 @@ public class CreateMagazine : MonoBehaviour
     GameObject bulletGo;
 
 
-    AudioResource bulletSe;
+    AudioSource bulletSe;
 
     [SerializeField] Transform leftMiddle;
     [SerializeField] Transform target;
 
-    public void SetBullet(GameObject bullet, AudioResource se)
+    public void SetBullet(GameObject bullet, AudioSource se)
     {
         bulletGo = bullet;
 

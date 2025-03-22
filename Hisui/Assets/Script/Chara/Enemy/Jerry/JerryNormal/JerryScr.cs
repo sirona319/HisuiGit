@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 public class JerryScr : EnemyBase
 {
@@ -43,13 +44,13 @@ public class JerryScr : EnemyBase
 
     }
 
-    float IntensityVal = 1;
-    const float TrailEndSpeed = 0.02f;
+    //float IntensityVal = 1;
+    //const float TrailEndSpeed = 0.02f;
 
     //Emission
     public void SetEndTrail()
     {
-        var color=GetComponent<TrailRenderer>().material.GetColor("_EmissionColor");
+        //var color=GetComponent<TrailRenderer>().material.GetColor("_EmissionColor");
 
         //StartCoroutine(MyLib.LoopDelayCoroutine(Time.deltaTime, () =>
         //{
@@ -64,20 +65,20 @@ public class JerryScr : EnemyBase
         //    GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", color * IntensityVal);
         //}));
 
+        GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration:1f);
 
+        //StartCoroutine(MyLib.LoopDelayCoroutineIf(Time.deltaTime, IntensityVal > 0, () =>
+        //{
+        //    IntensityVal -= TrailEndSpeed;//Time.deltaTime;
+        //    if (IntensityVal <= 0)
+        //    {
+        //        IntensityVal = 0;
+        //        //return;
+        //    }
 
-        StartCoroutine(MyLib.LoopDelayCoroutineIf(Time.deltaTime, IntensityVal > 0, () =>
-        {
-            IntensityVal -= TrailEndSpeed;//Time.deltaTime;
-            if (IntensityVal <= 0)
-            {
-                IntensityVal = 0;
-                //return;
-            }
-
-
-            GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", color * IntensityVal);
-        }));
+ 
+        //    GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", color * IntensityVal);
+        //}));
 
         //GetComponent<TrailRenderer>().material.SetColor("_EmissionColor", color * 0);
 

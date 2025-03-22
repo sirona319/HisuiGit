@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using UniRx;
-using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+﻿using UnityEngine;
 
 public class DirectionMove : BaseMove
 {
@@ -13,17 +10,19 @@ public class DirectionMove : BaseMove
     Vector3 targetsVec;
     //Vector2 targetDir;
 
+    Rigidbody2D rb2;
+
     public void TargetSet(Vector3 t)
     {
         targetsVec = t;
         //targetDir = (targetsVec - transform.position).normalized;
     }
 
-    public override void Initialize(Rigidbody2D rb)
+    public override void Initialize()
     {
 
-        m_rb = rb;
-        IsKeepMove = true;
+       // m_rb = rb;
+       // IsKeepMove = true;
     }
 
     public override void MoveEnter()
@@ -35,7 +34,7 @@ public class DirectionMove : BaseMove
     {
         RotUpdate();
 
-        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + (Vector2)transform.up * speed * Time.deltaTime);
 
     }
 

@@ -101,12 +101,12 @@ public class CreateMove : MonoBehaviour
 
         pFloatMove.TargetSet(movePoint);
 
-        pFloatMove.speed = speed;
+        //pFloatMove.speed = speed;
 
         return true;
     }
 
-    public bool CreateFloatVectorMove(FloatVectorMove fVectorMove,Vector3 movePos, GameObject go,float sin)
+    public bool CreateFloatVectorMove(SinVectorMove fVectorMove,Vector3 movePos, GameObject go,float sin)
     {
         if (fVectorMove == null) return false;
         const float moveVal = 0.02f;
@@ -166,7 +166,7 @@ public class CreateMove : MonoBehaviour
 
         Type typeClass = Type.GetType(moveType.ToString());
         eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
-        go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+        go.GetComponent<BaseMove>().Initialize();
     }
 
     public void InitFunc(MoveClassName moveType, GameObject go)
@@ -175,7 +175,7 @@ public class CreateMove : MonoBehaviour
 
         Type typeClass = Type.GetType(moveType.ToString());
         eBase.baseMove.Add((BaseMove)go.AddComponent(typeClass));
-        go.GetComponent<BaseMove>().Initialize(go.GetComponent<Rigidbody2D>());
+        go.GetComponent<BaseMove>().Initialize();
     }
 
     public void AddFunc(MoveType moveType, GameObject go)

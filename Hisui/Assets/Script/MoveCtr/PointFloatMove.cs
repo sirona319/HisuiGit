@@ -1,27 +1,25 @@
-﻿using System.Runtime.CompilerServices;
+﻿using DG.Tweening;
 using UniRx;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Audio;
-using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem;
 
 public class PointFloatMove : BaseMove, ITargets
 {
     int targetNo = 0;
-    public float endLength = 0.7f;
+    float endLength = 0.7f;
 
-    public float speed = 4f;
+    [SerializeField] float speed = 4f;
     const float rotSpeed = 5f;
 
     public Transform[] targets { get; set; }
 
-    [SerializeField] float floatSpeed = 0.005f;
+    //[SerializeField] float floatSpeed = 0.005f;
 
     bool isLoop = false;
     public ReactiveProperty<bool> IsPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe
 
-    float sinTime = 0;
+    Rigidbody2D rb2;
+    //float sinTime = 0;
     public void TargetSet(Transform[] t)
     {
         targets = t;
@@ -37,34 +35,48 @@ public class PointFloatMove : BaseMove, ITargets
 
     //AudioSource se;
     //AudioResource ar;
-    public override void Initialize(Rigidbody2D rb)
+    public override void Initialize()
     {
-        m_rb = rb;
+        //m_rb = rb;
 
-        IsKeepMove = true;
+        //IsKeepMove = true;
 
     }
 
+    [SerializeField] GameObject trailSe;
     public override void MoveEnter()
     {
+        //トレイルサウンド用
+        var seObj = Instantiate(trailSe, trailSe.transform.position, Quaternion.identity, transform);
+        seObj.GetComponent<AudioSource>().Play();
 
+        //var pFloatMove = GetComponent<PointFloatMove>();
+        IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
+        {
+            const float fadeSpeed = 1f;//1秒で止まる
+            seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+
+            GetComponent<EnemyBase>().SetEndMoveKeep();
+            GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
+
+        });
     }
 
     public override void MoveUpdate()
     {
         if (IsPointMoveEnd.Value)
         {
-            sinTime += Time.deltaTime;
-            //エネミーにトレイルレンダーがついている場合持続する
-            MyLib.LoopMotionSinWait(sinTime,transform, 0, floatSpeed);
+            //sinTime += Time.deltaTime;
+            ////エネミーにトレイルレンダーがついている場合持続する
+            //MyLib.LoopMotionSinWait(sinTime,transform, 0, floatSpeed);
 
 
-            //ワールド座標　上方向を向かせる
-            //float targetAngle = MyLib.GetTargetAngle((transform.position + Vector3.up), transform);
+            ////ワールド座標　上方向を向かせる
+            ////float targetAngle = MyLib.GetTargetAngle((transform.position + Vector3.up), transform);
 
-            //var velocity = MyLib.SetVelocityAngle2D(targetAngle);
+            ////var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
-            transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, rotSpeed);
+            //transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, rotSpeed);
             //MyLib.TargetRotation2DZOnlyLerp(transform, velocity, rotSpeed);
 
 
@@ -76,7 +88,7 @@ public class PointFloatMove : BaseMove, ITargets
         }
 
 
-        m_rb.MovePosition(m_rb.position + (Vector2)transform.up * speed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + (Vector2)transform.up * speed * Time.deltaTime);
 
     }
 

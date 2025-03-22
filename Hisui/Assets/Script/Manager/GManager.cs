@@ -1,6 +1,5 @@
 ﻿//using Cinemachine;
 //using GoogleMobileAds.Api;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

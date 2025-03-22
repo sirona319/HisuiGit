@@ -35,8 +35,8 @@ public class Jerry_Dead : StateChildBase
             GetComponent<CreateDeadSound>().Create(deadSound);
 
 
-        GameObject spawn = GameObject.Find("WaveSpawn");
-        spawn.GetComponent<EnemySpawnWave>().UpdateCount();
+        GameObject spawn = GameObject.Find("WaveSpawnPrefab");
+        spawn.GetComponent<EnemySpawnWavePrefab>().UpdateCount();
 
         if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
             GameSceneControl.I.UpdateEnemyCount();

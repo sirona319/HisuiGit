@@ -3,9 +3,6 @@ using DG.Tweening;
 using UniRx;
 using UnityEngine;
 using static BaseMove;
-using static CreateBullet;
-using static EnemySpawnWave;
-using static UnityEngine.ParticleSystem;
 
 public class EnemySpawnWavePrefab : MonoBehaviour
 {
@@ -96,7 +93,7 @@ public class EnemySpawnWavePrefab : MonoBehaviour
             //    Debug.Log("成功　");
             //    it.targets = movePoint;
             //}
-            m.Initialize(obj.GetComponent<Rigidbody2D>());
+            m.Initialize();
         }
 
         foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
@@ -124,14 +121,136 @@ public class EnemySpawnWavePrefab : MonoBehaviour
 
         if (obj.name.Contains("Jerry"))
         {
-            //Debug.Log(obj.GetComponent<EnemyBase>().baseMove[0].GetType().FullName);
-            SelectCreateMoveJerry(obj.GetComponent<EnemyBase>().baseMove[0].GetType().FullName, movePoint, obj);
+            Debug.Log(obj.GetComponent<EnemyBase>().baseMove[0].GetType().FullName);
+            SelectCreateMoveJerryPrefab(obj.GetComponent<EnemyBase>().baseMove[0].GetType().FullName, movePoint, obj);
         }
 
     }
 
     //ムーブ設定
-    void SelectCreateMoveJerry(string moveType, Transform[] movePoint, GameObject go)
+    //void SelectCreateMoveJerry(string moveType, Transform[] movePoint, GameObject go)
+    //{
+
+    //    var createMove = jerryBuilder.GetComponent<CreateMove>();
+
+    //    const float sinVal = 0.04f;
+    //    const float sinValMini = 0.02f;
+
+    //    var trailSe=jerryBuilder.GetTrailSe;
+    //    //switch文へ
+    //    switch (moveType)
+    //    {
+    //        case "CarveMoveL":
+    //            //createMove.InitFunc(MoveClassName.CarveMove, go);
+
+    //            go.GetComponent<CarveMove>().SetCarveVal(15f);
+
+    //            createMove.CreateCarveMove(go.GetComponent<CarveMove>(), movePoint[0].position, go);
+    //            break;
+
+    //        case "CarveMoveR":
+    //            createMove.InitFunc(MoveClassName.CarveMove, go);
+
+    //            go.GetComponent<CarveMove>().SetCarveVal(-15f);
+
+    //            createMove.CreateCarveMove(go.GetComponent<CarveMove>(), movePoint[0].position, go);
+    //            break;
+
+    //        case "PointFloatMove":
+    //            //createMove.InitFunc(MoveType.PointFloatMove, go);
+
+    //            //トレイルサウンド用
+    //            var seObj = Instantiate(trailSe, trailSe.transform.position, Quaternion.identity, go.transform);
+    //            seObj.GetComponent<AudioSource>().Play();
+
+    //            var pFloatMove = go.GetComponent<PointFloatMove>();
+    //            pFloatMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
+    //            {
+    //                const float fadeSpeed = 1f;//1秒で止まる
+    //                seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+    //                //const float fadeSpeed = 0.001f;
+    //                //StartCoroutine(MyLib.SoundFadeOffCoroutine(seObj.GetComponent<AudioSource>(), fadeSpeed));
+    //            });
+    //            //
+
+    //            createMove.CreatePointFloatMove(pFloatMove, movePoint, go);
+    //            break;
+
+    //        case "FloatVectorMoveUp":
+    //            //createMove.InitFunc(MoveClassName.FloatVectorMove, go);
+
+    //            go.GetComponent<FloatVectorMove>().AddSin();
+
+    //            createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinVal);
+    //            break;
+
+    //        case "FloatVectorMoveDown":
+    //            //createMove.InitFunc(MoveClassName.FloatVectorMove, go);
+
+    //            go.GetComponent<FloatVectorMove>().addSinTime = -Time.deltaTime;
+
+
+    //            createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinVal);
+    //            break;
+
+    //        case "FloatVectorMoveUpMini":
+    //            //createMove.InitFunc(MoveClassName.FloatVectorMove, go);
+    //            //Debug.Log(MoveType.FloatVectorMoveUpMini.ToString());
+    //            go.GetComponent<FloatVectorMove>().AddSin();
+
+    //            createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinValMini);
+    //            break;
+
+    //        case "FloatVectorMoveDownMini":
+    //            createMove.InitFunc(MoveClassName.FloatVectorMove, go);
+
+    //            go.GetComponent<FloatVectorMove>().addSinTime = -Time.deltaTime;
+
+    //            createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinValMini);
+    //            break;
+
+    //        case "DirectionMove":
+    //            //createMove.InitFunc(MoveType.DirectionMove, go);
+
+    //            const float randSpdRange = 0.8f;
+    //            float randSpdVal = UnityEngine.Random.Range(0, randSpdRange);
+    //            go.GetComponent<DirectionMove>().speed += randSpdVal;
+
+    //            go.GetComponent<DirectionMove>().TargetSet(movePoint[0].position);
+
+
+    //            //go.transform.rotation = Quaternion.FromToRotation(Vector3.up, movePoint[0].position);
+
+
+    //            break;
+
+    //        case "PointCircleMove":
+    //            //createMove.InitFunc(MoveType.PointCircleMove, go);
+
+    //            //トレイルサウンド用
+    //            var seCircleObj = Instantiate(trailSe, trailSe.transform.position, Quaternion.identity, go.transform);
+    //            seCircleObj.GetComponent<AudioSource>().Play();
+
+    //            var pCircleMove = go.GetComponent<PointCircleMove>();
+    //            pCircleMove.IsPointMoveEnd.Skip(1).Subscribe(pointBool =>
+    //            {
+    //                const float fadeSpeed = 1f;//1秒で止まる
+    //                seCircleObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+
+    //            });
+    //            //
+
+    //            createMove.CreatePointCircleMove(pCircleMove, movePoint, go);
+    //            break;
+
+    //        default:
+    //            Debug.Log("MoveTypeDEFAULT");
+    //            break;
+    //    }
+
+    //}
+
+    void SelectCreateMoveJerryPrefab(string moveType, Transform[] movePoint, GameObject go)
     {
 
         var createMove = jerryBuilder.GetComponent<CreateMove>();
@@ -139,28 +258,10 @@ public class EnemySpawnWavePrefab : MonoBehaviour
         const float sinVal = 0.04f;
         const float sinValMini = 0.02f;
 
-        var trailSe=jerryBuilder.GetTrailSe;
-        //switch文へ
+        var trailSe = jerryBuilder.GetTrailSe;
         switch (moveType)
         {
-            case "CarveMoveL":
-                //createMove.InitFunc(MoveClassName.CarveMove, go);
-
-                go.GetComponent<CarveMove>().SetCarveVal(15f);
-
-                createMove.CreateCarveMove(go.GetComponent<CarveMove>(), movePoint[0].position, go);
-                break;
-
-            case "CarveMoveR":
-                createMove.InitFunc(MoveClassName.CarveMove, go);
-
-                go.GetComponent<CarveMove>().SetCarveVal(-15f);
-
-                createMove.CreateCarveMove(go.GetComponent<CarveMove>(), movePoint[0].position, go);
-                break;
-
             case "PointFloatMove":
-                //createMove.InitFunc(MoveType.PointFloatMove, go);
 
                 //トレイルサウンド用
                 var seObj = Instantiate(trailSe, trailSe.transform.position, Quaternion.identity, go.transform);
@@ -171,45 +272,56 @@ public class EnemySpawnWavePrefab : MonoBehaviour
                 {
                     const float fadeSpeed = 1f;//1秒で止まる
                     seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+
+                    go.GetComponent<EnemyBase>().SetEndMoveKeep();
+                    go.GetComponent<JerryScr>().SetEndTrail();
                     //const float fadeSpeed = 0.001f;
                     //StartCoroutine(MyLib.SoundFadeOffCoroutine(seObj.GetComponent<AudioSource>(), fadeSpeed));
                 });
-                //
 
-                createMove.CreatePointFloatMove(pFloatMove, movePoint, go);
+                pFloatMove.TargetSet(movePoint);
+
+                //pFloatMove.speed = speed;
+               // createMove.CreatePointFloatMove(pFloatMove, movePoint, go);
                 break;
+            case "FloatVectorMove":
+                //createMove.InitFunc(MoveClassName.FloatVectorMove, go);
 
+                //go.GetComponent<FloatVectorMove>().SubSin();
+                //createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinVal);
+                break;
             case "FloatVectorMoveUp":
                 //createMove.InitFunc(MoveClassName.FloatVectorMove, go);
 
-                go.GetComponent<FloatVectorMove>().addSinTime = Time.deltaTime;
+                //go.GetComponent<SinVectorMove>().AddSin();
 
-                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinVal);
+                createMove.CreateFloatVectorMove(go.GetComponent<SinVectorMove>(), movePoint[0].position, go, sinVal);
                 break;
 
             case "FloatVectorMoveDown":
                 //createMove.InitFunc(MoveClassName.FloatVectorMove, go);
 
-                go.GetComponent<FloatVectorMove>().addSinTime = -Time.deltaTime;
+                //go.GetComponent<SinVectorMove>().SubSin();
 
 
-                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinVal);
+                createMove.CreateFloatVectorMove(go.GetComponent<SinVectorMove>(), movePoint[0].position, go, sinVal);
                 break;
 
             case "FloatVectorMoveUpMini":
                 //createMove.InitFunc(MoveClassName.FloatVectorMove, go);
                 //Debug.Log(MoveType.FloatVectorMoveUpMini.ToString());
-                go.GetComponent<FloatVectorMove>().addSinTime = Time.deltaTime;
+                //go.GetComponent<SinVectorMove>().AddSin();
 
-                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinValMini);
+
+                createMove.CreateFloatVectorMove(go.GetComponent<SinVectorMove>(), movePoint[0].position, go, sinValMini);
                 break;
 
             case "FloatVectorMoveDownMini":
                 createMove.InitFunc(MoveClassName.FloatVectorMove, go);
 
-                go.GetComponent<FloatVectorMove>().addSinTime = -Time.deltaTime;
+                //go.GetComponent<SinVectorMove>().SubSin();
 
-                createMove.CreateFloatVectorMove(go.GetComponent<FloatVectorMove>(), movePoint[0].position, go, sinValMini);
+                createMove.CreateFloatVectorMove(go.GetComponent<SinVectorMove>(), movePoint[0].position, go, sinValMini);
                 break;
 
             case "DirectionMove":
