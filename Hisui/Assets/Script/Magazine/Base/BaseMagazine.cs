@@ -1,9 +1,6 @@
-﻿using Cysharp.Threading.Tasks.Triggers;
-using System;
-using UnityEngine;
-using UnityEngine.Audio;
+﻿using UnityEngine;
 using static CreateBullet;
-using static EnemyData;
+using static EnemySpawnWave;
 
 public abstract class BaseMagazine : MonoBehaviour
 {
@@ -29,17 +26,17 @@ public abstract class BaseMagazine : MonoBehaviour
         CircleMagazine,
     }
 
-    public float shotTime = 0;
+    //public float shotTime = 0;
 
-    public CreateBullet createBullet;
+    //public CreateBullet createBullet;
 
-    public BulletTarget bulletTarget;
+    //public BulletTarget bulletTarget;
 
-    [SerializeField]protected AudioSource arSe;
-    public void SetLoadSe(AudioSource se)
-    {
-        arSe = se;
-    }
+    //[SerializeField]protected AudioSource arSe;
+    //public void SetLoadSe(AudioSource se)
+    //{
+    //    arSe = se;
+    //}
 
     public virtual void Initialize() { }
 
@@ -47,35 +44,55 @@ public abstract class BaseMagazine : MonoBehaviour
 
     public abstract void MagazineUpdate();
 
-    public void TargetSet(ITarget it, BulletTarget bulletTarget, GameObject go)
-    {
-        if (it == null) return;
+    //public void TargetSet(Transform t, BulletTarget bulletTarget)
+    //{
+    //    if (t == null) return;
 
-        switch (bulletTarget)
-        {
-            case BulletTarget.Player:
-                it.Target = GameObject.FindGameObjectWithTag("Player").transform;
-                break;
-            case BulletTarget.LeftMiddle:
-                //it.Target = leftMiddle;
-                it.Target= GameObject.Find("LeftMiddle").transform;
-                break;
-            case BulletTarget.Up:
-                it.Target = go.transform.Find("Up").gameObject.transform;
-                break;
-            case BulletTarget.Right:
-                it.Target = go.transform.Find("Right").gameObject.transform;
-                break;
-            case BulletTarget.Left:
-                it.Target = go.transform.Find("Left").gameObject.transform;
-                break;
-            case BulletTarget.Down:
-                it.Target = go.transform.Find("Down").gameObject.transform;
-                break;
-            default:
-                Debug.Log("TargetDEFAULT");
-                break;
-        }
+    //    //一番近いエネミーなど？　遠い敵　レーザー武器用など（Player）
+    //    //Instanteiateで生成することで子階層から外す　座標ずれを防ぐため
+    //    switch (bulletTarget)
+    //    {
+    //        case BulletTarget.Player:
+    //            t = GameObject.FindGameObjectWithTag("Player").transform;
+    //            break;
+    //        //case BulletTarget.LeftMiddle://固定
+    //        //    //it.Target = leftMiddle;
+    //        //    t = GameObject.Find("LeftMiddle").transform;
+    //        //    break;
+    //        case BulletTarget.Up:
+    //            var up = transform.Find("Target").gameObject.transform;
+    //            up.position += Vector3.up;
+    //            t = up;
+    //            break;
+    //        case BulletTarget.Right:
+    //            var right = transform.Find("Target").gameObject.transform;
+    //            right.position += Vector3.right;
+    //            t = right;
+    //            break;
+    //        case BulletTarget.Left:
+    //            var left = transform.Find("Target").gameObject.transform;
+    //            left.position += Vector3.left;
+    //            t = left;
+    //            break;
+    //        case BulletTarget.Down:
+    //            var down = transform.Find("Target").gameObject.transform;
+    //            down.position += Vector3.down;
+    //            t = down;
+    //            break;
+    //        case BulletTarget.Target:
+    //            t = transform.Find("Target").transform;
+    //            break;
+    //        case BulletTarget.TargetVec://固定
+    //            var pos = transform.Find("TargetVec").transform.position;
+    //            var go = (GameObject)Resources.Load("prefab/Bullet/TargetVecObject");
+    //            var obj = Instantiate(go, pos, transform.rotation);
+    //            t = obj.transform;
+    //            obj.GetComponent<SetLinkObj>().linkObj = gameObject;
+    //            break;
+    //        default:
+    //            Debug.Log("ターゲット未設定");
+    //            break;
+    //    }
 
-    }
+        //}
 }

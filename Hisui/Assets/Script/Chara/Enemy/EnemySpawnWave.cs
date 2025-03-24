@@ -22,7 +22,7 @@ public class EnemySpawnWave : MonoBehaviour
 
     }
 
-    [SerializeField] JerryBuilder jerryBuilder;
+    //[SerializeField] JerryBuilder jerryBuilder;
 
     public SpawnWaveData[] spawnData;
 
@@ -191,7 +191,7 @@ public class EnemySpawnWave : MonoBehaviour
 
         if(eData.builderType == EnemyData.BuilderType.JERRY)
         {
-            jerryBuilder.Build(eData, spawnTrans, movePoint);
+            //jerryBuilder.Build(eData, spawnTrans, movePoint);
         }
 
 

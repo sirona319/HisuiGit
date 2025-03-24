@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 185438691607815936}
   - component: {fileID: 8823314079226109898}
   - component: {fileID: 3618844810906733684}
+  - component: {fileID: 2255199018390982361}
   m_Layer: 10
-  m_Name: JerryBullet
+  m_Name: JerryCarveLBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,3 +167,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1359ab76b60e7b42944ced7119a60f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2255199018390982361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764880274935360633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117d6153cc1989f4dbc21faac13c4fdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angleVal: 15
+  rotSpeed: 2.8
+  DebugEulerZ: 0
+  DebugEulerSetZ: 0
+  carveEnable: 1

@@ -26,11 +26,11 @@ public class Jerry_Wait : StateChildBase
                 return (int)JerryCtr.State.Jerry_Dead;
 
         stateTime += Time.deltaTime;
-        if (GetComponent<JerryScr>().atkMove != null)
-        {
-            GetComponent<JerryScr>().atkMove.MoveUpdate();
-            Debug.Log("atkMOVE");
-        }
+        //if (GetComponent<JerryScr>().atkMove != null)
+        //{
+        //    GetComponent<JerryScr>().atkMove.MoveUpdate();
+        //    Debug.Log("atkMOVE");
+        //}
         //transform.rotation = MyLib.TargetRotation2D((transform.position + Vector3.up), transform, 10f);
         transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, 10f);
 

@@ -62,37 +62,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 912868733144905942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1474046047560356591
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6714847394784633180}
-  m_Layer: 7
-  m_Name: Up
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6714847394784633180
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474046047560356591}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 912868733144905942}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2099340412467265353
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +149,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2166435127803826528
+--- !u!1 &2792880137155733961
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,55 +157,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6437078542236700546}
+  - component: {fileID: 90117005454953291}
   m_Layer: 7
-  m_Name: Right
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6437078542236700546
+--- !u!4 &90117005454953291
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2166435127803826528}
+  m_GameObject: {fileID: 2792880137155733961}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 912868733144905942}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2778584628463890847
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 905598792632936834}
-  m_Layer: 7
-  m_Name: Down
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &905598792632936834
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2778584628463890847}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: -3.41, y: -4.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -304,37 +242,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 912868733144905942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4987365916485057667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6523397344080255967}
-  m_Layer: 7
-  m_Name: Left
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6523397344080255967
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4987365916485057667}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 912868733144905942}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5038598300902168929
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,8 +264,9 @@ GameObject:
   - component: {fileID: 3655651677779550892}
   - component: {fileID: -4249299266798093549}
   - component: {fileID: 6573010642456634494}
+  - component: {fileID: 8293681059757544000}
   m_Layer: 7
-  m_Name: JerryCarveShot Test
+  m_Name: a
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -377,15 +285,12 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6714847394784633180}
-  - {fileID: 6523397344080255967}
-  - {fileID: 6437078542236700546}
-  - {fileID: 905598792632936834}
   - {fileID: 9045117352032642245}
   - {fileID: 7911617378811535685}
   - {fileID: 6297769591125689360}
   - {fileID: 2946154608191202377}
   - {fileID: 7022637866930889765}
+  - {fileID: 90117005454953291}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1546646778179173074
@@ -795,10 +700,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc4e014f709bfd4eaad7266c20c4930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotTime: 0
   createBullet: {fileID: 7793134514948217280}
-  bulletTarget: 1
-  arSe: {fileID: 8300000, guid: 771d05f942c5531468f718d8474ab718, type: 3}
+  targetSet: {fileID: 8293681059757544000}
+  bulletTarget: 7
+  intervalTimeMax: 0.58
 --- !u!114 &7793134514948217280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,10 +716,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7944acaaef4e5f346bef6fda2b75bdf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolType: 0
   bulletSpeed: 5
-  bulletType: 000000000100000002000000
   bulletObj: {fileID: 8764880274935360633, guid: bf34238dfbc35fd4abb92d9b5fa0a5e3, type: 3}
-  poolManager: {fileID: 0}
+  poolCtr: {fileID: 0}
 --- !u!114 &3655651677779550892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,3 +763,17 @@ MonoBehaviour:
   speed: 4
   isPointMoveEnd:
     value: 0
+--- !u!114 &8293681059757544000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038598300902168929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047e83a254ec21a47bd1825a5081a0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTarget: {fileID: 0}
+  targetName: Target

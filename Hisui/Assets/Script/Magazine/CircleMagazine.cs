@@ -1,21 +1,24 @@
-﻿using UnityEditor.EditorTools;
-using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+﻿using UnityEngine;
 
 public class CircleMagazine : BaseMagazine
 {
-    public int angleChangeVal = 10;
-    public float shotTiming = 0.1f;
+    [SerializeField] int angleChangeVal = 10;
+    [SerializeField] float shotTiming = 0.1f;
 
     float timeCount = 0;
     float shotAngle = 0;
 
-    const float BULLETTIMEMAX = 4f;
+    //const float BULLETTIMEMAX = 4f;
 
+    //public float shotTime = 0;
+
+    [SerializeField] CreateBullet createBullet;
+
+    //public BulletTarget bulletTarget;
     //逆回り作る
     public override void Initialize()
     {
-        shotTime = BULLETTIMEMAX;
+        //shotTime = BULLETTIMEMAX;
     }
 
     public override void MagazineEnter()

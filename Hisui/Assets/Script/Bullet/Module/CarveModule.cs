@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 //[DisallowMultipleComponent]
 public sealed class CarveModule : MonoBehaviour
@@ -8,8 +7,8 @@ public sealed class CarveModule : MonoBehaviour
 
     [SerializeField] float rotSpeed = 2.8f;
 
-    [SerializeField] float DebugEulerZ = 0f;
-    [SerializeField] float DebugEulerSetZ = 0f;
+    //[SerializeField] float DebugEulerZ = 0f;
+    //[SerializeField] float DebugEulerSetZ = 0f;
 
     [SerializeField] bool carveEnable = false;
 
@@ -53,11 +52,11 @@ public sealed class CarveModule : MonoBehaviour
 
         // 弾の向きを設定する
         float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;
-        DebugEulerSetZ = zAngle;//デバッグ用
+        //DebugEulerSetZ = zAngle;//デバッグ用
 
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, zAngle), rotSpeed * Time.deltaTime);
-        DebugEulerZ = transform.rotation.eulerAngles.z;//デバッグ用　DebugEulerZ==DebugEulerSetZ
+        //DebugEulerZ = transform.rotation.eulerAngles.z;//デバッグ用　DebugEulerZ==DebugEulerSetZ
     }
 
 

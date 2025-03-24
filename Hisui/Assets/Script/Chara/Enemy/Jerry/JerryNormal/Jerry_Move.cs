@@ -1,8 +1,4 @@
-﻿using DG.Tweening;
-using UniRx;
-using UnityEngine;
-using static BaseMove;
-using static UnityEngine.ParticleSystem;
+﻿using UnityEngine;
 
 
 public class Jerry_Move : StateChildBase
@@ -76,8 +72,6 @@ public class Jerry_Move : StateChildBase
             return (int)GetComponent<JerryScr>().JerryReturnStateType(StateType);
         }
             
-
-
         return StateType;
 
     }

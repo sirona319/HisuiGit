@@ -1,48 +1,69 @@
 ﻿using System;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using static BaseBullet;
 
 public class CreateBullet : MonoBehaviour
 {
-    public enum BulletTarget
+    //public enum BulletTarget
+    //{
+    //    Player,
+    //    LeftMiddle,
+    //    Up,
+    //    Right,
+    //    Left,
+    //    Down,
+
+    //    Target,
+    //    TargetVec
+    //    //斜め　四つ　
+    //    //一番近いエネミーなど？　遠い敵　レーザー
+
+
+    //}
+    enum PoolType
     {
-        Player,
-        LeftMiddle,
-        Up,
-        Right,
-        Left,
-        Down,
-
-        //斜め　四つ　
-        //一番近いエネミーなど？　遠い敵　レーザー
-
-
+        enemy,
+        player,
     }
 
+    [SerializeField] PoolType poolType;
 
-    [SerializeField] public float bulletSpeed = 5f;
+    //[SerializeField] BulletType[] bulletType;
 
-    [SerializeField] BulletType[] bulletType;
+    [SerializeField] float bulletSpeed = 5f;
 
     [SerializeField] GameObject bulletObj;
-    [SerializeField] public PoolControl poolCtr;
+    [SerializeField] PoolControl poolCtr;
 
-
-    public void SetPool(PoolControl pc)
+    private void Start()
     {
-        poolCtr = pc;
+        if (poolCtr != null) return;
+
+        if (PoolType.enemy == poolType)
+        {
+            poolCtr = GameObject.Find("JerryPoolMgr").GetComponent<PoolControl>();
+        }
+        else if (PoolType.player == poolType) 
+        {
+            poolCtr = GameObject.Find("Player").GetComponent<PoolControl>();
+
+        }
     }
+
+    //public void SetPool(PoolControl pc)
+    //{
+    //    poolCtr = pc;
+    //}
 
     public void LoadPath(GameObject bullet)
     {
         bulletObj = bullet;
     }
 
-    public void SetBulletType(BulletType[] bulletTypes)
-    {
-        bulletType = bulletTypes;
-    }
+    //public void SetBulletType(BulletType[] bulletTypes)
+    //{
+    //    bulletType = bulletTypes;
+    //}
 
     public void AddBulletType(BaseBullet bullet, string bulletTypeName)
     {
@@ -58,19 +79,17 @@ public class CreateBullet : MonoBehaviour
         //Debug.Log(poolManager);
         var bullet = poolCtr.GetGameObject(bulletObj, pos, rot);
 
-        if (bulletType.Length <= 0)
-        {
-            return null;
-        }
+        //if (bulletType.Length <= 0)
+        //{
+        //    return null;
+        //}
 
 
-        //バレットタイプを追加
-        for (int i = 0; i < (int)bulletType.Length; i++)
-        {
-
-            AddSetParamComponent(bulletType[i], bullet);
-
-        }
+        ////バレットタイプを追加
+        //for (int i = 0; i < (int)bulletType.Length; i++)
+        //{
+        //    AddSetParamComponent(bulletType[i], bullet);
+        //}
 
 
         bullet.GetComponent<NormalBullet>().speed = bulletSpeed;

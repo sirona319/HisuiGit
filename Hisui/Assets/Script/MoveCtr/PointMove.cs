@@ -19,7 +19,7 @@ public class PointMove : BaseMove
 
     Rigidbody2D rb2;
 
-    GameObject trailSe;
+    //GameObject trailSe;
 
 
     //public void TargetSet(Transform[] t)

@@ -33,7 +33,7 @@ public class EnemyData
     public float AtkIntervalMax { get => atkIntervalMax; }
 
 
-    public BulletTarget bulletTarget;
+    //public BulletTarget bulletTarget;
 
     //[SerializeField] public Vector3 bulletTargetDir;
 

@@ -122,14 +122,14 @@ public class EnemySpawnWavePrefab : MonoBehaviour
 
 
             //ターゲットを設定プレイヤー　エネミー用？
-            var t = mag as ITarget;
-            mag.TargetSet(t, mag.bulletTarget, obj);
+            //var t = mag as ITarget;
+            //mag.TargetSet(t, mag.bulletTarget);
 
         }
 
         ////obj.GetComponent<EnemyBase>().PrefabInit();
 
-        obj.GetComponent<CreateBullet>().poolCtr = poolMgr.GetComponent<PoolControl>();
+        //obj.GetComponent<CreateBullet>().poolCtr = poolMgr.GetComponent<PoolControl>();
         ////TargetSet(t, bulletTarget, go);
         ////var eData = EnemyManager.I.GetEnemyData(loadState.ToString());
 
@@ -161,11 +161,11 @@ public class EnemySpawnWavePrefab : MonoBehaviour
 
             //子階層の座標で決定　存在しない場合Playerなど？　ランダム
             //ターゲットを設定プレイヤー　エネミー用？
-            var t = mag as ITarget;
-            mag.TargetSet(t, mag.bulletTarget, obj);
+            //var t = mag as ITarget;
+            //mag.TargetSet(t, mag.bulletTarget);
 
         }
-        obj.GetComponent<CreateBullet>().poolCtr = poolMgr.GetComponent<PoolControl>();
+        //obj.GetComponent<CreateBullet>().poolCtr = poolMgr.GetComponent<PoolControl>();
     }
 
     //ムーブ設定

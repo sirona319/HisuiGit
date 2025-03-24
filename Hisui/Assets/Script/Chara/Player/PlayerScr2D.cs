@@ -1,15 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UniRx;
-using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
-using UnityEditor.EditorTools;
-using static UnityEngine.GraphicsBuffer;
-using static BaseBullet;
-using UnityEngine.Audio;
-using System.Drawing;
-using Color = UnityEngine.Color;
+﻿using UnityEngine;
 
 public class PlayerScr2D : MonoBehaviour
 {
@@ -33,7 +22,7 @@ public class PlayerScr2D : MonoBehaviour
     //[SerializeField] float bulletDeadTime = 3f;
     #region バレット
     //[SerializeField] float bulletSpeed = 6f;
-    [SerializeField] TargetMagazine nMag;
+    [SerializeField] PlayerMagazine mag;
     //[SerializeField] Transform front;           //弾の発射方向
 
 
@@ -59,7 +48,7 @@ public class PlayerScr2D : MonoBehaviour
         //nMag.SetLoadSe(pBulletSe);
         //nMag.Target = front;
 
-        nMag.TargetSet(nMag, nMag.bulletTarget, this.gameObject);
+        //nMag.TargetSet(nMag, nMag.bulletTarget);
 
         //nMag.createBullet.BulletAtk()
 
@@ -76,15 +65,16 @@ public class PlayerScr2D : MonoBehaviour
     {
         if (m_isDead) return;
 
+        mag.MagazineUpdate();
         //攻撃
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            //nMag.targetPos = (transform.position + Vector3.up) - transform.position;
-           nMag.MagazineEnter();
+        //if (Input.GetKey(KeyCode.F))
+        //{
+        //    //nMag.targetPos = (transform.position + Vector3.up) - transform.position;
+        //   nMag.MagazineEnter();
 
-            //ビーム砲チャージ
-            MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
-        }
+        //    //ビーム砲チャージ
+        //    MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
+        //}
 
 
         if (Input.GetKeyDown(KeyCode.LeftShift))

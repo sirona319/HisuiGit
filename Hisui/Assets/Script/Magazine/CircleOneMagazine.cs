@@ -6,8 +6,12 @@ public class CircleOneMagazine : BaseMagazine
 
     //Transform targetTrans;
 
-    const float BULLETTIMEMAX = 4f;
+    //const float BULLETTIMEMAX = 4f;
+    //public float shotTime = 0;
 
+    [SerializeField] CreateBullet createBullet;
+
+    //public BulletTarget bulletTarget;
     //逆回り作る
     public override void Initialize()
     {
