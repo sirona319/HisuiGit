@@ -12,7 +12,7 @@ public class Jerry_Move : StateChildBase
         base.Initialize(stateNo);
 
         move = GetComponent<EnemyBase>().move;
-        move.Initialize();
+        //move.Initialize();
     }
 
     public override void OnEnter()
@@ -66,7 +66,7 @@ public class Jerry_Move : StateChildBase
         move.MoveUpdate();
 
 
-        if (GetComponent<JerryScr>().AtkInterval <= 0|| !GetComponent<JerryScr>().IsMove)
+        if (GetComponent<JerryScr>().IsAttack&& !GetComponent<JerryScr>().IsMove)
         {
 
             return (int)GetComponent<JerryScr>().JerryReturnStateType(StateType);

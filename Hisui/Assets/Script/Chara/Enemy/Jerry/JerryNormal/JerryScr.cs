@@ -14,7 +14,7 @@ public class JerryScr : EnemyBase
     {
         //stateController.AutoStateTransitionSequence(0);
 
-        AttackTimeUpdate();
+        //AttackTimeUpdate();
 
         stateController.UpdateSequence();
 
@@ -24,18 +24,18 @@ public class JerryScr : EnemyBase
     }
 
 
-    void AttackTimeUpdate()
-    {
-        if (!IsAttack) return;
+    //void AttackTimeUpdate()
+    //{
+    //    if (!IsAttack) return;
 
-        AtkInterval -= Time.deltaTime;
+    //    AtkInterval -= Time.deltaTime;
 
 
-    }
+    //}
 
     public int JerryReturnStateType(int stateType)
     {
-        if (AtkInterval <= 0)
+        if (IsAttack)
             return (int)JerryCtr.State.Jerry_Attack;
         else if (IsMove)
             return (int)JerryCtr.State.Jerry_Move;

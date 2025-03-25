@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using UniRx;
-using Unity.VisualScripting;
+﻿using UniRx;
 using UnityEngine;
 
 public class PointCircleMove : BaseMove
@@ -84,7 +81,7 @@ public class PointCircleMove : BaseMove
 
 
         if (IsPointMoveEnd.Value)
-            SetParent(targets[0]);//ポイント移動を終了
+            SetParent(targets[0]);//サークル移動へ移行
 
 
     }

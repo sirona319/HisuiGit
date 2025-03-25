@@ -9,13 +9,13 @@ public class CircleOneMagazine : BaseMagazine
     //const float BULLETTIMEMAX = 4f;
     //public float shotTime = 0;
 
-    [SerializeField] CreateBullet createBullet;
+    CreateBullet createBullet;
 
     //public BulletTarget bulletTarget;
     //逆回り作る
     public override void Initialize()
     {
-
+        createBullet = GetComponent<CreateBullet>();
     }
 
     public override void MagazineEnter()

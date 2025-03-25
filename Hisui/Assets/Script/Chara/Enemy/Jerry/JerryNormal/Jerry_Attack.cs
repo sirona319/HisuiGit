@@ -8,14 +8,25 @@ public class Jerry_Attack : StateChildBase
 
         base.Initialize(stateType);
 
+        //if (GetComponent<JerryScr>().atkMagazine == null)
+         //   Debug.Log("atkMagazineが設定されていない");
+
+        //GetComponent<JerryScr>().atkMagazine.Initialize();
     }
 
     public override void OnEnter()
     {
 
         stateTime = 0f;
-        foreach (var magazine in GetComponent<JerryScr>().baseMagazine)
-            magazine.MagazineEnter();
+        //foreach (var magazine in GetComponent<JerryScr>().atkMagazine)
+            GetComponent<JerryScr>().atkMagazine.MagazineEnter();
+
+        if (GetComponent<JerryScr>().atkMove != null)
+        {
+            GetComponent<JerryScr>().atkMove.MoveEnter();
+            //Debug.Log("atkMOVE");
+        }
+
     }
 
     public override void OnExit()
@@ -34,12 +45,12 @@ public class Jerry_Attack : StateChildBase
 
 
         //マガジンの更新
-        GetComponent<JerryScr>().AttackMagazineUpdateAll();
+        GetComponent<JerryScr>().atkMagazine.MagazineUpdate();
 
         if (GetComponent<JerryScr>().atkMove != null)
         {
             GetComponent<JerryScr>().atkMove.MoveUpdate();
-           // Debug.Log("atkMOVE");
+            //Debug.Log("atkMOVE");
         }
 
         //foreach (var move in GetComponent<JerryScr>().atkMove)
@@ -50,12 +61,12 @@ public class Jerry_Attack : StateChildBase
 
 
         //atkMagazine
-        //if (stateTime > GetComponent<JerryScr>().baseMagazine[0].shotTime)
-        //{
-        //    float randAtkVal = UnityEngine.Random.Range(-0.5f, 0.5f);
-        //    GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().AtkIntervalMax+ randAtkVal;
-        //    return GetComponent<JerryScr>().JerryReturnStateType(StateType);
-        //}
+        if (!GetComponent<JerryScr>().IsAttack)
+        {
+            //float randAtkVal = UnityEngine.Random.Range(-0.5f, 0.5f);
+            //GetComponent<JerryScr>().AtkInterval = GetComponent<JerryScr>().AtkIntervalMax + randAtkVal;
+            return GetComponent<JerryScr>().JerryReturnStateType(StateType);
+        }
 
 
         return (int)StateType;

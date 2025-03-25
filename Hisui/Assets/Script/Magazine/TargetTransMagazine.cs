@@ -1,31 +1,33 @@
 ﻿using UnityEngine;
-using static BulletTargetSet;
+using static TargetSet;
 
 public class TargetTransMagazine : BaseMagazine
 {
     //[SerializeField] float shotTime = 0;
 
-    [SerializeField] CreateBullet createBullet;
+    CreateBullet createBullet;
 
-    [SerializeField] BulletTargetSet targetSet;
-    [SerializeField] BulletTarget bulletTarget;
-    Transform target;
+    TargetSet targetSet;
+    //[SerializeField] Target targetType;
+    [SerializeField]Transform target;
     //[SerializeField] AudioSource arSe;
 
     float intervalTime = 1f;
     [SerializeField] float intervalTimeMax = 1f;
     void Start()
     {
-        target = targetSet.TargetSet(target, bulletTarget);
+
+        createBullet = GetComponent<CreateBullet>();
+        targetSet = GetComponent<TargetSet>();
+        targetSet.Init();
+        target = targetSet.Set(TargetName.Bullet);
         //target = transform.Find("Target").transform;
         //shotTime = 1f;
     }
 
     public override void MagazineEnter()
     {
-        //if (targetTrans == null) return;
-        //Shot();
-        //MyLib.MyPlayOneSound("Sound/SE/JerryShot", gameObject.GetComponent<AudioSource>());//水滴
+
     }
     public override void MagazineUpdate()
     {

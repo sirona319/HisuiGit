@@ -115,17 +115,17 @@ public class EnemySpawnWavePrefab : MonoBehaviour
         //    m.Initialize();
         //}
 
-        foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
-        {
-            //magazine.BulletLoad("prefab/EBulletNormalEX");
-            mag.Initialize();
+        //foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
+        //{
+        //    //magazine.BulletLoad("prefab/EBulletNormalEX");
+        //    mag.Initialize();
 
 
-            //ターゲットを設定プレイヤー　エネミー用？
-            //var t = mag as ITarget;
-            //mag.TargetSet(t, mag.bulletTarget);
+        //    //ターゲットを設定プレイヤー　エネミー用？
+        //    //var t = mag as ITarget;
+        //    //mag.TargetSet(t, mag.bulletTarget);
 
-        }
+        //}
 
         ////obj.GetComponent<EnemyBase>().PrefabInit();
 
@@ -151,20 +151,20 @@ public class EnemySpawnWavePrefab : MonoBehaviour
         yield return new WaitForSeconds(seconds);
 
         var obj = Instantiate(loadState, spawnTrans.position, spawnTrans.rotation);
-        foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
-        {
-            //magazine.BulletLoad("prefab/EBulletNormalEX");
+        //foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
+        //{
+        //    //magazine.BulletLoad("prefab/EBulletNormalEX");
 
-            //エネミーへ移行
-            mag.Initialize();
+        //    //エネミーへ移行
+        //    mag.Initialize();
 
 
-            //子階層の座標で決定　存在しない場合Playerなど？　ランダム
-            //ターゲットを設定プレイヤー　エネミー用？
-            //var t = mag as ITarget;
-            //mag.TargetSet(t, mag.bulletTarget);
+        //    //子階層の座標で決定　存在しない場合Playerなど？　ランダム
+        //    //ターゲットを設定プレイヤー　エネミー用？
+        //    //var t = mag as ITarget;
+        //    //mag.TargetSet(t, mag.bulletTarget);
 
-        }
+        //}
         //obj.GetComponent<CreateBullet>().poolCtr = poolMgr.GetComponent<PoolControl>();
     }
 

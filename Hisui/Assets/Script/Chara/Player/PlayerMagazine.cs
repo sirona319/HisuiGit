@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
-using static BulletTargetSet;
-using static CreateBullet;
+using static TargetSet;
 
 
 public class PlayerMagazine : BaseMagazine
 {
     //public float shotTime = 0;
 
-    [SerializeField] CreateBullet createBullet;
-    [SerializeField] BulletTarget bulletTarget;
-    [SerializeField] BulletTargetSet targetSet;
+    CreateBullet createBullet;
+    //[SerializeField] Target targetType;
+    TargetSet targetSet;
     Transform target;
 
     float intervalTime = 1f;
@@ -17,7 +16,10 @@ public class PlayerMagazine : BaseMagazine
 
     void Start()
     {
-        target = targetSet.TargetSet(target, bulletTarget);
+        createBullet = GetComponent<CreateBullet>();
+        targetSet = GetComponent<TargetSet>();
+        targetSet.Init();
+        target = targetSet.Set(TargetName.Bullet);
         //target = transform.Find("Target").transform;
         //shotTime = 1f;
         intervalTime = intervalTimeMax;

@@ -6,11 +6,12 @@ public class FiveMagazine : BaseMagazine, ITarget
     const float ONEWEYLENGTH = 15f;
     const float TWOWEYLENGTH = 30f;
 
-    [SerializeField] CreateBullet createBullet;
+    CreateBullet createBullet;
 
 
     public override void Initialize()
     {
+        createBullet = GetComponent<CreateBullet>();
         //var player = GameObject.FindGameObjectWithTag("Player");
         //targetTrans = player.transform;
 

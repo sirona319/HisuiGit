@@ -12,12 +12,13 @@ public class CircleMagazine : BaseMagazine
 
     //public float shotTime = 0;
 
-    [SerializeField] CreateBullet createBullet;
+    CreateBullet createBullet;
 
     //public BulletTarget bulletTarget;
     //逆回り作る
     public override void Initialize()
     {
+        createBullet = GetComponent<CreateBullet>();
         //shotTime = BULLETTIMEMAX;
     }
 

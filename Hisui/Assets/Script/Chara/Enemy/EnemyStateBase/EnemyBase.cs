@@ -21,22 +21,23 @@ public class EnemyBase : MonoBehaviour
 
     public bool IsDamage { get; set; } = false;
 
-    protected bool IsAttack { get; private set; } = false;
+    public bool IsAttack  = false;
 
-    public bool IsMove { get; private set; } = true;
+    public bool IsMove  = true;
 
 
     //public EnemyData enemyData;//スクリプタルオブジェクト　リスト中身
 
 
-    public List<BaseMagazine> baseMagazine=new ();
+    //public List<BaseMagazine> baseMagazine=new ();
+    public BaseMagazine atkMagazine = null;
     //public List<BaseMove> baseMove = new ();
     public BaseMove move = null;
-    public BaseMove atkMove=null;
+    public BaseMove atkMove = null;
 
     public int Hp = 0;
-    [SerializeField] public float AtkIntervalMax;
-    [SerializeField] public float AtkInterval;
+    //[SerializeField] public float AtkIntervalMax;
+    //[SerializeField] public float AtkInterval;
 
 
     ParticleSystem dmgParticle;//ダメージパーティクル
@@ -69,11 +70,11 @@ public class EnemyBase : MonoBehaviour
     //            magazine.MagazineUpdate();
 
     //}
-    public void AttackMagazineUpdateAll()
-    {
-        foreach (var magazine in baseMagazine)
-            magazine.MagazineUpdate();
-    }
+    //public void AttackMagazineUpdateAll()
+    //{
+    //    foreach (var magazine in baseMagazine)
+    //        magazine.MagazineUpdate();
+    //}
 
     //protected virtual void EnemyDataInit()
     //{
@@ -95,6 +96,14 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Init()
     {
         dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
+
+        //move = GetComponent<EnemyBase>().move;
+
+        if (atkMove != null)
+            atkMove.Initialize();
+
+        if(move != null)
+            move.Initialize();
     }
 
     //public virtual void PrefabInit()
