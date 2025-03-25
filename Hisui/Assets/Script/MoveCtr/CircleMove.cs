@@ -31,7 +31,7 @@ public class CircleMove : BaseMove
     {
         rb2 = GetComponent<Rigidbody2D>();
         targetSet=GetComponent<TargetSet>();
-        targetSet.Init();
+        //targetSet.Init();
         target = targetSet.Set(TargetName.Circle);
     }
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
+[DisallowMultipleComponent]
 public class Warp : MonoBehaviour
 {
     #region ワープ

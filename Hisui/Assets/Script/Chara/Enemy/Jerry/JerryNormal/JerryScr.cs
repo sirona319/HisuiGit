@@ -6,7 +6,7 @@ public class JerryScr : EnemyBase
 
     void Start()
     {
-        base.Init();
+        //base.Init();
         stateController.Initialize((int)JerryCtr.State.Jerry_Wait);
     }
 

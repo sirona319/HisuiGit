@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+[DisallowMultipleComponent]
 public class WarpUi : MonoBehaviour
 {
     [SerializeField] Image hpImage;

@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 3939145555197778579}
   - component: {fileID: 215540491414597471}
   - component: {fileID: 4247948621771878604}
-  - component: {fileID: 1962218229311082515}
-  - component: {fileID: 3783524719151338287}
+  - component: {fileID: 7458125499029123841}
+  - component: {fileID: 5861343365203668300}
   - component: {fileID: 7221941000943408474}
   - component: {fileID: 4108127654493571886}
   - component: {fileID: 7029555914301380982}
   - component: {fileID: 3844671231252784783}
+  - component: {fileID: 3493510969339514314}
   m_Layer: 12
   m_Name: BW
   m_TagString: Player
@@ -176,8 +177,8 @@ MonoBehaviour:
   speed: 3
   movement: {x: 0, y: 0}
   mag: {fileID: 3844671231252784783}
-  warp: {fileID: 1962218229311082515}
---- !u!114 &1962218229311082515
+  warp: {fileID: 7458125499029123841}
+--- !u!114 &7458125499029123841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,9 +193,9 @@ MonoBehaviour:
   pFadeSpeed: 0.03
   wpIntervalMax: 1
   wpInterval: 0
-  warpUi: {fileID: 3783524719151338287}
+  warpUi: {fileID: 5861343365203668300}
   ptChildName: Ring
---- !u!114 &3783524719151338287
+--- !u!114 &5861343365203668300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,7 +251,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 8447560681156687575, guid: 52c61e70df12845489865621304cea2b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
@@ -347,9 +348,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843ec490fe4521d40b93c41b54f1b4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createBullet: {fileID: 4108127654493571886}
-  bulletTarget: 6
   intervalTimeMax: 0.42
+--- !u!114 &3493510969339514314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850700731729801871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047e83a254ec21a47bd1825a5081a0f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1920818721939051426
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,8 +370,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5865292560180736625}
+  - component: {fileID: 2825530579278101364}
   m_Layer: 12
-  m_Name: Target
+  m_Name: BulletTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,9 +387,24 @@ Transform:
   m_GameObject: {fileID: 1920818721939051426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -3.63, y: 5.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 943529824984135458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2825530579278101364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920818721939051426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0c04e011f0e75448f75b5039381445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tName: 0
+  target: 3
+  pointLength: 0.7

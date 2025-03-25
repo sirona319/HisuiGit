@@ -33,10 +33,10 @@ public class TargetSet : MonoBehaviour
     }
 
 
-    public void Init()
-    {
-        //playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+    //public void Init()
+    //{
+    //    //playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+    //}
 
     //バレット　サークル　単体
     public Transform Set(TargetName name)

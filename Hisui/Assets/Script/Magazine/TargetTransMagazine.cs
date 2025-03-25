@@ -19,7 +19,7 @@ public class TargetTransMagazine : BaseMagazine
 
         createBullet = GetComponent<CreateBullet>();
         targetSet = GetComponent<TargetSet>();
-        targetSet.Init();
+        //targetSet.Init();
         target = targetSet.Set(TargetName.Bullet);
         //target = transform.Find("Target").transform;
         //shotTime = 1f;

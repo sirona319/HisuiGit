@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[DisallowMultipleComponent]
 public class PlayerScr2D : MonoBehaviour
 {
     //デバッグ用

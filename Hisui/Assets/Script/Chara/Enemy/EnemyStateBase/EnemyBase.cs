@@ -93,16 +93,20 @@ public class EnemyBase : MonoBehaviour
     //        throw new System.Exception(findName + "スクリプタルオブジェクト　moveType 空");
     //}
 
-    protected virtual void Init()
+    public virtual void Init()
     {
         dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
 
         //move = GetComponent<EnemyBase>().move;
 
+
+        if (atkMagazine != null)
+            atkMagazine.Initialize();
+
         if (atkMove != null)
             atkMove.Initialize();
 
-        if(move != null)
+        if (move != null)
             move.Initialize();
     }
 

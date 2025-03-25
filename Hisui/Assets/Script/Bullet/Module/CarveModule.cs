@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-//[DisallowMultipleComponent]
+[DisallowMultipleComponent]
 public sealed class CarveModule : MonoBehaviour
 {
     [SerializeField] float angleVal = 0f;

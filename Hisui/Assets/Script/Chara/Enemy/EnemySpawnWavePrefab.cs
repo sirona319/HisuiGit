@@ -70,13 +70,13 @@ public class EnemySpawnWavePrefab : MonoBehaviour
         //}
         while (true)
         {
-            StartCoroutine(DelaySpawnWave(
+            StartCoroutine(DelaySpawnWavePrefab(
                 spawnData[No].spawnTime[spawnData[No].enemyCount], /** spawnData[No].enemyCount + 1*///float型　生成時間
 
                 spawnData[No].LoadState[spawnData[No].enemyCount],//敵の種類
 
-                spawnData[No].spawnLocations[spawnData[No].enemyCount]//生成座標
-                                                                      
+                spawnData[No].spawnLocations[spawnData[No].enemyCount],//生成座標
+                spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray//目標座標             
                 ));
 
             spawnData[No].enemyCount++;
@@ -98,59 +98,69 @@ public class EnemySpawnWavePrefab : MonoBehaviour
 
     }
 
-    public async UniTask DelaySpawnAsyncWave(float seconds, GameObject loadState, Transform spawnTrans, Transform[] movePoint)
-    {
-        await UniTask.WaitForSeconds(seconds);
+    //public async UniTask DelaySpawnAsyncWave(float seconds, GameObject loadState, Transform spawnTrans, Transform[] movePoint)
+    //{
+    //    await UniTask.WaitForSeconds(seconds);
 
-        var obj = Instantiate(loadState, spawnTrans.position, spawnTrans.rotation);
+    //    var obj = Instantiate(loadState, spawnTrans.position, spawnTrans.rotation);
 
-        //foreach (var m in obj.GetComponent<EnemyBase>().baseMove)
-        //{
-        //    //var it = m as ITargets;
-        //    //if (it != null)
-        //    //{
-        //    //    Debug.Log("成功　");
-        //    //    it.targets = movePoint;
-        //    //}
-        //    m.Initialize();
-        //}
-
-        //foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
-        //{
-        //    //magazine.BulletLoad("prefab/EBulletNormalEX");
-        //    mag.Initialize();
+    //    //obj.GetComponent<EnemyBase>().Init();
 
 
-        //    //ターゲットを設定プレイヤー　エネミー用？
-        //    //var t = mag as ITarget;
-        //    //mag.TargetSet(t, mag.bulletTarget);
 
-        //}
 
-        ////obj.GetComponent<EnemyBase>().PrefabInit();
+    //    //foreach (var m in obj.GetComponent<EnemyBase>().baseMove)
+    //    //{
+    //    //    //var it = m as ITargets;
+    //    //    //if (it != null)
+    //    //    //{
+    //    //    //    Debug.Log("成功　");
+    //    //    //    it.targets = movePoint;
+    //    //    //}
+    //    //    m.Initialize();
+    //    //}
 
-        //obj.GetComponent<CreateBullet>().poolCtr = poolMgr.GetComponent<PoolControl>();
-        ////TargetSet(t, bulletTarget, go);
-        ////var eData = EnemyManager.I.GetEnemyData(loadState.ToString());
+    //    //foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
+    //    //{
+    //    //    //magazine.BulletLoad("prefab/EBulletNormalEX");
+    //    //    mag.Initialize();
 
-        ////if (eData.builderType == EnemyData.BuilderType.JERRY)
-        ////{
-        ////    jerryBuilder.Build(eData, spawnTrans, movePoint);
-        ////}
 
-        //if (obj.name.Contains("Jerry"))
-        //{
-        //    //Debug.Log(obj.GetComponent<EnemyBase>().baseMove[0].GetType().FullName);
-        //    SelectCreateMoveJerryPrefab(obj.GetComponent<EnemyBase>().baseMove[0].GetType().FullName, movePoint, obj);
-        //}
+    //    //    //ターゲットを設定プレイヤー　エネミー用？
+    //    //    //var t = mag as ITarget;
+    //    //    //mag.TargetSet(t, mag.bulletTarget);
 
-    }
+    //    //}
 
-    public IEnumerator DelaySpawnWave(float seconds, GameObject loadState, Transform spawnTrans/*, Transform[] movePoint*/)
+    //    ////obj.GetComponent<EnemyBase>().PrefabInit();
+
+    //    //obj.GetComponent<CreateBullet>().poolCtr = poolMgr.GetComponent<PoolControl>();
+    //    ////TargetSet(t, bulletTarget, go);
+    //    ////var eData = EnemyManager.I.GetEnemyData(loadState.ToString());
+
+    //    ////if (eData.builderType == EnemyData.BuilderType.JERRY)
+    //    ////{
+    //    ////    jerryBuilder.Build(eData, spawnTrans, movePoint);
+    //    ////}
+
+    //    //if (obj.name.Contains("Jerry"))
+    //    //{
+    //    //    //Debug.Log(obj.GetComponent<EnemyBase>().baseMove[0].GetType().FullName);
+    //    //    SelectCreateMoveJerryPrefab(obj.GetComponent<EnemyBase>().baseMove[0].GetType().FullName, movePoint, obj);
+    //    //}
+
+    //}
+
+    public IEnumerator DelaySpawnWavePrefab(float seconds, GameObject loadState, Transform spawnTrans, Transform[] movePoint)
     {
         yield return new WaitForSeconds(seconds);
 
         var obj = Instantiate(loadState, spawnTrans.position, spawnTrans.rotation);
+
+        obj.GetComponent<EnemyBase>().Init();
+
+        if (movePoint[0] != null)
+            Debug.Log("移動座標　スポーンから設定されている");
         //foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
         //{
         //    //magazine.BulletLoad("prefab/EBulletNormalEX");

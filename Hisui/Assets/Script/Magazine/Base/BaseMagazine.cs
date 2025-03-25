@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using static CreateBullet;
-using static EnemySpawnWave;
 
 public abstract class BaseMagazine : MonoBehaviour
 {
