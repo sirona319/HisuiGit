@@ -34,7 +34,7 @@ public class PoolControl : MonoBehaviour
 
     void OnDestroyPooledObject(GameObject obj)
     {
-        Destroy(obj);
+        //Destroy(obj);
     }
 
     public GameObject GetGameObject(GameObject prefab,Vector3 position,Quaternion rotation)

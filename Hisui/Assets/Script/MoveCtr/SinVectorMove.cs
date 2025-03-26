@@ -36,6 +36,8 @@ public class SinVectorMove : BaseMove
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 
+        //const float sinVal = 0.04f;
+        //const float sinValMini = 0.02f;
         //見た目だけの回転
         //var spriteTrans = transform.Find("Sprite").gameObject.transform;
         //spriteTrans.rotation = Quaternion.FromToRotation(Vector3.up, transform.up);
