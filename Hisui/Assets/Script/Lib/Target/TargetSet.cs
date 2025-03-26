@@ -142,6 +142,10 @@ public class TargetSet : MonoBehaviour
                 Debug.Log("ターゲット未設定");
                 break;
         }
+
+        if (t == null)
+            Debug.Log("ターゲットが存在しない");
+
         return t;
     }
 

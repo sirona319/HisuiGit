@@ -75,8 +75,8 @@ public class EnemySpawnWavePrefab : MonoBehaviour
 
                 spawnData[No].LoadState[spawnData[No].enemyCount],//敵の種類
 
-                spawnData[No].spawnLocations[spawnData[No].enemyCount],//生成座標
-                spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray//目標座標             
+                spawnData[No].spawnLocations[spawnData[No].enemyCount]//生成座標
+                //spawnData[No].movePointsSet[spawnData[No].enemyCount].childArray//目標座標             
                 ));
 
             spawnData[No].enemyCount++;
@@ -161,6 +161,33 @@ public class EnemySpawnWavePrefab : MonoBehaviour
 
         if (movePoint[0] != null)
             Debug.Log("移動座標　スポーンから設定されている");
+        //foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
+        //{
+        //    //magazine.BulletLoad("prefab/EBulletNormalEX");
+
+        //    //エネミーへ移行
+        //    mag.Initialize();
+
+
+        //    //子階層の座標で決定　存在しない場合Playerなど？　ランダム
+        //    //ターゲットを設定プレイヤー　エネミー用？
+        //    //var t = mag as ITarget;
+        //    //mag.TargetSet(t, mag.bulletTarget);
+
+        //}
+        //obj.GetComponent<CreateBullet>().poolCtr = poolMgr.GetComponent<PoolControl>();
+    }
+
+    public IEnumerator DelaySpawnWavePrefab(float seconds, GameObject loadState, Transform spawnTrans)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        var obj = Instantiate(loadState, spawnTrans.position, spawnTrans.rotation);
+
+        obj.GetComponent<EnemyBase>().Init();
+
+        //if (movePoint[0] != null)
+        //    Debug.Log("移動座標　スポーンから設定されている");
         //foreach (var mag in obj.GetComponent<EnemyBase>().baseMagazine)
         //{
         //    //magazine.BulletLoad("prefab/EBulletNormalEX");

@@ -8,34 +8,42 @@ public class SinVectorMove : BaseMove
         Sub,
     }
     [SerializeField] SinType sinType;
+    [SerializeField] float sinVal= 0.02f;
 
-    public Vector3 addSinVec = Vector3.zero;
-    public Vector3 floatVector;
-    [SerializeField] float speed=1.8f;
+    Vector3 addSinVec = Vector3.zero;
+    Vector3 floatVector;
+    float speed=1.8f;
 
     float sinTime = 0;
 
-    [SerializeField]float addSinTime;
+    float addSinTime;
 
-    //public void SubSin()
-    //{
-    //    addSinTime = -Time.deltaTime;
-    //}
-    //public void AddSin()
-    //{
-    //    addSinTime = Time.deltaTime;
-    //}
+    TargetSet targetSet;
+
     //スタート地点の座標を保存して　一定時間後に戻る？　それか破棄する　Wave制の更新用
     public override void Initialize()
     {
-        //base.Initialize(rb);
-        //m_rb = rb;
-       // IsKeepMove = true;
 
         if(sinType == SinType.Add)
             addSinTime = Time.deltaTime;
         else if(sinType == SinType.Sub)
             addSinTime = -Time.deltaTime;
+
+
+        targetSet=GetComponent<TargetSet>();
+        var movePos = targetSet.Set(TargetSet.TargetName.Point);
+        var dir = movePos.position - transform.position;
+
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
+
+        //見た目だけの回転
+        //var spriteTrans = transform.Find("Sprite").gameObject.transform;
+        //spriteTrans.rotation = Quaternion.FromToRotation(Vector3.up, transform.up);
+
+        const float moveVal = 0.02f;
+        floatVector = dir.normalized * moveVal;
+
+        addSinVec = transform.right * sinVal;
     }
 
     public override void MoveEnter()
