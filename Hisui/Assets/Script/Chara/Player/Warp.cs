@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 [DisallowMultipleComponent]
 public class Warp : MonoBehaviour
@@ -33,7 +34,8 @@ public class Warp : MonoBehaviour
 
     void Start()
     {
-        wpParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/Wp");
+        wpParticle = Resources.Load("prefab/Particle/Wp").GetComponent<ParticleSystem>();
+        //wpParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/Wp");
     }
 
     private void Update()

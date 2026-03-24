@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FiveMagazine : BaseMagazine, ITarget
+public class FiveMagazine : BaseMagazine
 {
     public Transform Target { get; set; }
     const float ONEWEYLENGTH = 15f;

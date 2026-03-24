@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Jerry_Dead : StateChildBase
@@ -12,9 +13,10 @@ public class Jerry_Dead : StateChildBase
     {
         base.Initialize(stateNo);
 
-        deadParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/Flash_star_ellow_green");
-
-        deadSound = MyLib.GetComponentLoad<AudioSource>("prefab/Sound/JerryDestroySound");
+        deadParticle = (ParticleSystem)Resources.Load("prefab/Particle/Flash_star_ellow_green").GetComponent<ParticleSystem>();
+        //deadParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/Flash_star_ellow_green");
+        deadSound = (AudioSource)Resources.Load("prefab/Sound/JerryDestroySound").GetComponent<AudioSource>();
+        //deadSound = MyLib.GetComponentLoad<AudioSource>("prefab/Sound/JerryDestroySound");
     }
 
     public override void OnEnter()
@@ -38,7 +40,7 @@ public class Jerry_Dead : StateChildBase
         GameObject spawn = GameObject.Find("WaveSpawnPrefab");
         spawn.GetComponent<EnemySpawnWavePrefab>().UpdateCount();
 
-        if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
+        if (EnumSceneName.SceneNameType.GameScene.ToString().Contains(SceneManager.GetActiveScene().name))
             GameSceneControl.I.UpdateEnemyCount();
 
         //サウンドがならない　原因

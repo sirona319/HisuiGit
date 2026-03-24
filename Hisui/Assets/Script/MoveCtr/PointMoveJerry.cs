@@ -8,6 +8,7 @@ public class PointMoveJerry : PointMove
     public override void MoveEnter()
     {
         base.MoveEnter();
+
         var trailSe = (GameObject)Resources.Load("Prefab/Sound/JerryTrailSe");
         //トレイルサウンド用
         var seObj = Instantiate(trailSe, trailSe.transform.position, Quaternion.identity, transform);

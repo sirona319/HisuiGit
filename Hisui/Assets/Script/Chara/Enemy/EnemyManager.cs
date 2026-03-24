@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.AddressableAssets;
-//using System.Linq;
-using Cysharp.Threading.Tasks;
+﻿//using System.Linq;
 using System.Linq;
 
 public class EnemyManager : Singleton<EnemyManager>
@@ -9,23 +6,23 @@ public class EnemyManager : Singleton<EnemyManager>
     EnemySetting enemySetting;
 
     //public EnemyBase aa;
-    private async UniTask UniStart()
-    {
-        enemySetting = await Addressables.
-               LoadAssetAsync<EnemySetting>("Assets/EnemySetting.asset");
+    //private async UniTask UniStart()
+    //{
+    //    //enemySetting = await Addressables.
+    //     //      LoadAssetAsync<EnemySetting>("Assets/EnemySetting.asset");
 
-        //スライムのデータを取得
-        //var slimeData = enemySetting.DataList.
-        //                FirstOrDefault(enemy => enemy.Id == "JerryNormal");
-        //Debug.Log($"ID：{slimeData.Id}");
+    //    //スライムのデータを取得
+    //    //var slimeData = enemySetting.DataList.
+    //    //                FirstOrDefault(enemy => enemy.Id == "JerryNormal");
+    //    //Debug.Log($"ID：{slimeData.Id}");
 
 
         
-    }
+    //}
 
-    private async void Start()
+    void Start()
     {
-        await UniStart();
+        //await UniStart();
 
     }
 

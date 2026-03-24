@@ -1,10 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using System.Collections;
-using UniRx;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
-using static BaseMove;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawnWavePrefab : MonoBehaviour
 {
@@ -45,7 +41,7 @@ public class EnemySpawnWavePrefab : MonoBehaviour
     void SpawnWave(int No)
     {
 
-        if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
+        if (EnumSceneName.SceneNameType.GameScene.ToString().Contains(SceneManager.GetActiveScene().name))
             GameSceneControl.I.enemyAllCount += spawnData[No].LoadState.Length;
 
 

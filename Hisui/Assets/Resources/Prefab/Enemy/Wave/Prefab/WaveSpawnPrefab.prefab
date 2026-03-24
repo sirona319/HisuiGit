@@ -46,7 +46,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolMgr: {fileID: 0}
   spawnData:
-  - DataName: Prefab0
+  - DataName: Fall_R
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 2
+    - 3
+    - 4
+    - 6
+    - 7
+    LoadState:
+    - {fileID: 8573072059003257420, guid: 48119d52440a3a04b8b7eb77f1fe8c5d, type: 3}
+    - {fileID: 8573072059003257420, guid: 48119d52440a3a04b8b7eb77f1fe8c5d, type: 3}
+    - {fileID: 6016523942851897124, guid: 7f692bfd55b5d6547b35b92b4c439661, type: 3}
+    - {fileID: 544117060525006650, guid: 5db075a5c2cc28541b24ae254c923aa9, type: 3}
+    - {fileID: 3309826038267221141, guid: dc82fd2c95d04b940a462fa894f99ed7, type: 3}
+    - {fileID: 8162912325789773162, guid: 8c0a4269ea7322447be6c47240026d68, type: 3}
+    - {fileID: 6016523942851897124, guid: 7f692bfd55b5d6547b35b92b4c439661, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
+    - childArray:
+      - {fileID: 0}
+  - DataName: RNormal1
     enemyCount: 0
     spawnTime:
     - 0
@@ -54,10 +83,10 @@ MonoBehaviour:
     - 0
     - 0
     LoadState:
-    - {fileID: 5796737785934385295, guid: 5777a7b5d1629c743a11abb866c05891, type: 3}
-    - {fileID: 5796737785934385295, guid: 5777a7b5d1629c743a11abb866c05891, type: 3}
-    - {fileID: 5796737785934385295, guid: 5777a7b5d1629c743a11abb866c05891, type: 3}
-    - {fileID: 5796737785934385295, guid: 5777a7b5d1629c743a11abb866c05891, type: 3}
+    - {fileID: 8573072059003257420, guid: b788c9fdb93ca9c42b84fb9d89fe8e6f, type: 3}
+    - {fileID: 8573072059003257420, guid: 51122a18b28119441af2c6a3ebbf3f1f, type: 3}
+    - {fileID: 8573072059003257420, guid: f295f5e83a3ce3746a3d07f4355ad2fe, type: 3}
+    - {fileID: 8573072059003257420, guid: 5889ea1023e67d84cb6070eb267566ab, type: 3}
     spawnLocations:
     - {fileID: 0}
     - {fileID: 0}
@@ -66,6 +95,249 @@ MonoBehaviour:
     movePointsSet:
     - childArray:
       - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+  - DataName: RNormal2
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 0
+    LoadState:
+    - {fileID: 8573072059003257420, guid: b788c9fdb93ca9c42b84fb9d89fe8e6f, type: 3}
+    - {fileID: 8573072059003257420, guid: 51122a18b28119441af2c6a3ebbf3f1f, type: 3}
+    - {fileID: 8573072059003257420, guid: ad0cbf25143c7db41ba0d200520c50b8, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+  - DataName: RNormal3
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 0
+    - 0
+    LoadState:
+    - {fileID: 8573072059003257420, guid: 51122a18b28119441af2c6a3ebbf3f1f, type: 3}
+    - {fileID: 8573072059003257420, guid: ba2b495a15aa2ee41a4e4062f3a5c0e4, type: 3}
+    - {fileID: 8573072059003257420, guid: ad0cbf25143c7db41ba0d200520c50b8, type: 3}
+    - {fileID: 8573072059003257420, guid: f295f5e83a3ce3746a3d07f4355ad2fe, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+  - DataName: RSinMini_Middle
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 4
+    - 4
+    - 8
+    - 8
+    LoadState:
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+  - DataName: RSinMini_Out
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 4
+    - 4
+    - 8
+    - 8
+    LoadState:
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+  - DataName: RSinMiniEx
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 4
+    - 4
+    - 8
+    - 8
+    LoadState:
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    - {fileID: 6892060187020683047, guid: dbc8cabe38dd57444854599099248708, type: 3}
+    - {fileID: 9203815146563239578, guid: cd79748938cbb1a43b38e501a3f47d1e, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+  - DataName: RSin_Center
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 4
+    - 4
+    - 8
+    - 8
+    - 12
+    - 12
+    LoadState:
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+  - DataName: RSin_Cross
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 4
+    - 4
+    - 8
+    - 8
+    - 12
+    - 12
+    LoadState:
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+    - childArray:
+      - {fileID: 0}
+  - DataName: RSin_Out
+    enemyCount: 0
+    spawnTime:
+    - 0
+    - 0
+    - 4
+    - 4
+    - 8
+    - 8
+    - 12
+    - 12
+    LoadState:
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    - {fileID: 1290961673459672762, guid: fbd9272b179ad384d8a12b2a1506f907, type: 3}
+    - {fileID: 1290961673459672762, guid: 94f650692d2efae4bb08b67ab249e963, type: 3}
+    spawnLocations:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    movePointsSet:
     - childArray:
       - {fileID: 0}
     - childArray:

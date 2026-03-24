@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using static BaseBullet;
 
-public class TwoCarveMagazine : BaseMagazine,ITarget
+public class TwoCarveMagazine : BaseMagazine
 {
     public Transform Target { get; set; }
     const float ONEWEYLENGTH = 7f;

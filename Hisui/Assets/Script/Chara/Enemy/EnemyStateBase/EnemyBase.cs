@@ -2,6 +2,7 @@
 using System;
 using static EnemyData;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 
 public class EnemyBase : MonoBehaviour
@@ -95,7 +96,8 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void Init()
     {
-        dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
+        dmgParticle = Resources.Load("prefab/Particle/DamagePt").GetComponent<ParticleSystem>();
+        //dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
 
         //move = GetComponent<EnemyBase>().move;
 
