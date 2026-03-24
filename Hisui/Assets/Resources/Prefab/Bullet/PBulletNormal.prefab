@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 98536831959488643}
   - component: {fileID: 6956018104533081762}
   - component: {fileID: 872808277941926675}
-  - component: {fileID: 3809766009686770313}
-  - component: {fileID: -5185154960744709288}
+  - component: {fileID: 5557810362489275712}
+  - component: {fileID: 4193441189358821913}
   m_Layer: 9
   m_Name: PBulletNormal
   m_TagString: Untagged
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652295628485586386}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -7.5370626, y: 3.0770538, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37,6 +37,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6956018104533081762
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -55,6 +56,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -76,9 +79,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -230103395
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 402eab60b9dfb1f4f8e73fc851272304, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -88,7 +93,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &872808277941926675
 BoxCollider2D:
@@ -136,7 +140,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.2, y: 0.24}
   m_EdgeRadius: 0
---- !u!114 &3809766009686770313
+--- !u!114 &5557810362489275712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,21 +149,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 652295628485586386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88bb0b25be4bcda4bb56440b7f1d4cf4, type: 3}
+  m_Script: {fileID: 11500000, guid: a2cdc1fa7d33ddc4daba1d1c7336fe8e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  IsRelease: 0
---- !u!114 &-5185154960744709288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652295628485586386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945255f85b1b40a4aa6085bb7a47e3af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::NormalBullet
   angle: 0
-  speed: 7
+--- !u!114 &4193441189358821913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652295628485586386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2dee5b437427514c9de0837b758122d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeDestroy
+  deadTime: 3.5
+  isStart: 1

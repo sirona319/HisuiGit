@@ -236,7 +236,8 @@ public class PointMove : BaseMove
         {
             if (gameObject.tag == "Enemy")
             {
-                gameObject.GetComponent<CreateDeadSound>().IsSoundEnable = false;
+                Debug.Log("ExitEreaに触れた  SoundCreateDead");
+                //gameObject.GetComponent<SoundCreateDead>().IsSoundEnable = false;
                 gameObject.transform.GetComponent<EnemyBase>().EnemyDamage(10);
                 return;
             }

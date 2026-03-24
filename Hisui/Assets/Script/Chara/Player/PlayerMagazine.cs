@@ -13,7 +13,7 @@ public class PlayerMagazine : BaseMagazine
 
     float intervalTime = 1f;
     [SerializeField]float intervalTimeMax = 1f;
-
+    [SerializeField] GameObject pNormal;
     void Start()
     {
         createBullet = GetComponent<CreateBullet>();
@@ -53,6 +53,11 @@ public class PlayerMagazine : BaseMagazine
         Vector2 direction = target.position - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-        createBullet.BulletAtk(pAngle, transform.position, transform.rotation); //Target渡す
+        if(createBullet == null)
+        {
+            Debug.Log("createBulletがnull");
+            return;
+        }
+        createBullet.BulletAtk(pAngle, transform.position, transform.rotation, pNormal); //Target渡す
     }
 }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : CharaBase
 {
     #region ステートコントローラー
     [SerializeField] protected StateControllerBase stateController = default;

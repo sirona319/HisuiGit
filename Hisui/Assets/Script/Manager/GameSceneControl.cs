@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,24 +14,24 @@ public class GameSceneControl : Singleton<GameSceneControl>
         var fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
         fade.FadeOut(1f);
 
-        //‚·‚Å‚ÉScene‚É”z’u‚µ‚Ä‚¢‚é“G‚Ì”‚ğ’Ç‰Á
-        enemyAllCount += MyLib.EnemyNum();
+        //ã™ã§ã«Sceneã«é…ç½®ã—ã¦ã„ã‚‹æ•µã®æ•°ã‚’è¿½åŠ 
+        enemyAllCount += GameObject.FindGameObjectsWithTag("Enemy").Length;
 
         SoundManager.I.BgmChange(SoundManager.BGMType.game);
 
-        //ƒJ[ƒ\ƒ‹‚ğƒIƒt‚É‚·‚é
+        //ã‚«ãƒ¼ã‚½ãƒ«ã‚’ã‚ªãƒ•ã«ã™ã‚‹
         CursolManager.I.SetCursol(false);
         
         //Cursor.visible = false;
 #if UNITY_ANDROID
-        //ƒJ[ƒ\ƒ‹‚ğƒƒbƒN‚µ‚½‚Ü‚Ü‚¾‚ÆJoyStick‚Ì‹““®‚ª‚¨‚©‚µ‚­‚È‚é
+        //ã‚«ãƒ¼ã‚½ãƒ«ã‚’ãƒ­ãƒƒã‚¯ã—ãŸã¾ã¾ã ã¨JoyStickã®æŒ™å‹•ãŒãŠã‹ã—ããªã‚‹
         Cursor.lockState = CursorLockMode.Confined;
         var mobileCanvas = GameObject.Find("MobileCanvas");
 
         //Cursor.lockState = CursorLockMode.Confined;
         //https://kan-kikuchi.hatenablog.com/entry/UnityEngine_Device
-        //ƒXƒ}ƒzUI‚Ì•\¦@SetActive‚É‚µ‚Ä‚µ‚Ü‚¤‚ÆÄæ“¾‚ª‚Å‚«‚È‚¢‚½‚ßenable‚ğg—p
-        //Canvas‚Ìİ’è—p
+        //ã‚¹ãƒãƒ›UIã®è¡¨ç¤ºã€€SetActiveã«ã—ã¦ã—ã¾ã†ã¨å†å–å¾—ãŒã§ããªã„ãŸã‚enableã‚’ä½¿ç”¨
+        //Canvasã®è¨­å®šç”¨
         //https://shibuya24.info/entry/unity-ui-canvas
         if (UnityEngine.Device.SystemInfo.operatingSystem.Contains("Android"))
         {

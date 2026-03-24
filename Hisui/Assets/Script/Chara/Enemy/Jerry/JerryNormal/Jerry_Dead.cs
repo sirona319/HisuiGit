@@ -33,8 +33,9 @@ public class Jerry_Dead : StateChildBase
         //
         //var seGo = Instantiate(deadSound, transform.position, Quaternion.identity);
         //seGo.GetComponent<SoundEndDestroy>().StartDestroyFlg();//削除登録
-        if(GetComponent<CreateDeadSound>() != null)
-            GetComponent<CreateDeadSound>().Create(deadSound);
+        if(GetComponent<SoundCreateDead>() != null)
+            Debug.Log("SoundCreateDead追加されいない");
+        //GetComponent<SoundCreateDead>().Create(deadSound);
 
 
         GameObject spawn = GameObject.Find("WaveSpawnPrefab");

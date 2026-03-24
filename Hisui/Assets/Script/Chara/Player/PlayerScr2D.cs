@@ -197,72 +197,7 @@ public class PlayerScr2D : MonoBehaviour
 
 
         Destroy(this.gameObject);
-        return;
 
-
-        //#region カメラシェイク
-        ////https://baba-s.hatenablog.com/entry/2018/03/14/170400
-
-        ////揺らす長さ
-        //const float shakeLength = 0.3f;
-        ////揺らす力
-        //const float power = 0.3f;
-
-        //StartCoroutine(MyLib.DoShake(shakeLength, power, transform));
-
-
-        //#endregion
-
-        //HP減少処理
-        var hpUI = GetComponent<HPUIControl>();
-        var hpValue = hpUI.GetHp() - damage;
-        hpUI.SetHp(hpValue);
-        //m_hp -= damage;
-        m_isDamage = true;
-
-        const float volumeAtk = 0.1f;
-        var audioSource = this.GetComponent<AudioSource>();
-        var soundAtk = (AudioClip)Resources.Load("SE/" + "小パンチ");
-        audioSource.PlayOneShot(soundAtk, volumeAtk);
-        //  m_hpSkin[m_hp].enabled = false;        //HPUIの非表示
-
-        const float DAMAGETIME = 1.5f;
-        StartCoroutine(MyLib.DelayCoroutine(DAMAGETIME, () =>
-        {
-            // DAMAGETIME秒後にここの処理が実行される
-            //skin.material.color = startColor;
-            m_isDamage = false;
-            if (hpUI.GetHp() <= 0)
-            {
-                m_isDead = true;
-                // skin.enabled = false;
-
-
-                //循環参照してしまっている？
-                //死亡処理
-                Debug.Log("死んだよタイトル遷移するよ！");
-                GameObject.Find("GAMEOVERTEXT").GetComponent<DOFade>().ShowWindow();
-                //死亡UI表示
-                //GameObject.Find("DeadText").GetComponent<DOFade>().ShowWindow();
-
-                //エクストラモードの場合ランキング表示
-                //クリアチェック　スコア加算　エクストラシーン
-                if (GManager.I.IsSceneName(GManager.SceneNameType.GameScene.ToString()))
-                {
-                    //クリア失敗なのでfalse
-                    //  ExtraControl.I.ShowRanking(false);
-                    GManager.I.SceneChangeTimerSet(GManager.SceneNameType.TitleScene.ToString());
-
-                }
-                else
-                {
-                    //タイトルシーン遷移
-                    GManager.I.SceneChangeTimerSet(GManager.SceneNameType.TitleScene.ToString());
-                }
-
-            }
-
-        }));
 
     }
 

@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 9185340535075716043}
   - component: {fileID: 1660741264998231965}
   - component: {fileID: 1372904476738841711}
-  - component: {fileID: 185438691607815936}
-  - component: {fileID: 8823314079226109898}
-  - component: {fileID: 3618844810906733684}
+  - component: {fileID: 2217028467449319860}
   m_Layer: 10
   m_Name: JerryBullet
   m_TagString: Untagged
@@ -38,6 +36,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1660741264998231965
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -56,6 +55,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,9 +78,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -230103395
   m_SortingLayer: 2
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 696e1a1afd4b6ec44b587c48a75ccb3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -89,7 +92,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &1372904476738841711
 CircleCollider2D:
@@ -127,7 +129,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.09
---- !u!114 &185438691607815936
+--- !u!114 &2217028467449319860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,33 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8764880274935360633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88bb0b25be4bcda4bb56440b7f1d4cf4, type: 3}
+  m_Script: {fileID: 11500000, guid: a2cdc1fa7d33ddc4daba1d1c7336fe8e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  isRelease: 0
---- !u!114 &8823314079226109898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8764880274935360633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945255f85b1b40a4aa6085bb7a47e3af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::NormalBullet
   angle: 0
-  speed: 5
---- !u!114 &3618844810906733684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8764880274935360633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1359ab76b60e7b42944ced7119a60f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

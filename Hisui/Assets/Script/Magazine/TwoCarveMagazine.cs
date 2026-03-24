@@ -41,8 +41,8 @@ public class TwoCarveMagazine : BaseMagazine
 
 
         //バレットのタイプを上書き　他のモジュールは入る　消す仕様にする後々？？
-        createBullet.AddBulletType(rBullet, ModuleClassName.CarveModule.ToString());
-        createBullet.AddBulletType(lBullet, ModuleClassName.CarveModule.ToString());
+        createBullet.AddBulletType(rBullet.GetComponent<BaseBullet>(), ModuleClassName.CarveModule.ToString());
+        createBullet.AddBulletType(lBullet.GetComponent<BaseBullet>(), ModuleClassName.CarveModule.ToString());
 
         const float carveVal = 10f;
         rBullet.GetComponent<CarveModule>().SetAngle(-carveVal);

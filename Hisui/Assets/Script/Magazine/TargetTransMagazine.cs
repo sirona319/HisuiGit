@@ -14,6 +14,8 @@ public class TargetTransMagazine : BaseMagazine
 
     float intervalTime = 1f;
     [SerializeField] float intervalTimeMax = 1f;
+
+    [SerializeField] GameObject bullet;
     void Start()
     {
 
@@ -49,7 +51,13 @@ public class TargetTransMagazine : BaseMagazine
         Vector2 direction = target.position - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-        createBullet.BulletAtk(pAngle, transform.position, transform.rotation); //Target渡す
+        if(createBullet == null)
+            Debug.Log("createBullet null");
+
+        if(bullet == null)
+            Debug.Log("bullet null");
+
+        createBullet.BulletAtk(pAngle, transform.position, transform.rotation, bullet); //Target渡す
     }
 
 

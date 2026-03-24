@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086788357068164185}
-  - component: {fileID: 4911691431337029699}
+  - component: {fileID: 4995752653099944097}
   m_Layer: 7
-  m_Name: BulletTarget
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6578345985090017861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4911691431337029699
+--- !u!114 &4995752653099944097
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1707286045841321756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0c04e011f0e75448f75b5039381445, type: 3}
+  m_Script: {fileID: 11500000, guid: 56940e27f3a2f744591d24d7ec21ccf4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetPoint
   tName: 0
   target: 0
   pointLength: 0.7
@@ -56,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861582013009297744}
-  - component: {fileID: 8464213030026146915}
+  - component: {fileID: 395028048267985404}
   m_Layer: 7
   m_Name: Point
   m_TagString: Untagged
@@ -79,7 +79,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6578345985090017861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8464213030026146915
+--- !u!114 &395028048267985404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,9 +88,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5871845848270125058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f0c04e011f0e75448f75b5039381445, type: 3}
+  m_Script: {fileID: 11500000, guid: 56940e27f3a2f744591d24d7ec21ccf4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetPoint
   tName: 2
   target: 7
   pointLength: 0.7
@@ -113,7 +113,9 @@ GameObject:
   - component: {fileID: 2470106558855257324}
   - component: {fileID: 5361436774562806616}
   - component: {fileID: 8713863032622508796}
-  - component: {fileID: 8224501555951877175}
+  - component: {fileID: 5494699704538860948}
+  - component: {fileID: 1085395916842759360}
+  - component: {fileID: 3729906905911664571}
   m_Layer: 7
   m_Name: Fall0
   m_TagString: Enemy
@@ -140,6 +142,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6482545487881645206
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -158,6 +161,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -179,9 +184,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 866118371
   m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 79875773cdb1d6b41a4b9cf86dc596f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -191,7 +198,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &8750437564310461312
 Rigidbody2D:
@@ -268,7 +274,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!96 &4535813077352764467
 TrailRenderer:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -287,6 +293,8 @@ TrailRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -308,9 +316,11 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 866118371
   m_SortingLayer: 3
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Time: 0.4
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -378,7 +388,6 @@ TrailRenderer:
     shadowBias: 0.4
     generateLightingData: 1
   m_MinVertexDistance: 0.3
-  m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
@@ -513,10 +522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba05e956ff585444a86bbc21f1b54ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   stateController: {fileID: 2470106558855257324}
   IsAttack: 0
   IsMove: 1
-  atkMagazine: {fileID: 0}
+  atkMagazine: {fileID: 1085395916842759360}
   move: {fileID: 8713863032622508796}
   atkMove: {fileID: 0}
   Hp: 2
@@ -544,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ffe04de75b0e841b12468a2ff4da99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsSoundEnable: 1
+  path: Sound/SE/JerryTrailSe
 --- !u!114 &8713863032622508796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +574,7 @@ MonoBehaviour:
   isPointMoveEnd:
     value: 0
   trailDisable: 0
---- !u!114 &8224501555951877175
+--- !u!114 &5494699704538860948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -573,6 +583,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 8573072059003257420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 047e83a254ec21a47bd1825a5081a0f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a9a3becdee71cd46b5000f815d9d623, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetSet
+--- !u!114 &1085395916842759360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573072059003257420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc4e014f709bfd4eaad7266c20c4930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetTransMagazine
+  target: {fileID: 2086788357068164185}
+  intervalTimeMax: 1
+  bullet: {fileID: 8764880274935360633, guid: bf34238dfbc35fd4abb92d9b5fa0a5e3, type: 3}
+--- !u!114 &3729906905911664571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573072059003257420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30aa0bce5c3aa764199c536fec70434b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreateBullet
+  bulletSpeed: 5
+  poolCtr: {fileID: 0}
