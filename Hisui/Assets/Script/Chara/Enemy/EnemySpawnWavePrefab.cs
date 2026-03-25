@@ -41,8 +41,7 @@ public class EnemySpawnWavePrefab : MonoBehaviour
     void SpawnWave(int No)
     {
 
-        if (EnumSceneName.SceneNameType.GameScene.ToString().Contains(SceneManager.GetActiveScene().name))
-            GameSceneControl.I.enemyAllCount += spawnData[No].LoadState.Length;
+        GameObject.FindWithTag("EnemyMgr").GetComponent<EnemyMgr>().CountUp(spawnData[No].LoadState.Length);
 
 
 

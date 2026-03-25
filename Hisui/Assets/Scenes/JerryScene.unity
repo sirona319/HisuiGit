@@ -2945,7 +2945,7 @@ GameObject:
   - component: {fileID: 1459271479}
   m_Layer: 0
   m_Name: EnemyManager
-  m_TagString: Untagged
+  m_TagString: EnemyMgr
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2974,9 +2974,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1459271477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c43df5b71bdd0294eb3df372e54b0e4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 415d112f0be1e01468312b9b1bf1b63d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMgr
+  enemyAllCount: 0
 --- !u!1 &1500637887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,6 +3743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4856583ed91755f4c82ea6410e695121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsSceneChange>k__BackingField: 0
+  PrevOrientation: 0
   resoType: 0
 --- !u!1 &2070446604
 GameObject:

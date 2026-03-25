@@ -11,12 +11,12 @@ public class EnemyMgr : Singleton<EnemyMgr>
 
 
     //[SerializeField] GameObject startEvent;
-    public void CountUp(int count)
+    public void CountUp(int count=1)
     {
-        enemyAllCount += count;
+        enemyAllCount+=count;
     }
 
-    public void UpdateEnemyCount()
+    public void CundDown()
     {
         enemyAllCount--;
         if (enemyAllCount <= 0)

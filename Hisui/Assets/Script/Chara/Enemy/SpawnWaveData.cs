@@ -12,7 +12,7 @@ public class SpawnWaveData
     //この敵たちが倒されたら　範囲外に出たら破棄する？　スポーンする　登録方法を考える
     //public GameObject[] triggerEnemys;
 
-    public EnemySpawnWave.LoadState[] LoadState;
+    //public EnemySpawnWave.LoadState[] LoadState;
     //public GameObject[] spawns; //敵　生成位置
 
     public Transform[] spawnLocations;//敵の移動範囲　位置

@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -41,8 +42,8 @@ public class Jerry_Dead : StateChildBase
         GameObject spawn = GameObject.Find("WaveSpawnPrefab");
         spawn.GetComponent<EnemySpawnWavePrefab>().UpdateCount();
 
-        if (EnumSceneName.SceneNameType.GameScene.ToString().Contains(SceneManager.GetActiveScene().name))
-            GameSceneControl.I.UpdateEnemyCount();
+        //if (EnumSceneName.SceneNameType.GameScene.ToString().Contains(SceneManager.GetActiveScene().name))
+            GameObject.FindWithTag("EnemyMgr").GetComponent<EnemyMgr>().CundDown();
 
         //サウンドがならない　原因
         //gameObject.SetActive(false);
