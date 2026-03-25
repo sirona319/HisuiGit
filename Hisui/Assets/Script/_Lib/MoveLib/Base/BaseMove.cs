@@ -34,18 +34,21 @@ public abstract class BaseMove : MonoBehaviour
         FloatVectorMove,
     }
 
-    //protected Rigidbody2D m_rb;
-    //void SetRb2D(Rigidbody2D rb2)
-    //{
-    //    m_rb = rb2;
-    //}
+    public virtual void Initialize()
+    {
+        //if(GetComponent<Rigidbody2D>()!=null)
+        //    rb2 = GetComponent<Rigidbody2D>();
 
-    //public bool IsKeepMove = false;//動き続ける移動
-
-    public abstract void Initialize();
+        //if (GetComponent<Rigidbody>() != null)
+        //    rb3 = GetComponent<Rigidbody>();
+    }
 
     public abstract void MoveEnter();
+    public virtual void MoveExit()
+    {
+
+    }
+
 
     public abstract void MoveUpdate();
-
 }

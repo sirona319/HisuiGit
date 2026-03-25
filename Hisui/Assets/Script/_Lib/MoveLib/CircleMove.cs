@@ -22,17 +22,17 @@ public class CircleMove : BaseMove
     //int targetNo = 0;
 
     //Transform[] targets;
-    [SerializeField] Transform target;
-    TargetSet targetSet;
+    Transform target;
+    //TargetSet targetSet;
     //[SerializeField] Target targetType;
     Rigidbody2D rb2;
-
+    [SerializeField] Transform targetTrans;
     public override void Initialize()
     {
         rb2 = GetComponent<Rigidbody2D>();
-        targetSet=GetComponent<TargetSet>();
+        var targetSet=GetComponent<TargetSet>();
         //targetSet.Init();
-        target = targetSet.Set(TargetName.Circle);
+        target = targetSet.GetTargetTrans(targetTrans);
     }
 
     public override void MoveEnter()

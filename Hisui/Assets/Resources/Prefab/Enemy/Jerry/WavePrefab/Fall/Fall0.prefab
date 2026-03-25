@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetPoint
   tName: 2
-  target: 7
+  target: 8
   pointLength: 0.7
 --- !u!1 &8573072059003257420
 GameObject:
@@ -111,11 +111,11 @@ GameObject:
   - component: {fileID: 6220680172042355229}
   - component: {fileID: 731093990324739239}
   - component: {fileID: 2470106558855257324}
-  - component: {fileID: 5361436774562806616}
   - component: {fileID: 8713863032622508796}
   - component: {fileID: 5494699704538860948}
   - component: {fileID: 1085395916842759360}
   - component: {fileID: 3729906905911664571}
+  - component: {fileID: 5361436774562806616}
   m_Layer: 7
   m_Name: Fall0
   m_TagString: Enemy
@@ -542,19 +542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70f7ee64e7446e48bb6e798b1d78a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5361436774562806616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573072059003257420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ffe04de75b0e841b12468a2ff4da99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: Sound/SE/JerryTrailSe
 --- !u!114 &8713863032622508796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,8 +554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5474500ee327f564f80da549f90a4515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTrans: []
-  endLength: []
+  moveTrans:
+  - {fileID: 4861582013009297744}
+  endLength:
+  - 0.7
   speed: 6
   isLoop: 0
   isPointMoveEnd:
@@ -598,9 +587,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc4e014f709bfd4eaad7266c20c4930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetTransMagazine
-  target: {fileID: 2086788357068164185}
   intervalTimeMax: 1
   bullet: {fileID: 8764880274935360633, guid: bf34238dfbc35fd4abb92d9b5fa0a5e3, type: 3}
+  targetTrans: {fileID: 4861582013009297744}
 --- !u!114 &3729906905911664571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,3 +604,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CreateBullet
   bulletSpeed: 5
   poolCtr: {fileID: 0}
+--- !u!114 &5361436774562806616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573072059003257420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ffe04de75b0e841b12468a2ff4da99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Sound/SE/JerryTrailSe

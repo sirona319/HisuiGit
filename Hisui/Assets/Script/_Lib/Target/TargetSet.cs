@@ -12,8 +12,9 @@ public class TargetSet : MonoBehaviour
         Left,
         Down,
 
-        LocalTarget,
-        Vec
+        LocalDirection,
+        Relative,
+        Abs,
         //斜め　四つ　
         //一番近いエネミーなど？　遠い敵　レーザー
 
@@ -25,6 +26,7 @@ public class TargetSet : MonoBehaviour
         Bullet,
         Circle,
         Point,
+        Atk,
         //PointArray,
     }
 
@@ -35,50 +37,88 @@ public class TargetSet : MonoBehaviour
     //}
 
     //バレット　サークル　単体
-    public Transform Set(TargetName name)
+    //public Transform Set(TargetName name)
+    //{
+    //    var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
+
+    //    Transform t = null;
+
+    //    foreach (var tChild in tArrayChild)
+    //    {
+    //        if (tChild.GetComponent<TargetPoint>().tName == name)
+    //            t = tChild.transform;
+
+    //    }
+
+    //    return TargetSelect(t.GetComponent<TargetPoint>().target, t);
+
+    //}
+
+    public Transform GetTargetTrans(Transform target)
     {
-        var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
-
-        Transform t = null;
-
-        foreach (var tChild in tArrayChild)
+        //var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
+        if (target.GetComponent<TargetPoint>() == null)
         {
-            if (tChild.GetComponent<TargetPoint>().tName == name)
-                t = tChild.transform;
-
+            Debug.Log("TargetPointが設定されていない");
         }
-
-        return TargetSelect(t.GetComponent<TargetPoint>().target, t);
+        return TargetSelect(target.GetComponent<TargetPoint>().target, target);
 
     }
 
-    public void SetPointArray(List<float> lengthList,List<Transform> pointList)
+    //public Vector3 GetTargetVec(Transform target)
+    //{
+    //    //var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
+    //    if (target.GetComponent<TargetPoint>() == null)
+    //    {
+    //        Debug.Log("TargetPointが設定されていない");
+    //    }
+    //    return TargetSelect(target.GetComponent<TargetPoint>().target, target).position;
+
+    //}
+
+    public List<Transform> SetPointArray(List<Transform> pointList)
     {
+        //生成位置から見た固定座標を使用するときに使う
 
-        var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
         List<Transform> tArrayPoints = new();
-
-        foreach (var tChild in tArrayChild)
+        foreach (var tChild in pointList)
         {
-            // 自分自身の場合は処理をスキップする
-            if (tChild.gameObject == gameObject)
-                continue;
-
-            if (tChild.GetComponent<TargetPoint>().tName == TargetName.Point)
+            if (tChild.GetComponent<TargetPoint>() == null)
             {
-                lengthList.Add(tChild.GetComponent<TargetPoint>().pointLength);
-                tArrayPoints.Add(tChild.transform);
+                Debug.Log("TargetPointが設定されていない");
+                break;
 
             }
 
-        }
-
-        foreach (var tChild in tArrayPoints)
-        {
-            var target = TargetSelect(tChild.GetComponent<TargetPoint>().target, tChild);
-            pointList.Add(target);
+            var t = TargetSelect(tChild.GetComponent<TargetPoint>().target, tChild);
+            tArrayPoints.Add(t);
 
         }
+        return tArrayPoints;
+        //var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
+        //List<Transform> tArrayPoints = new();
+
+        //foreach (var tChild in tArrayChild)
+        //{
+        //    // 自分自身の場合は処理をスキップする
+        //    if (tChild.gameObject == gameObject)
+        //        continue;
+
+        //    if (tChild.GetComponent<TargetPoint>().tName == TargetName.Point)
+        //    {
+        //        //lengthList.Add(tChild.GetComponent<TargetPoint>().pointLength);
+        //        tArrayPoints.Add(tChild.transform);
+
+        //    }
+
+        //}
+
+        //foreach (var tChild in tArrayPoints)
+        //{
+        //    var target = TargetSelect(tChild.GetComponent<TargetPoint>().target, tChild);
+        //    pointList.Add(target);
+
+        //}
 
     }
 
@@ -89,6 +129,12 @@ public class TargetSet : MonoBehaviour
         switch (type)
         {
             case Target.Player:
+                if (GameObject.FindGameObjectWithTag(Target.Player.ToString()) == null)
+                {
+                    Debug.Log("プレイヤーが存在しない");
+                    break;
+                }
+
                 t = GameObject.FindGameObjectWithTag(Target.Player.ToString()).transform;
                 break;
             case Target.LeftMiddle: //固定
@@ -103,7 +149,7 @@ public class TargetSet : MonoBehaviour
                 t.position = transform.position + Vector3.down;
                 break;
             case Target.Right:
-               // t = tChild;
+                // t = tChild;
                 t.position = transform.position + Vector3.right;
                 break;
             case Target.Left:
@@ -111,26 +157,26 @@ public class TargetSet : MonoBehaviour
                 t.position = transform.position + Vector3.left;
                 break;
 
-            case Target.LocalTarget:
+            case Target.LocalDirection://任意に設定した座標方向へ進み続ける
                 //t = tChild;
                 break;
-            case Target.Vec://固定
-                            //var stayPos = transform.position;
-                            //var go = (GameObject)Resources.Load("prefab/Bullet/TargetVecObject");
-                            //transform.position = Vector3.zero;
-                            //var obj = Instantiate(go, t.position, transform.rotation);
+            case Target.Abs://固定 0座標を基準にした座標を設定 (画面が固定の時などに使用?)
+                var stayPos = transform.position;
+                var go = (GameObject)Resources.Load("prefab/TargetVecObject");
+                if (go == null) Debug.Log("Prefab ターゲット用オブジェクトが存在しない");
+                transform.position = Vector3.zero;
+                var obj = Instantiate(go, t.position, transform.rotation);
 
-                //obj.GetComponent<SetLinkObj>().linkObj = gameObject;
-                //t = obj.transform;
-                //transform.position = stayPos;
-
-                var goRelative = (GameObject)Resources.Load("prefab/Bullet/TargetVecObject");
+                obj.GetComponent<SetLinkObj>().linkObj = gameObject;
+                t = obj.transform;
+                transform.position = stayPos;
+                break;
+            case Target.Relative://固定
+                var goRelative = (GameObject)Resources.Load("prefab/TargetVecObject");
                 if (goRelative == null) Debug.Log("Prefab ターゲット用オブジェクトが存在しない");
                 var objRelative = Instantiate(goRelative, t.position, transform.rotation);
                 objRelative.GetComponent<SetLinkObj>().linkObj = gameObject;
                 t = objRelative.transform;
-
-                Debug.Log("Vecターゲット生成");
                 break;
             //case BulletTarget.TargetVec://固定
             //    var child = transform.Find("TargetVec").transform;
@@ -147,10 +193,8 @@ public class TargetSet : MonoBehaviour
                 break;
         }
 
-        if (t == null)
-            Debug.Log("ターゲットが存在しない");
-
         return t;
+
     }
 
 

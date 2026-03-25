@@ -7,22 +7,24 @@ public class TargetTransMagazine : BaseMagazine
 
     CreateBullet createBullet;
 
-    TargetSet targetSet;
+    //TargetSet targetSet;
     //[SerializeField] Target targetType;
-    [SerializeField]Transform target;
+    Vector3 tPos;
     //[SerializeField] AudioSource arSe;
 
     float intervalTime = 1f;
     [SerializeField] float intervalTimeMax = 1f;
 
     [SerializeField] GameObject bullet;
+
+    [SerializeField] Transform targetTrans;
     void Start()
     {
 
         createBullet = GetComponent<CreateBullet>();
-        targetSet = GetComponent<TargetSet>();
+        //var targetSet = GetComponent<TargetSet>();
         //targetSet.Init();
-        target = targetSet.Set(TargetName.Bullet);
+        tPos = GetComponent<TargetSet>().GetTargetTrans(targetTrans).position;
         //target = transform.Find("Target").transform;
         //shotTime = 1f;
     }
@@ -48,7 +50,7 @@ public class TargetTransMagazine : BaseMagazine
     void Shot()
     {
 
-        Vector2 direction = target.position - transform.position;
+        Vector2 direction = tPos - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
         if(createBullet == null)

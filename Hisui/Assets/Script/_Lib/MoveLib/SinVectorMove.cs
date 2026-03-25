@@ -18,8 +18,10 @@ public class SinVectorMove : BaseMove
 
     float addSinTime;
 
-    TargetSet targetSet;
+    //TargetSet targetSet;
 
+
+    [SerializeField] Transform targetTrans;
     //スタート地点の座標を保存して　一定時間後に戻る？　それか破棄する　Wave制の更新用
     public override void Initialize()
     {
@@ -30,9 +32,9 @@ public class SinVectorMove : BaseMove
             addSinTime = -Time.deltaTime;
 
 
-        targetSet=GetComponent<TargetSet>();
-        var movePos = targetSet.Set(TargetSet.TargetName.Point);
-        var dir = movePos.position - transform.position;
+        //targetSet=GetComponent<TargetSet>();
+        var movePos = GetComponent<TargetSet>().GetTargetTrans(targetTrans).position;
+        var dir = movePos - transform.position;
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 

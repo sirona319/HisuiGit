@@ -8,6 +8,8 @@ TagManager:
   - FxTemporaire
   - ExitErea
   - EnemyMgr
+  - Fade
+  - SoundMgr
   layers:
   - Default
   - TransparentFX

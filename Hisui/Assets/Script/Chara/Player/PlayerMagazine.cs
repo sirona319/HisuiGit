@@ -8,18 +8,20 @@ public class PlayerMagazine : BaseMagazine
 
     CreateBullet createBullet;
     //[SerializeField] Target targetType;
-    TargetSet targetSet;
-    Transform target;
+    //TargetSet targetSet;
+    Vector3 target;
 
     float intervalTime = 1f;
     [SerializeField]float intervalTimeMax = 1f;
     [SerializeField] GameObject pNormal;
+
+    [SerializeField] Transform targetTrans;
     void Start()
     {
         createBullet = GetComponent<CreateBullet>();
-        targetSet = GetComponent<TargetSet>();
+        var targetSet = GetComponent<TargetSet>();
         //targetSet.Init();
-        target = targetSet.Set(TargetName.Bullet);
+        target = targetSet.GetTargetTrans(targetTrans).position;
         //target = transform.Find("Target").transform;
         //shotTime = 1f;
         intervalTime = intervalTimeMax;
@@ -50,7 +52,7 @@ public class PlayerMagazine : BaseMagazine
     void NormalShot()
     {
 
-        Vector2 direction = target.position - transform.position;
+        Vector2 direction = target - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
         if(createBullet == null)
