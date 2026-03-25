@@ -21,14 +21,14 @@ public class TargetSet : MonoBehaviour
 
     }
 
-    public enum TargetName
-    {
-        Bullet,
-        Circle,
-        Point,
-        Atk,
-        //PointArray,
-    }
+    //public enum TargetName
+    //{
+    //    Bullet,
+    //    Circle,
+    //    Point,
+    //    Atk,
+    //    //PointArray,
+    //}
 
 
     //public void Init()
@@ -161,6 +161,7 @@ public class TargetSet : MonoBehaviour
                 //t = tChild;
                 break;
             case Target.Abs://固定 0座標を基準にした座標を設定 (画面が固定の時などに使用?)
+                Debug.Log("Abs");
                 var stayPos = transform.position;
                 var go = (GameObject)Resources.Load("prefab/TargetVecObject");
                 if (go == null) Debug.Log("Prefab ターゲット用オブジェクトが存在しない");

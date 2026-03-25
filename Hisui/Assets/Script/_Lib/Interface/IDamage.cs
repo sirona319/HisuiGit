@@ -3,9 +3,9 @@
 //ダメージ関数を持つスクリプト
 public interface IDamage
 {
-    public bool IsDamage { get; set; }
+    public void Damage(int damage);
 
-    public bool Damage(int damage);
+    //public bool IsDamage { get; set; }
 
     //public virtual void Damage(int damage,bool sound) { }
 }

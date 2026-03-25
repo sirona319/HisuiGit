@@ -38,7 +38,7 @@ public abstract class BaseMagazine : MonoBehaviour
 
     public virtual void Initialize() { }
 
-    public abstract void MagazineEnter();
+    public virtual void MagazineEnter() { }
 
     public abstract void MagazineUpdate();
 

@@ -16,43 +16,45 @@ public class CollisionExitErase : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        Destroy(other.gameObject);
+        Debug.Log("        Destroy(other.gameObject);");
 
-        if (other.CompareTag("Enemy"))
-        {
-            var iDamage = other.transform.GetComponent<IDamage>();
-            if (iDamage != null)
-            {
-                iDamage.Damage(1);
-                //MyLib.DebugInfo(other.gameObject);
-            }
-            else
-                //Debug.Log(other.tag + " " + other.gameObject.layer);
+        //if (other.CompareTag("Enemy"))
+        //{
+        //var iDamage = other.transform.GetComponent<IDamage>();
+        //if (iDamage != null)
+        //{
+        //    iDamage.Damage(1);
+        //    //MyLib.DebugInfo(other.gameObject);
+        //}
+        //else
+        //    //Debug.Log(other.tag + " " + other.gameObject.layer);
 
-            //Debug.Log("攻撃が敵にHIT");
-            return;
-        }
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-
-        if (other.CompareTag("Enemy"))
-        {
-            //var iDamage = other.transform.GetComponent<IDamage>();
-            //if (iDamage != null)
-            //{
-            //    iDamage.Damage(1, false);
-            //    Debug.Log(other.tag + " " + other.gameObject.layer);
-            //}
-            //else
-            //    Debug.Log(other.tag + " " + other.gameObject.layer);
-
-            //Debug.Log("攻撃が敵にHIT");
-            //return;
-        }
+        ////Debug.Log("攻撃が敵にHIT");
+        //return;
+        //}
 
     }
+
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+
+    //    if (other.CompareTag("Enemy"))
+    //    {
+    //        //var iDamage = other.transform.GetComponent<IDamage>();
+    //        //if (iDamage != null)
+    //        //{
+    //        //    iDamage.Damage(1, false);
+    //        //    Debug.Log(other.tag + " " + other.gameObject.layer);
+    //        //}
+    //        //else
+    //        //    Debug.Log(other.tag + " " + other.gameObject.layer);
+
+    //        //Debug.Log("攻撃が敵にHIT");
+    //        //return;
+    //    }
+
+    //}
 
     //void OnBecameInvisible()
     //{

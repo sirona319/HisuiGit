@@ -17,7 +17,7 @@ public class PointMove : BaseMove
     int targetNo = 0;
     Rigidbody2D rb2;
 
-    TargetSet targetSet;
+    //TargetSet targetSet;
 
 
     public override void Initialize()
@@ -28,7 +28,7 @@ public class PointMove : BaseMove
         //{
         //    moveVecs.Add(t.position);
         //}
-        targetSet = GetComponent<TargetSet>();
+        var targetSet = GetComponent<TargetSet>();
         targetSet.SetPointArray(moveTrans);     //配列を作成
     }
 
@@ -101,23 +101,23 @@ public class PointMove : BaseMove
     }
 
 
-    //移行する?s
-    private void OnTriggerExit2D(Collider2D other)
-    {
+    ////移行する?s
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
 
-        if (other.CompareTag("ExitErea"))
-        {
-            if (gameObject.tag == "Enemy")
-            {
-                Debug.Log("ExitEreaに触れた  SoundCreateDead");
-                //gameObject.GetComponent<SoundCreateDead>().IsSoundEnable = false;
-                gameObject.transform.GetComponent<EnemyBase>().EnemyDamage(10);
-                return;
-            }
+    //    if (other.CompareTag("ExitErea"))
+    //    {
+    //        if (gameObject.tag == "Enemy")
+    //        {
+    //            Debug.Log("ExitEreaに触れた  SoundCreateDead");
+    //            //gameObject.GetComponent<SoundCreateDead>().IsSoundEnable = false;
+    //            gameObject.transform.GetComponent<EnemyBase>().EnemyDamage(10);
+    //            return;
+    //        }
 
-        }
+    //    }
 
-    }
+    //}
 }
 
 

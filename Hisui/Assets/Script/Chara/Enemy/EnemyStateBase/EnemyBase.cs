@@ -15,7 +15,7 @@ public class EnemyBase : CharaBase
 
     //public Rigidbody2D rb;
 
-    public bool IsDead { get; private set;} =false;
+    //public bool IsDead { get; private set;} =false;
 
     public bool IsDamage { get; set; } = false;
 
@@ -180,7 +180,7 @@ public class EnemyBase : CharaBase
 
     public virtual void EnemyDamage(int damage)
     {
-        if (IsDead) return;
+        if (GetComponent<CharaBase>().isDead) return;
 
         //Debug.Log(gameObject.name + "へのダメージ" + damage.ToString());
         Hp -= damage;        //HP減少処理
@@ -189,7 +189,7 @@ public class EnemyBase : CharaBase
 
         if (Hp <= 0)
         {
-            IsDead = true;
+            GetComponent<CharaBase>().isDead = true;
             return;
         }
 
@@ -202,7 +202,7 @@ public class EnemyBase : CharaBase
     public bool ReturnStateTypeDead()
     {
         //const int DEAD = 2;
-        if (IsDead)return true;
+        if (GetComponent<CharaBase>().isDead)return true;
 
         //const int DAMAGESTATE = 1;
         //return DAMAGESTATE;

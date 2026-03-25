@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 872808277941926675}
   - component: {fileID: 5557810362489275712}
   - component: {fileID: 4193441189358821913}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: PBulletNormal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 652295628485586386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -4.8448534, y: 0.36426377, z: 0}
+  m_LocalPosition: {x: -6.0812516, y: -1.4387507, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
