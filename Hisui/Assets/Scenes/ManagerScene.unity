@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58883264af1adc64e93b4b57c9b85495, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  gameBGM: {fileID: 0}
+  gameBGM: {fileID: 1986002530}
   titleBGM: {fileID: 0}
   se: {fileID: 829579795}
 --- !u!1660057539 &9223372036854775807
