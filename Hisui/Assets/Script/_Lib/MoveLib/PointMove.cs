@@ -12,13 +12,10 @@ public class PointMove : BaseMove
     const float rotSpeed = 5f;
 
     [SerializeField] bool isLoop = false;
-    public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe　エネミークラスなど？
+    //public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe　エネミークラスなど？
 
     int targetNo = 0;
     Rigidbody2D rb2;
-
-    //TargetSet targetSet;
-
 
     public override void Initialize()
     {
@@ -28,8 +25,8 @@ public class PointMove : BaseMove
         //{
         //    moveVecs.Add(t.position);
         //}
-        var targetSet = GetComponent<TargetSet>();
-        targetSet.SetPointArray(moveTrans);     //配列を作成
+
+        moveTrans = GetComponent<TargetSet>().SetPointArray(moveTrans);     //配列を作成
     }
 
     public override void MoveEnter()
@@ -86,7 +83,7 @@ public class PointMove : BaseMove
             {
 
                 //if (!IsKeepMove)
-                isPointMoveEnd.Value = true;
+                //isPointMoveEnd.Value = true;
 
                 if (isLoop)
                     targetNo = 0;

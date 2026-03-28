@@ -13,7 +13,7 @@ public class TimelineControl : MonoBehaviour
     //public void TimelineEnd()
     //{
     //   // isEnd = true;
-    //    //var p = GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<PlayerScr2D>();
+    //    //var p = GameObject.FindWithTag(TagName.Player).GetComponent<PlayerScr2D>();
     //    //p.m_isLimitMove = false;
     //    //p.moveSpeed = p.MAXMOVESPEED;
     //}
@@ -51,7 +51,7 @@ public class TimelineControl : MonoBehaviour
             playableDirector.Play();
             isPlay = true;
 
-            //GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<PlayerMove>().MoveStop();
+            //GameObject.FindWithTag(TagName.Player).GetComponent<PlayerMove>().MoveStop();
             //p.isLimitMove = true;
             //p.moveSpeed = 0f;
             //Debug.Log("メッセージ終了TimelineControl" + GetType().FullName);

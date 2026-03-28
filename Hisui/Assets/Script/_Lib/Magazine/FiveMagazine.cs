@@ -12,7 +12,7 @@ public class FiveMagazine : BaseMagazine
     public override void Initialize()
     {
         createBullet = GetComponent<CreateBullet>();
-        //var player = GameObject.FindGameObjectWithTag("Player");
+        //var player = GameObject.FindWithTag("Player");
         //targetTrans = player.transform;
 
         //bulletInterval = MAXBULLETINTERVAL;

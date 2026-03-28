@@ -21,7 +21,7 @@ public class CameraSanmple2 : MonoBehaviour
     void Start()
     {
         //mainCamera = Camera.main.gameObject;
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindWithTag("Player");
         //lockOnTargetDetector = player.GetComponentInChildren<LockOnTargetDetector>();
     }
 

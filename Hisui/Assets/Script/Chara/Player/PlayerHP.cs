@@ -45,7 +45,7 @@ public class PlayerHP : MonoBehaviour
 
         //UpdateLife();
 
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScr>();
+        //player = GameObject.FindWithTag("Player").GetComponent<PlayerScr>();
 
         //lifeImage = GameObject.Find("LifePanel").GetComponentsInChildren<Image>();
 

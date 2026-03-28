@@ -51,7 +51,7 @@ public abstract class BaseMagazine : MonoBehaviour
     //    switch (bulletTarget)
     //    {
     //        case BulletTarget.Player:
-    //            t = GameObject.FindGameObjectWithTag("Player").transform;
+    //            t = GameObject.FindWithTag("Player").transform;
     //            break;
     //        //case BulletTarget.LeftMiddle://固定
     //        //    //it.Target = leftMiddle;

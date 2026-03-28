@@ -39,8 +39,8 @@ public class Jerry_Attack : StateChildBase
 
         stateTime += Time.deltaTime;
 
-        if (GetComponent<EnemyBase>().IsDamage)
-            if (GetComponent<EnemyBase>().ReturnStateTypeDead())
+        if (GetComponent<JerryScr>().IsDamage)
+            if (GetComponent<JerryScr>().ReturnStateTypeDead())
                 return (int)JerryCtr.State.Jerry_Dead;
 
 

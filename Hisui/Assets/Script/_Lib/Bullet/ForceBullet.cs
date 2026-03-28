@@ -19,7 +19,7 @@ public class ForceBullet : BaseBullet
     private void OnEnable()
     {
         //プレイヤーのフリップの方向で反対へ　X方向　プレイヤーのtargetを取得する　座標 Start
-        var p = GameObject.FindGameObjectWithTag("Player");
+        var p = GameObject.FindWithTag("Player");
         if (p.GetComponent<SpriteRenderer>().flipX)
             rb.AddForce(tForceX, ForceMode2D.Impulse);
         else

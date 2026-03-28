@@ -612,7 +612,7 @@ public static class MyLib
     /*            
     StartCoroutine(MyLib.DelayCoroutine(1.5f, () =>
     {
-        GameObject.FindGameObjectWithTag("TurnMgr").GetComponent<TurnMgr>().ChangeEnemyTurn(true);
+        GameObject.FindWithTag("TurnMgr").GetComponent<TurnMgr>().ChangeEnemyTurn(true);
         isTurnChange = false;
     }));
      */
@@ -765,6 +765,15 @@ public static class MyLib
     public static AudioSource MyPlayOneSound(string name, float volume, GameObject obj)
     {
         var audioSource = obj.GetComponent<AudioSource>();
+        var sound = (AudioClip)Resources.Load(name);
+        audioSource.PlayOneShot(sound, volume);
+
+        return audioSource;
+    }
+
+    public static AudioSource MyPlayOneSound(string name, float volume, AudioSource au)
+    {
+        var audioSource = au;
         var sound = (AudioClip)Resources.Load(name);
         audioSource.PlayOneShot(sound, volume);
 

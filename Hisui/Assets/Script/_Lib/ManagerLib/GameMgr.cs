@@ -26,7 +26,7 @@ public class GameMgr : MonoBehaviour
     {
         if (isCallEnd) return;
 
-        var se = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject;
+        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundMgr>().se.gameObject;
         var volume = .3f;
         if (isVic)
         {
@@ -40,7 +40,7 @@ public class GameMgr : MonoBehaviour
 
         }
         const float time = 1.5f;
-        var fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<FadeScene>();
+        var fade = GameObject.FindWithTag("Fade").GetComponent<FadeScene>();
         fade.fadeWaitTime = time;
         fade.SceneFade(SceneName.ToString(), fadeStartTime, fadeEndTime);
 
@@ -366,11 +366,11 @@ public class GameMgr : MonoBehaviour
 ////    {
 ////        //StartCoroutine(MyLib.DelayCoroutine(0.3f, () =>
 ////        //{
-////        //GameObject.FindGameObjectWithTag(TagName.Player).transform.position = target;
+////        //GameObject.FindWithTag(TagName.Player).transform.position = target;
 ////        var fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
 ////        fade.FadeIn(1f, () =>
 ////        {
-////            GameObject.FindGameObjectWithTag(TagName.Player).transform.position = target;
+////            GameObject.FindWithTag(TagName.Player).transform.position = target;
 
 ////            fade.FadeOut(5f);
 ////        });

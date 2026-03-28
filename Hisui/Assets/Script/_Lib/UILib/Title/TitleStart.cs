@@ -18,7 +18,7 @@ public class TitleStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var time = GameObject.FindGameObjectWithTag("Fade").GetComponent<FadeScene>().fadeWaitTime -= Time.deltaTime;
+        var time = GameObject.FindWithTag("Fade").GetComponent<FadeScene>().fadeWaitTime -= Time.deltaTime;
         if (time > 0) return;
 
         const int LEFT = 0;
@@ -54,10 +54,10 @@ public class TitleStart : MonoBehaviour
 
         const float sceneChangeTime = 2f;
 
-        GameObject.FindGameObjectWithTag("Fade").GetComponent<FadeScene>().
+        GameObject.FindWithTag("Fade").GetComponent<FadeScene>().
             SceneFade(BottuonNameOne.ToString(), 0f, sceneChangeTime);
 
-        var se = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject;
+        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundMgr>().se;
         var volume = .3f;
         MyLib.MyPlayOneSound("SE/決定ボタンを押す12", volume, se);
 
@@ -70,10 +70,10 @@ public class TitleStart : MonoBehaviour
 
         const float sceneChangeTime = 2f;
 
-        GameObject.FindGameObjectWithTag("Fade").GetComponent<FadeScene>().
+        GameObject.FindWithTag("Fade").GetComponent<FadeScene>().
             SceneFade(BottuonNameTwo.ToString(), 0f, sceneChangeTime);
 
-        var se = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject;
+        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundMgr>().se;
         var volume = .3f;
         MyLib.MyPlayOneSound("SE/決定ボタンを押す12", volume, se);
 
@@ -86,10 +86,10 @@ public class TitleStart : MonoBehaviour
 
         const float sceneChangeTime = 2f;
 
-        GameObject.FindGameObjectWithTag("Fade").GetComponent<FadeScene>().
+        GameObject.FindWithTag("Fade").GetComponent<FadeScene>().
         SceneFade(BottuonNameThree.ToString(), 0f, sceneChangeTime);
 
-        var se = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject;
+        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundMgr>().se;
         var volume = .3f;
         MyLib.MyPlayOneSound("SE/決定ボタンを押す12", volume, se);
 

@@ -8,15 +8,33 @@ public class メモ : MonoBehaviour
 
     public LayerMask mask;
     /*
+     * 
+     * 
+     * 
+     * 原因はかなり高確率で Rigidbody2D を Update() で動かしていること です。
+    WebGL だとフレームレートや物理更新のズレが出やすく、
+    MovePosition を Update() で呼ぶと移動が速く見えたり、不安定になりやすい です。
+     * 
+     * 
+     * 
+     * 
+    //Singleton<TargetSet>
+    //private void Awake()//エラー
+    //{
+    //    DontDestroyOnLoad(this.gameObject);
+
+    //}
+
+
     パラメーターなど説明
     https://x.gd/vUvxo
 
 
 
 
-        GameObject.FindGameObjectsWithTag("MoveErea").ToList().ForEach(x => x.SetActive(false));
+        GameObject.FindWithTag("MoveErea").ToList().ForEach(x => { x.SetActive(false); });
 
-                MyLib.MyPlayOneSound("SE/Gameover", 0.3f, GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
+                MyLib.MyPlayOneSound("SE/Gameover", 0.3f, GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
 
     □◇□◇□◇□◇□
     ◇　◇　◇　◇　◇　

@@ -201,10 +201,10 @@ public class FadeScene : MonoBehaviour
 
         //StartCoroutine(MyLib.DelayCoroutine(0.3f, () =>
         //{
-        //GameObject.FindGameObjectWithTag("Player").transform.position = target;
+        //GameObject.FindWithTag("Player").transform.position = target;
         FadeIn(0, () =>
         {
-            GameObject.FindGameObjectWithTag("Player").transform.position = target;
+            GameObject.FindWithTag("Player").transform.position = target;
             //Camera.main.GetComponent<CameraControl>().ChangePlayerPos();
 
             FadeOut(changeTime);

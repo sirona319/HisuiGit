@@ -71,13 +71,15 @@ public class CreateBullet : MonoBehaviour
 
     public GameObject BulletAtk(float angle,Vector3 pos,Quaternion rot, GameObject charaBullet=null)
     {
-        Debug.Log("BulletAtk");
 
         if (charaBullet == null)
+        {
+            Debug.Log("charaBullet NULL");
             return null;
 
 
-        Debug.Log("BulletAtk");
+        }
+
         charaBullet.transform.position = pos;
         charaBullet.transform.rotation = rot;
         var bullet = Instantiate(charaBullet);

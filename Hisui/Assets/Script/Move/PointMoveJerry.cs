@@ -1,56 +1,43 @@
 ﻿using DG.Tweening;
 using System.Collections.Generic;
-using UniRx;
 using UnityEngine;
 
 public class PointMoveJerry : MonoBehaviour
 {
 
-    [SerializeField] bool trailDisable = false;
+    [SerializeField] bool isTrailLoop = false;
 
 
     [SerializeField] List<Transform> moveTrans;
-    //[SerializeField] List<Vector3> moveVecs = new();
+
     [SerializeField] List<float> endLength;
     [SerializeField] float speed = 1f;
     const float rotSpeed = 5f;
 
     [SerializeField] bool isLoop = false;
-    public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe　エネミークラスなど？
+    //public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe　エネミークラスなど？
 
     int targetNo = 0;
     Rigidbody2D rb2;
-
-    //TargetSet targetSet;
 
 
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
 
-        var targetSet = GetComponent<TargetSet>();
-        moveTrans = targetSet.SetPointArray(moveTrans);     //配列を作成
+        //var aa = new TargetSet();
+        moveTrans = TargetSet.I.SetPointArray(moveTrans);
+        //moveTrans = GetComponent<TargetSet>().SetPointArray(moveTrans);//.SetPointArray(moveTrans);     //配列を作成
 
-        var trailSe = (GameObject)Resources.Load("Prefab/Sound/JerryTrailSe");
-        //トレイルサウンド用
-        var seObj = Instantiate(trailSe, trailSe.transform.position, Quaternion.identity, transform);
-        seObj.GetComponent<AudioSource>().Play();
+        //Debug.Log("moveTransの数" + moveTrans.Count);
 
-        //var pFloatMove = GetComponent<PointFloatMove>();
-        isPointMoveEnd.Skip(1).Subscribe(pointBool =>
-        {
-            Debug.Log("移動終了");
-            const float fadeSpeed = 1f;//1秒で止まる
-            seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+        GetComponent<SoundMove>().SoundPlay();
 
-            //GetComponent<EnemyBase>().SetIsAttack();
-            //GetComponent<EnemyBase>().MoveEnd();
-
-            if (!trailDisable)
-                GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
-
-        });
     }
+
+    //private void OnEnable()
+    //{
+    //}
 
     //public override void MoveEnter()
     //{
@@ -76,27 +63,27 @@ public class PointMoveJerry : MonoBehaviour
     //    //});
     //}
 
-    void Update()
+    private void FixedUpdate()
     {
-
         PointUpdate();
 
-        rb2.MovePosition(rb2.position + (Vector2)transform.up * speed * Time.deltaTime);
+        rb2.MovePosition(rb2.position + (Vector2)transform.up * (speed * Time.fixedDeltaTime));
 
     }
 
     void PointUpdate()
     {
-        float len = Vector3.Distance(transform.position, moveTrans[targetNo].position);
+        float len = Vector2.Distance(rb2.position, moveTrans[targetNo].position);
         if (len < endLength[targetNo])
         {
 
             targetNo++;
             if (targetNo > moveTrans.Count - 1)
             {
+                //GetComponent<SoundMove>().SoundFadeStop();
 
-                //if (!IsKeepMove)
-                isPointMoveEnd.Value = true;
+                if (!isTrailLoop)
+                    GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
 
                 if (isLoop)
                     targetNo = 0;

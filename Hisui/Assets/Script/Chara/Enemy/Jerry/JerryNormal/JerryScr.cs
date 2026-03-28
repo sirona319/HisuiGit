@@ -3,11 +3,38 @@ using UnityEngine;
 
 public class JerryScr : EnemyBase
 {
+    #region ステートコントローラー
+    [SerializeField] protected StateControllerBase stateController = default;
 
+    public int GetState()
+    {
+        return stateController.CurrentState;
+    }
+    #endregion
+
+    public BaseMagazine atkMagazine = null;
+    //public List<BaseMove> baseMove = new ();
+    public BaseMove move = null;
+    public BaseMove atkMove = null;
+
+    public bool IsDamage { get; set; } = false;
+
+    public bool IsAttack = false;
+
+    public bool IsMove = true;
     void Start()
     {
         //base.Init();
         stateController.Initialize((int)JerryCtr.State.Jerry_Wait);
+
+        if (atkMagazine != null)
+            atkMagazine.Initialize();
+
+        if (atkMove != null)
+            atkMove.Initialize();
+
+        if (move != null)
+            move.Initialize();
     }
 
     void Update()
@@ -91,6 +118,35 @@ public class JerryScr : EnemyBase
 
         //GetComponent<JerryScr>().IsMove = true;
 
+    }
+
+    public bool ReturnStateTypeDead()
+    {
+        //const int DEAD = 2;
+        if (GetComponent<CharaBase>().isDead) return true;
+
+        //const int DAMAGESTATE = 1;
+        //return DAMAGESTATE;
+        return false;
+
+    }
+
+    public void SetEndMoveKeep()
+    {
+        //if (!moveEnd) return;
+        IsAttack = true;
+
+        IsMove = true;
+
+    }
+
+    public void SetIsAttack()
+    {
+        IsAttack = true;
+    }
+    public void MoveEnd()
+    {
+        IsMove = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

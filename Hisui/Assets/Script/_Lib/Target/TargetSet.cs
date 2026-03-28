@@ -1,20 +1,28 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetSet : MonoBehaviour
+public class TargetSet : Singleton<TargetSet>
 {
+    //Singleton<TargetSet>
+    //private void Awake()//エラー
+    //{
+    //    DontDestroyOnLoad(this.gameObject);
+
+    //}
+
     public enum Target
     {
         Player,
-        LeftMiddle,
-        Up,
-        Right,
-        Left,
-        Down,
+        //LeftMiddle,
+        //Up,
+        //Right,
+        //Left,
+        //Down,
 
-        LocalDirection,
+        //LocalDirection,
+        //Abs,
+
         Relative,
-        Abs,
         //斜め　四つ　
         //一番近いエネミーなど？　遠い敵　レーザー
 
@@ -33,7 +41,7 @@ public class TargetSet : MonoBehaviour
 
     //public void Init()
     //{
-    //    //playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+    //    //playerTarget = GameObject.FindWithTag("Player").transform;
     //}
 
     //バレット　サークル　単体
@@ -56,11 +64,12 @@ public class TargetSet : MonoBehaviour
 
     public Transform GetTargetTrans(Transform target)
     {
+        
         //var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
-        if (target.GetComponent<TargetPoint>() == null)
-        {
-            Debug.Log("TargetPointが設定されていない");
-        }
+        //if (target.GetComponent<TargetPoint>() == null)
+        //{
+        //    Debug.Log("TargetPointが設定されていない");
+        //}
         return TargetSelect(target.GetComponent<TargetPoint>().target, target);
 
     }
@@ -83,14 +92,14 @@ public class TargetSet : MonoBehaviour
         List<Transform> tArrayPoints = new();
         foreach (var tChild in pointList)
         {
-            if (tChild.GetComponent<TargetPoint>() == null)
-            {
-                Debug.Log("TargetPointが設定されていない");
-                break;
+            var tPoint = tChild.GetComponent<TargetPoint>();
+            //if (tPoint == null)
+            //{
+            //    Debug.Log("TargetPointが設定されていない");
 
-            }
+            //}
 
-            var t = TargetSelect(tChild.GetComponent<TargetPoint>().target, tChild);
+            var t = TargetSelect(tPoint.target, tChild);
             tArrayPoints.Add(t);
 
         }
@@ -129,56 +138,61 @@ public class TargetSet : MonoBehaviour
         switch (type)
         {
             case Target.Player:
-                if (GameObject.FindGameObjectWithTag(Target.Player.ToString()) == null)
+                var p = GameObject.FindWithTag(Target.Player.ToString());
+                if (p == null)
                 {
                     Debug.Log("プレイヤーが存在しない");
                     break;
                 }
 
-                t = GameObject.FindGameObjectWithTag(Target.Player.ToString()).transform;
-                break;
-            case Target.LeftMiddle: //固定
-                t = GameObject.Find(Target.LeftMiddle.ToString()).transform;
-                break;
-            case Target.Up:
-                //t = tChild;//transform.Find(tChild.name).gameObject.transform;
-                t.position = transform.position + Vector3.up;
-                break;
-            case Target.Down:
-                //t = tChild;
-                t.position = transform.position + Vector3.down;
-                break;
-            case Target.Right:
-                // t = tChild;
-                t.position = transform.position + Vector3.right;
-                break;
-            case Target.Left:
-                //t = tChild;
-                t.position = transform.position + Vector3.left;
-                break;
+                return p.transform;
+            //break;
+            //case Target.LeftMiddle: //固定
+            //    //t = GameObject.Find(Target.LeftMiddle.ToString()).transform;
+            //    break;
+            //case Target.Up:
+            //    //t = tChild;//transform.Find(tChild.name).gameObject.transform;
+            //    t.position = transform.position + Vector3.up;
+            //    break;
+            //case Target.Down:
+            //    //t = tChild;
+            //    t.position = transform.position + Vector3.down;
+            //    break;
+            //case Target.Right:
+            //    // t = tChild;
+            //    t.position = transform.position + Vector3.right;
+            //    break;
+            //case Target.Left:
+            //    //t = tChild;
+            //    t.position = transform.position + Vector3.left;
+            //    break;
 
-            case Target.LocalDirection://任意に設定した座標方向へ進み続ける
-                //t = tChild;
-                break;
-            case Target.Abs://固定 0座標を基準にした座標を設定 (画面が固定の時などに使用?)
-                Debug.Log("Abs");
-                var stayPos = transform.position;
-                var go = (GameObject)Resources.Load("prefab/TargetVecObject");
-                if (go == null) Debug.Log("Prefab ターゲット用オブジェクトが存在しない");
-                transform.position = Vector3.zero;
-                var obj = Instantiate(go, t.position, transform.rotation);
+            //case Target.LocalDirection://任意に設定した座標方向へ進み続ける
+             //   return t;
+            // t = tChild;
+            // break;
+            //case Target.Abs://固定 0座標を基準にした座標を設定 (画面が固定の時などに使用?)
+            //    Debug.Log("Abs");
+            //    var stayPos = transform.position;
+            //    var go = (GameObject)Resources.Load("prefab/TargetVecObject");
+            //    if (go == null) Debug.Log("Prefab ターゲット用オブジェクトが存在しない");
+            //    transform.position = Vector3.zero;
+            //    var obj = Instantiate(go, t.position, transform.rotation);
 
-                obj.GetComponent<SetLinkObj>().linkObj = gameObject;
-                t = obj.transform;
-                transform.position = stayPos;
-                break;
+            //    obj.GetComponent<SetLinkObj>().linkObj = gameObject;
+            //    t = obj.transform;
+            //    //return obj.transform;
+            //    transform.position = stayPos;
+
+                //break;
             case Target.Relative://固定
                 var goRelative = (GameObject)Resources.Load("prefab/TargetVecObject");
                 if (goRelative == null) Debug.Log("Prefab ターゲット用オブジェクトが存在しない");
                 var objRelative = Instantiate(goRelative, t.position, transform.rotation);
                 objRelative.GetComponent<SetLinkObj>().linkObj = gameObject;
-                t = objRelative.transform;
-                break;
+                return objRelative.transform;
+                //t = objRelative.transform;
+               // break;
             //case BulletTarget.TargetVec://固定
             //    var child = transform.Find("TargetVec").transform;
             //    stayTarget = child;
@@ -229,7 +243,7 @@ public class TargetSet : MonoBehaviour
     //        //Transform t = null;
     //        Vector3 pos=Vector3.zero;
     //        if (tChild.name.Contains(Target.Player.ToString()))
-    //            pos = GameObject.FindGameObjectWithTag(Target.Player.ToString()).transform.position;
+    //            pos = GameObject.FindWithTag(Target.Player.ToString()).transform.position;
 
     //        else if (tChild.name.Contains(Target.LeftMiddle.ToString()))
     //            pos = GameObject.Find(Target.LeftMiddle.ToString()).transform.position;

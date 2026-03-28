@@ -16,8 +16,30 @@ public class CollisionExitErase : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        var chara = other.GetComponent<EnemyBase>();
+        if(chara!=null)
+        {
+            chara.isEreaOut = true;
+            Debug.Log("chara.isEreaOut = true;");
+            return;
+        }
+
+        //var chara = other.GetComponent<CharaBase>();
+        //if (chara!=null)
+        //{
+        //    if(other.GetComponent<EnemyBase>())
+        //    {
+        //        //Destroy(other.gameObject);
+        //        Debug.Log("Destroy(other.gameObject);");
+        //    }
+
+        //    //chara.isDead = true;
+        //    //Debug.Log("chara.isDead = true;");
+        //    return;
+        //}
+
         Destroy(other.gameObject);
-        Debug.Log("        Destroy(other.gameObject);");
+        Debug.Log("Destroy(other.gameObject);");
 
         //if (other.CompareTag("Enemy"))
         //{

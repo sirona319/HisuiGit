@@ -4,41 +4,39 @@ using Unity.VisualScripting;
 
 public class EnemyBase : CharaBase
 {
-    #region ステートコントローラー
-    [SerializeField] protected StateControllerBase stateController = default;
+    //#region ステートコントローラー
+    //[SerializeField] protected StateControllerBase stateController = default;
 
-    public int GetState()
-    {
-        return stateController.CurrentState;
-    }
-    #endregion
+    //public int GetState()
+    //{
+    //    return stateController.CurrentState;
+    //}
+    //#endregion
 
     //public Rigidbody2D rb;
 
     //public bool IsDead { get; private set;} =false;
 
-    public bool IsDamage { get; set; } = false;
 
-    public bool IsAttack  = false;
-
-    public bool IsMove  = true;
 
 
     //public EnemyData enemyData;//スクリプタルオブジェクト　リスト中身
 
 
     //public List<BaseMagazine> baseMagazine=new ();
-    public BaseMagazine atkMagazine = null;
-    //public List<BaseMove> baseMove = new ();
-    public BaseMove move = null;
-    public BaseMove atkMove = null;
+    //public BaseMagazine atkMagazine = null;
+    ////public List<BaseMove> baseMove = new ();
+    //public BaseMove move = null;
+    //public BaseMove atkMove = null;
 
-    public int Hp = 0;
     //[SerializeField] public float AtkIntervalMax;
     //[SerializeField] public float AtkInterval;
 
 
-    ParticleSystem dmgParticle;//ダメージパーティクル
+    //ParticleSystem dmgParticle;//ダメージパーティクル
+    public int Hp = 0;
+
+    public bool isEreaOut = false;
 
 
     /// <summary>
@@ -93,20 +91,20 @@ public class EnemyBase : CharaBase
 
     public virtual void Init()
     {
-        dmgParticle = Resources.Load("prefab/Particle/DamagePt").GetComponent<ParticleSystem>();
+        //dmgParticle = Resources.Load("prefab/Particle/DamagePt").GetComponent<ParticleSystem>();
         //dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
 
         //move = GetComponent<EnemyBase>().move;
 
 
-        if (atkMagazine != null)
-            atkMagazine.Initialize();
+        //if (atkMagazine != null)
+        //    atkMagazine.Initialize();
 
-        if (atkMove != null)
-            atkMove.Initialize();
+        //if (atkMove != null)
+        //    atkMove.Initialize();
 
-        if (move != null)
-            move.Initialize();
+        //if (move != null)
+        //    move.Initialize();
     }
 
     //public virtual void PrefabInit()
@@ -178,55 +176,28 @@ public class EnemyBase : CharaBase
     #endregion
 
 
-    public virtual void EnemyDamage(int damage)
-    {
-        if (GetComponent<CharaBase>().isDead) return;
+    //public virtual void EnemyDamage(int damage)
+    //{
+    //    if (GetComponent<CharaBase>().isDead) return;
 
-        //Debug.Log(gameObject.name + "へのダメージ" + damage.ToString());
-        Hp -= damage;        //HP減少処理
+    //    //Debug.Log(gameObject.name + "へのダメージ" + damage.ToString());
+    //    Hp -= damage;        //HP減少処理
 
-        IsDamage = true;
+    //    IsDamage = true;
 
-        if (Hp <= 0)
-        {
-            GetComponent<CharaBase>().isDead = true;
-            return;
-        }
+    //    if (Hp <= 0)
+    //    {
+    //        GetComponent<CharaBase>().isDead = true;
+    //        return;
+    //    }
 
-        //ダメージパーティクル表示
-        Instantiate(dmgParticle, transform.position, Quaternion.identity);
-    }
+    //    //ダメージパーティクル表示
+    //    Instantiate(dmgParticle, transform.position, Quaternion.identity);
+    //}
 
 
 
-    public bool ReturnStateTypeDead()
-    {
-        //const int DEAD = 2;
-        if (GetComponent<CharaBase>().isDead)return true;
 
-        //const int DAMAGESTATE = 1;
-        //return DAMAGESTATE;
-        return false;
-
-    }
-
-    public void SetEndMoveKeep()
-    {
-        //if (!moveEnd) return;
-        IsAttack = true;
-
-        IsMove = true;
-
-    }
-
-    public void SetIsAttack()
-    {
-        IsAttack = true;
-    }
-    public void MoveEnd()
-    {
-        IsMove = false;
-    }
     //private void OnTriggerExit(Collider other)
     //{
 

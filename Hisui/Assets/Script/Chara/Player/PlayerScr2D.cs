@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [DisallowMultipleComponent]
-public class PlayerScr2D : MonoBehaviour
+public class PlayerScr2D : CharaBase, IDamage
 {
     //デバッグ用
     [SerializeField] bool IsDebugNoLife = false;
@@ -199,6 +199,12 @@ public class PlayerScr2D : MonoBehaviour
         Destroy(this.gameObject);
 
 
+    }
+
+    public void Damage(int damage)
+    {
+        Destroy(this.gameObject);
+        //throw new System.NotImplementedException();
     }
 
 

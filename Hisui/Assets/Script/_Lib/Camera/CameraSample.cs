@@ -19,7 +19,7 @@ public class CameraSample : MonoBehaviour
     {
         if (cameraTarget == null)
         {
-            //cameraTarget= GameObject.FindGameObjectWithTag(TagName.Player).transform.Find("CameraTarget").transform;
+            //cameraTarget= GameObject.FindWithTag(TagName.Player).transform.Find("CameraTarget").transform;
             //var pos = transform.position;
             //pos.z = -10f;
             //transform.position = pos;

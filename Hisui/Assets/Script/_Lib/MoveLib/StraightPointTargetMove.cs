@@ -35,7 +35,7 @@ public class StraightPointTargetMove : BaseMove
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
 
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        player = GameObject.FindWithTag("Player")?.transform;
     }
 
     public override void MoveEnter()
@@ -78,7 +78,7 @@ public class StraightPointTargetMove : BaseMove
 
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+            player = GameObject.FindWithTag("Player")?.transform;
             Debug.Log("プレイヤーが存在しない");
             return isStart;
         }

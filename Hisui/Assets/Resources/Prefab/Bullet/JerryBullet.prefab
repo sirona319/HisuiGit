@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1660741264998231965}
   - component: {fileID: 1372904476738841711}
   - component: {fileID: 2217028467449319860}
+  - component: {fileID: 1728911355511614409}
   m_Layer: 10
   m_Name: JerryBullet
   m_TagString: Untagged
@@ -142,3 +143,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NormalBullet
   angle: 0
+--- !u!114 &1728911355511614409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764880274935360633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29173456605c084aae12aac2301fa86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageChara
+  damageVal: 1
+  tagNames:
+  - Player

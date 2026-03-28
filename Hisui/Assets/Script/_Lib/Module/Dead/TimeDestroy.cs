@@ -24,12 +24,12 @@ public class TimeDestroy : MonoBehaviour
         yield return new WaitForSeconds(time);
         Debug.Log("TimeDestroy:" + gameObject.name);
 
-        //Instantiate(GameObject.FindGameObjectWithTag("ParticleMgr").GetComponent<ParticleMgr>().deadPt,
+        //Instantiate(GameObject.FindWithTag("ParticleMgr").GetComponent<ParticleMgr>().deadPt,
         //  transform.position,
         //  Quaternion.identity);
 
         ////崖から石がパラパラ落ちる2
-        //MyLib.MyPlayOneSound("SE/崖から石がパラパラ落ちる2", 0.3f, GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
+        //MyLib.MyPlayOneSound("SE/崖から石がパラパラ落ちる2", 0.3f, GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
 
 
         Destroy(gameObject);

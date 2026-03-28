@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 872808277941926675}
   - component: {fileID: 5557810362489275712}
   - component: {fileID: 4193441189358821913}
+  - component: {fileID: 8706006401513474101}
   m_Layer: 13
   m_Name: PBulletNormal
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 652295628485586386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -6.0812516, y: -1.4387507, z: 0}
+  m_LocalPosition: {x: -6.67221, y: 1.0122029, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,3 +168,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimeDestroy
   deadTime: 3.5
   isStart: 1
+--- !u!114 &8706006401513474101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652295628485586386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29173456605c084aae12aac2301fa86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageChara
+  damageVal: 1
+  tagNames:
+  - Enemy

@@ -63,22 +63,22 @@ public class SinVectorMove : BaseMove
 
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
 
-        if (other.CompareTag("ExitErea"))
-        {
-            if(gameObject.tag=="Enemy")
-            {
-                Debug.Log("ExitEreaに触れた  SoundCreateDead");
-                //gameObject.GetComponent<CreateDeadSound>().IsSoundEnable = false;
-                gameObject.transform.GetComponent<EnemyBase>().EnemyDamage(10);
-                return;
-            }
+    //    if (other.CompareTag("ExitErea"))
+    //    {
+    //        if(gameObject.tag=="Enemy")
+    //        {
+    //            Debug.Log("ExitEreaに触れた  SoundCreateDead");
+    //            //gameObject.GetComponent<CreateDeadSound>().IsSoundEnable = false;
+    //            gameObject.transform.GetComponent<EnemyBase>().EnemyDamage(10);
+    //            return;
+    //        }
 
-        }
+    //    }
 
-    }
+    //}
 
     //public void PosReset()
     //{

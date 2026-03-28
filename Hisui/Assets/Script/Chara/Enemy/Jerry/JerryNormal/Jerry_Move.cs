@@ -11,7 +11,7 @@ public class Jerry_Move : StateChildBase
     {
         base.Initialize(stateNo);
 
-        move = GetComponent<EnemyBase>().move;
+        move = GetComponent<JerryScr>().move;
         //move.Initialize();
     }
 
