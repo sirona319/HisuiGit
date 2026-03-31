@@ -447,7 +447,7 @@ MonoBehaviour:
   - {fileID: 7175049473117843790}
   endLength:
   - 0.8
-  speed: 40
+  speed: 20
   isLoop: 0
 --- !u!114 &3074441196174441979
 MonoBehaviour:

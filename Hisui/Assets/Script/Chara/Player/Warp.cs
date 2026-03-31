@@ -67,6 +67,7 @@ public class Warp : MonoBehaviour
             pAlpha -= pFadeSpeed;//Time.deltaTime;
             if (pAlpha <= 0)
             {
+                GetComponent<CircleCollider2D>().enabled = false;
                 pAlpha = 0;
                 //return;
             }
@@ -82,6 +83,7 @@ public class Warp : MonoBehaviour
             {
                 pAlpha = 1;
                 isWarpMove = false;
+                GetComponent<CircleCollider2D>().enabled = true;
                 //return;
             }
 

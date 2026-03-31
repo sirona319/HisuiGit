@@ -16,10 +16,12 @@ public class CollisionExitErase : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        var chara = other.GetComponent<EnemyBase>();
-        if(chara!=null)
+        if (other.gameObject.CompareTag("Player")) return;
+
+        var ene = other.GetComponent<EnemyBase>();
+        if(ene != null)
         {
-            chara.isEreaOut = true;
+            ene.isEreaOut = true;
             Debug.Log("chara.isEreaOut = true;");
             return;
         }
@@ -38,8 +40,8 @@ public class CollisionExitErase : MonoBehaviour
         //    return;
         //}
 
-        Destroy(other.gameObject);
-        Debug.Log("Destroy(other.gameObject);");
+        //Destroy(other.gameObject);
+        //Debug.Log("Destroy(other.gameObject);");
 
         //if (other.CompareTag("Enemy"))
         //{

@@ -5,16 +5,12 @@ using UnityEngine;
 public class SpawnAct : MonoBehaviour
 {
     [SerializeField] SpawnAct spawnAct = null;
-    //bool isEnable = false;
 
     [SerializeField] float spawnTimer = 0f;
 
     public List<Transform> spawnObjs;
 
-    //public int SpawnLength()
-    //{
-    //    return spawnObjs.Count;
-    //}
+    [SerializeField] bool isEnable = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +37,8 @@ public class SpawnAct : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isEnable) return;
+
         if(spawnAct!=null)
          if (spawnAct.spawnObjs.Count > 0) return;
 
@@ -56,5 +54,10 @@ public class SpawnAct : MonoBehaviour
             }
             // Debug.Log(x.name);
         });
+    }
+
+    public void TimerStart()
+    {
+        isEnable = true;
     }
 }
