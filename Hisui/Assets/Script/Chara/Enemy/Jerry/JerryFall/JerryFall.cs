@@ -36,10 +36,11 @@ public class JerryFall : EnemyBase,IDamage
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<SoundMove>().SoundFadeStop();
+
             GetComponent<SoundCreateDead>().SoundPlay();
             GetComponent<TimeDestroy>().enabled = true;
             //GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
 
 
@@ -55,9 +56,10 @@ public class JerryFall : EnemyBase,IDamage
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SoundMove>().SoundFadeStop();
+
         GetComponent<TimeDestroy>().enabled = true;
         //GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
-        // Destroy(gameObject);
+        Destroy(gameObject);
     }
 
 }

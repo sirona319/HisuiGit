@@ -81,8 +81,8 @@ public class PointMoveJerry : BaseMove
             {
                 //GetComponent<SoundMove>().SoundFadeStop();
 
-                //if (!isTrailLoop)
-                  //  GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
+                if (!isTrailLoop)
+                    GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
 
                 if (isLoop)
                     targetNo = 0;
