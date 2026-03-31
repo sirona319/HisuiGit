@@ -12,6 +12,7 @@ public class TargetSet : Singleton<TargetSet>
 
     public enum Target
     {
+        Local,
         Player,
         //LeftMiddle,
         //Up,
@@ -64,13 +65,14 @@ public class TargetSet : Singleton<TargetSet>
 
     public Transform GetTargetTrans(Transform target)
     {
-        
+
         //var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
-        //if (target.GetComponent<TargetPoint>() == null)
-        //{
-        //    Debug.Log("TargetPointが設定されていない");
-        //}
-        return TargetSelect(target.GetComponent<TargetPoint>().target, target);
+        if (target.GetComponent<TargetPoint>().target == Target.Local)
+        {
+            return target;
+            //Debug.Log("TargetPointが設定されていない");
+        }
+        return TargetSelect(target.GetComponent<TargetPoint>().target, target.position);
 
     }
 
@@ -93,13 +95,13 @@ public class TargetSet : Singleton<TargetSet>
         foreach (var tChild in pointList)
         {
             var tPoint = tChild.GetComponent<TargetPoint>();
-            //if (tPoint == null)
-            //{
-            //    Debug.Log("TargetPointが設定されていない");
+            if (tPoint.target == Target.Local)
+            {
+                return pointList;
+                //Debug.Log("TargetPointが設定されていない");
+            }
 
-            //}
-
-            var t = TargetSelect(tPoint.target, tChild);
+            var t = TargetSelect(tPoint.target, tChild.position);
             tArrayPoints.Add(t);
 
         }
@@ -131,7 +133,7 @@ public class TargetSet : Singleton<TargetSet>
 
     }
 
-    Transform TargetSelect(Target type,Transform t)
+    Transform TargetSelect(Target type,Vector3 t)
     {
         //一番近いエネミーなど？　遠い敵　レーザー武器用など（Player）
         //Instanteiateで生成することで子階層から外す　座標ずれを防ぐため
@@ -188,7 +190,7 @@ public class TargetSet : Singleton<TargetSet>
             case Target.Relative://固定
                 var goRelative = (GameObject)Resources.Load("prefab/TargetVecObject");
                 if (goRelative == null) Debug.Log("Prefab ターゲット用オブジェクトが存在しない");
-                var objRelative = Instantiate(goRelative, t.position, transform.rotation);
+                var objRelative = Instantiate(goRelative, t, transform.rotation);
                 objRelative.GetComponent<SetLinkObj>().linkObj = gameObject;
                 return objRelative.transform;
                 //t = objRelative.transform;
@@ -204,11 +206,12 @@ public class TargetSet : Singleton<TargetSet>
             //    t = stayTarget.transform;
             //break;
             default:
-                Debug.Log("ターゲット未設定");
-                break;
+                return null;
+                //Debug.Log("ターゲット未設定");
+                //break;
         }
 
-        return t;
+        return null;
 
     }
 

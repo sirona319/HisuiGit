@@ -28,7 +28,9 @@ public class NarrationBehaviour : PlayableBehaviour
 
     public TMP_Text mTextUI { get; set; }
     public string inputText { get; set; }
-    public BlinkImageMod readImage { get; set; }
+    public float textSpd { get; set; }
+    public bool textEndIcon { get; set; }
+    public BlinkImageMod readImage { get; set; }=null;
     AudioSource textSe;
 
     //使えないStart関数
@@ -38,16 +40,20 @@ public class NarrationBehaviour : PlayableBehaviour
     {
         director = (playable.GetGraph().GetResolver() as PlayableDirector);
 
-        //Debug.Log("test");
-        //textBackImage.enabled = false;
         var textBackImage = GameObject.Find("TextPanel").gameObject.GetComponent<Image>();
         mTextUI = textBackImage.transform.Find("TalkText").GetComponent<TMP_Text>();
-        readImage = textBackImage.transform.Find("ReadImage").GetComponent<BlinkImageMod>();
-        readImage.enabled = true;
-        //readImage.GetComponent<BlinkImageMod>().enabled = true;
-        textSe = mTextUI.GetComponent<AudioSource>();
-       // mTextUI.enabled = false;
 
+        textSe = textBackImage.GetComponent<AudioSource>();
+        readImage = textBackImage.transform.Find("ReadImage").GetComponent<BlinkImageMod>();
+
+        //if (readImage==null)
+        //{
+        //    readImage.enabled=false;
+        //    readImage.GetComponent<Image>().enabled = false;
+        //    return;
+        //} 
+        //    readImage.enabled = true;
+        //Debug.Log("        } \r\n            readImage.enabled = true;");
     }
 
 
@@ -65,7 +71,7 @@ public class NarrationBehaviour : PlayableBehaviour
         //タイムラインからメッセージ長さを取得
         var progress = (float)(playable.GetTime() / playable.GetDuration());
         var current = Mathf.Lerp(0f, mTextUI.text.Length, progress);
-        var count = Mathf.CeilToInt(current);
+        var count = Mathf.CeilToInt(current* textSpd);
 
         mTextUI.maxVisibleCharacters = count;
         //base.PrepareFrame(playable, info);
@@ -84,14 +90,15 @@ public class NarrationBehaviour : PlayableBehaviour
     //int NumPlay = 0;
     public override void OnBehaviourPlay(Playable playable, FrameData info)
     {
-        //textBackImage.enabled = true;
-        //mTextUI.enabled = true;
+
         base.OnBehaviourPlay(playable, info);
         // Debug.Log($"OnBehaviourPlay" + NumPlay++);
 
         textSe.Play();
         clipStart = true;
-        readImage.enabled = true;
+
+        if (readImage != null)
+            readImage.enabled = true;
     }
 
     //int NumPause = 0;
@@ -100,7 +107,8 @@ public class NarrationBehaviour : PlayableBehaviour
         //テキストの最後に止めない
         if(!isTextPause)
         {
-            readImage.enabled = false;
+            if (readImage != null)
+                readImage.enabled = false;
             textSe.Stop();
 
             //director.Pause();
@@ -112,8 +120,9 @@ public class NarrationBehaviour : PlayableBehaviour
         if (clipStart)
         {
             //Debug.Log("OnBehaviourPause" + clipStart);
-            
-            readImage.enabled = false;
+            if (readImage != null)
+                readImage.enabled = false;
+
             textSe.Stop();
 
             director.Pause();

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class BlinkImageMod : MonoBehaviour
 {
     //点滅処理
-    [SerializeField] float duration = 0.07f;
+    [SerializeField] float duration = 0.3f;
     Color32 startColor = new(255, 255, 255, 255);
     Color32 endColor = new(255, 255, 255, 0);
 

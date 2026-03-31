@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class SpawnAct : MonoBehaviour
 {
-    [SerializeField] SpawnAct spawnAct=null;
+    [SerializeField] SpawnAct spawnAct = null;
     //bool isEnable = false;
 
     [SerializeField] float spawnTimer = 0f;
 
     public List<Transform> spawnObjs;
+
+    //public int SpawnLength()
+    //{
+    //    return spawnObjs.Count;
+    //}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,7 +42,7 @@ public class SpawnAct : MonoBehaviour
     void Update()
     {
         if(spawnAct!=null)
-         if (spawnAct.spawnObjs.Count>0) return;
+         if (spawnAct.spawnObjs.Count > 0) return;
 
         spawnTimer += Time.deltaTime;
 

@@ -9,7 +9,9 @@ public class メモ : MonoBehaviour
     public LayerMask mask;
     /*
      * 
-     * 
+     * パッケージ
+     * Mathematics
+     * UniversalRenderPipeline
      * 
      * 原因はかなり高確率で Rigidbody2D を Update() で動かしていること です。
     WebGL だとフレームレートや物理更新のズレが出やすく、

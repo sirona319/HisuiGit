@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointMoveJerry : MonoBehaviour
+public class PointMoveJerry : BaseMove
 {
 
     [SerializeField] bool isTrailLoop = false;
+    const float rotSpeed = 5f;
 
 
     [SerializeField] List<Transform> moveTrans;
 
     [SerializeField] List<float> endLength;
-    [SerializeField] float speed = 1f;
-    const float rotSpeed = 5f;
+    [SerializeField][Range(1f, 20f)] float speed = 1f;
 
     [SerializeField] bool isLoop = false;
     //public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe　エネミークラスなど？
@@ -25,7 +25,6 @@ public class PointMoveJerry : MonoBehaviour
     {
         rb2 = GetComponent<Rigidbody2D>();
 
-        //var aa = new TargetSet();
         moveTrans = TargetSet.I.SetPointArray(moveTrans);
         //moveTrans = GetComponent<TargetSet>().SetPointArray(moveTrans);//.SetPointArray(moveTrans);     //配列を作成
 
@@ -82,8 +81,8 @@ public class PointMoveJerry : MonoBehaviour
             {
                 //GetComponent<SoundMove>().SoundFadeStop();
 
-                if (!isTrailLoop)
-                    GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
+                //if (!isTrailLoop)
+                  //  GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
 
                 if (isLoop)
                     targetNo = 0;
@@ -93,8 +92,19 @@ public class PointMoveJerry : MonoBehaviour
 
         }
 
+
         transform.rotation = MyLib.GetAngleRotationFuncs(moveTrans[targetNo].position, transform, rotSpeed);
 
+    }
+
+    public override void MoveEnter()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void MoveUpdate()
+    {
+        throw new System.NotImplementedException();
     }
 
     //private void OnTriggerExit2D(Collider2D other)

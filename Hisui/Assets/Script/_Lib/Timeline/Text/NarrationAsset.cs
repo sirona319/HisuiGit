@@ -11,6 +11,9 @@ public class NarrationAsset : PlayableAsset
     [TextArea(1, 20)]
     public string TextErea;
     public bool isTextPause=true;
+    public float textSpd = 1f;
+    public bool textEndIcon;
+
     public NarrationBehaviour narration = new NarrationBehaviour();
 
     //public TMP_Text mText;
@@ -22,6 +25,8 @@ public class NarrationAsset : PlayableAsset
 
         playable.GetBehaviour().inputText = TextErea;
         playable.GetBehaviour().isTextPause = isTextPause;
+        playable.GetBehaviour().textSpd = textSpd;
+        playable.GetBehaviour().textEndIcon = textEndIcon;
         // behaviour.narrationGameObject = narrationGameObject.Resolve(graph.GetResolver());
 
         //behaviour.mTextUI = owner.GetComponent<TMP_Text>();

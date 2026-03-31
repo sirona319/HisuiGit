@@ -133,14 +133,14 @@ public class Warp : MonoBehaviour
         if (wpInterval > 0) return;
         if (isWarpMove) return;
 
-        if (!warpUi.EnableWarpCheck()) return;
+        //if (!warpUi.EnableWarpCheck()) return;
 
         //ワープ開始
         isWarpMove = true;
 
         playerFade = true;
 
-        warpUi.Change(25);
+        //warpUi.Change(25);
         /////////////
 
 

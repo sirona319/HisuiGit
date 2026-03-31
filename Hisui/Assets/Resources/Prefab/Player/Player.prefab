@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2538072577339672057}
   - component: {fileID: 6576360051589269779}
   - component: {fileID: 2706420233406493615}
-  - component: {fileID: 4511445311760958191}
   - component: {fileID: 7194586247956142861}
   - component: {fileID: 1139804860654032660}
   - component: {fileID: 6701999661179997562}
@@ -176,7 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0923b745e88f1a643b08e1165844c29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDebugNoLife: 1
+  isDead: 0
+  IsDebugNoLife: 0
   speed: 3
   movement: {x: 0, y: 0}
   mag: {fileID: 2706420233406493615}
@@ -228,18 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intervalTimeMax: 0.42
   pNormal: {fileID: 652295628485586386, guid: 712991a8729a19d4aa169f79a661f768, type: 3}
---- !u!114 &4511445311760958191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6435380748630735509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a9a3becdee71cd46b5000f815d9d623, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetSet
+  createBullet: {fileID: 0}
 --- !u!114 &7194586247956142861
 MonoBehaviour:
   m_ObjectHideFlags: 0

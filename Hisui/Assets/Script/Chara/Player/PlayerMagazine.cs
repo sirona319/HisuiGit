@@ -9,6 +9,8 @@ public class PlayerMagazine : BaseMagazine
     [SerializeField]float intervalTimeMax = 1f;
     [SerializeField] GameObject pNormal;
 
+    [SerializeField] CreateBullet createBullet;
+
     void Start()
     {
         intervalTime = intervalTimeMax;
@@ -33,6 +35,6 @@ public class PlayerMagazine : BaseMagazine
         Vector2 direction = (transform.position + Vector3.right) - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-        GetComponent<CreateBullet>().BulletAtk(pAngle, transform.position, transform.rotation, pNormal); //Target渡す
+        createBullet?.BulletAtk(pAngle, transform.position, transform.rotation, pNormal); //Target渡す
     }
 }

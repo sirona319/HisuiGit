@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------------------
 // Cartoon FX
-// (c) 2012-2020 Jean Moreno
+// (c) 2012-2025 Jean Moreno
 //--------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -8,13 +8,15 @@
 
 // Use the defines below to globally disable features:
 
-//#define DISABLE_CAMERA_SHAKE
-//#define DISABLE_LIGHTS
-//#define DISABLE_CLEAR_BEHAVIOR
+// #define DISABLE_CAMERA_SHAKE
+// #define DISABLE_LIGHTS
+// #define DISABLE_LIGHTS_LINEAR_REMAPPING
+// #define DISABLE_CLEAR_BEHAVIOR
 
 //--------------------------------------------------------------------------------------------------------------------------------
 
 using UnityEngine;
+using UnityEngine.Rendering;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -27,6 +29,8 @@ namespace CartoonFX
 	{
 		// Change this value to easily tune the camera shake strength for all effects
 		const float GLOBAL_CAMERA_SHAKE_MULTIPLIER = 1.0f;
+
+		static readonly int _GameObjectWorldPosition = Shader.PropertyToID("_GameObjectWorldPosition");
 
 #if UNITY_EDITOR
 		[InitializeOnLoadMethod]
@@ -452,7 +456,9 @@ namespace CartoonFX
 		[Tooltip("Defines which Particle System to track to trigger light fading out.\nLeave empty if not using fading out.")]
 		public ParticleSystem fadeOutReference;
 
+#if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE
 		float time;
+#endif
 		ParticleSystem rootParticleSystem;
 		[System.NonSerialized] MaterialPropertyBlock materialPropertyBlock;
 		[System.NonSerialized] Renderer particleRenderer;
@@ -461,11 +467,13 @@ namespace CartoonFX
 
 		public void ResetState()
 		{
+#if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE
 			time = 0f;
-			fadingOutStartTime = 0f;
-			isFadingOut = false;
+#endif
 
 #if !DISABLE_LIGHTS
+			fadingOutStartTime = 0f;
+			isFadingOut = false;
 			if (animatedLights != null)
 			{
 				foreach (var animLight in animatedLights)
@@ -494,17 +502,32 @@ namespace CartoonFX
 	#endif
 	#if !DISABLE_CLEAR_BEHAVIOR
 			startFrameOffset = GlobalStartFrameOffset++;
-#endif
+	#endif
 			// Detect if world position needs to be passed to the shader
 			particleRenderer = this.GetComponent<ParticleSystemRenderer>();
 			if (particleRenderer.sharedMaterial != null && particleRenderer.sharedMaterial.IsKeywordEnabled("_CFXR_LIGHTING_WPOS_OFFSET"))
-			{ 
+			{
 				materialPropertyBlock = new MaterialPropertyBlock();
 			}
+
+	#if !DISABLE_LIGHTS && !DISABLE_LIGHTS_LINEAR_REMAPPING
+			// Lights were calibrated using the built-in rendering pipeline, but
+			// when using URP their intensities are transmitted using linear values.
+			// This internal Unity flag defines that behavior, so we compensate here
+			// such that original values remain.
+			if (!GraphicsSettings.lightsUseLinearIntensity && animatedLights != null)
+			{
+				foreach (var animLight in animatedLights)
+				{
+					animLight.intensityStart = Mathf.LinearToGammaSpace(animLight.intensityStart);
+					animLight.intensityEnd = Mathf.LinearToGammaSpace(animLight.intensityEnd);
+				}
+			}
+	#endif
 		}
 #endif
 
-			void OnEnable()
+		void OnEnable()
 		{
 			foreach (var animLight in animatedLights)
 			{
@@ -526,7 +549,9 @@ namespace CartoonFX
 
 #if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE || !DISABLE_CLEAR_BEHAVIOR
 		const int CHECK_EVERY_N_FRAME = 20;
-		static int GlobalStartFrameOffset = 0;
+#if !DISABLE_CLEAR_BEHAVIOR
+		static int GlobalStartFrameOffset;
+#endif
 		int startFrameOffset;
 		void Update()
 		{
@@ -535,10 +560,12 @@ namespace CartoonFX
 
 			Animate(time);
 
+#if !DISABLE_LIGHTS
 			if (fadeOutReference != null && !fadeOutReference.isEmitting && (fadeOutReference.isPlaying || isFadingOut))
 			{
 				FadeOut(time);
 			}
+#endif
 #endif
 #if !DISABLE_CLEAR_BEHAVIOR
 			if (clearBehavior != ClearBehavior.None)
@@ -568,21 +595,21 @@ namespace CartoonFX
 			if (materialPropertyBlock != null)
 			{
 				particleRenderer.GetPropertyBlock(materialPropertyBlock);
-				materialPropertyBlock.SetVector("_GameObjectWorldPosition", this.transform.position);
+				materialPropertyBlock.SetVector(_GameObjectWorldPosition, this.transform.position);
 				particleRenderer.SetPropertyBlock(materialPropertyBlock);
 			}
 		}
 #endif
 
 #if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE
-		public void Animate(float time)
+		public void Animate(float _time)
 		{
 #if !DISABLE_LIGHTS
 			if (animatedLights != null && !GlobalDisableLights)
 			{
 				foreach (var animLight in animatedLights)
 				{
-					animLight.animate(time);
+					animLight.animate(_time);
 				}
 			}
 #endif
@@ -596,7 +623,7 @@ namespace CartoonFX
 					cameraShake.fetchCameras();
 				}
 #endif
-				cameraShake.animate(time);
+				cameraShake.animate(_time);
 			}
 #endif
 		}
@@ -605,7 +632,7 @@ namespace CartoonFX
 #if !DISABLE_LIGHTS
 		bool isFadingOut;
 		float fadingOutStartTime;
-		public void FadeOut(float time)
+		public void FadeOut(float _time)
 		{
 			if (animatedLights == null)
 			{
@@ -615,12 +642,12 @@ namespace CartoonFX
 			if (!isFadingOut)
 			{
 				isFadingOut = true;
-				fadingOutStartTime = time;
+				fadingOutStartTime = _time;
 			}
 
 			foreach (var animLight in animatedLights)
 			{
-				animLight.animateFadeOut(time - fadingOutStartTime);
+				animLight.animateFadeOut(_time - fadingOutStartTime);
 			}
 		}
 #endif
@@ -645,7 +672,9 @@ namespace CartoonFX
 
 		[System.NonSerialized] bool particleWasStopped;
 		[System.NonSerialized] float particleTime;
+#if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE
 		[System.NonSerialized] float particleTimeUnwrapped;
+#endif
 
 		void OnDestroy()
 		{
@@ -658,7 +687,7 @@ namespace CartoonFX
 			var status = PrefabUtility.GetPrefabInstanceStatus(this.gameObject);
 
 			// Prefab in Project window
-			if ((type == PrefabAssetType.Regular || type == PrefabAssetType.Variant) && status == PrefabInstanceStatus.NotAPrefab)
+			if (type is PrefabAssetType.Regular or PrefabAssetType.Variant && status == PrefabInstanceStatus.NotAPrefab)
 			{
 				return;
 			}
@@ -692,17 +721,17 @@ namespace CartoonFX
 				return;
 			}
 
-			var renderer = this.GetComponent<ParticleSystemRenderer>();
-			if (renderer.sharedMaterial != null && renderer.sharedMaterial.IsKeywordEnabled("_CFXR_LIGHTING_WPOS_OFFSET"))
+			var rend = this.GetComponent<ParticleSystemRenderer>();
+			if (rend.sharedMaterial != null && rend.sharedMaterial.IsKeywordEnabled("_CFXR_LIGHTING_WPOS_OFFSET"))
 			{
 				if (materialPropertyBlock == null)
 				{
 					materialPropertyBlock = new MaterialPropertyBlock();
 				}
 
-				renderer.GetPropertyBlock(materialPropertyBlock);
-				materialPropertyBlock.SetVector("_GameObjectWorldPosition", this.transform.position);
-				renderer.SetPropertyBlock(materialPropertyBlock);
+				rend.GetPropertyBlock(materialPropertyBlock);
+				materialPropertyBlock.SetVector(_GameObjectWorldPosition, this.transform.position);
+				rend.SetPropertyBlock(materialPropertyBlock);
 			}
 
 			// Need to track unwrapped time when playing back from Editor
@@ -716,11 +745,15 @@ namespace CartoonFX
 				{
 					// try to detect when "Restart" is pressed
 					ResetState();
+#if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE
 					particleTimeUnwrapped = 0;
+#endif
 					delta = 0;
 				}
 			}
+#if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE
 			particleTimeUnwrapped += delta;
+#endif
 
 			if (particleTime != parentParticle.time)
 			{
@@ -730,13 +763,15 @@ namespace CartoonFX
 					cameraShake.StartShake();
 				}
 #endif
-#if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKES
+#if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE
 				Animate(particleTimeUnwrapped);
 
+#if !DISABLE_LIGHTS
 				if (!parentParticle.isEmitting)
 				{
 					FadeOut(particleTimeUnwrapped);
 				}
+#endif
 #endif
 			}
 
@@ -746,7 +781,9 @@ namespace CartoonFX
 				{
 					ResetState();
 				}
+#if !DISABLE_LIGHTS || !DISABLE_CAMERA_SHAKE
 				particleTimeUnwrapped = 0;
+#endif
 			}
 
 			particleWasStopped = parentParticle.isStopped;

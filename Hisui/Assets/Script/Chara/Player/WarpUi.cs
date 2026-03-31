@@ -5,13 +5,6 @@ using UnityEngine.UI;
 public class WarpUi : MonoBehaviour
 {
     [SerializeField] Image hpImage;
-    //private TextMeshProUGUI hpNum;
-    //bool isUse = false;
-    //bool UseCheck  
-    //{  
-    //    get { return isUse; }  
-    //}
-    //const float changeColorSpeed = 100f;
 
     float wpUiMaxVal;
 
@@ -24,21 +17,6 @@ public class WarpUi : MonoBehaviour
     {
         wpUiMaxVal = hpImage.rectTransform.sizeDelta.x;
 
-        //Debug.Log(hpImage.rectTransform.sizeDelta.x);
-        //hpImage=GameObject.Find("HpImage").GetComponent<Image>();
-        //hpNum=GameObject.Find("HpNum").GetComponent<TextMeshProUGUI>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //カラーRを増やす　Gを減らす
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    ChangeHp(10);
-        //}
-
-       // WarpHeal();
     }
 
     public bool EnableWarpCheck()
