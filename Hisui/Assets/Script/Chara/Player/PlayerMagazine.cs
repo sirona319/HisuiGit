@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using static TargetSet;
 
 [DisallowMultipleComponent]
@@ -20,13 +21,28 @@ public class PlayerMagazine : BaseMagazine
     {
 
         intervalTime -= Time.deltaTime;
-        if (Input.GetKey(KeyCode.F)&&intervalTime<=0)
+#if ENABLE_INPUT_SYSTEM
+        // New input system backends are enabled.
+        if (Keyboard.current.fKey.isPressed && intervalTime <= 0)
         {
             intervalTime = intervalTimeMax;
             NormalShot();
 
             MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
         }
+#endif
+
+#if ENABLE_LEGACY_INPUT_MANAGER
+    // Old input backends are enabled.
+        if (Input.GetKey(KeyCode.F) && intervalTime <= 0)
+        {
+            intervalTime = intervalTimeMax;
+            NormalShot();
+
+            MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
+        }
+#endif
+
     }
 
     void NormalShot()

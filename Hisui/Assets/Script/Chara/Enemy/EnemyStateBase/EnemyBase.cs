@@ -34,10 +34,13 @@ public class EnemyBase : CharaBase
 
 
     //ParticleSystem dmgParticle;//ダメージパーティクル
-    public int Hp = 0;
+
 
     public bool isEreaOut = false;
 
+    public int Hp = 0;
+
+    public float SpawnTime = 0f;
 
     /// <summary>
     /// 呼び出し先でキャストして使用する

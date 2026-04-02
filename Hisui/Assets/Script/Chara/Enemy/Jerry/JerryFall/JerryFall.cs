@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JerryFall : EnemyBase,IDamage
 {
-    public float SpawnTime = 0f;
+    //public float SpawnTime = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,12 +33,14 @@ public class JerryFall : EnemyBase,IDamage
             isDead = true;
 
             //メッシュ　当たり判定　非表示　
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<BoxCollider2D>().enabled = false;
-            GetComponent<SoundMove>().SoundFadeStop();
+            //GetComponent<SpriteRenderer>().enabled = false;
+            //GetComponent<BoxCollider2D>().enabled = false;
+            //GetComponent<SoundMove>().SoundFadeStop();
+
+
 
             GetComponent<SoundCreateDead>().SoundPlay();
-            GetComponent<TimeDestroy>().enabled = true;
+            //GetComponent<TimeDestroy>().enabled = true;
             //GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
             Destroy(gameObject);
         }
@@ -50,16 +52,23 @@ public class JerryFall : EnemyBase,IDamage
     {
         if (!isEreaOut) return;
         isDead = true;
+
+        //GetComponent<SpriteRenderer>().enabled = false;
+        //GetComponent<BoxCollider2D>().enabled = false;
+        //GetComponent<SoundMove>().SoundFadeStop();
+
         GetComponent<SoundCreateDead>().enabled = false;
-
-
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<SoundMove>().SoundFadeStop();
-
-        GetComponent<TimeDestroy>().enabled = true;
+        //GetComponent<TimeDestroy>().enabled = true;
         //GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
         Destroy(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("JerryFall OnDisable");
+        //GetComponent<SpriteRenderer>().enabled = false;
+        //GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<SoundMove>().SoundFadeStop();
     }
 
 }

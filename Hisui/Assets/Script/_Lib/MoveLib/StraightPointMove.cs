@@ -28,7 +28,7 @@ public class StraightPointMove : BaseMove
         //if (gameObject.GetComponent<TargetSet>()!=null)
         //{
             //targetSet = GetComponent<TargetSet>();
-            moveTransLists = TargetSet.I.SetPointArray(moveTransLists);
+            moveTransLists = TargetSet.I.SetPointArray(moveTransLists, gameObject);
         //}
 
         //rb2=GetComponent<Rigidbody>();

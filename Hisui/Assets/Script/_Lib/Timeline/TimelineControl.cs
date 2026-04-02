@@ -1,6 +1,8 @@
 ﻿using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.UIElements;
 
 public class TimelineControl : MonoBehaviour
 {
@@ -65,6 +67,22 @@ public class TimelineControl : MonoBehaviour
 
         if (!isPlay) return;
 
+
+#if ENABLE_INPUT_SYSTEM
+        // New input system backends are enabled.
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+            playableDirector.Resume();
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            //Resume　再開
+            playableDirector.Resume();
+
+
+        }
+#endif
+
+#if ENABLE_LEGACY_INPUT_MANAGER
         const int LEFTMOUSE = 0;
         if (Input.GetMouseButtonDown(LEFTMOUSE))
             playableDirector.Resume();
@@ -85,6 +103,8 @@ public class TimelineControl : MonoBehaviour
             //playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1.0f);
             // Debug.Log("SPACE　再開 メッセージ送り");
         }
+#endif
+
         //playableDirector.state
 
         //if (Input.GetKeyDown(KeyCode.Q))
@@ -104,7 +124,7 @@ public class TimelineControl : MonoBehaviour
         //    //Debug.Log("SPACE成功");
         //}
 
-        
+
     }
 
     public void FlgReset()

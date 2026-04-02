@@ -63,7 +63,7 @@ public class TargetSet : Singleton<TargetSet>
 
     //}
 
-    public Transform GetTargetTrans(Transform target)
+    public Transform GetTargetTrans(Transform target,GameObject go)
     {
 
         //var tArrayChild = transform.GetComponentsInChildren<TargetPoint>();
@@ -72,7 +72,7 @@ public class TargetSet : Singleton<TargetSet>
             return target;
             //Debug.Log("TargetPointが設定されていない");
         }
-        return TargetSelect(target.GetComponent<TargetPoint>().target, target.position);
+        return TargetSelect(target.GetComponent<TargetPoint>().target, target.position, go);
 
     }
 
@@ -87,7 +87,7 @@ public class TargetSet : Singleton<TargetSet>
 
     //}
 
-    public List<Transform> SetPointArray(List<Transform> pointList)
+    public List<Transform> SetPointArray(List<Transform> pointList, GameObject go)
     {
         //生成位置から見た固定座標を使用するときに使う
 
@@ -101,7 +101,7 @@ public class TargetSet : Singleton<TargetSet>
                 //Debug.Log("TargetPointが設定されていない");
             }
 
-            var t = TargetSelect(tPoint.target, tChild.position);
+            var t = TargetSelect(tPoint.target, tChild.position, go);
             tArrayPoints.Add(t);
 
         }
@@ -133,7 +133,7 @@ public class TargetSet : Singleton<TargetSet>
 
     }
 
-    Transform TargetSelect(Target type,Vector3 t)
+    Transform TargetSelect(Target type,Vector3 t, GameObject go)
     {
         //一番近いエネミーなど？　遠い敵　レーザー武器用など（Player）
         //Instanteiateで生成することで子階層から外す　座標ずれを防ぐため
@@ -191,7 +191,7 @@ public class TargetSet : Singleton<TargetSet>
                 var goRelative = (GameObject)Resources.Load("prefab/TargetVecObject");
                 if (goRelative == null) Debug.Log("Prefab ターゲット用オブジェクトが存在しない");
                 var objRelative = Instantiate(goRelative, t, transform.rotation);
-                objRelative.GetComponent<SetLinkObj>().linkObj = gameObject;
+                objRelative.GetComponent<SetLinkObj>().linkObj = go;
                 return objRelative.transform;
                 //t = objRelative.transform;
                // break;

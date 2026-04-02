@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
 public class PlayerScr2D : CharaBase, IDamage
@@ -77,7 +78,21 @@ public class PlayerScr2D : CharaBase, IDamage
         //    MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
         //}
 
+#if ENABLE_INPUT_SYSTEM
+        // New input system backends are enabled.
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
+        {
+            warp.WarpStart();
+        }
 
+        if (Keyboard.current.leftShiftKey.wasReleasedThisFrame)
+        {
+            warp.WarpEnd();
+        }
+#endif
+
+#if ENABLE_LEGACY_INPUT_MANAGER
+    // Old input backends are enabled.
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             warp.WarpStart();
@@ -87,6 +102,8 @@ public class PlayerScr2D : CharaBase, IDamage
         {
             warp.WarpEnd();
         }
+#endif
+
 
 
         MoveControl();
@@ -130,6 +147,29 @@ public class PlayerScr2D : CharaBase, IDamage
 
     void MoveControl()
     {
+#if ENABLE_INPUT_SYSTEM
+        if (Keyboard.current.wKey.isPressed)
+            movement.y = 1f;
+        if (Keyboard.current.wKey.wasReleasedThisFrame)
+            movement.y = 0f;
+
+        if (Keyboard.current.sKey.isPressed)
+            movement.y = -1f;
+        if (Keyboard.current.sKey.wasReleasedThisFrame)
+            movement.y = 0f;
+
+        if (Keyboard.current.aKey.isPressed)
+            movement.x = -1f;
+        if (Keyboard.current.aKey.wasReleasedThisFrame)
+            movement.x = 0f;
+
+        if (Keyboard.current.dKey.isPressed)
+            movement.x = 1f;
+        if (Keyboard.current.dKey.wasReleasedThisFrame)
+            movement.x = 0f;
+#endif
+
+#if ENABLE_LEGACY_INPUT_MANAGER
         if (Input.GetKey(KeyCode.W))
             movement.y = 1f;
 
@@ -154,6 +194,7 @@ public class PlayerScr2D : CharaBase, IDamage
 
         if (Input.GetKeyUp(KeyCode.D))
             movement.x = 0f;
+#endif
 
         movement = movement.normalized;
 

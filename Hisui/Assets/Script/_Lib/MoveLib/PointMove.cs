@@ -26,7 +26,7 @@ public class PointMove : BaseMove
         //    moveVecs.Add(t.position);
         //}
 
-        moveTrans = GetComponent<TargetSet>().SetPointArray(moveTrans);     //配列を作成
+        moveTrans = GetComponent<TargetSet>().SetPointArray(moveTrans, gameObject);     //配列を作成
     }
 
     public override void MoveEnter()

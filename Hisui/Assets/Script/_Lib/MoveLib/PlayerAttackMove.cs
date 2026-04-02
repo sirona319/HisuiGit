@@ -33,7 +33,7 @@ public class PlayerAttackMove : BaseMove
     public override void MoveEnter()
     {
         moveVecter[0] = transform.position;
-        moveVecter[1] = targetSet.GetTargetTrans(targetTrans).position;
+        moveVecter[1] = targetSet.GetTargetTrans(targetTrans, gameObject).position;
         isAttackEnd = false;
     }
 

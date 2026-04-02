@@ -32,7 +32,7 @@ public class CircleMove : BaseMove
         rb2 = GetComponent<Rigidbody2D>();
         var targetSet=GetComponent<TargetSet>();
         //targetSet.Init();
-        target = targetSet.GetTargetTrans(targetTrans);
+        target = targetSet.GetTargetTrans(targetTrans, gameObject);
     }
 
     public override void MoveEnter()

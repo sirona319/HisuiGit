@@ -24,7 +24,7 @@ public class TargetTransMagazine : BaseMagazine
         createBullet = GetComponent<CreateBullet>();
         //var targetSet = GetComponent<TargetSet>();
         //targetSet.Init();
-        tPos = GetComponent<TargetSet>().GetTargetTrans(targetTrans).position;
+        tPos = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
         //target = transform.Find("Target").transform;
         //shotTime = 1f;
     }

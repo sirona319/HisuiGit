@@ -33,7 +33,7 @@ public class SinVectorMove : BaseMove
 
 
         //targetSet=GetComponent<TargetSet>();
-        var movePos = GetComponent<TargetSet>().GetTargetTrans(targetTrans).position;
+        var movePos = GetComponent<TargetSet>().GetTargetTrans(targetTrans, gameObject).position;
         var dir = movePos - transform.position;
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);

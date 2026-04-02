@@ -25,7 +25,7 @@ public class PointMoveJerry : BaseMove
     {
         rb2 = GetComponent<Rigidbody2D>();
 
-        moveTrans = TargetSet.I.SetPointArray(moveTrans);
+        moveTrans = TargetSet.I.SetPointArray(moveTrans,gameObject);
         //moveTrans = GetComponent<TargetSet>().SetPointArray(moveTrans);//.SetPointArray(moveTrans);     //配列を作成
 
         //Debug.Log("moveTransの数" + moveTrans.Count);
@@ -80,6 +80,13 @@ public class PointMoveJerry : BaseMove
             if (targetNo > moveTrans.Count - 1)
             {
                 //GetComponent<SoundMove>().SoundFadeStop();
+
+                if (GetComponent<FloatMoveJerry>() != null)
+                {
+                    GetComponent<SoundMove>().SoundFadeStop();
+                    GetComponent<FloatMoveJerry>().enabled = true;
+                    this.enabled = false;
+                }
 
                 if (!isTrailLoop)
                     GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);

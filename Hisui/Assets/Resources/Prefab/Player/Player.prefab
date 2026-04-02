@@ -134,7 +134,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6435380748630735509}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -211,9 +211,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpImage: {fileID: 0}
-  wpUiUseVal: 10
+  wpUiUseVal: 0
   returnSpeed: 0.15
-  minusSpeed: 0.3
+  minusSpeed: 0.15
 --- !u!114 &2706420233406493615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intervalTimeMax: 0.42
   pNormal: {fileID: 652295628485586386, guid: 712991a8729a19d4aa169f79a661f768, type: 3}
-  createBullet: {fileID: 0}
+  createBullet: {fileID: 7194586247956142861}
 --- !u!114 &7194586247956142861
 MonoBehaviour:
   m_ObjectHideFlags: 0

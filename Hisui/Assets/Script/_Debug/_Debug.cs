@@ -5,6 +5,7 @@ public class _Debug : MonoBehaviour
 
     [SerializeField]bool StartEventSkip = false;
 
+    [SerializeField] GameObject startWave;
     //bool isStartEventSkip = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +20,7 @@ public class _Debug : MonoBehaviour
         {
 
             GameObject.Find("StartEvent").SetActive(false);
-            GameObject.Find("WaveActSpawn").GetComponent<SpawnAct>().isEnable = true;
+            startWave.SetActive(true);
             StartEventSkip = false;
             //isStartEventSkip = true;
         }

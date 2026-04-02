@@ -10,7 +10,7 @@ public class SpawnAct : MonoBehaviour
 
     public List<Transform> spawnObjs;
 
-    [SerializeField] public bool isEnable = true;
+   // [SerializeField] bool isEnable = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,27 +37,40 @@ public class SpawnAct : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isEnable) return;
+       // if (!isEnable) return;
 
-        if(spawnAct!=null)
-         if (spawnAct.spawnObjs.Count > 0) return;
+        //if(spawnAct!=null)
+        // if (spawnAct.spawnObjs.Count > 0) return;
 
         spawnTimer += Time.deltaTime;
 
         spawnObjs.ToList().ForEach(x =>
         {
             //if (x.tag == "Enemy")
-            if (x.GetComponent<JerryFall>().SpawnTime < spawnTimer)
+            if (x.GetComponent<EnemyBase>().SpawnTime < spawnTimer)
             {
                 x.transform.gameObject.SetActive(true);
                 spawnObjs.Remove(x);
+                x.parent= null;
             }
             // Debug.Log(x.name);
         });
+
+        if (spawnObjs.Count == 0)
+        {
+            if (spawnAct != null)
+            {
+                spawnAct.gameObject.SetActive(true);
+            }
+            //isEnable = false;
+            Destroy(gameObject);
+        }
     }
 
-    public void TimerStart()
-    {
-        isEnable = true;
-    }
+
+    //シグナルで呼び出す関数
+    //public void TimerStart()
+    //{
+    //    isEnable = true;
+    //}
 }
