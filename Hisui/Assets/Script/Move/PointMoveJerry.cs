@@ -83,6 +83,7 @@ public class PointMoveJerry : BaseMove
 
                 if (GetComponent<FloatMoveJerry>() != null)
                 {
+                    Debug.Log("PointMoveJerryからFloatMoveJerryに移行");
                     GetComponent<SoundMove>().SoundFadeStop();
                     GetComponent<FloatMoveJerry>().enabled = true;
                     this.enabled = false;

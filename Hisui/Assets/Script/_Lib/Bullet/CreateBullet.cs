@@ -152,39 +152,39 @@ public class CreateBullet : MonoBehaviour
     //    return bullet;
     //}
 
-    void AddSetParamComponent(BulletType bulletType,GameObject bullet)
-    {
-        //左　カーブ弾の作成
-        if (bulletType==BulletType.CarveModuleL)
-        {
+    //void AddSetParamComponent(BulletType bulletType,GameObject bullet)
+    //{
+    //    //左　カーブ弾の作成
+    //    if (bulletType==BulletType.CarveModuleL)
+    //    {
 
-            Type carveClass = Type.GetType(ModuleClassName.CarveModule.ToString());
-            if (bullet.gameObject.GetComponent(carveClass) == null)
-                bullet.gameObject.AddComponent(carveClass);
+    //        Type carveClass = Type.GetType(ModuleClassName.CarveModule.ToString());
+    //        if (bullet.gameObject.GetComponent(carveClass) == null)
+    //            bullet.gameObject.AddComponent(carveClass);
 
-            const float carveVal = 15f;
-            bullet.GetComponent<CarveModule>().SetAngle(carveVal);
-            return;
-        }
+    //        const float carveVal = 15f;
+    //        bullet.GetComponent<CarveModule>().SetAngle(carveVal);
+    //        return;
+    //    }
 
-        //右　カーブ弾の作成
-        if (bulletType == BulletType.CarveModuleR)
-        {
-            Type carveClass = Type.GetType(ModuleClassName.CarveModule.ToString());
-            if (bullet.gameObject.GetComponent(carveClass) == null)
-                bullet.gameObject.AddComponent(carveClass);
+    //    //右　カーブ弾の作成
+    //    if (bulletType == BulletType.CarveModuleR)
+    //    {
+    //        Type carveClass = Type.GetType(ModuleClassName.CarveModule.ToString());
+    //        if (bullet.gameObject.GetComponent(carveClass) == null)
+    //            bullet.gameObject.AddComponent(carveClass);
 
-            const float carveVal = 15f;
-            bullet.GetComponent<CarveModule>().SetAngle(carveVal);
-            return;
-        }
+    //        const float carveVal = 15f;
+    //        bullet.GetComponent<CarveModule>().SetAngle(carveVal);
+    //        return;
+    //    }
 
-        Type typeClass = Type.GetType(bulletType.ToString());
+    //    Type typeClass = Type.GetType(bulletType.ToString());
 
-        if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
-           bullet.gameObject.AddComponent(typeClass);
+    //    if (typeClass != null && bullet.gameObject.GetComponent(typeClass) == null)
+    //       bullet.gameObject.AddComponent(typeClass);
 
-    }
+    //}
 
 
 }

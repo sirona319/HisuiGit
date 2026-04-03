@@ -22,7 +22,7 @@ public class FloatMoveJerry : BaseMove
         //transform.rotation = MyLib.TargetRotation2D((transform.position + Vector3.up), transform, 10f);
         transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, rotSpeed);
 
-        Debug.Log("FloatMoveJerry　FixedUpdate");
+        //Debug.Log("FloatMoveJerry　FixedUpdate");
 
     }
 

@@ -3,15 +3,19 @@ using static BaseBullet;
 
 public class TwoCarveMagazine : BaseMagazine
 {
-    public Transform Target { get; set; }
+    //public Transform Target { get; set; }
     const float ONEWEYLENGTH = 7f;
     //const float TWOWEYLENGTH = 30f;
 
-    CreateBullet createBullet;
+    //CreateBullet createBullet;
+    [SerializeField] Transform target;
 
+    [SerializeField] GameObject bullet;
+
+    [SerializeField] GameObject bullet2;
     public override void Initialize()
     {
-        createBullet = GetComponent<CreateBullet>();
+        //createBullet = GetComponent<CreateBullet>();
         //var player = GameObject.FindWithTag("Player");
         //targetTrans = player.transform;
 
@@ -31,22 +35,22 @@ public class TwoCarveMagazine : BaseMagazine
     void TwoShot()
     {
 
-        Vector2 direction = Target.position - transform.position;
+        Vector2 direction = target.position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         //createBullet.BulletAtk(angle + 0);
-        var rBullet = createBullet.BulletAtk(angle + ONEWEYLENGTH, transform.position, transform.rotation);
+        var rBullet = BulletAtk(angle + ONEWEYLENGTH, transform.position, transform.rotation);
         //createBullet.BulletAtk(angle + TWOWEYLENGTH);
-        var lBullet = createBullet.BulletAtk(angle - ONEWEYLENGTH, transform.position, transform.rotation);
+        var lBullet = BulletAtk(angle - ONEWEYLENGTH, transform.position, transform.rotation);
 
 
-        //バレットのタイプを上書き　他のモジュールは入る　消す仕様にする後々？？
-        createBullet.AddBulletType(rBullet.GetComponent<BaseBullet>(), ModuleClassName.CarveModule.ToString());
-        createBullet.AddBulletType(lBullet.GetComponent<BaseBullet>(), ModuleClassName.CarveModule.ToString());
+        ////バレットのタイプを上書き　他のモジュールは入る　消す仕様にする後々？？
+        //createBullet.AddBulletType(rBullet.GetComponent<BaseBullet>(), ModuleClassName.CarveModule.ToString());
+        //createBullet.AddBulletType(lBullet.GetComponent<BaseBullet>(), ModuleClassName.CarveModule.ToString());
 
-        const float carveVal = 10f;
-        rBullet.GetComponent<CarveModule>().SetAngle(-carveVal);
-        lBullet.GetComponent<CarveModule>().SetAngle(carveVal);
+        //const float carveVal = 10f;
+        //rBullet.GetComponent<CarveModule>().SetAngle(-carveVal);
+        //lBullet.GetComponent<CarveModule>().SetAngle(carveVal);
 
 
 

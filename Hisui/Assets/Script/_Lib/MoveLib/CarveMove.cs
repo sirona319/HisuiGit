@@ -9,9 +9,11 @@ public class CarveMove : BaseMove
 
     Rigidbody2D rb2;
 
+    [SerializeField] CarveModule carveModule;
+
     public void SetCarveVal(float angle)
     {
-        gameObject.GetComponent<CarveModule>().SetAngle(angle);
+        //carveModule.SetAngle(angle);
     }
     public override void Initialize()
     {

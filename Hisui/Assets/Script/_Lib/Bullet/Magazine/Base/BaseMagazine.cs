@@ -92,5 +92,36 @@ public abstract class BaseMagazine : MonoBehaviour
     //            break;
     //    }
 
-        //}
+    //}
+
+
+    [SerializeField] protected float bulletSpeed = 5f;
+
+    [SerializeField] PoolControl poolCtr;
+    public GameObject BulletAtk(float angle, Vector3 pos, Quaternion rot, GameObject charaBullet = null)
+    {
+
+        if (charaBullet == null)
+        {
+            Debug.Log("charaBullet NULL");
+            return null;
+
+
+        }
+
+        charaBullet.transform.position = pos;
+        charaBullet.transform.rotation = rot;
+        var bullet = Instantiate(charaBullet);
+
+
+        if (bullet.GetComponent<NormalBullet>() != null)
+        {
+            var normalBullet = bullet.GetComponent<NormalBullet>();
+            normalBullet.SetSpeed(bulletSpeed);
+            normalBullet.angle = angle;
+            normalBullet.BulletInit();
+        }
+
+        return bullet;
+    }
 }

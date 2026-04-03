@@ -40,8 +40,8 @@ public class CollisionExitErase : MonoBehaviour
         //    return;
         //}
 
-        //Destroy(other.gameObject);
-        //Debug.Log("Destroy(other.gameObject);");
+        Destroy(other.gameObject);
+        Debug.Log("Destroy(other.gameObject);"+other.name);
 
         //if (other.CompareTag("Enemy"))
         //{

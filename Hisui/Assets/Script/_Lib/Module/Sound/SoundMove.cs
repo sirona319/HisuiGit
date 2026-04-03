@@ -27,6 +27,7 @@ public class SoundMove : MonoBehaviour
     public void SoundPlay()
     {
         if (isPlaying) return;
+        if (GetComponent<CharaBase>().isDead) return;
         var se = GameObject.FindWithTag("SoundMgr").GetComponent<SoundMgr>().se;
         var moveSe = (GameObject)Resources.Load(path);//Prefab/Sound/JerryTrailSe
         seObj = Instantiate(moveSe, transform.position, Quaternion.identity);
@@ -37,8 +38,10 @@ public class SoundMove : MonoBehaviour
 
     public void SoundFadeStop()
     {
+        Debug.Log("SoundFadeStop");
+
         if (!isPlaying) return;
-        if (!GetComponent<CharaBase>().isDead) return;
+        //if (!GetComponent<CharaBase>().isDead) return;
 
         const float fadeSpeed = 1f;
         seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
@@ -46,6 +49,6 @@ public class SoundMove : MonoBehaviour
         seObj.GetComponent<TimeDestroy>().SetTime();
         isPlaying = false;
 
-        Debug.Log("SoundFadeStop");
+        Debug.Log("SoundFadeStopEnd");
     }
 }

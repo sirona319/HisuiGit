@@ -142,5 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2dee5b437427514c9de0837b758122d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeDestroy
-  deadTime: 3
+  deadTime: 1
   isStart: 0

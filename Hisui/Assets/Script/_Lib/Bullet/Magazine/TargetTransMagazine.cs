@@ -53,11 +53,11 @@ public class TargetTransMagazine : BaseMagazine
         Vector2 direction = tPos - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-        if(createBullet == null)
-            Debug.Log("createBullet null");
+        //if(createBullet == null)
+        //    Debug.Log("createBullet null");
 
-        if(bullet == null)
-            Debug.Log("bullet null");
+        //if(bullet == null)
+        //    Debug.Log("bullet null");
 
         createBullet.BulletAtk(pAngle, transform.position, transform.rotation, bullet); //Target渡す
     }
