@@ -7,44 +7,68 @@ public class SinVectorMove : BaseMove
         Add,
         Sub,
     }
-    [SerializeField] SinType sinType;
-    [SerializeField] float sinVal= 0.02f;
+    //[SerializeField] SinType sinType;
 
     Vector3 addSinVec = Vector3.zero;
     Vector3 floatVector;
-    float speed=1.8f;
 
     float sinTime = 0;
 
-    float addSinTime;
+
+
+    [SerializeField] float sinVal = 0.02f;
+
+    [SerializeField]float speed=1.8f;
+
+
+    //float addSinTime;
 
     //TargetSet targetSet;
-
+    [SerializeField] float moveVal = 0.02f;
 
     [SerializeField] Transform targetTrans;
+
+    private void Start()
+    {
+        Initialize();
+
+        Debug.Log(gameObject.name+"SinVectorMove Start");
+    }
+    private void FixedUpdate()
+    {
+        MoveUpdate();
+    }
     //スタート地点の座標を保存して　一定時間後に戻る？　それか破棄する　Wave制の更新用
     public override void Initialize()
     {
 
-        if(sinType == SinType.Add)
-            addSinTime = Time.deltaTime;
-        else if(sinType == SinType.Sub)
-            addSinTime = -Time.deltaTime;
-
+        //if(sinType == SinType.Add)
+          //addSinTime = Time.deltaTime;
+        //else if(sinType == SinType.Sub)
+        //    addSinTime = -Time.deltaTime;
+        //addSinTime = Time.deltaTime;
 
         //targetSet=GetComponent<TargetSet>();
-        var movePos = GetComponent<TargetSet>().GetTargetTrans(targetTrans, gameObject).position;
+
+
+
+
+        var movePos = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
         var dir = movePos - transform.position;
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 
+
+
+
+        //transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, 10);
         //const float sinVal = 0.04f;
         //const float sinValMini = 0.02f;
         //見た目だけの回転
         //var spriteTrans = transform.Find("Sprite").gameObject.transform;
         //spriteTrans.rotation = Quaternion.FromToRotation(Vector3.up, transform.up);
 
-        const float moveVal = 0.02f;
+        //float moveVal = speedM;//0.02f;
         floatVector = dir.normalized * moveVal;
 
         addSinVec = transform.right * sinVal;
@@ -57,11 +81,13 @@ public class SinVectorMove : BaseMove
 
     public override void MoveUpdate()
     {
-        sinTime += addSinTime;
+        sinTime += Time.fixedDeltaTime;
         MyLib.LoopMotionSinVector(sinTime, transform, addSinVec, floatVector * speed);
         //transform.rotation = MyLib.TargetRotation2D(targets.position, transform);        ////回転
 
     }
+
+
 
     //private void OnTriggerExit2D(Collider2D other)
     //{

@@ -244,7 +244,9 @@ public class PlayerScr2D : CharaBase, IDamage
 
     public void Damage(int damage)
     {
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+
+
         //throw new System.NotImplementedException();
     }
 
