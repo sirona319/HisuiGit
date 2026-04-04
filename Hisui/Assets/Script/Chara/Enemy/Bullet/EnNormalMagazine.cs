@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-public class NormalMagazine : BaseMagazine
+public class EnNormalMagazine : BaseMagazine
 {
-    //Vector3 target;
 
     float intervalTime = 1f;
     [SerializeField] float intervalTimeMax = 1f;
@@ -13,16 +12,10 @@ public class NormalMagazine : BaseMagazine
 
     [SerializeField] string soundPath = "Sound/SE/JerryShot";
 
-    //[SerializeField] float bulletSpeed = 5f;
-
-    //[SerializeField] PoolControl poolCtr;
     void Start()
     {
 
-        //target = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
-
     }
-
 
     public void Update()
     {
@@ -46,13 +39,7 @@ public class NormalMagazine : BaseMagazine
         Vector2 direction = target.position - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-        var eBullet = Instantiate(bullet, transform.position, transform.rotation);
-
-
-        var normalBullet = eBullet.GetComponent<NormalBullet>();
-        normalBullet.SetSpeed(bulletSpeed);
-        normalBullet.angle = pAngle;
-        normalBullet.BulletInit();
+        BulletAtk(pAngle, transform.position, transform.rotation, bullet); //Target渡す
 
     }
 

@@ -5,7 +5,7 @@ public class TargetTransMagazine : BaseMagazine
 {
     //[SerializeField] float shotTime = 0;
 
-    CreateBullet createBullet;
+    //CreateBullet createBullet;
 
     //TargetSet targetSet;
     //[SerializeField] Target targetType;
@@ -21,7 +21,7 @@ public class TargetTransMagazine : BaseMagazine
     void Start()
     {
 
-        createBullet = GetComponent<CreateBullet>();
+        //createBullet = GetComponent<CreateBullet>();
         //var targetSet = GetComponent<TargetSet>();
         //targetSet.Init();
         tPos = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
@@ -59,7 +59,7 @@ public class TargetTransMagazine : BaseMagazine
         //if(bullet == null)
         //    Debug.Log("bullet null");
 
-        createBullet.BulletAtk(pAngle, transform.position, transform.rotation, bullet); //Target渡す
+        BulletAtk(pAngle, transform.position, transform.rotation, bullet); //Target渡す
     }
 
 

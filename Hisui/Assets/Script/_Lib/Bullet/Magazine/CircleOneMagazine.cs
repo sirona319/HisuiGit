@@ -9,18 +9,30 @@ public class CircleOneMagazine : BaseMagazine
     //const float BULLETTIMEMAX = 4f;
     //public float shotTime = 0;
 
-    CreateBullet createBullet;
+    //CreateBullet createBullet;
 
     //public BulletTarget bulletTarget;
+
+    private void Start()
+    {
+        shotAngle = 0;
+
+        CircleOneShot();
+    }
+
+    private void Update()
+    {
+        
+    }
     //逆回り作る
     public override void Initialize()
     {
-        createBullet = GetComponent<CreateBullet>();
+        //createBullet = GetComponent<CreateBullet>();
     }
 
     public override void MagazineEnter()
     {
-        shotAngle = 0;
+
 
         CircleOneShot();
     }
@@ -32,13 +44,13 @@ public class CircleOneMagazine : BaseMagazine
 
     void CircleOneShot()
     {
-
+        shotAngle = 0;
         const int bulletNum = 35;
         for(int i=0;i<= bulletNum; i++)
         {
             shotAngle += 10;
 
-            createBullet.BulletAtk(shotAngle, transform.position, transform.rotation);
+            BulletAtk(shotAngle, transform.position, transform.rotation);
 
         }
 

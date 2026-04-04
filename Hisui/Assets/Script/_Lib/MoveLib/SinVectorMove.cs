@@ -2,12 +2,14 @@
 
 public class SinVectorMove : BaseMove
 {
-    enum SinType
-    {
-        Add,
-        Sub,
-    }
+    //enum SinType
+    //{
+    //    Add,
+    //    Sub,
+    //}
     //[SerializeField] SinType sinType;
+    //float addSinTime;
+
 
     Vector3 addSinVec = Vector3.zero;
     Vector3 floatVector;
@@ -21,10 +23,9 @@ public class SinVectorMove : BaseMove
     [SerializeField]float speed=1.8f;
 
 
-    //float addSinTime;
 
     //TargetSet targetSet;
-    [SerializeField] float moveVal = 0.02f;
+    float moveVal = 0.02f;
 
     [SerializeField] Transform targetTrans;
 
@@ -42,9 +43,9 @@ public class SinVectorMove : BaseMove
     public override void Initialize()
     {
 
-        //if(sinType == SinType.Add)
-          //addSinTime = Time.deltaTime;
-        //else if(sinType == SinType.Sub)
+        //if (sinType == SinType.Add)
+        //    addSinTime = Time.deltaTime;
+        //else if (sinType == SinType.Sub)
         //    addSinTime = -Time.deltaTime;
         //addSinTime = Time.deltaTime;
 

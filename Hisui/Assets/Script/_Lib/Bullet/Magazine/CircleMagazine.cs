@@ -8,18 +8,22 @@ public class CircleMagazine : BaseMagazine
     float timeCount = 0;
     float shotAngle = 0;
 
-    //const float BULLETTIMEMAX = 4f;
+    [SerializeField] GameObject bullet;
 
-    //public float shotTime = 0;
+    private void Start()
+    {
+        MagazineEnter();
+    }
 
-    CreateBullet createBullet;
+    private void Update()
+    {
+        MagazineUpdate();
+    }
 
-    //public BulletTarget bulletTarget;
     //逆回り作る
     public override void Initialize()
     {
-        createBullet = GetComponent<CreateBullet>();
-        //shotTime = BULLETTIMEMAX;
+
     }
 
     public override void MagazineEnter()
@@ -49,7 +53,7 @@ public class CircleMagazine : BaseMagazine
             Vector2 direction =(transform.position+Vector3.up) - transform.position;
             float tAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-            createBullet.BulletAtk(tAngle + shotAngle,transform.position,transform.rotation);
+            BulletAtk(tAngle + shotAngle,transform.position,transform.rotation,bullet);
 
         }
     }
