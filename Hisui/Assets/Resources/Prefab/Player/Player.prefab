@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 2538072577339672057}
   - component: {fileID: 6576360051589269779}
   - component: {fileID: 2706420233406493615}
-  - component: {fileID: 7194586247956142861}
   - component: {fileID: 1139804860654032660}
+  - component: {fileID: 7605300292372885321}
   - component: {fileID: 6701999661179997562}
   m_Layer: 12
   m_Name: Player
@@ -134,7 +134,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6435380748630735509}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -176,11 +176,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  IsDebugNoLife: 0
   speed: 3
   movement: {x: 0, y: 0}
   mag: {fileID: 2706420233406493615}
   warp: {fileID: 2538072577339672057}
+  DEBUGNODAMAGE: 0
 --- !u!114 &2538072577339672057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,23 +226,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843ec490fe4521d40b93c41b54f1b4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intervalTimeMax: 0.42
-  pNormal: {fileID: 652295628485586386, guid: 712991a8729a19d4aa169f79a661f768, type: 3}
-  createBullet: {fileID: 7194586247956142861}
---- !u!114 &7194586247956142861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6435380748630735509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30aa0bce5c3aa764199c536fec70434b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CreateBullet
   bulletSpeed: 5
   poolCtr: {fileID: 1139804860654032660}
+  intervalTimeMax: 0.42
+  pNormal: {fileID: 652295628485586386, guid: 712991a8729a19d4aa169f79a661f768, type: 3}
 --- !u!114 &1139804860654032660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +242,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0ff215dd8878543ae32889eec1c730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoolControl
+--- !u!114 &7605300292372885321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435380748630735509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf08bde220b57f4da3930dc9e8f51a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHP
+  MAXHP: 10
+  lifeImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  damageTimeMax: 1
+  damageTime: 0
 --- !u!82 &6701999661179997562
 AudioSource:
   m_ObjectHideFlags: 0

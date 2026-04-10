@@ -30,7 +30,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NarrationAsset
   TextErea: "Chapter1\n\n\u9ED2\u3044\u6D77"
   isTextPause: 0
-  textSpd: 10
+  textSpd: 5
   textEndIcon: 0
 --- !u!114 &-3966576244149352357
 MonoBehaviour:
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ba7c4382a854348bf7faa73927c25b, type: 3}
   m_Name: NarrationAsset
   m_EditorClassIdentifier: Assembly-CSharp::NarrationAsset
-  TextErea: "\u8CC7\u6E90\u304C\u67AF\u6E07\u3057\u305F\u661F\u3067\u306F\u9078\u629E\u80A2\u306F\u591A\u304F\u306A\u3044\n\u4EBA\u53E3\u306E\u4E8C\u3001\u4E09\u5272\u306F\u5B87\u5B99\u306B\u95A2\u3059\u308B\u8077\u3078\u3064\u304F\u3002\n\u5F53\u7136\u3001\u661F\u3092\u6551\u3046\u305F\u3081\u306B\u3002"
+  TextErea: "\u8CC7\u6E90\u304C\u67AF\u6E07\u3057\u305F\u661F\u3067\u306F\u9078\u629E\u80A2\u306F\u591A\u304F\u306A\u3044\n\u6B8B\u3063\u305F\u4EBA\u53E3\u306E\u4E8C\u3001\u4E09\u5272\u306F\u5B87\u5B99\u306B\u95A2\u3059\u308B\u8077\u3078\u3064\u304F\u3002\n\u5F53\u7136\u3001\u661F\u3092\u6551\u3046\u305F\u3081\u306B\u3002"
   isTextPause: 0
   textSpd: 5
   textEndIcon: 0

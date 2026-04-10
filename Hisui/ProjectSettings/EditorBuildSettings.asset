@@ -5,15 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/gomi/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/JerryScene.unity
+    path: Assets/Scenes/Title.unity
+    guid: 531569426e52626499e3bd13486551ff
+  - enabled: 1
+    path: Assets/Scenes/Stage_1.unity
     guid: 4b3b4f7904511b346841eaeee36c0dd9
   - enabled: 1
     path: Assets/Scenes/ManagerScene.unity
     guid: 118cb4c61ea79ce40bba1bf247702b96
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b1351c78b88909749bf5fbd97809901a, type: 2}
-  m_UseUCBPForAssetBundles: 0

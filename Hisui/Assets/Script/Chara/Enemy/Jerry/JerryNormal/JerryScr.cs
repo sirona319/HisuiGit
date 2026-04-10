@@ -155,7 +155,7 @@ public class JerryScr : EnemyBase
         if (other.CompareTag("Player"))
         {
             //プレイヤーへのダメージ処理
-            other.transform.GetComponent<PlayerScr2D>().PlayerDamage(1);
+            other.transform.GetComponent<IDamage>().Damage(1);
 
             Debug.Log("攻撃がPlayerにHIT Enemyに当たった");
 

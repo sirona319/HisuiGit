@@ -5,7 +5,7 @@ public class EnumSceneName : MonoBehaviour
     public enum SceneNameType
     {
         Title,
-        Stage1, // tutorial?
+        Stage_1, // tutorial?
         GameScene,
     }
 }

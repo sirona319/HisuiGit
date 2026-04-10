@@ -1,11 +1,10 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameMgr : MonoBehaviour
 {
-    [SerializeField] TMP_Text vic;
+    [SerializeField] GameObject vic;
 
-    [SerializeField] TMP_Text lose;
+    [SerializeField] GameObject lose;
 
     [SerializeField] float fadeStartTime = 2f;
     [SerializeField] float fadeEndTime = 3f;
@@ -26,25 +25,36 @@ public class GameMgr : MonoBehaviour
     {
         if (isCallEnd) return;
 
-        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundMgr>().se.gameObject;
-        var volume = .3f;
+        //var se = GameObject.FindWithTag("SoundM").GetComponent<SoundMgr>().se.gameObject;
+        //var volume = .3f;
         if (isVic)
         {
             vic.gameObject.SetActive(true);
-            MyLib.MyPlayOneSound("SE/victory", volume, se);
+            //MyLib.MyPlayOneSound("SE/victory", volume, se);
         }
         else
         {
             lose.gameObject.SetActive(true);
-            MyLib.MyPlayOneSound("SE/Gameover", volume, se); 
+            //MyLib.MyPlayOneSound("SE/Gameover", volume, se); 
 
         }
+
+
+        isCallEnd = true;
+    }
+
+    public void SceneChange(string sceneName)
+    {
+        if (isCallEnd) return;
+
+
         const float time = 1.5f;
         var fade = GameObject.FindWithTag("Fade").GetComponent<FadeScene>();
         fade.fadeWaitTime = time;
-        fade.SceneFade(SceneName.ToString(), fadeStartTime, fadeEndTime);
+        fade.SceneFade(sceneName, fadeStartTime, fadeEndTime);
 
         isCallEnd = true;
+
     }
 
 }

@@ -40,7 +40,7 @@ public class SpawnAct : MonoBehaviour
        // if (!isEnable) return;
 
         //if(spawnAct!=null)
-        // if (spawnAct.spawnObjs.Count > 0) return;
+        // if (spawnAct.spawnGos.Count > 0) return;
 
         spawnTimer += Time.deltaTime;
 
@@ -60,7 +60,8 @@ public class SpawnAct : MonoBehaviour
         {
             if (spawnAct != null)
             {
-                spawnAct.gameObject.SetActive(true);
+                //GameObjectを保持　全て死亡したら　アクティブ
+                //spawnAct.gameObject.SetActive(true);
             }
             //isEnable = false;
             Destroy(gameObject);

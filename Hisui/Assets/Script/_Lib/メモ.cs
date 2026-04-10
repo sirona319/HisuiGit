@@ -68,7 +68,7 @@ public class メモ : MonoBehaviour
     https://ymnk-design.booth.pm/items/7748814　カラメルポップ
     https://booth.pm/ja/items/7801932　ナイトシェーダー
 
-    https://cgbox.jp/2023/07/27/unity-font/
+    https://cgbox.jp/2023/07/27/unity-font/　日本語フォント
 
 
 
@@ -79,7 +79,7 @@ public class メモ : MonoBehaviour
 
 
 
-
+    //////////////テキストクリックイベント
             ////EventSystemの存在: ヒエラルキー上に「EventSystem」オブジェクトが必要
         ////Raycast対象の設定: スクリプトをアタッチしているオブジェクトにGraphic（ImageやTextなど）があり、
         ////Raycast Targetがオンになっている必要があります。
@@ -89,8 +89,14 @@ public class メモ : MonoBehaviour
         //trigger.triggers.Add(clickEvent);
 
 
-
-
+    public class Continue : MonoBehaviour, IPointerClickHandler
+    {
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Debug.Log("test");
+        }
+    }
+    ////////////////////////////
     回転させる　
     public float targetZAngle = 90f; // 目標のZ角度
     public float rotationSpeed = 100f; // 回転速度 (度/秒)

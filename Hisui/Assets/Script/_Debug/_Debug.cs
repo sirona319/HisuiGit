@@ -20,11 +20,21 @@ public class _Debug : MonoBehaviour
         {
 
             GameObject.Find("StartEvent").SetActive(false);
-            startWave.SetActive(true);
+            if (startWave != null)
+            {
+                startWave.SetActive(true);
+            }
             StartEventSkip = false;
             //isStartEventSkip = true;
         }
 
+    }
 
+    void EnWaveAct()
+    {
+        if(startWave != null)
+        {
+            startWave.SetActive(true);
+        }
     }
 }

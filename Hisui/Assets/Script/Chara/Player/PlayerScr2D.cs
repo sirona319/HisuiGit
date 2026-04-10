@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 [DisallowMultipleComponent]
 public class PlayerScr2D : CharaBase, IDamage
 {
-    //デバッグ用
-    [SerializeField] bool IsDebugNoLife = false;
 
     #region　入力
     Rigidbody2D m_rb;                    //剛体
@@ -14,69 +12,28 @@ public class PlayerScr2D : CharaBase, IDamage
     #endregion
 
 
-    bool m_isDamage = false;
-    bool m_isDead = false;
-
-
-
-    //Bullet bulletObj;
-    //[SerializeField] PoolManager poolManager;
-    //[SerializeField] float bulletDeadTime = 3f;
     #region バレット
-    //[SerializeField] float bulletSpeed = 6f;
+
     [SerializeField] PlayerMagazine mag;
-    //[SerializeField] Transform front;           //弾の発射方向
 
-
-    //[SerializeField] GameObject pBullet;// = "prefab/Bullet/PBulletNormal";
-    //[SerializeField] AudioResource pBulletSe; //="Sound/SE/PlayerNormalShot";
     #endregion
-
 
     [SerializeField] Warp warp;
 
+    [SerializeField] bool DEBUGNODAMAGE = false;
 
     void Start()
     {
-
-
         m_rb = GetComponent<Rigidbody2D>();
-        //bulletObj = MyLib.GetComponentLoad<Bullet>("prefab/Bullet/PBulletNormal");
 
-        //nMag.Initialize();
-        //nMag.createBullet = GetComponent<CreateBullet>();
-        //nMag.createBullet.LoadPath(pBullet);
-        //nMag.createBullet.bulletSpeed = bulletSpeed;
-        //nMag.SetLoadSe(pBulletSe);
-        //nMag.Target = front;
-
-        //nMag.TargetSet(nMag, nMag.bulletTarget);
-
-        //nMag.createBullet.BulletAtk()
-
-        //nMag.createBullet.AddBulletType(BulletType.NormalBullet);
-
-        //nMag.SetPool(poolManager);
-
-
-        //nMag.targetT = (transform.position + Vector3.up);
-        //nMag.targetPos = (transform.position + Vector3.right);
     }
 
     void Update()
     {
-        if (m_isDead) return;
+        if (isDead) return;
 
         mag.MagazineUpdate();
-        //攻撃
-        //if (Input.GetKey(KeyCode.F))
-        //{
-        //    //nMag.targetPos = (transform.position + Vector3.up) - transform.position;
-        //   nMag.MagazineEnter();
 
-        //    //ビーム砲チャージ
-        //    MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
-        //}
 
 #if ENABLE_INPUT_SYSTEM
         // New input system backends are enabled.
@@ -226,28 +183,32 @@ public class PlayerScr2D : CharaBase, IDamage
     //    }
     //}
 
-    public void PlayerDamage(int damage)
-    {
-        if (IsDebugNoLife) return;
+    //public void PlayerDamage(int damage)
+    //{
+    //   // if (IsDebugNoLife) return;
 
-        //回避の実行中なら無効またはダメージ中なら無効　無敵
+    //    //回避の実行中なら無効またはダメージ中なら無効　無敵
 
-        if (m_isDead) return;
-        if (m_isDamage) return;
-        //if (m_isDash) return;　ダッシュ時無敵
-
-
-        Destroy(this.gameObject);
+    //   // if (m_isDead) return;
+    //   // if (m_isDamage) return;
+    //    //if (m_isDash) return;　ダッシュ時無敵
 
 
-    }
+    //    //Destroy(this.gameObject);
+
+
+    //}
 
     public void Damage(int damage)
     {
-        //Destroy(this.gameObject);
+        if (DEBUGNODAMAGE) return;
 
+        if (isDead) return;
+        if (GetComponent<PlayerHP>().IsDamage) return;
 
-        //throw new System.NotImplementedException();
+        GetComponent<PlayerHP>().DamageLife(damage);
+        Debug.Log("Damage");
+
     }
 
 

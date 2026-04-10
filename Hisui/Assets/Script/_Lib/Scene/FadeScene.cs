@@ -32,7 +32,10 @@ public class FadeScene : MonoBehaviour
 
     IFade fade;
 
-    public float fadeWaitTime = 0;
+    public float fadeWaitTime = 1.5f;
+
+    [SerializeField] float sTime = 0.3f;
+    [SerializeField] float eTime = 3f;
 
     private void Awake()
     {
@@ -138,7 +141,7 @@ public class FadeScene : MonoBehaviour
         if (sceneChangeTime>0) return;
         //isSceneChange = false;
 
-        sceneChangeTime = endTime;
+        sceneChangeTime = eTime;
                 //次の遷移を可能にする
                 //StartCoroutine(MyLib.DelayCoroutine(endTime, () =>
                 //{
@@ -147,7 +150,7 @@ public class FadeScene : MonoBehaviour
                 //}));
 
         //コルーチンの起動　フェード
-        StartCoroutine(MyLib.DelayCoroutine(startTime, () =>
+        StartCoroutine(MyLib.DelayCoroutine(sTime, () =>
         {
             FadeIn(1f, () => { 
                 SceneManager.LoadScene(name);
@@ -158,8 +161,6 @@ public class FadeScene : MonoBehaviour
             });
            // Debug.Log("FadeInScene CALL  ");
         }));
-
-
 
     }
 

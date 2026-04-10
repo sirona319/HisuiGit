@@ -4,10 +4,10 @@ using UnityEngine.UI;
 [DisallowMultipleComponent]
 public class PlayerHP : MonoBehaviour
 {
-    const int LIMITHP=10;
+    int LIMITHP=10;
 
     [Range(1, 10)]
-    [SerializeField]public int MAXHP = 3;
+    [SerializeField]int MAXHP = 3;
 
     public int hp { get; private set; }
     bool IsDeadHp()
@@ -22,12 +22,21 @@ public class PlayerHP : MonoBehaviour
 
     [SerializeField] Image[] lifeImage;
 
-    //PlayerScr player;
+    //点滅処理
+    SpriteRenderer pSprite;
+
+    const float duration = 0.07f;
+    Color32 startColor = new(255, 255, 255, 255);
+    Color32 endColor = new(255, 255, 255, 0);
+
+    [SerializeField] float damageTimeMax = 1f;
+    [SerializeField] float damageTime = 0;
+    public bool IsDamage { get; set; } = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        pSprite = GetComponent<SpriteRenderer>();
         //ロード処理
         //if(Save.I.isLoad)
         //{
@@ -49,15 +58,23 @@ public class PlayerHP : MonoBehaviour
 
         //lifeImage = GameObject.Find("LifePanel").GetComponentsInChildren<Image>();
 
-        for (int i = LIMITHP - 1;  i> hp - 1; i--)
+
+        hp = MAXHP;
+        for (int i = LIMITHP - 1; i > hp - 1; i--)
         {
             if (i < hp - 1) break;
 
             lifeImage[i].enabled = false;
-            //hp--;
+
         }
 
 
+    }
+
+    void Update()
+    {
+        MatBlink();
+        //MatNoise();
     }
 
     //HPのダメージ表現
@@ -65,21 +82,23 @@ public class PlayerHP : MonoBehaviour
     {
 
         int saveValue = damage;
-
-        const float DAMAGETIME = 0.3f;
-
-        for (int i = hp - 1/*,j = 0*/; damage > 0; damage--,i--)
+        const float volume = 0.5f;
+        MyLib.MyPlaySound("Sound/SE/damaged1", volume, gameObject);
+        //const float DAMAGETIME = 0.3f;
+        IsDamage = true;
+        damageTime = damageTimeMax;
+        for (int i = hp - 1/*,j = 0*/; damage > 0; damage--, i--)
         {
             if (i < 0) break;
 
 
             const float POW = 5f;
-            StartCoroutine(MyLib.DoShake(DAMAGETIME, POW, lifeImage[i].transform));
+            StartCoroutine(MyLib.DoShake(damageTime, POW, lifeImage[i].transform));
 
         }
 
         //成功
-        StartCoroutine(MyLib.DelayCoroutine(DAMAGETIME, () =>
+        StartCoroutine(MyLib.DelayCoroutine(damageTime, () =>
         {
             DamageUpdate(saveValue);
         }));
@@ -96,8 +115,15 @@ public class PlayerHP : MonoBehaviour
             hp--;
         }
 
-        //if (!IsDeadHp()) return;
-        //player.PlayerDead();
+        if (!IsDeadHp()) return;
+
+        GameObject.FindWithTag("GameMgr").GetComponent<GameMgr>().GameEnd(false);
+
+        Destroy(this.gameObject);
+            //GetComponent<PlayerScr2D>().enabled = false;
+            //GetComponent<NoiseEnable>().enabled = true;
+
+        
     }
 
     public void HealLife(int heal)
@@ -117,5 +143,42 @@ public class PlayerHP : MonoBehaviour
 
     }
 
+    void MatBlink()
+    {
+        if (!IsDamage) return;
+        Debug.Log("点滅");
+        //点滅処理
+        if (damageTime > 0)
+        {
+            pSprite.color =
+                Color.Lerp(startColor, endColor, Mathf.PingPong(Time.time / duration, damageTimeMax));
 
+            damageTime -= Time.deltaTime;
+
+        }
+        else
+        {
+            pSprite.color = startColor;
+            IsDamage = false;
+        }
+    }
+
+    void MatNoise()
+    {
+        if (!IsDamage) return;
+        Debug.Log("ノイズ");
+        //点滅処理
+        if (damageTime > 0)
+        {
+            GetComponent<NoiseEnable>().enabled = true;
+
+            damageTime -= Time.deltaTime;
+
+        }
+        else
+        {
+            GetComponent<NoiseEnable>().enabled = false;
+            IsDamage = false;
+        }
+    }
 }
