@@ -22,7 +22,7 @@ public class JerryFall : EnemyBase,IDamage
     {
         if (isDead) return;
 
-        var dmgParticle = Resources.Load("prefab/Particle/DamagePt").GetComponent<ParticleSystem>();
+        var dmgParticle = Resources.Load("prefab/Particle/CFXR2 BloodJerry").GetComponent<ParticleSystem>();
         //ダメージパーティクル表示
         Instantiate(dmgParticle, transform.position, Quaternion.identity);
 

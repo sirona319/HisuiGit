@@ -40,10 +40,8 @@ public class SpawnAct : MonoBehaviour
 
         spawnGos.ToList().ForEach(x =>
         {
-            //if (x.tag == "Enemy")
             if (x.GetComponent<EnemyBase>().SpawnTime < spawnTimer)
             {
-                //if(!x.transform.gameObject.activeSelf)
                 x.transform.gameObject.SetActive(true);
 
                 spawnGos.Remove(x);
@@ -55,8 +53,6 @@ public class SpawnAct : MonoBehaviour
 
     void NextSpawn()
     {
-        if (spawnAct == null) return;
-
         int deadCount = 0;
         _spawnGos.ToList().ForEach(x =>
         {
@@ -65,15 +61,19 @@ public class SpawnAct : MonoBehaviour
 
         });
 
-        //Debug.Log(deadCount);
-        //Debug.Log(_spawnGos.Count);
         if (deadCount >= _spawnGos.Count)
         {
-            spawnAct.gameObject.SetActive(true);
-            Destroy(gameObject);
-            return;
-        }
+            _spawnGos.ToList().ForEach(x =>
+            {
+                Destroy(x.gameObject);
 
+            });
+            Destroy(gameObject);
+
+            if (spawnAct == null) return;
+            spawnAct.gameObject.SetActive(true);
+
+        }
 
     }
 
