@@ -664,7 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
   spawnAct: {fileID: 1448748909}
   spawnTimer: 0
-  spawnObjs:
+  spawnGos:
   - {fileID: 849407554}
   - {fileID: 343069073}
   - {fileID: 1806546711}
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
   spawnAct: {fileID: 932996116}
   spawnTimer: 0
-  spawnObjs:
+  spawnGos:
   - {fileID: 882447317}
   - {fileID: 912724321}
   - {fileID: 1648515664}
@@ -2195,6 +2195,11 @@ MonoBehaviour:
   fadeStartTime: 2
   fadeEndTime: 3
   SceneName: 0
+--- !u!4 &518966260 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2672620253835841964, guid: c377b75e8e39b3748b34d6570ff65cba, type: 3}
+  m_PrefabInstance: {fileID: 2199145147173297558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &520770725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,7 +2449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
   spawnAct: {fileID: 0}
   spawnTimer: 0
-  spawnObjs: []
+  spawnGos: []
 --- !u!4 &548996987
 Transform:
   m_ObjectHideFlags: 0
@@ -2457,7 +2462,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 518966260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &575879642
@@ -2491,7 +2497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
   spawnAct: {fileID: 701737137}
   spawnTimer: 0
-  spawnObjs:
+  spawnGos:
   - {fileID: 763471419}
   - {fileID: 1270761837}
   - {fileID: 957106036}
@@ -2667,7 +2673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 624416561}
-  - component: {fileID: 624416560}
+  - component: {fileID: 624416562}
   m_Layer: 0
   m_Name: WaveActSpawn_Circle
   m_TagString: Untagged
@@ -2675,23 +2681,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &624416560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624416559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: defda13aadcd80840be5af9a4e8c00f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
-  spawnAct: {fileID: 0}
-  spawnTimer: 0
-  spawnObjs:
-  - {fileID: 3796299275414286239}
-  - {fileID: 1943610786}
 --- !u!4 &624416561
 Transform:
   m_ObjectHideFlags: 0
@@ -2709,6 +2698,23 @@ Transform:
   - {fileID: 1943610786}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &624416562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624416559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defda13aadcd80840be5af9a4e8c00f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
+  spawnAct: {fileID: 0}
+  spawnTimer: 0
+  spawnGos:
+  - {fileID: 3796299275414286239}
+  - {fileID: 1943610786}
 --- !u!1 &640032023
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,9 +2880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defda13aadcd80840be5af9a4e8c00f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
-  spawnAct: {fileID: 624416560}
+  spawnAct: {fileID: 624416562}
   spawnTimer: 0
-  spawnObjs:
+  spawnGos:
   - {fileID: 1037957149}
   - {fileID: 744614325}
   - {fileID: 223001533}
@@ -2939,7 +2945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
   spawnAct: {fileID: 383664329}
   spawnTimer: 0
-  spawnObjs:
+  spawnGos:
   - {fileID: 1733439290}
   - {fileID: 1999254023}
   - {fileID: 1453444065}
@@ -3759,7 +3765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
   spawnAct: {fileID: 1281952285}
   spawnTimer: 0
-  spawnObjs:
+  spawnGos:
   - {fileID: 3796299275158881772}
   - {fileID: 112285134}
   - {fileID: 1849233371}
@@ -6226,7 +6232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
   spawnAct: {fileID: 575879643}
   spawnTimer: 0
-  spawnObjs:
+  spawnGos:
   - {fileID: 803307323}
   - {fileID: 215655137}
   - {fileID: 708275782}
@@ -6919,9 +6925,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defda13aadcd80840be5af9a4e8c00f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnAct
-  spawnAct: {fileID: 0}
+  spawnAct: {fileID: 706194089}
   spawnTimer: 0
-  spawnObjs:
+  spawnGos:
   - {fileID: 1511382199}
   - {fileID: 1823304327}
   - {fileID: 224615239}
@@ -10211,7 +10217,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 548996987}
     m_Modifications:
     - target: {fileID: 2672620253835841964, guid: c377b75e8e39b3748b34d6570ff65cba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10231,15 +10237,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2672620253835841964, guid: c377b75e8e39b3748b34d6570ff65cba, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2672620253835841964, guid: c377b75e8e39b3748b34d6570ff65cba, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2672620253835841964, guid: c377b75e8e39b3748b34d6570ff65cba, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2672620253835841964, guid: c377b75e8e39b3748b34d6570ff65cba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10753,7 +10759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4203666244466990200, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: DEBUGNODAMAGE
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6435380748630735509, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: m_Name
@@ -11005,4 +11011,3 @@ SceneRoots:
   - {fileID: 701737138}
   - {fileID: 624416561}
   - {fileID: 548996987}
-  - {fileID: 2199145147173297558}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,64 +9,72 @@ public class SpawnAct : MonoBehaviour
 
     [SerializeField] float spawnTimer = 0f;
 
-    public List<Transform> spawnObjs;
+    public List<Transform> spawnGos;//子の敵設定する
 
-   // [SerializeField] bool isEnable = true;
+    List<Transform> _spawnGos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //if(spawnAct==null)
-        //    isEnable = true;
-        //spawnObjs = transform.GetComponentsInChildren<Transform>().ToList();
+        // spawnGosを変えても_spawnGosは変わらない  
+        _spawnGos = new List<Transform>(spawnGos);
 
-        //transform.GetComponentsInChildren<Transform>().ToList().ForEach(x =>
-        //{
-        //    if (x.tag == "Enemy")
-        //    {
-        //        x.transform.gameObject.SetActive(false);
-        //        spawnObjs.Add(x);
-        //    }
-        //    else
-        //        spawnObjs.Remove(x);
-        //    // Debug.Log(x.name);
-        //});
 
-        //gameObject.SetActive(true);
+        //spawnTimer　早い順に並び替えする？
     }
 
     // Update is called once per frame
     void Update()
     {
-       // if (!isEnable) return;
+        NextSpawn();
 
-        //if(spawnAct!=null)
-        // if (spawnAct.spawnGos.Count > 0) return;
+        Spawn();
+
+    }
+
+    void Spawn()
+    {
+        if(spawnGos.Count <= 0) return;
 
         spawnTimer += Time.deltaTime;
 
-        spawnObjs.ToList().ForEach(x =>
+        spawnGos.ToList().ForEach(x =>
         {
             //if (x.tag == "Enemy")
             if (x.GetComponent<EnemyBase>().SpawnTime < spawnTimer)
             {
+                //if(!x.transform.gameObject.activeSelf)
                 x.transform.gameObject.SetActive(true);
-                spawnObjs.Remove(x);
-                x.parent= null;
+
+                spawnGos.Remove(x);
+                x.parent = null;
             }
-            // Debug.Log(x.name);
+            Debug.Log(x.name);
+        });
+    }
+
+    void NextSpawn()
+    {
+        if (spawnAct == null) return;
+
+        int deadCount = 0;
+        _spawnGos.ToList().ForEach(x =>
+        {
+            if (x.GetComponent<EnemyBase>().isDead)
+                deadCount++;
+
         });
 
-        if (spawnObjs.Count == 0)
+        //Debug.Log(deadCount);
+        //Debug.Log(_spawnGos.Count);
+        if (deadCount >= _spawnGos.Count)
         {
-            if (spawnAct != null)
-            {
-                //GameObjectを保持　全て死亡したら　アクティブ
-                //spawnAct.gameObject.SetActive(true);
-            }
-            //isEnable = false;
+            spawnAct.gameObject.SetActive(true);
             Destroy(gameObject);
+            return;
         }
+
+
     }
 
 

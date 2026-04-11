@@ -15,7 +15,7 @@ public class JerryFall : EnemyBase,IDamage
     // Update is called once per frame
     void Update()
     {
-        EreaOut();
+        AreaOut();
     }
 
     public void Damage(int damage)
@@ -42,13 +42,15 @@ public class JerryFall : EnemyBase,IDamage
             GetComponent<SoundCreateDead>().SoundPlay();
             //GetComponent<TimeDestroy>().enabled = true;
             //GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+
         }
 
 
     }
 
-    void EreaOut()
+    void AreaOut()
     {
         if (!isEreaOut) return;
         isDead = true;
@@ -58,9 +60,10 @@ public class JerryFall : EnemyBase,IDamage
         //GetComponent<SoundMove>().SoundFadeStop();
 
         GetComponent<SoundCreateDead>().enabled = false;
+        gameObject.SetActive(false);
         //GetComponent<TimeDestroy>().enabled = true;
         //GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     private void OnDisable()
