@@ -25,7 +25,6 @@ public class PlayerHP : MonoBehaviour
     //点滅処理
     [SerializeField]SpriteRenderer pSprite;
 
-    float duration = 0.1f;
     Color32 startColor = new(255, 255, 255, 255);
     Color32 endColor = new(255, 255, 255, 0);
 
@@ -73,10 +72,10 @@ public class PlayerHP : MonoBehaviour
 
     void Update()
     {
-        float t = Mathf.PingPong(Time.time * 5f, 1f);
-        pSprite.material.color = Color.Lerp(startColor, endColor, t);
+        //float t = Mathf.PingPong(Time.time * 5f, 1f);
+        //pSprite.color = Color.Lerp(startColor, endColor, t);
 
-        //MatBlink();
+        MatBlink();
         //MatNoise();
     }
 
@@ -157,13 +156,9 @@ public class PlayerHP : MonoBehaviour
         //点滅処理
         if (damageTime > 0)
         {
-            float t = Mathf.PingPong(blinkTimer / 0.1f, 1f);
-            //pSprite.color = Color.Lerp(startColor, endColor, t);
-
-            if (t > 0.5f)
-                pSprite.color = startColor;
-            else
-                pSprite.color = endColor;
+            const float duration = 0.1f;
+            float t = Mathf.PingPong(blinkTimer / duration, 1f);
+            pSprite.color = Color.Lerp(startColor, endColor, t);
 
             damageTime -= Time.deltaTime;
 

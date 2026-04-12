@@ -19,6 +19,8 @@ public class SceneChangeClick : MonoBehaviour, IPointerClickHandler,IPointerEnte
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log(gameObject.name+"Enter");
+
+        if(image != null)
         image.enabled = true;
        // isEnable = true;
     }
@@ -26,7 +28,9 @@ public class SceneChangeClick : MonoBehaviour, IPointerClickHandler,IPointerEnte
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log(gameObject.name + "Exit");
-        image.enabled = false;
+
+        if (image != null)
+            image.enabled = false;
         //isEnable = false;
     }
 

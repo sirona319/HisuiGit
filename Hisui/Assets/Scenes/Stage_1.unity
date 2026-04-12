@@ -10753,6 +10753,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2594479138804938240, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594479138804938240, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594479138804938240, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594479138804938240, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -10772,6 +10784,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.067
       objectReference: {fileID: 0}
+    - target: {fileID: 7605300292372885321, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
+      propertyPath: pMat
+      value: 
+      objectReference: {fileID: 2100000, guid: ca14b1b7a672b28458b06f5a017d28cd, type: 2}
     - target: {fileID: 7605300292372885321, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: MAXHP
       value: 2
