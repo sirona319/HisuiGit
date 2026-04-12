@@ -23,9 +23,9 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] Image[] lifeImage;
 
     //点滅処理
-    SpriteRenderer pSprite;
+    [SerializeField]SpriteRenderer pSprite;
 
-    const float duration = 0.07f;
+    float duration = 0.1f;
     Color32 startColor = new(255, 255, 255, 255);
     Color32 endColor = new(255, 255, 255, 0);
 
@@ -36,7 +36,7 @@ public class PlayerHP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pSprite = GetComponent<SpriteRenderer>();
+       // pSprite = GetComponent<SpriteRenderer>();
         //ロード処理
         //if(Save.I.isLoad)
         //{
@@ -73,7 +73,10 @@ public class PlayerHP : MonoBehaviour
 
     void Update()
     {
-        MatBlink();
+        float t = Mathf.PingPong(Time.time * 5f, 1f);
+        pSprite.material.color = Color.Lerp(startColor, endColor, t);
+
+        //MatBlink();
         //MatNoise();
     }
 
@@ -82,11 +85,13 @@ public class PlayerHP : MonoBehaviour
     {
 
         int saveValue = damage;
-        const float volume = 0.5f;
+        const float volume = 0.3f;
         MyLib.MyPlaySound("Sound/SE/damaged1", volume, gameObject);
-        //const float DAMAGETIME = 0.3f;
+
         IsDamage = true;
         damageTime = damageTimeMax;
+        blinkTimer = 0f;
+
         for (int i = hp - 1/*,j = 0*/; damage > 0; damage--, i--)
         {
             if (i < 0) break;
@@ -142,16 +147,23 @@ public class PlayerHP : MonoBehaviour
 
 
     }
-
+    float blinkTimer = 0f;
     void MatBlink()
     {
         if (!IsDamage) return;
         Debug.Log("点滅");
+        Debug.Log(pSprite);
+        blinkTimer += Time.deltaTime;
         //点滅処理
         if (damageTime > 0)
         {
-            pSprite.color =
-                Color.Lerp(startColor, endColor, Mathf.PingPong(Time.time / duration, damageTimeMax));
+            float t = Mathf.PingPong(blinkTimer / 0.1f, 1f);
+            //pSprite.color = Color.Lerp(startColor, endColor, t);
+
+            if (t > 0.5f)
+                pSprite.color = startColor;
+            else
+                pSprite.color = endColor;
 
             damageTime -= Time.deltaTime;
 
@@ -160,6 +172,7 @@ public class PlayerHP : MonoBehaviour
         {
             pSprite.color = startColor;
             IsDamage = false;
+            blinkTimer = 0f;
         }
     }
 

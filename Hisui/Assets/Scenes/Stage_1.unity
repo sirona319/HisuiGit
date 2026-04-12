@@ -2190,7 +2190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14a7de30aaa22e4bb884ffd1a290497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMgr
-  vic: {fileID: 0}
   lose: {fileID: 1678780904}
   fadeStartTime: 2
   fadeEndTime: 3
@@ -10759,7 +10758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4203666244466990200, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: DEBUGNODAMAGE
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6435380748630735509, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: m_Name
@@ -10771,12 +10770,16 @@ PrefabInstance:
       objectReference: {fileID: 1634618721}
     - target: {fileID: 6701999661179997562, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: m_Volume
-      value: 0.152
+      value: 0.067
       objectReference: {fileID: 0}
     - target: {fileID: 7605300292372885321, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: MAXHP
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7605300292372885321, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
+      propertyPath: pSprite
+      value: 
+      objectReference: {fileID: 1031395545}
     - target: {fileID: 7605300292372885321, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: 'lifeImage.Array.data[0]'
       value: 

@@ -2,7 +2,7 @@
 
 public class GameMgr : MonoBehaviour
 {
-    [SerializeField] GameObject vic;
+    //[SerializeField] GameObject vic;
 
     [SerializeField] GameObject lose;
 
@@ -29,7 +29,7 @@ public class GameMgr : MonoBehaviour
         //var volume = .3f;
         if (isVic)
         {
-            vic.gameObject.SetActive(true);
+            //vic.gameObject.SetActive(true);
             //MyLib.MyPlayOneSound("SE/victory", volume, se);
         }
         else
