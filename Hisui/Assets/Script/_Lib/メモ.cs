@@ -9,13 +9,10 @@ public class メモ : MonoBehaviour
     public LayerMask mask;
     /*
      * 
-     * パッケージ
-     * Mathematics
-     * UniversalRenderPipeline
      * 
-     * 原因はかなり高確率で Rigidbody2D を Update() で動かしていること です。
-    WebGL だとフレームレートや物理更新のズレが出やすく、
-    MovePosition を Update() で呼ぶと移動が速く見えたり、不安定になりやすい です。
+     *  原因はかなり高確率で Rigidbody2D を Update() で動かしていること です。
+        WebGL だとフレームレートや物理更新のズレが出やすく、
+        MovePosition を Update() で呼ぶと移動が速く見えたり、不安定になりやすい です。→FixedUpdate() で呼ぶようにしてください。
      * 
      * 
      * 
@@ -28,15 +25,14 @@ public class メモ : MonoBehaviour
     //}
 
 
-    パラメーターなど説明
-    https://x.gd/vUvxo
 
 
+    if (Keyboard.current.fKey.isPressed || Mouse.current.leftButton.isPressed)
 
 
-        GameObject.FindWithTag("MoveErea").ToList().ForEach(x => { x.SetActive(false); });
+    GameObject.FindWithTag("MoveErea").ToList().ForEach(x => { x.SetActive(false); });
 
-                MyLib.MyPlayOneSound("SE/Gameover", 0.3f, GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
+    MyLib.MyPlayOneSound("SE/Gameover", 0.3f, GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
 
     □◇□◇□◇□◇□
     ◇　◇　◇　◇　◇　
@@ -47,14 +43,11 @@ public class メモ : MonoBehaviour
     □◇□◇□◇□◇□
 
 
-
-
-
-
     ・パッケージ
+    https://x.gd/97tTw
     FadeCamera2.unitypackage
-        https://x.gd/97tTw
-
+    Mathematics
+    UniversalRenderPipeline
     DOTween (HOTween v2)
 
     ・UIサイト
@@ -72,15 +65,8 @@ public class メモ : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
     //////////////テキストクリックイベント
-            ////EventSystemの存在: ヒエラルキー上に「EventSystem」オブジェクトが必要
+        ////EventSystemの存在: ヒエラルキー上に「EventSystem」オブジェクトが必要
         ////Raycast対象の設定: スクリプトをアタッチしているオブジェクトにGraphic（ImageやTextなど）があり、
         ////Raycast Targetがオンになっている必要があります。
         //var clickEvent = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
@@ -97,6 +83,8 @@ public class メモ : MonoBehaviour
         }
     }
     ////////////////////////////
+    ///
+
     回転させる　
     public float targetZAngle = 90f; // 目標のZ角度
     public float rotationSpeed = 100f; // 回転速度 (度/秒)
@@ -115,8 +103,6 @@ public class メモ : MonoBehaviour
     }
 
 
-
-
         const float ROLLSPEED = 7f;
         var rot = Quaternion.AngleAxis(ROLLSPEED, Vector3.right);
 
@@ -128,6 +114,10 @@ public class メモ : MonoBehaviour
 
 
 
-
+    /*RWar
+         パラメーターなど説明
+    https://x.gd/vUvxo
+     
+     */
 
 }

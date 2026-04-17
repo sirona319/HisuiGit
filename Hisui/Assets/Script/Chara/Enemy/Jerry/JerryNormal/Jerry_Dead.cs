@@ -40,7 +40,7 @@ public class Jerry_Dead : StateChildBase
 
 
         GameObject spawn = GameObject.Find("WaveSpawnPrefab");
-        spawn.GetComponent<EnemySpawnWavePrefab>().UpdateCount();
+        //spawn.GetComponent<EnemySpawnWavePrefab>().UpdateCount();
 
         //if (EnumSceneName.SceneNameType.GameScene.ToString().Contains(SceneManager.GetActiveScene().name))
             GameObject.FindWithTag("EnemyMgr").GetComponent<EnemyMgr>().CundDown();

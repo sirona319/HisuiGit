@@ -93,7 +93,7 @@ public class CircleMove : BaseMove
         const float targetSpeed = 0.3f;
         rb2.MovePosition((Vector2)pos + ((Vector2)dir * targetSpeed) * Time.deltaTime);
 
-        transform.rotation = MyLib.GetAngleRotationFuncs(target.position, transform, 5f);
+        transform.rotation = MyLib.GetAngleRotationFunc2D(target.position, transform, 5f);
 
     }
 

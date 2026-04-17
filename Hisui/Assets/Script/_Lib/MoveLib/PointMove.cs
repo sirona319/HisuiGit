@@ -92,7 +92,7 @@ public class PointMove : BaseMove
 
         }
 
-        transform.rotation = MyLib.GetAngleRotationFuncs(moveTrans[targetNo].position, transform, rotSpeed);
+        transform.rotation = MyLib.GetAngleRotationFunc2D(moveTrans[targetNo].position, transform, rotSpeed);
 
     }
 

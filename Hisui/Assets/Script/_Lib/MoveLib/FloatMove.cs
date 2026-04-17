@@ -29,7 +29,7 @@ public class FloatMove : BaseMove
 
         //var velocity = MyLib.SetVelocityAngle2D(targetAngle);
 
-        transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, rotSpeed);
+        transform.rotation = MyLib.GetAngleRotationFunc2D((transform.position + Vector3.up), transform, rotSpeed);
 
     }
 }

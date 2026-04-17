@@ -23,7 +23,8 @@ public class PlayerMagazine : BaseMagazine
         intervalTime -= Time.deltaTime;
 #if ENABLE_INPUT_SYSTEM
         // New input system backends are enabled.
-        if (Keyboard.current.fKey.isPressed && intervalTime <= 0)
+        if(intervalTime <= 0)
+        if (Keyboard.current.fKey.isPressed || Mouse.current.leftButton.isPressed)
         {
             intervalTime = intervalTimeMax;
             NormalShot();

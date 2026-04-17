@@ -32,7 +32,7 @@ public class Jerry_Wait : StateChildBase
         //    Debug.Log("atkMOVE");
         //}
         //transform.rotation = MyLib.TargetRotation2D((transform.position + Vector3.up), transform, 10f);
-        transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, 10f);
+        transform.rotation = MyLib.GetAngleRotationFunc2D((transform.position + Vector3.up), transform, 10f);
 
 
         return GetComponent<JerryScr>().JerryReturnStateType(StateType);

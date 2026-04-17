@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 using Transform = UnityEngine.Transform;
 
@@ -162,6 +163,7 @@ public static class MyLib
 
     }
 
+    //Prefabをつかい内部のオブジェクトを前方方向に向かせて  transform.forward　で使用する方法もある
     public static Quaternion TargetRotation(Vector3 targetPos, Transform myTrans, float interpolant, Vector3 axis)
     {
         //方向を向く回転の処理
@@ -170,6 +172,17 @@ public static class MyLib
         var lookAtRotation = Quaternion.LookRotation(dir, axis);
 
         return Quaternion.Lerp(myTrans.rotation, lookAtRotation, Time.deltaTime * interpolant);
+
+    }
+
+    public static Quaternion TargetRotationSprite(Vector3 targetPos, Transform myTrans, float interpolant)
+    {
+        //方向を向く回転の処理
+        var dir = targetPos - myTrans.position;
+
+        //var lookAtRotation = Quaternion.LookRotation(dir, axis);
+        Quaternion targetRot = Quaternion.LookRotation(dir) * Quaternion.Euler(0, -90, 0);
+        return Quaternion.Lerp(myTrans.rotation, targetRot, Time.deltaTime * interpolant);
 
     }
 
@@ -185,7 +198,7 @@ public static class MyLib
         return Quaternion.Lerp(myTrans.rotation, targetRotation, interpolant * Time.deltaTime);
     }
 
-    public static Quaternion GetAngleRotationFuncs(Vector3 tPos, Transform myTrans, float rotSpeed)
+    public static Quaternion GetAngleRotationFunc2D(Vector3 tPos, Transform myTrans, float rotSpeed)
     {
         float targetAngle = GetTargetAngle2D(tPos, myTrans);
 
@@ -215,6 +228,13 @@ public static class MyLib
         return velocity;
     }
 
+    public static Quaternion TargetRotation2DZOnlyLerp(Transform myTrans, Vector2 velocity, float rotSpeed)
+    {
+
+        float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;        // 弾の向きを設定する
+
+        return Quaternion.Lerp(myTrans.rotation, Quaternion.Euler(0, 0, zAngle), rotSpeed * Time.deltaTime);
+    }
 
     //Vector3用　引数
     //public static Vector2 SetVelocityAngle2D(Vector3 velocity, float angle, float speed)
@@ -228,24 +248,26 @@ public static class MyLib
     //    return velocity;
     //}
 
-    public static Vector2 SetVelocityAngle2DSpeed(float angle, float speed)
+    //public static Vector2 SetVelocityAngle2DSpeed(float angle, float speed)
+    //{
+    //    Vector2 velocity = Vector2.zero;
+    //    // X方向の移動量を設定する
+    //    velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
+
+    //    // Y方向の移動量を設定する
+    //    velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
+
+    //    return velocity;
+    //}
+
+
+
+    public static Quaternion GetAngleRotationFunc3D(Vector3 target, Transform myTrans, float rotSpeed)
     {
-        Vector2 velocity = Vector2.zero;
-        // X方向の移動量を設定する
-        velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
-
-        // Y方向の移動量を設定する
-        velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
-
-        return velocity;
-    }
-
-    public static Quaternion TargetRotation2DZOnlyLerp(Transform myTrans, Vector2 velocity, float rotSpeed)
-    {
-
-        float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;        // 弾の向きを設定する
-
-        return Quaternion.Lerp(myTrans.rotation, Quaternion.Euler(0, 0, zAngle), rotSpeed * Time.deltaTime);
+        var vel = (target - myTrans.position);//.normalized * speed;
+        Quaternion targetRot = Quaternion.LookRotation(vel);
+        //Quaternion targetRot = Quaternion.LookRotation(vel) * Quaternion.Euler(0, -90, 0); //前方向が右方向なので、-90度回転させる
+        return Quaternion.Lerp(myTrans.rotation, targetRot, rotSpeed * Time.deltaTime);
     }
 
     //public static Quaternion TargetRotation2DOnlyLerpZ

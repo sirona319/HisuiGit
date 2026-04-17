@@ -43,7 +43,7 @@ public class DirectionMove : BaseMove
         if (rotStopTime <= 0) return;
         rotStopTime -= Time.deltaTime;
 
-        transform.rotation = MyLib.GetAngleRotationFuncs(targetsVec, transform, rotSpeed);
+        transform.rotation = MyLib.GetAngleRotationFunc2D(targetsVec, transform, rotSpeed);
 
 
     }

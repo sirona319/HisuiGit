@@ -43,7 +43,7 @@ public class PlayerAttackMove : BaseMove
         transform.position += transform.up * speed * Time.deltaTime;
 
         
-        transform.rotation = MyLib.GetAngleRotationFuncs(moveVecter[targetNo], transform, 5);
+        transform.rotation = MyLib.GetAngleRotationFunc2D(moveVecter[targetNo], transform, 5);
 
         float len = Vector3.Distance(transform.position, moveVecter[targetNo]);
         if (len < ENDMOVELEN)
