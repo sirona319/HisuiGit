@@ -16,9 +16,9 @@ public class EnemyMgr : Singleton<EnemyMgr>
         enemyAllCount+=count;
     }
 
-    public void CundDown()
+    public void CountDown(int count = 1)
     {
-        enemyAllCount--;
+        enemyAllCount -= count;
         if (enemyAllCount <= 0)
         {
             //GameObject.Find("CLEARTEXT").GetComponent<DOFade>().ShowWindow();

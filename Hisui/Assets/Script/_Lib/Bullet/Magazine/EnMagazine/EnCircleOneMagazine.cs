@@ -12,15 +12,12 @@ public class EnCircleOneMagazine : BaseMagazine
 
     [SerializeField] string soundPath = "Sound/SE/JerryShot";
 
+    [SerializeField] int bulletNum = 35;
+
     float shotAngle = 0;
 
-    void Start()
-    {
 
-    }
-
-
-    public void Update()
+    void Update()
     {
         if (target == null) return;
 
@@ -39,7 +36,6 @@ public class EnCircleOneMagazine : BaseMagazine
     void CircleOneShot()
     {
         shotAngle = 0;
-        const int bulletNum = 35;
         for (int i = 0; i <= bulletNum; i++)
         {
             shotAngle += 10;
@@ -50,8 +46,4 @@ public class EnCircleOneMagazine : BaseMagazine
 
     }
 
-    public override void MagazineUpdate()
-    {
-        throw new System.NotImplementedException();
-    }
 }

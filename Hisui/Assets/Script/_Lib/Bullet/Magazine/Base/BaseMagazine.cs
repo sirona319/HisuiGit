@@ -40,7 +40,7 @@ public abstract class BaseMagazine : MonoBehaviour
 
     public virtual void MagazineEnter() { }
 
-    public abstract void MagazineUpdate();
+    public virtual void MagazineUpdate() { }
 
     //public void TargetSet(Transform t, BulletTarget bulletTarget)
     //{
@@ -98,7 +98,7 @@ public abstract class BaseMagazine : MonoBehaviour
     [SerializeField] protected float bulletSpeed = 5f;
 
     [SerializeField] PoolControl poolCtr;
-    public GameObject BulletAtk(float angle, Vector3 pos, Quaternion rot, GameObject charaBullet = null)
+    protected GameObject BulletAtk(float angle, Vector3 pos, Quaternion rot, GameObject charaBullet = null)
     {
 
         if (charaBullet == null)

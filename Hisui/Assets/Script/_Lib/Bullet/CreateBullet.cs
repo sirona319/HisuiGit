@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using static BaseBullet;
 
 public class CreateBullet : MonoBehaviour
 {

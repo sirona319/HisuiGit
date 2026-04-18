@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class FishMove : MonoBehaviour
+public class SpriteMove : MonoBehaviour
 {
 
     [SerializeField] float rotSpeed = 5f;
@@ -19,24 +19,11 @@ public class FishMove : MonoBehaviour
 
     void Start()
     {
-        //if (moveTrans.Count != endLength.Count)
-        //{
-        //    Debug.LogError("moveTrans と endLength の数が一致してない");
-        //    return;
-        //}
 
         moveTrans = TargetSet.I.SetPointArray(moveTrans, gameObject);
-
     }
 
-    private void Update()
-    {
-        //transform.position = transform.position+transform.up * (speed * Time.deltaTime);
-
-    }
-
-
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         PointUpdate();
 
@@ -52,7 +39,6 @@ public class FishMove : MonoBehaviour
         float len = Vector3.Distance(transform.position, moveTrans[targetNo].position);
         if (len < endLength)
         {
-            //Debug.Log("faafwefa");
             targetNo++;
             if (targetNo > moveTrans.Count - 1)
             {
@@ -67,14 +53,10 @@ public class FishMove : MonoBehaviour
         }
 
 
-       // var vel = (moveTrans[targetNo].position - transform.position);
-
-       // Quaternion targetRot = Quaternion.LookRotation(vel);//* Quaternion.Euler(0, -90, 0);
+        // var vel = (moveTrans[targetNo].position - transform.position);
+        // Quaternion targetRot = Quaternion.LookRotation(vel)* Quaternion.Euler(0, -90, 0);
         //transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, rotSpeed * Time.deltaTime);
-
-
-        transform.rotation = MyLib.TargetRotationSprite(moveTrans[targetNo].position, transform, rotSpeed);
-        //transform.rotation = MyLib.GetAngleRotationFunc2D(moveTrans[targetNo].position, transform, rotSpeed);
+        transform.rotation = MyLib.TargetRotationSprite3D(moveTrans[targetNo].position, transform, rotSpeed);
 
     }
 

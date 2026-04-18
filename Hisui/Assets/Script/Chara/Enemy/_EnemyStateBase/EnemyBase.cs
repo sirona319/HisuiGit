@@ -4,6 +4,16 @@ using Unity.VisualScripting;
 
 public class EnemyBase : CharaBase
 {
+
+    public bool isAreaOut = false;
+
+    public int Hp = 0;
+
+    public float SpawnTime = 0f;
+
+
+
+
     //#region ステートコントローラー
     //[SerializeField] protected StateControllerBase stateController = default;
 
@@ -36,11 +46,7 @@ public class EnemyBase : CharaBase
     //ParticleSystem dmgParticle;//ダメージパーティクル
 
 
-    public bool isEreaOut = false;
 
-    public int Hp = 0;
-
-    public float SpawnTime = 0f;
 
     /// <summary>
     /// 呼び出し先でキャストして使用する

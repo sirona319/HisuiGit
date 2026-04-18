@@ -175,7 +175,7 @@ public static class MyLib
 
     }
 
-    public static Quaternion TargetRotationSprite(Vector3 targetPos, Transform myTrans, float interpolant)
+    public static Quaternion TargetRotationSprite3D(Vector3 targetPos, Transform myTrans, float interpolant)
     {
         //方向を向く回転の処理
         var dir = targetPos - myTrans.position;

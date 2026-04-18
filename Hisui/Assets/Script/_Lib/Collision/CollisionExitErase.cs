@@ -21,8 +21,8 @@ public class CollisionExitErase : MonoBehaviour
         var ene = other.GetComponent<EnemyBase>();
         if(ene != null)
         {
-            ene.isEreaOut = true;
-            Debug.Log("chara.isEreaOut = true;");
+            ene.isAreaOut = true;
+            Debug.Log("chara.isAreaOut = true;");
             return;
         }
 

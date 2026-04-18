@@ -6,10 +6,13 @@ public class JerryFall : EnemyBase,IDamage
 {
     //public float SpawnTime = 0f;
 
+
+    ParticleSystem dmgPt;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //gameObject.GetComponentInParent<SpawnAct>().spawnObjs.Add(transform);
+        dmgPt = Resources.Load("prefab/Particle/CFXR2 BloodJerry").GetComponent<ParticleSystem>();
+
     }
 
     // Update is called once per frame
@@ -22,9 +25,8 @@ public class JerryFall : EnemyBase,IDamage
     {
         if (isDead) return;
 
-        var dmgParticle = Resources.Load("prefab/Particle/CFXR2 BloodJerry").GetComponent<ParticleSystem>();
         //ダメージパーティクル表示
-        Instantiate(dmgParticle, transform.position, Quaternion.identity);
+        Instantiate(dmgPt, transform.position, Quaternion.identity);
 
         Hp -= damage;        //HP減少処理
 
@@ -52,7 +54,7 @@ public class JerryFall : EnemyBase,IDamage
 
     void AreaOut()
     {
-        if (!isEreaOut) return;
+        if (!isAreaOut) return;
         isDead = true;
 
         //GetComponent<SpriteRenderer>().enabled = false;

@@ -43,7 +43,7 @@ public class Jerry_Dead : StateChildBase
         //spawn.GetComponent<EnemySpawnWavePrefab>().UpdateCount();
 
         //if (EnumSceneName.SceneNameType.GameScene.ToString().Contains(SceneManager.GetActiveScene().name))
-            GameObject.FindWithTag("EnemyMgr").GetComponent<EnemyMgr>().CundDown();
+            GameObject.FindWithTag("EnemyMgr").GetComponent<EnemyMgr>().CountDown();
 
         //サウンドがならない　原因
         //gameObject.SetActive(false);

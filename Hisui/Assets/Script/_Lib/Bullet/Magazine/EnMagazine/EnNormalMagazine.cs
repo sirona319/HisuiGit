@@ -12,12 +12,7 @@ public class EnNormalMagazine : BaseMagazine
 
     [SerializeField] string soundPath = "Sound/SE/JerryShot";
 
-    void Start()
-    {
-
-    }
-
-    public void Update()
+    void Update()
     {
         if (target == null) return;
 
@@ -44,8 +39,4 @@ public class EnNormalMagazine : BaseMagazine
 
     }
 
-    public override void MagazineUpdate()
-    {
-        throw new System.NotImplementedException();
-    }
 }

@@ -52,7 +52,7 @@ public class ObjSpawnData
 
     public GameObject[] ObjState;
 
-    public Transform[] spawnLocations;//敵の移動範囲　位置
+    public Transform[] spawnLocations;//移動範囲　位置
 }
 
 //シリアライズされた子要素クラス

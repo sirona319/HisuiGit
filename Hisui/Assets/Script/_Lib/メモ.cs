@@ -9,7 +9,7 @@ public class メモ : MonoBehaviour
     public LayerMask mask;
     /*
      * 
-     * 
+     ・FixedUpdate() で Rigidbody2D を動かす理由
      *  原因はかなり高確率で Rigidbody2D を Update() で動かしていること です。
         WebGL だとフレームレートや物理更新のズレが出やすく、
         MovePosition を Update() で呼ぶと移動が速く見えたり、不安定になりやすい です。→FixedUpdate() で呼ぶようにしてください。
@@ -26,7 +26,7 @@ public class メモ : MonoBehaviour
 
 
 
-
+    ・入力
     if (Keyboard.current.fKey.isPressed || Mouse.current.leftButton.isPressed)
 
 
