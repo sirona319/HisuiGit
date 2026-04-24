@@ -61,6 +61,7 @@ public class SpawnAct : MonoBehaviour
 
         });
 
+        //全ての敵が死んでいたら　次のスポーンアクションを有効にする
         if (deadCount >= _spawnGos.Count)
         {
             _spawnGos.ToList().ForEach(x =>
