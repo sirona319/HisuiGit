@@ -1,6 +1,5 @@
 ﻿
 using UnityEngine;
-using static TargetSet;
 
 public class CircleMove : BaseMove
 {
@@ -22,17 +21,19 @@ public class CircleMove : BaseMove
     //int targetNo = 0;
 
     //Transform[] targets;
-    Transform target;
+    //Transform target;
     //TargetSet targetSet;
     //[SerializeField] Target targetType;
     Rigidbody2D rb2;
-    [SerializeField] Transform targetTrans;
+    [SerializeField] Transform target;
     public override void Initialize()
     {
         rb2 = GetComponent<Rigidbody2D>();
-        var targetSet=GetComponent<TargetSet>();
+        // var targetSet=GetComponent<TargetSet>();
         //targetSet.Init();
-        target = targetSet.GetTargetTrans(targetTrans, gameObject);
+        //target = targetSet.GetTargetTrans(targetTrans, gameObject);
+
+        transform.DetachChildren();
     }
 
     public override void MoveEnter()

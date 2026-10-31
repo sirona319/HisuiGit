@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7369145756137488464}
   - component: {fileID: 2432618713424487562}
   - component: {fileID: 764448810764270247}
-  - component: {fileID: 1462763212508653395}
   m_Layer: 7
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -113,19 +112,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1462763212508653395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513853859016131175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56940e27f3a2f744591d24d7ec21ccf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetPoint
-  target: 2
 --- !u!1 &2065175906973805691
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +124,6 @@ GameObject:
   - component: {fileID: 9163694652254649750}
   - component: {fileID: 2402979490211305507}
   - component: {fileID: 4922145320513345605}
-  - component: {fileID: 5473277524534996149}
   m_Layer: 7
   m_Name: Sphere (2)
   m_TagString: Untagged
@@ -239,19 +224,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5473277524534996149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065175906973805691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56940e27f3a2f744591d24d7ec21ccf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetPoint
-  target: 2
 --- !u!1 &8563841485145078793
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +262,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!212 &3708499323768356143
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -347,6 +319,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!82 &6821357725641304706
 AudioSource:
   m_ObjectHideFlags: 0

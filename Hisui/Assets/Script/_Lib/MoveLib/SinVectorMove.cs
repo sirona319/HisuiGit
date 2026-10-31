@@ -53,9 +53,9 @@ public class SinVectorMove : BaseMove
 
 
 
-
-        var movePos = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
-        var dir = movePos - transform.position;
+        transform.DetachChildren();
+        //var movePos = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
+        var dir = targetTrans.position - transform.position;
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 

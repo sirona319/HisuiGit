@@ -46,7 +46,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1737285253548240295
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,6 +103,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!50 &4441668222999903457
 Rigidbody2D:
   serializedVersion: 5
@@ -427,8 +428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JerryFall
   isDead: 0
+  isAreaOut: 0
   Hp: 1
-  isEreaOut: 0
   SpawnTime: 0
 --- !u!114 &2526037670787730158
 MonoBehaviour:
@@ -514,6 +515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7175049473117843790}
   - component: {fileID: 4922736282221290420}
+  - component: {fileID: 6436719948059806251}
   m_Layer: 7
   m_Name: Point
   m_TagString: Untagged
@@ -549,3 +551,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetPoint
   target: 2
+--- !u!114 &6436719948059806251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7252613251945430553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f55cdcc36399f4e8156e1bdfe99d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetLinkObj
+  linkObj: {fileID: 3777813368589303529}

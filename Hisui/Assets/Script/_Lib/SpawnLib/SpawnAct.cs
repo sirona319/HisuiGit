@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnAct : MonoBehaviour
 {
-    [SerializeField] SpawnAct spawnAct = null;
+    [SerializeField] SpawnAct spawnActNext = null;
 
     [SerializeField] float spawnTimer = 0f;
 
@@ -47,7 +47,7 @@ public class SpawnAct : MonoBehaviour
                 spawnGos.Remove(x);
                 x.parent = null;
             }
-            Debug.Log(x.name);
+            //Debug.Log(x.name);
         });
     }
 
@@ -71,8 +71,8 @@ public class SpawnAct : MonoBehaviour
             });
             Destroy(gameObject);
 
-            if (spawnAct == null) return;
-            spawnAct.gameObject.SetActive(true);
+            if (spawnActNext == null) return;
+            spawnActNext.gameObject.SetActive(true);
 
         }
 

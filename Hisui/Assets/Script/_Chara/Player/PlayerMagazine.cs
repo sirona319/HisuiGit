@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using static TargetSet;
 
 [DisallowMultipleComponent]
 public class PlayerMagazine : BaseMagazine

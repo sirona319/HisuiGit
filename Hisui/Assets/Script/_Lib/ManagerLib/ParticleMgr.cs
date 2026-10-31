@@ -1,8 +1,11 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ParticleMgr : MonoBehaviour
 {
+    //ParticleSystem リスト
+    public ParticleSystem jerdmgPt;
     public GameObject deadPt;
 
     public GameObject atkPt;
@@ -21,6 +24,14 @@ public class ParticleMgr : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        var pts = Resources.LoadAll("prefab/Particle", typeof(ParticleSystem));
+
+        foreach (var p in pts)
+        {
+            
+            Debug.Log(p.name);
+        }
+
         healPt = (GameObject)Resources.Load("prefab/Particle/CFXR3 Hit Light B (Air)");
 
         downPt = (GameObject)Resources.Load("prefab/Particle/CFXR2 Poison Cloud");

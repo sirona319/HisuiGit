@@ -19,8 +19,8 @@ public class SpriteMove : MonoBehaviour
 
     void Start()
     {
-
-        moveTrans = TargetSet.I.SetPointArray(moveTrans, gameObject);
+        transform.DetachChildren();
+        //moveTrans = TargetSet.I.SetPointArray(moveTrans, gameObject);
     }
 
     void FixedUpdate()

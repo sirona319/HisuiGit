@@ -24,10 +24,11 @@ public class StraightPointTargetMove : BaseMove
     public override void Initialize()
     {
         //if (gameObject.GetComponent<TargetSet>()!=null)
-       // {
-       //     targetSet = GetComponent<TargetSet>();
-            moveTransLists = TargetSet.I.SetPointArray(moveTransLists, gameObject);
-       // }
+        // {
+        //     targetSet = GetComponent<TargetSet>();
+        //moveTransLists = TargetSet.I.SetPointArray(moveTransLists, gameObject);
+        // }
+        transform.DetachChildren();
 
         direction = (moveTransLists[targetNo].position - transform.position).normalized;
 

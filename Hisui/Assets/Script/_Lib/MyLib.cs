@@ -10,7 +10,7 @@ using Transform = UnityEngine.Transform;
 //utility
 public static class MyLib
 {
-
+    //12
     #region　便利な関数まとめ
 
     #region デバッグ

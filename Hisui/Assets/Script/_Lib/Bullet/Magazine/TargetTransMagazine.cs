@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using static TargetSet;
 
 public class TargetTransMagazine : BaseMagazine
 {
@@ -24,7 +23,10 @@ public class TargetTransMagazine : BaseMagazine
         //createBullet = GetComponent<CreateBullet>();
         //var targetSet = GetComponent<TargetSet>();
         //targetSet.Init();
-        tPos = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
+
+        //transform.DetachChildren();
+       // tPos = targetTrans.position;
+       // tPos = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
         //target = transform.Find("Target").transform;
         //shotTime = 1f;
     }
@@ -50,7 +52,7 @@ public class TargetTransMagazine : BaseMagazine
     void Shot()
     {
 
-        Vector2 direction = tPos - transform.position;
+        Vector2 direction = targetTrans.position - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
         //if(createBullet == null)

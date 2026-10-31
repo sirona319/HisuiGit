@@ -12,7 +12,7 @@ public class PlayerAttackMove : BaseMove
     public bool isAttackEnd = false;
     float speed = 4f;
 
-    TargetSet targetSet;
+    //TargetSet targetSet;
     //public void TargetSet(Transform t)
     //{
     //    targetTrans = t;
@@ -25,7 +25,7 @@ public class PlayerAttackMove : BaseMove
     {
         base.Initialize();
 
-        targetSet= GetComponent<TargetSet>();
+       // targetSet= GetComponent<TargetSet>();
         moveVecter = new Vector3[2];
 
     }
@@ -33,7 +33,8 @@ public class PlayerAttackMove : BaseMove
     public override void MoveEnter()
     {
         moveVecter[0] = transform.position;
-        moveVecter[1] = targetSet.GetTargetTrans(targetTrans, gameObject).position;
+        moveVecter[1] = targetTrans.position;
+        //moveVecter[1] = targetSet.GetTargetTrans(targetTrans, gameObject).position;
         isAttackEnd = false;
     }
 

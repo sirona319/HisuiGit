@@ -27,9 +27,10 @@ public class StraightPointMove : BaseMove
         //if (GetComponent<TargetSet>() == null)Debug.Log("TargetSetが未設定;");
         //if (gameObject.GetComponent<TargetSet>()!=null)
         //{
-            //targetSet = GetComponent<TargetSet>();
-            moveTransLists = TargetSet.I.SetPointArray(moveTransLists, gameObject);
+        //targetSet = GetComponent<TargetSet>();
+        //moveTransLists = TargetSet.I.SetPointArray(moveTransLists, gameObject);
         //}
+        transform.DetachChildren();
 
         //rb2=GetComponent<Rigidbody>();
         direction = (moveTransLists[targetNo].position - transform.position).normalized;

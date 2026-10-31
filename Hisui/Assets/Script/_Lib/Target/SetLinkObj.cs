@@ -2,7 +2,7 @@
 
 public class SetLinkObj : MonoBehaviour
 {
-    public GameObject linkObj;
+    [SerializeField] GameObject linkObj;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,7 +12,7 @@ public class SetLinkObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (linkObj == null)
+        if (linkObj != null) return;
             Destroy(gameObject);
     }
 }

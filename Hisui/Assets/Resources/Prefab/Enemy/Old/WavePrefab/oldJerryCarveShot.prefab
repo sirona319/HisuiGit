@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 5179591591494362091}
   - component: {fileID: 2647720000173512110}
   m_Layer: 7
-  m_Name: JerryCarveShot
+  m_Name: oldJerryCarveShot
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
