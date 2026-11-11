@@ -4,6 +4,8 @@
 public static class ResourcesDirectoryPath{
 
 	  public const string FONTS_MATERIALS                              = "Fonts & Materials";
+	  public const string PARTICLE                                     = "Particle";
+	  public const string PARTICLE_EREA                                = "Particle\\Erea";
 	  public const string PREFAB                                       = "Prefab";
 	  public const string PREFAB_BULLET                                = "Prefab\\Bullet";
 	  public const string PREFAB_BULLET_MAT                            = "Prefab\\Bullet\\Mat";
@@ -20,8 +22,6 @@ public static class ResourcesDirectoryPath{
 	  public const string PREFAB_ENEMY_OLD_WAVE_PREFAB_SIN             = "Prefab\\Enemy\\Old\\WavePrefab\\Sin";
 	  public const string PREFAB_ENEMY_OLD_WAVE_PREFAB_SIN_RSTART      = "Prefab\\Enemy\\Old\\WavePrefab\\Sin\\RStart";
 	  public const string PREFAB_ENEMY_OLD_WAVE_PREFAB_SIN_RSTART_MINI = "Prefab\\Enemy\\Old\\WavePrefab\\Sin\\RStart\\Mini";
-	  public const string PREFAB_PARTICLE                              = "Prefab\\Particle";
-	  public const string PREFAB_PARTICLE_EREA                         = "Prefab\\Particle\\Erea";
 	  public const string PREFAB_PLAYER                                = "Prefab\\Player";
 	  public const string PREFAB_SOUND                                 = "Prefab\\Sound";
 	  public const string SOUND                                        = "Sound";

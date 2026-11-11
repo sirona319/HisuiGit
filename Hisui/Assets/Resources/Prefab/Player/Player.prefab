@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1139804860654032660}
   - component: {fileID: 7605300292372885321}
   - component: {fileID: 6701999661179997562}
+  - component: {fileID: 4960692821905661538}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -43,7 +44,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &2594479138804938240
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -100,6 +101,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!50 &433366575976938866
 Rigidbody2D:
   serializedVersion: 5
@@ -180,7 +182,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   mag: {fileID: 2706420233406493615}
   warp: {fileID: 2538072577339672057}
-  DEBUGNODAMAGE: 0
+  DEBUGNODAMAGE: 1
 --- !u!114 &2538072577339672057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf08bde220b57f4da3930dc9e8f51a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHP
-  MAXHP: 10
+  MAXHP: 5
   lifeImage:
   - {fileID: 0}
   - {fileID: 0}
@@ -266,6 +268,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  pSprite: {fileID: 2594479138804938240}
   damageTimeMax: 1
   damageTime: 0
 --- !u!82 &6701999661179997562
@@ -281,7 +284,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.067
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -365,3 +368,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4960692821905661538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435380748630735509}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5638dfa5e5648c24eba60124909586b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoiseEnable
+  m: {fileID: 2100000, guid: d63101b1af55c8642bab4555ec76f31d, type: 2}
+  spriteR: {fileID: 2594479138804938240}
+  blocksize: 24
+  amount: 0.3
+  frequency: 0.7
+  duration: 0.8

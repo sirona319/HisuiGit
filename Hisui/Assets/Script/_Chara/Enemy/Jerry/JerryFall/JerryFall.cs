@@ -11,6 +11,8 @@ public class JerryFall : EnemyBase,IDamage
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //var aa = ResourcesFilePath.PREFAB_CFXR2_BLOOD_JERRY;
+
         dmgPt = Resources.Load("prefab/Particle/CFXR2 BloodJerry").GetComponent<ParticleSystem>();
 
     }

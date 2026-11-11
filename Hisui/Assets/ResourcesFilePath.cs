@@ -26,13 +26,13 @@ public static class ResourcesFilePath{
 	  public const string PREFAB_BW                                   = "Prefab\\Player/BW";
 	  public const string PREFAB_CARVE_L                              = "Prefab\\Bullet/CarveL";
 	  public const string PREFAB_CARVE_R                              = "Prefab\\Bullet/CarveR";
-	  public const string PREFAB_CFXR2_BLOOD_JERRY                    = "Prefab\\Particle/CFXR2 BloodJerry";
+	  public const string PREFAB_CFXR2_BLOOD_JERRY                    = "Particle/CFXR2 BloodJerry";
 	  public const string PREFAB_CFXR3_AMBIENT_GLOWS                  = "CFXR3 Ambient Glows";
 	  public const string PREFAB_CFXR4_BUBBLES_BREATH_UNDERWATER_LOOP = "CFXR4 Bubbles Breath Underwater Loop";
 	  public const string PREFAB_CFXR4_FALLING_STARS                  = "CFXR4 Falling Stars";
 	  public const string PREFAB_CFXR4_RAIN_FALLING                   = "CFXR4 Rain Falling";
 	  public const string PREFAB_CIRCLE_JERRY_L                       = "Prefab\\Enemy\\Jerry/CircleJerryL";
-	  public const string PREFAB_DAMAGE_PT                            = "Prefab\\Particle/DamagePt";
+	  public const string PREFAB_DAMAGE_PT                            = "Particle/DamagePt";
 	  public const string PREFAB_DOWN_BACK                            = "Prefab\\Enemy\\Old\\SpawnMovePoint/DownBack";
 	  public const string PREFAB_DOWN_FRONT                           = "Prefab\\Enemy\\Old\\SpawnMovePoint/DownFront";
 	  public const string PREFAB_FALL0                                = "Prefab\\Enemy\\Old\\WavePrefab\\Fall/Fall0";
@@ -46,8 +46,7 @@ public static class ResourcesFilePath{
 	  public const string PREFAB_FALL8                                = "Prefab\\Enemy\\Old\\WavePrefab\\Fall/Fall8";
 	  public const string PREFAB_FALL_ACT                             = "Prefab\\Enemy/FallAct";
 	  public const string PREFAB_FISH                                 = "Prefab/Fish";
-	  public const string PREFAB_FLASH_STAR_ELLOW_GREEN               = "Prefab\\Particle/Flash_star_ellow_green";
-	  public const string PREFAB_GAME_OBJECT                          = "Prefab/GameObject";
+	  public const string PREFAB_FLASH_STAR_ELLOW_GREEN               = "Particle/Flash_star_ellow_green";
 	  public const string PREFAB_JERRY_BOSS                           = "Prefab\\Enemy\\Jerry/JerryBoss";
 	  public const string PREFAB_JERRY_BOSS_ACT                       = "Prefab\\Enemy/JerryBossAct";
 	  public const string PREFAB_JERRY_BULLET                         = "Prefab\\Bullet/JerryBullet";
@@ -62,8 +61,8 @@ public static class ResourcesFilePath{
 	  public const string PREFAB_MIDDLE_DOWN_BACK                     = "Prefab\\Enemy\\Old\\SpawnMovePoint/MiddleDownBack";
 	  public const string PREFAB_MIDDLE_FRONT                         = "Prefab\\Enemy\\Old\\SpawnMovePoint/MiddleFront";
 	  public const string PREFAB_MIDDLE_UP_BACK                       = "Prefab\\Enemy\\Old\\SpawnMovePoint/MiddleUpBack";
-	  public const string PREFAB_MY_GLOW                              = "Prefab\\Particle\\Erea/MyGlow";
-	  public const string PREFAB_MY_STAR                              = "Prefab\\Particle\\Erea/MyStar";
+	  public const string PREFAB_MY_GLOW                              = "Particle\\Erea/MyGlow";
+	  public const string PREFAB_MY_STAR                              = "Particle\\Erea/MyStar";
 	  public const string PREFAB_NORMAL_CIRCLE_ACT                    = "Prefab\\Enemy/Normal_CIrcleAct";
 	  public const string PREFAB_NORMAL_ACT                           = "Prefab\\Enemy/NormalAct";
 	  public const string PREFAB_NORMAL_JERRY                         = "Prefab\\Enemy\\Jerry/NormalJerry";
@@ -83,10 +82,11 @@ public static class ResourcesFilePath{
 	  public const string PREFAB_SIN_ACT                              = "Prefab\\Enemy/SinAct";
 	  public const string PREFAB_SIN_VECTOR_MOVE                      = "Prefab\\Enemy\\Old\\WavePrefab/SinVectorMove";
 	  public const string PREFAB_TARGET_VEC_OBJECT                    = "Prefab/TargetVecObject";
+	  public const string PREFABTEST                                  = "Prefab\\Enemy/test";
 	  public const string PREFAB_UP_BACK                              = "Prefab\\Enemy\\Old\\SpawnMovePoint/UpBack";
 	  public const string PREFAB_UP_FRONT                             = "Prefab\\Enemy\\Old\\SpawnMovePoint/UpFront";
 	  public const string PREFAB_WAVE_SPAWN_PREFAB                    = "Prefab\\Enemy\\Old\\Wave\\Prefab/WaveSpawnPrefab";
-	  public const string PREFAB_WP                                   = "Prefab\\Particle/Wp";
+	  public const string PREFAB_WP                                   = "Particle/Wp";
 	  public const string TEXT_LINE_BREAKING_FOLLOWING_CHARACTERS     = "LineBreaking Following Characters";
 	  public const string TEXT_LINE_BREAKING_LEADING_CHARACTERS       = "LineBreaking Leading Characters";
 

@@ -8,7 +8,7 @@ public class SpriteMove : MonoBehaviour
 
 
     [SerializeField] List<Transform> moveTrans;
-
+    [SerializeField] List<Vector3> moveVector;
     float endLength = 0.5f;
     //[SerializeField] List<float> endLength;
     [SerializeField][Range(1f, 20f)] float speed = 1f;
@@ -20,6 +20,12 @@ public class SpriteMove : MonoBehaviour
     void Start()
     {
         transform.DetachChildren();
+
+        //foreach(var mt in moveTrans)
+        //{
+        //    moveVector.Add(mt.position);
+        //    Destroy(mt.gameObject);
+        //}
         //moveTrans = TargetSet.I.SetPointArray(moveTrans, gameObject);
     }
 

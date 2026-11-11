@@ -20,7 +20,7 @@ public class RandomSpawn : MonoBehaviour
             Debug.Log(rndType);
 
             var rndTime = Random.Range(0, spawnRndTimeMax);
-            Debug.Log(rndTime+"rndTime");
+            Debug.Log(rndTime + "rndTime");
 
             Vector3 t = transform.position;
             Vector3 randPos = new Vector3
@@ -30,7 +30,7 @@ public class RandomSpawn : MonoBehaviour
 
 
             StartCoroutine(DelaySpawnWave());
-             IEnumerator DelaySpawnWave()
+            IEnumerator DelaySpawnWave()
             {
                 yield return new WaitForSeconds(rndTime);
                 Instantiate(spawnGoType[rndType], randPos, transform.rotation);

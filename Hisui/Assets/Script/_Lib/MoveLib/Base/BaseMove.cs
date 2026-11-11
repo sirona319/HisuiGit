@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseMove : MonoBehaviour
 {
-
+    //[SerializeField]public List<Vector3> childsposs;
     public enum MoveType
     {
         //RandomMove,
