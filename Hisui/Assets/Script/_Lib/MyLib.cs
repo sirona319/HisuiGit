@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 using Transform = UnityEngine.Transform;
@@ -387,7 +388,8 @@ public static class MyLib
         float distance = 1000;   // 飛ばす&表示するRayの長さ
         float duration = 50; // 表示期間（秒）
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (DebugDraw)
             Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, duration, false);
