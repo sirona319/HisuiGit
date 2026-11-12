@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DOFadeUGUI : MonoBehaviour
 {
+
+    //TextMeshProUGUIはCanvas用
     private TextMeshProUGUI textUgui;
 
     [SerializeField] private bool InitShow;
