@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+//using static EnemyData;
 
 public abstract class BaseMagazine : MonoBehaviour
 {
@@ -30,8 +31,8 @@ public abstract class BaseMagazine : MonoBehaviour
 
     //public BulletTarget bulletTarget;
 
-    //[SerializeField]protected AudioSource arSe;
-    //public void SetLoadSe(AudioSource se)
+    //[SerializeField]protected AudioResource arSe;
+    //public void SetLoadSe(AudioResource se)
     //{
     //    arSe = se;
     //}
@@ -42,58 +43,42 @@ public abstract class BaseMagazine : MonoBehaviour
 
     public virtual void MagazineUpdate() { }
 
-    //public void TargetSet(Transform t, BulletTarget bulletTarget)
+    //public void TargetSet(ITarget it, BulletTarget bulletTarget, GameObject go)
     //{
-    //    if (t == null) return;
+    //    if (it == null) return;
 
-    //    //一番近いエネミーなど？　遠い敵　レーザー武器用など（Player）
-    //    //Instanteiateで生成することで子階層から外す　座標ずれを防ぐため
     //    switch (bulletTarget)
     //    {
     //        case BulletTarget.Player:
-    //            t = GameObject.FindWithTag("Player").transform;
+    //            it.Target = GameObject.FindGameObjectWithTag(TagName.Player).transform;
     //            break;
-    //        //case BulletTarget.LeftMiddle://固定
-    //        //    //it.Target = leftMiddle;
-    //        //    t = GameObject.Find("LeftMiddle").transform;
-    //        //    break;
+    //        case BulletTarget.LeftMiddle:
+    //            //it.Target = leftMiddle;
+    //            it.Target= GameObject.Find("LeftMiddle").transform;
+    //            break;
     //        case BulletTarget.Up:
-    //            var up = transform.Find("Target").gameObject.transform;
-    //            up.position += Vector3.up;
-    //            t = up;
+    //            it.Target = go.transform.Find("Up").gameObject.transform;
     //            break;
     //        case BulletTarget.Right:
-    //            var right = transform.Find("Target").gameObject.transform;
-    //            right.position += Vector3.right;
-    //            t = right;
+    //            it.Target = go.transform.Find("Right").gameObject.transform;
     //            break;
     //        case BulletTarget.Left:
-    //            var left = transform.Find("Target").gameObject.transform;
-    //            left.position += Vector3.left;
-    //            t = left;
+    //            it.Target = go.transform.Find("Left").gameObject.transform;
     //            break;
     //        case BulletTarget.Down:
-    //            var down = transform.Find("Target").gameObject.transform;
-    //            down.position += Vector3.down;
-    //            t = down;
+    //            it.Target = go.transform.Find("Down").gameObject.transform;
     //            break;
-    //        case BulletTarget.Target:
-    //            t = transform.Find("Target").transform;
+    //        case BulletTarget.Target://子階層のtargetオブジェクトを参照
+    //            it.Target = go.transform.Find("target").gameObject.transform;
     //            break;
-    //        case BulletTarget.TargetVec://固定
-    //            var pos = transform.Find("TargetVec").transform.position;
-    //            var go = (GameObject)Resources.Load("prefab/Bullet/TargetVecObject");
-    //            var obj = Instantiate(go, pos, transform.rotation);
-    //            t = obj.transform;
-    //            obj.GetComponent<SetLinkObj>().linkObj = gameObject;
+    //        case BulletTarget.None:
     //            break;
     //        default:
-    //            Debug.Log("ターゲット未設定");
+    //            Debug.Log("TargetDEFAULT");
     //            break;
     //    }
 
     //}
-
 
     [SerializeField] protected float bulletSpeed = 5f;
 

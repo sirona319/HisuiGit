@@ -2,25 +2,17 @@
 
 public class CircleMagazine : BaseMagazine
 {
-    [SerializeField] int angleChangeVal = 10;
-    [SerializeField] float shotTiming = 0.1f;
+    public int angleChangeVal = 10;
+    public float shotTiming = 0.1f;
 
     float timeCount = 0;
     float shotAngle = 0;
 
-    [SerializeField] GameObject bullet;
-
-    private void Start()
-    {
-        MagazineEnter();
-    }
-
-    private void Update()
-    {
-        MagazineUpdate();
-    }
+    //const float BULLETTIMEMAX = 4f;
 
     //逆回り作る
+
+
     public override void Initialize()
     {
 
@@ -41,7 +33,6 @@ public class CircleMagazine : BaseMagazine
         // 前フレームからの時間の差を加算
         timeCount += Time.deltaTime;
 
-
         // 0.1秒を超えているか
         if (timeCount > shotTiming)
         {
@@ -53,7 +44,7 @@ public class CircleMagazine : BaseMagazine
             Vector2 direction =(transform.position+Vector3.up) - transform.position;
             float tAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-            BulletAtk(tAngle + shotAngle,transform.position,transform.rotation,bullet);
+            BulletAtk(tAngle + shotAngle,transform.position,transform.rotation);
 
         }
     }

@@ -15,8 +15,9 @@ public class EnNormalMagazine : BaseMagazine
     void Start()
     {
         target = GameObject.FindWithTag("Player").transform;
-    }
-    void Update()
+    }    
+
+	void Update()
     {
         if (target == null) return;
 
@@ -27,6 +28,7 @@ public class EnNormalMagazine : BaseMagazine
 
             if(GetComponent<AudioSource>() != null)
                 MyLib.MyPlayOneSound(soundPath, gameObject.GetComponent<AudioSource>());//水滴
+
 
 
             Shot();
