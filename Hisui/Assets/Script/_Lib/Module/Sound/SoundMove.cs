@@ -28,7 +28,7 @@ public class SoundMove : MonoBehaviour
     {
         if (isPlaying) return;
         if (GetComponent<CharaBase>().isDead) return;
-        var se = GameObject.FindWithTag("SoundMgr").GetComponent<SoundMgr>().se;
+        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se;
         var moveSe = (GameObject)Resources.Load(path);//Prefab/Sound/JerryTrailSe
         seObj = Instantiate(moveSe, transform.position, Quaternion.identity);
         seObj.GetComponent<AudioSource>().Play();

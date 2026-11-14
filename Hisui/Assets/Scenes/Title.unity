@@ -3952,13 +3952,14 @@ GameObject:
   - component: {fileID: 503446816}
   - component: {fileID: 503446819}
   - component: {fileID: 503446820}
+  - component: {fileID: 503446821}
   m_Layer: 0
   m_Name: GameMgr
   m_TagString: GameMgr
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &503446816
 Transform:
   m_ObjectHideFlags: 0
@@ -4004,6 +4005,19 @@ MonoBehaviour:
   fadeStartTime: 2
   fadeEndTime: 3
   SceneName: 0
+--- !u!114 &503446821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503446814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5970133a81b092d4b827d598a285cbfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BgmChange
+  sceneBgm: {fileID: 8300000, guid: 4ab59ca610bb7994c8bd9fe315faf1f9, type: 3}
 --- !u!1 &520770725
 GameObject:
   m_ObjectHideFlags: 0
@@ -10940,7 +10954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e428defb5d6b04088087130294b3dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Continue
-  sceneName: 0
 --- !u!114 &1659716842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11949,7 +11962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e428defb5d6b04088087130294b3dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Continue
-  sceneName: 0
 --- !u!1 &1732576049
 GameObject:
   m_ObjectHideFlags: 0

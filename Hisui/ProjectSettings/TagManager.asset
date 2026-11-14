@@ -12,6 +12,7 @@ TagManager:
   - SoundMgr
   - Message
   - GameMgr
+  - SoundM
   layers:
   - Default
   - TransparentFX

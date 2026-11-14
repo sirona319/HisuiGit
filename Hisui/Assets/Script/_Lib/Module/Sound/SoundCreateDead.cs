@@ -35,7 +35,7 @@ public class SoundCreateDead : MonoBehaviour
         if (!GetComponent<CharaBase>().isDead) return;
 
         Debug.Log("SoundCreateDead");
-        var se = GameObject.FindWithTag("SoundMgr").GetComponent<SoundMgr>().se.GetComponent<AudioSource>();
+        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se.GetComponent<AudioSource>();
         MyLib.MyPlayOneSound(path, 1f, se);
         IsSoundEnable = true;
 

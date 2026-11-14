@@ -8,7 +8,7 @@ public class BgmChange : MonoBehaviour
     void Start()
     {
         if (sceneBgm == null) return;
-        var sm = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundMgr>();
+        var sm = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>();
         sm.BgmChange(sceneBgm);
     }
 

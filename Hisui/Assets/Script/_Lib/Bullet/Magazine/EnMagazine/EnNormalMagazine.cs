@@ -12,6 +12,10 @@ public class EnNormalMagazine : BaseMagazine
 
     [SerializeField] string soundPath = "Sound/SE/JerryShot";
 
+    void Start()
+    {
+        target = GameObject.FindWithTag("Player").transform;
+    }
     void Update()
     {
         if (target == null) return;

@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 1986002530}
   m_Layer: 0
   m_Name: SoundMgr
-  m_TagString: SoundMgr
+  m_TagString: SoundM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,15 +435,15 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986002528}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7440649932625440856, guid: 52c61e70df12845489865621304cea2b, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4ab59ca610bb7994c8bd9fe315faf1f9, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -534,12 +534,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1986002528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58883264af1adc64e93b4b57c9b85495, type: 3}
+  m_Script: {fileID: 11500000, guid: e6b9424b67d1a2d46bf30b6597e6324f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  gameBGM: {fileID: 1986002530}
-  titleBGM: {fileID: 0}
-  se: {fileID: 829579795}
+  audioMixer: {fileID: 24100000, guid: 52c61e70df12845489865621304cea2b, type: 2}
+  bgmVol: 0.03
+  targetMixerGroup: {fileID: 7440649932625440856, guid: 52c61e70df12845489865621304cea2b, type: 2}
+  clipList:
+  - {fileID: 8300000, guid: 4ab59ca610bb7994c8bd9fe315faf1f9, type: 3}
+  sourceLists: []
+  se: {fileID: 1986002530}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
