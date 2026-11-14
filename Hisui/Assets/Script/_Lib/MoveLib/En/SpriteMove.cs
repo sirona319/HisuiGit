@@ -8,7 +8,7 @@ public class SpriteMove : MonoBehaviour
 
 
     [SerializeField] List<Transform> moveTrans;
-    [SerializeField] List<Vector3> moveVector;
+
     float endLength = 0.5f;
     //[SerializeField] List<float> endLength;
     [SerializeField][Range(1f, 20f)] float speed = 1f;
@@ -20,14 +20,6 @@ public class SpriteMove : MonoBehaviour
     void Start()
     {
         transform.DetachChildren();
-
-        foreach (var mt in moveTrans)
-        {
-            moveVector.Add(mt.position);
-            Destroy(mt.gameObject);
-        }
-
-
         //moveTrans = TargetSet.I.SetPointArray(moveTrans, gameObject);
     }
 
@@ -44,11 +36,11 @@ public class SpriteMove : MonoBehaviour
     {
         if (isEnd) return;
 
-        float len = Vector3.Distance(transform.position, moveVector[targetNo]);
+        float len = Vector3.Distance(transform.position, moveTrans[targetNo].position);
         if (len < endLength)
         {
             targetNo++;
-            if (targetNo > moveVector.Count - 1)
+            if (targetNo > moveTrans.Count - 1)
             {
                 isEnd = true;
 
@@ -64,7 +56,7 @@ public class SpriteMove : MonoBehaviour
         // var vel = (moveTrans[targetNo].position - transform.position);
         // Quaternion targetRot = Quaternion.LookRotation(vel)* Quaternion.Euler(0, -90, 0);
         //transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, rotSpeed * Time.deltaTime);
-        transform.rotation = MyLib.TargetRotationSprite3D(moveVector[targetNo], transform, rotSpeed);
+        transform.rotation = MyLib.TargetRotationSprite3D(moveTrans[targetNo].position, transform, rotSpeed);
 
     }
 

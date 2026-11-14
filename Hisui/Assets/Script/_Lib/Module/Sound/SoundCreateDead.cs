@@ -19,27 +19,17 @@ public class SoundCreateDead : MonoBehaviour
     //}
 
 
-    void Update()
+    public void Update()
     {
+        if (IsSoundEnable) return;
+        if (!GetComponent<CharaBase>().isDead) return ;
+        IsSoundEnable = true;
 
-        //SoundPlay();
+        MyLib.MyPlayOneSound(path, 0.1f, gameObject);
         //StartCoroutine(DestroyFlagFalse());
         //var seGo = Instantiate(audioSe, transform.position, Quaternion.identity);
         //seGo.GetComponent<SoundEndDestroy>().StartDestroyFlg();//削除登録
         //return IsSoundEnable;
-    }
-
-    public void SoundPlay()
-    {
-        if (IsSoundEnable) return;
-        if (!GetComponent<CharaBase>().isDead) return;
-
-        Debug.Log("SoundCreateDead");
-        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se.GetComponent<AudioSource>();
-        MyLib.MyPlayOneSound(path, 1f, se);
-        IsSoundEnable = true;
-
-
     }
 
     //再生が終了したら破棄する

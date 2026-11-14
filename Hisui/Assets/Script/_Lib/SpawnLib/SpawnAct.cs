@@ -40,14 +40,14 @@ public class SpawnAct : MonoBehaviour
 
         spawnGos.ToList().ForEach(x =>
         {
-            if (x.GetComponent<EnemyBase>().SpawnTime < spawnTimer)
+            if (x.GetComponent<SampleBase>().SpawnTime < spawnTimer)
             {
                 x.transform.gameObject.SetActive(true);
 
                 spawnGos.Remove(x);
                 x.parent = null;
             }
-            //Debug.Log(x.name);
+            Debug.Log(x.name);
         });
     }
 
@@ -56,7 +56,7 @@ public class SpawnAct : MonoBehaviour
         int deadCount = 0;
         _spawnGos.ToList().ForEach(x =>
         {
-            if (x.GetComponent<EnemyBase>().isDead)
+            if (x.GetComponent<SampleBase>().isDead)
                 deadCount++;
 
         });

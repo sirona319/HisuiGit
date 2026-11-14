@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 using Transform = UnityEngine.Transform;
 
@@ -17,7 +16,7 @@ public static class MyLib
     #region デバッグ
     public static void DebugInfo(GameObject go)
     {
-        Debug.Log(go.name + " " + go.tag + " " + go.layer + "\n" + go.GetType().FullName);
+        Debug.Log(go.name + " " + go.tag + " " + go.layer+ "\n"+ go.GetType().FullName);
     }
     #endregion
 
@@ -29,11 +28,11 @@ public static class MyLib
     //    addSinTime = -Time.deltaTime;
 
     //上下　浮遊のような動き
-    public static void LoopMotionSinWait(float sinTime, Transform t, float addX, float addY)
+    public static void LoopMotionSinWait(float sinTime,Transform t,float addX,float addY)
     {
         //float sin = Mathf.Sin(Time.time);
         float sin = Mathf.Sin(sinTime);
-        t.position = new Vector3(t.position.x + (sin * addX), t.position.y + (sin * addY), 0);
+        t.position = new Vector3(t.position.x + (sin * addX), t.position.y+(sin * addY), 0);
     }
 
     //Vector3で移動方向　周期的なカーブ移動
@@ -135,7 +134,7 @@ public static class MyLib
     //    {
     //    MyLib.DoShakeUpdate2D(power, transform);
     //}));
-    public static void DoShakeUpdate2D(float magnitude, Transform trans, float zPos = 0f)
+    public static void DoShakeUpdate2D(float magnitude, Transform trans,float zPos=0f)
     {
 
         var pos = trans.localPosition;
@@ -152,6 +151,17 @@ public static class MyLib
     #endregion
 
     #region 回転
+
+
+
+    public static Quaternion GetAngleRotationFuncs(Vector3 tPos, Transform myTrans, float rotSpeed)
+    {
+        float targetAngle = GetTargetAngle2D(tPos, myTrans);
+
+        var velocity = SetVelocityAngle2D(targetAngle);
+
+        return TargetRotation2DZOnlyLerp(myTrans, velocity, rotSpeed); ;
+    }
 
     public static Quaternion TargetRotation(Transform target, Transform myTrans, float interpolant, Vector3 axis)
     {
@@ -229,13 +239,6 @@ public static class MyLib
         return velocity;
     }
 
-    public static Quaternion TargetRotation2DZOnlyLerp(Transform myTrans, Vector2 velocity, float rotSpeed)
-    {
-
-        float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;        // 弾の向きを設定する
-
-        return Quaternion.Lerp(myTrans.rotation, Quaternion.Euler(0, 0, zAngle), rotSpeed * Time.deltaTime);
-    }
 
     //Vector3用　引数
     //public static Vector2 SetVelocityAngle2D(Vector3 velocity, float angle, float speed)
@@ -249,26 +252,24 @@ public static class MyLib
     //    return velocity;
     //}
 
-    //public static Vector2 SetVelocityAngle2DSpeed(float angle, float speed)
-    //{
-    //    Vector2 velocity = Vector2.zero;
-    //    // X方向の移動量を設定する
-    //    velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
-
-    //    // Y方向の移動量を設定する
-    //    velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
-
-    //    return velocity;
-    //}
-
-
-
-    public static Quaternion GetAngleRotationFunc3D(Vector3 target, Transform myTrans, float rotSpeed)
+    public static Vector2 SetVelocityAngle2DSpeed(float angle, float speed)
     {
-        var vel = (target - myTrans.position);//.normalized * speed;
-        Quaternion targetRot = Quaternion.LookRotation(vel);
-        //Quaternion targetRot = Quaternion.LookRotation(vel) * Quaternion.Euler(0, -90, 0); //前方向が右方向なので、-90度回転させる
-        return Quaternion.Lerp(myTrans.rotation, targetRot, rotSpeed * Time.deltaTime);
+        Vector2 velocity = Vector2.zero;
+        // X方向の移動量を設定する
+        velocity.x = speed * Mathf.Cos(angle * Mathf.Deg2Rad);
+
+        // Y方向の移動量を設定する
+        velocity.y = speed * Mathf.Sin(angle * Mathf.Deg2Rad);
+
+        return velocity;
+    }
+
+    public static Quaternion TargetRotation2DZOnlyLerp(Transform myTrans,Vector2 velocity, float rotSpeed)
+    {
+
+        float zAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg - 90.0f;        // 弾の向きを設定する
+
+        return Quaternion.Lerp(myTrans.rotation, Quaternion.Euler(0, 0, zAngle), rotSpeed * Time.deltaTime);
     }
 
     //public static Quaternion TargetRotation2DOnlyLerpZ
@@ -293,14 +294,6 @@ public static class MyLib
     #endregion
 
     #region 移動
-
-    public static Vector3 KeepVecY(Vector3 vec, float val)
-    {
-        var Vec= vec;
-        Vec.y = val;
-        return vec = Vec;
-
-    }
 
     //public static Vector3 TargetMoveNormalized(Vector3 target, Vector3 pos)
     //{
@@ -388,8 +381,8 @@ public static class MyLib
         float distance = 1000;   // 飛ばす&表示するRayの長さ
         float duration = 50; // 表示期間（秒）
 
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (DebugDraw)
             Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, duration, false);
@@ -636,7 +629,7 @@ public static class MyLib
     /*            
     StartCoroutine(MyLib.DelayCoroutine(1.5f, () =>
     {
-        GameObject.FindWithTag("TurnMgr").GetComponent<TurnMgr>().ChangeEnemyTurn(true);
+        GameObject.FindGameObjectWithTag("TurnMgr").GetComponent<TurnMgr>().ChangeEnemyTurn(true);
         isTurnChange = false;
     }));
      */
@@ -789,15 +782,6 @@ public static class MyLib
     public static AudioSource MyPlayOneSound(string name, float volume, GameObject obj)
     {
         var audioSource = obj.GetComponent<AudioSource>();
-        var sound = (AudioClip)Resources.Load(name);
-        audioSource.PlayOneShot(sound, volume);
-
-        return audioSource;
-    }
-
-    public static AudioSource MyPlayOneSound(string name, float volume, AudioSource au)
-    {
-        var audioSource = au;
         var sound = (AudioClip)Resources.Load(name);
         audioSource.PlayOneShot(sound, volume);
 

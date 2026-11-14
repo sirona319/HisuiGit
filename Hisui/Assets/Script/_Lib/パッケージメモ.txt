@@ -3,8 +3,5 @@ FadeCamera2.unitypackage
 DOTween (HOTween v2)
 UIEffect
 
-2D Aseprite Importer
-
 ・UIサイト
 https://icon-rainbow.com/?s=%E6%9C%AC
-

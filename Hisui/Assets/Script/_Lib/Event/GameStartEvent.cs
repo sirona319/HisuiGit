@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿//using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.UI;
 
 public class GameStartEvent : MonoBehaviour, IHaveText
 {
@@ -16,9 +19,9 @@ public class GameStartEvent : MonoBehaviour, IHaveText
     void Start()
     {
 
-        GameObject.FindWithTag("SoundM").GetComponent<AudioSource>().Stop();
+        GameObject.FindGameObjectWithTag("SoundM").GetComponent<AudioSource>().Stop();
 
-        //var isEvent = GameObject.FindWithTag(TagName.GameController).GetComponent<GameMgr>().isStartEventEnable;
+        //var isEvent = GameObject.FindGameObjectWithTag(TagName.GameController).GetComponent<GameMgr>().isStartEventEnable;
 
         //if (!isEvent)
         //{
@@ -43,13 +46,13 @@ public class GameStartEvent : MonoBehaviour, IHaveText
 
     //public void SoundMgrActive()
     //{
-    //    GameObject.FindWithTag("SoundM").GetComponent<AudioSource>().Play();
+    //    GameObject.FindGameObjectWithTag("SoundM").GetComponent<AudioSource>().Play();
     //}
 
     public void EndEvent()
     {
-        GameObject.FindWithTag("SoundM").GetComponent<AudioSource>().Play();
-        //GameObject.FindWithTag(TagName.GameController).GetComponent<GameMgr>().isStartEventEnable = false;
+        GameObject.FindGameObjectWithTag("SoundM").GetComponent<AudioSource>().Play();
+        //GameObject.FindGameObjectWithTag(TagName.GameController).GetComponent<GameMgr>().isStartEventEnable = false;
     }
 
     //public void SignalDisabelImage()

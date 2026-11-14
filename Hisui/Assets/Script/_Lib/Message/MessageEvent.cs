@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Timeline;
+//using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 public class MessageEvent : MonoBehaviour
@@ -14,12 +14,31 @@ public class MessageEvent : MonoBehaviour
     private void Start()
     {
         var me = GameObject.FindGameObjectWithTag("Message");
-        if (me == null) return;
-        
-        textBackImage = me.GetComponent<Image>();
-        readIcon = me.transform.Find("ReadImage").GetComponent<Image>();
-        messageUI = me.transform.Find("TalkText").GetComponent<TextMeshProUGUI>();
-        
+        if (me != null)
+        {
+            textBackImage = me.GetComponent<Image>();
+            readIcon = me.transform.Find("ReadImage").GetComponent<Image>();
+            messageUI = me.transform.Find("TalkText").GetComponent<TextMeshProUGUI>();
+        }
+
+        //var test = GetComponent<SignalReceiver>();
+        ///////////////デバッグ
+        //messageUI.enabled = true;
+        //readIcon.enabled = true;
+        //textBackImage.enabled = true;
+
+        //var p = GameObject.FindGameObjectWithTag(TagName.Player);
+        //if (p != null)
+        //    p.GetComponent<PlayerMove>().MoveStop();
+
+
+        //const float targetAlpha = 0.7f;
+        //var tColor = textBackImage.color;
+        //tColor.a = targetAlpha;
+
+        ////endValue　フェード目標カラー
+        //textBackImage.DOColor(tColor, fadeSpeed).SetEase(Ease.Linear);
+        ///////////////
 
     }
 
@@ -34,7 +53,7 @@ public class MessageEvent : MonoBehaviour
 
 
 
-        var mColor= messageUI.color;
+        var mColor = messageUI.color;
         mColor.a = 1f;
         messageUI.DOColor(mColor, fadeSpeed).SetEase(Ease.Linear);
 
@@ -67,7 +86,7 @@ public class MessageEvent : MonoBehaviour
 
 
         Debug.Log("メッセージ終了" + GetType().FullName);
-         
+
 
     }
 

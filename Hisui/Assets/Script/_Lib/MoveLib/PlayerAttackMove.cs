@@ -12,7 +12,6 @@ public class PlayerAttackMove : BaseMove
     public bool isAttackEnd = false;
     float speed = 4f;
 
-    //TargetSet targetSet;
     //public void TargetSet(Transform t)
     //{
     //    targetTrans = t;
@@ -25,7 +24,7 @@ public class PlayerAttackMove : BaseMove
     {
         base.Initialize();
 
-       // targetSet= GetComponent<TargetSet>();
+        // targetSet= GetComponent<TargetSet>();
         moveVecter = new Vector3[2];
 
     }
@@ -44,7 +43,7 @@ public class PlayerAttackMove : BaseMove
         transform.position += transform.up * speed * Time.deltaTime;
 
         
-        transform.rotation = MyLib.GetAngleRotationFunc2D(moveVecter[targetNo], transform, 5);
+        transform.rotation = MyLib.GetAngleRotationFuncs(moveVecter[targetNo], transform, 5);
 
         float len = Vector3.Distance(transform.position, moveVecter[targetNo]);
         if (len < ENDMOVELEN)

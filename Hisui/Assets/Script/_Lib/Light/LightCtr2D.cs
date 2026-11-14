@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 public class LightCtr2D : MonoBehaviour
 {
-    [SerializeField] Light[] lights2D;
+    [SerializeField] Light2D[] lights2D;
 
     //[SerializeField] float targetValMax = 2f;
     [SerializeField] float changeSpeed = 0f;

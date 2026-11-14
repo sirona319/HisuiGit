@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class GameMgr : MonoBehaviour
 {
-    //[SerializeField] GameObject vic;
+    [SerializeField] TMP_Text vic;
 
-    [SerializeField] GameObject lose;
+    [SerializeField] TMP_Text lose;
 
     [SerializeField] float fadeStartTime = 2f;
     [SerializeField] float fadeEndTime = 3f;
@@ -25,36 +26,25 @@ public class GameMgr : MonoBehaviour
     {
         if (isCallEnd) return;
 
-        //var se = GameObject.FindWithTag("SoundM").GetComponent<SoundMgr>().se.gameObject;
-        //var volume = .3f;
+        var se = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject;
+        var volume = .3f;
         if (isVic)
         {
-            //vic.gameObject.SetActive(true);
-            //MyLib.MyPlayOneSound("SE/victory", volume, se);
+            vic.gameObject.SetActive(true);
+            MyLib.MyPlayOneSound("SE/victory", volume, se);
         }
         else
         {
             lose.gameObject.SetActive(true);
-            //MyLib.MyPlayOneSound("SE/Gameover", volume, se); 
+            MyLib.MyPlayOneSound("SE/Gameover", volume, se); 
 
         }
-
-
-        isCallEnd = true;
-    }
-
-    public void SceneChange(string sceneName)
-    {
-        if (isCallEnd) return;
-
-
-        const float time = 1.5f;
-        var fade = GameObject.FindWithTag("Fade").GetComponent<FadeScene>();
-        fade.fadeWaitTime = time;
-        fade.SceneFade(sceneName, fadeStartTime, fadeEndTime);
+        //const float time = 1.5f;
+        var fade = GameObject.FindGameObjectWithTag("Fade").GetComponent<FadeScene>();
+       // fade.fadeWaitTime = time;
+        fade.SceneFade(SceneName.ToString(), fadeStartTime, fadeEndTime);
 
         isCallEnd = true;
-
     }
 
 }
@@ -376,11 +366,11 @@ public class GameMgr : MonoBehaviour
 ////    {
 ////        //StartCoroutine(MyLib.DelayCoroutine(0.3f, () =>
 ////        //{
-////        //GameObject.FindWithTag(TagName.Player).transform.position = target;
+////        //GameObject.FindGameObjectWithTag(TagName.Player).transform.position = target;
 ////        var fade = GameObject.Find("FadeCanvas").GetComponent<Fade>();
 ////        fade.FadeIn(1f, () =>
 ////        {
-////            GameObject.FindWithTag(TagName.Player).transform.position = target;
+////            GameObject.FindGameObjectWithTag(TagName.Player).transform.position = target;
 
 ////            fade.FadeOut(5f);
 ////        });

@@ -2,14 +2,6 @@
 
 public class SinVectorMove : BaseMove
 {
-    //enum SinType
-    //{
-    //    Add,
-    //    Sub,
-    //}
-    //[SerializeField] SinType sinType;
-    //float addSinTime;
-
 
     Vector3 addSinVec = Vector3.zero;
     Vector3 floatVector;
@@ -22,9 +14,6 @@ public class SinVectorMove : BaseMove
 
     [SerializeField]float speed=1.8f;
 
-
-
-    //TargetSet targetSet;
     float moveVal = 0.02f;
 
     [SerializeField] Transform targetTrans;
@@ -43,18 +32,8 @@ public class SinVectorMove : BaseMove
     public override void Initialize()
     {
 
-        //if (sinType == SinType.Add)
-        //    addSinTime = Time.deltaTime;
-        //else if (sinType == SinType.Sub)
-        //    addSinTime = -Time.deltaTime;
-        //addSinTime = Time.deltaTime;
-
-        //targetSet=GetComponent<TargetSet>();
-
-
 
         transform.DetachChildren();
-        //var movePos = TargetSet.I.GetTargetTrans(targetTrans, gameObject).position;
         var dir = targetTrans.position - transform.position;
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);

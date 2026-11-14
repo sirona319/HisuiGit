@@ -7,11 +7,11 @@ public class TwoCarveMagazine : BaseMagazine
     const float ONEWEYLENGTH = 7f;
     //const float TWOWEYLENGTH = 30f;
 
-    CreateBullet createBullet;
+    //CreateBullet createBullet;
     //逆回り作る
     public override void Initialize()
     {
-        createBullet = GetComponent<CreateBullet>();
+      //  createBullet = GetComponent<CreateBullet>();
     }
 
     public override void MagazineEnter()

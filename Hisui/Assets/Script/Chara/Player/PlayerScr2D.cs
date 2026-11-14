@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
-public class PlayerScr2D : CharaBase, IDamage
+public class PlayerScr2D : CharaBase
 {
 
     #region　入力

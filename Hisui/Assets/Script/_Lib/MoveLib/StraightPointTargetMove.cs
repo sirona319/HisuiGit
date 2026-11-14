@@ -17,17 +17,13 @@ public class StraightPointTargetMove : BaseMove
 
     //protected ReactiveProperty<bool> IsMoveEnd = new ReactiveProperty<bool>(false);
 
+
     Transform player=null;
     bool isStart = false;
 
 
     public override void Initialize()
     {
-        //if (gameObject.GetComponent<TargetSet>()!=null)
-        // {
-        //     targetSet = GetComponent<TargetSet>();
-        //moveTransLists = TargetSet.I.SetPointArray(moveTransLists, gameObject);
-        // }
         transform.DetachChildren();
 
         direction = (moveTransLists[targetNo].position - transform.position).normalized;
@@ -77,7 +73,7 @@ public class StraightPointTargetMove : BaseMove
 
         if (player == null)
         {
-            player = GameObject.FindWithTag("Player")?.transform;
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
             Debug.Log("プレイヤーが存在しない");
             return isStart;
         }

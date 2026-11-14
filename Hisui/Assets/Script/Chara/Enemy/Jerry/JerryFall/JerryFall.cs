@@ -2,7 +2,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class JerryFall : EnemyBase,IDamage
+public class JerryFall : EnemyBase
 {
     //public float SpawnTime = 0f;
 
@@ -43,7 +43,7 @@ public class JerryFall : EnemyBase,IDamage
 
 
 
-            GetComponent<SoundCreateDead>().SoundPlay();
+            //GetComponent<SoundCreateDead>().SoundPlay();
             //GetComponent<TimeDestroy>().enabled = true;
             //GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
             //Destroy(gameObject);
