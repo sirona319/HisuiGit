@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Awake前にManagerSceneを自動でロードするクラス
+/// Awake前にManagerSceneを自動でロードするクラス  SceneListの一番に設定しない　バグる
 /// </summary>
 public class ManagerSceneAutoLoader
 {
@@ -17,13 +17,8 @@ public class ManagerSceneAutoLoader
         if (!SceneManager.GetSceneByName(managerSceneName).IsValid())
         {
             SceneManager.LoadScene(managerSceneName, LoadSceneMode.Additive);
-            //SceneManager.LoadScene("TestAdd", LoadSceneMode.Additive);
         }
 
-        //if (!SceneManager.GetSceneByName(managerSceneName).IsValid())
-        //{
-        //    SceneManager.LoadScene(managerSceneName, LoadSceneMode.Additive);
-        //}
     }
 
 }

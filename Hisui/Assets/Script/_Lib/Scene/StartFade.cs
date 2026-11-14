@@ -6,7 +6,7 @@ public class StartFade : MonoBehaviour
     //[SerializeField] Fade fade;
     void Start()
     {
-        var fade = GameObject.FindWithTag("Fade");
+        var fade = GameObject.FindGameObjectWithTag("Fade");
         if (fade == null) return;
 
 

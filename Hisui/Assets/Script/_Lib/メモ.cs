@@ -5,41 +5,21 @@ public class メモ : MonoBehaviour
 
     [TextArea(3, 20)]
     public string memo;
-
+    
     public LayerMask mask;
     /*
-     * 
-     * イージング　フェード
-     * https://game-ui.net/?p=835
-     * 
-     *    GameObject.FindWithTag("MoveErea").ToList().ForEach(x => { x.SetActive(false); });
-     * 
-     * 
-     * 
-     ・FixedUpdate() で Rigidbody2D を動かす理由
-     *  原因はかなり高確率で Rigidbody2D を Update() で動かしていること です。
-        WebGL だとフレームレートや物理更新のズレが出やすく、
-        MovePosition を Update() で呼ぶと移動が速く見えたり、不安定になりやすい です。→FixedUpdate() で呼ぶようにしてください。
-     * 
-     * 
-     * 
-     * 
-    //Singleton<TargetSet>
-    //private void Awake()//エラー
-    //{
-    //    DontDestroyOnLoad(this.gameObject);
+    パラメーターなど説明
+    https://x.gd/vUvxo
+    ステータスは状態
+    パラメータは数値
 
-    //}
+    soundMgr SEは別にする？　オブジェクトごと
 
 
 
-    ・入力
-    if (Keyboard.current.fKey.isPressed || Mouse.current.leftButton.isPressed)
+        GameObject.FindGameObjectsWithTag("MoveErea").ToList().ForEach(x => x.SetActive(false));
 
-
- 
-
-    MyLib.MyPlayOneSound("SE/Gameover", 0.3f, GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
+                MyLib.MyPlayOneSound("SE/Gameover", 0.3f, GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
 
     □◇□◇□◇□◇□
     ◇　◇　◇　◇　◇　
@@ -50,11 +30,17 @@ public class メモ : MonoBehaviour
     □◇□◇□◇□◇□
 
 
+
+    ・UIエフェクト  
+    https://mob-sakai.github.io/UIEffect/
+    https://github.com/mob-sakai/UIEffect
+
+    https://github.com/mob-sakai/UIEffect.git
+
     ・パッケージ
-    https://x.gd/97tTw
     FadeCamera2.unitypackage
-    Mathematics
-    UniversalRenderPipeline
+        https://x.gd/97tTw
+
     DOTween (HOTween v2)
 
     ・UIサイト
@@ -68,12 +54,19 @@ public class メモ : MonoBehaviour
     https://ymnk-design.booth.pm/items/7748814　カラメルポップ
     https://booth.pm/ja/items/7801932　ナイトシェーダー
 
-    https://cgbox.jp/2023/07/27/unity-font/　日本語フォント
+    https://cgbox.jp/2023/07/27/unity-font/
 
 
 
-    //////////////テキストクリックイベント
-        ////EventSystemの存在: ヒエラルキー上に「EventSystem」オブジェクトが必要
+
+
+
+
+
+
+
+
+            ////EventSystemの存在: ヒエラルキー上に「EventSystem」オブジェクトが必要
         ////Raycast対象の設定: スクリプトをアタッチしているオブジェクトにGraphic（ImageやTextなど）があり、
         ////Raycast Targetがオンになっている必要があります。
         //var clickEvent = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
@@ -82,15 +75,7 @@ public class メモ : MonoBehaviour
         //trigger.triggers.Add(clickEvent);
 
 
-    public class Continue : MonoBehaviour, IPointerClickHandler
-    {
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            Debug.Log("test");
-        }
-    }
-    ////////////////////////////
-    ///
+
 
     回転させる　
     public float targetZAngle = 90f; // 目標のZ角度
@@ -110,6 +95,8 @@ public class メモ : MonoBehaviour
     }
 
 
+
+
         const float ROLLSPEED = 7f;
         var rot = Quaternion.AngleAxis(ROLLSPEED, Vector3.right);
 
@@ -121,10 +108,6 @@ public class メモ : MonoBehaviour
 
 
 
-    /*RWar
-         パラメーターなど説明
-    https://x.gd/vUvxo
-     
-     */
+
 
 }

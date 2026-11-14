@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
-using UnityEngine.UIElements;
 
 public class TimelineControl : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class TimelineControl : MonoBehaviour
     //public void TimelineEnd()
     //{
     //   // isEnd = true;
-    //    //var p = GameObject.FindWithTag(TagName.Player).GetComponent<PlayerScr2D>();
+    //    //var p = GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<PlayerScr2D>();
     //    //p.m_isLimitMove = false;
     //    //p.moveSpeed = p.MAXMOVESPEED;
     //}
@@ -53,7 +52,7 @@ public class TimelineControl : MonoBehaviour
             playableDirector.Play();
             isPlay = true;
 
-            //GameObject.FindWithTag(TagName.Player).GetComponent<PlayerMove>().MoveStop();
+            //GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<PlayerMove>().MoveStop();
             //p.isLimitMove = true;
             //p.moveSpeed = 0f;
             //Debug.Log("メッセージ終了TimelineControl" + GetType().FullName);
@@ -66,7 +65,6 @@ public class TimelineControl : MonoBehaviour
 
 
         if (!isPlay) return;
-
 
 #if ENABLE_INPUT_SYSTEM
         // New input system backends are enabled.
@@ -81,30 +79,6 @@ public class TimelineControl : MonoBehaviour
 
         }
 #endif
-
-#if ENABLE_LEGACY_INPUT_MANAGER
-        const int LEFTMOUSE = 0;
-        if (Input.GetMouseButtonDown(LEFTMOUSE))
-            playableDirector.Resume();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //Resume　再開
-            playableDirector.Resume();
-
-            //gameObject.GetComponent<PlayableDirector>().playableAsset.CreatePlayable();
-            //    gameObject.GetComponent<PlayableDirector>().paused;
-            // playable.GetGraph().GetRootPlayable(0).SetSpeed(1);
-            //messageWait = false;
-
-            //Debug.Log("SPACE成功");
-
-
-            //playableDirector.playableGraph.GetRootPlayable(0).SetSpeed(1.0f);
-            // Debug.Log("SPACE　再開 メッセージ送り");
-        }
-#endif
-
         //playableDirector.state
 
         //if (Input.GetKeyDown(KeyCode.Q))

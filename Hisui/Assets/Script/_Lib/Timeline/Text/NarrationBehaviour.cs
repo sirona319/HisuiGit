@@ -5,20 +5,6 @@ using Image = UnityEngine.UI.Image;
 
 public class NarrationBehaviour : PlayableBehaviour
 {
-    //
-    //public GameObject narrationGameObject { get; set; }
-
-    //[SerializeField]
-    //public bool boolValue = false;
-
-    //bool messageWait = false;
-
-    //public Image textBackImage { get; set; }
-
-    //bool pauseScheduled = true;
-
-    //int testVal = 0;
-
     PlayableDirector director;
 
 
@@ -30,7 +16,7 @@ public class NarrationBehaviour : PlayableBehaviour
     public string inputText { get; set; }
     public float textSpd { get; set; }
     public bool textEndIcon { get; set; }
-    public BlinkImageMod readImage { get; set; }=null;
+    public BlinkImageMod readImage { get; set; } = null;
     AudioSource textSe;
 
     //使えないStart関数
@@ -71,7 +57,7 @@ public class NarrationBehaviour : PlayableBehaviour
         //タイムラインからメッセージ長さを取得
         var progress = (float)(playable.GetTime() / playable.GetDuration());
         var current = Mathf.Lerp(0f, mTextUI.text.Length, progress);
-        var count = Mathf.CeilToInt(current* textSpd);
+        var count = Mathf.CeilToInt(current * textSpd);
 
         mTextUI.maxVisibleCharacters = count;
         //base.PrepareFrame(playable, info);
@@ -105,7 +91,7 @@ public class NarrationBehaviour : PlayableBehaviour
     public override void OnBehaviourPause(Playable playable, FrameData info)
     {
         //テキストの最後に止めない
-        if(!isTextPause)
+        if (!isTextPause)
         {
             if (readImage != null)
                 readImage.enabled = false;
@@ -140,7 +126,7 @@ public class NarrationBehaviour : PlayableBehaviour
         //}
 
         //base.OnBehaviourPause(playable, info);
-        
+
         //Debug.Log($"OnBehaviourPause"+ NumPause++);
     }
 

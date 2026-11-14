@@ -1,39 +1,43 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseMove : MonoBehaviour
 {
-    //[SerializeField]public List<Vector3> childsposs;
-    public enum MoveType
-    {
-        //RandomMove,
-        //PointMove,
-        //CircleMove,
 
-        PointFloatMove,
-        PointCircleMove,
+    //public Rigidbody rb3;
 
-        FloatVectorMoveUp,
-        FloatVectorMoveDown,
+    //public Rigidbody2D rb2;
+    //public bool isMove = true;
 
-        FloatVectorMoveUpMini,
-        FloatVectorMoveDownMini,
+    //public Vector3 GetRb()
+    //{
+    //    if (GetComponent<Rigidbody2D>() != null)
+    //        return rb2;
 
-        CarveMoveR,
-        CarveMoveL,
+    //    if (GetComponent<Rigidbody>() != null)
+    //        return rb3;
 
-        DirectionMove
-        //randomApoint,
+    //    return null;
+    //}
 
-    }
+    //public void SetPos(Vector3 pos)
+    //{
+    //    if (GetComponent<Rigidbody2D>() != null)
+    //    {
+    //        rb2.position = pos;
+    //        return;
+    //    }
 
-    public enum MoveClassName
-    {
-        CarveMove,
-        FloatVectorMove,
-    }
+    //    if (GetComponent<Rigidbody>() != null)
+    //    {
+    //        rb3.position = pos;
+
+    //        return;
+    //    }
+
+    //    transform.position=pos;
+    //}
 
     public virtual void Initialize()
     {
@@ -52,4 +56,11 @@ public abstract class BaseMove : MonoBehaviour
 
 
     public virtual void MoveUpdate() { }
+
+
+    //public IEnumerator ExCoroutine(float seconds, Action action)
+    //{
+    //    yield return new WaitForSeconds(seconds);
+    //    action?.Invoke();
+    //}
 }

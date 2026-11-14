@@ -1,22 +1,22 @@
-﻿using UnityEngine;
-using UnityEngine.Playables;
+﻿//using UnityEngine;
+//using UnityEngine.Playables;
 
-[System.Serializable]
-public class TempAsset : PlayableAsset
-{
+//[System.Serializable]
+//public class TempAsset : PlayableAsset
+//{
 
-    public TempBehaviour temp = new TempBehaviour();
-
-
-    public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
-    {
-        var playable = ScriptPlayable<TempBehaviour>.Create(graph, temp);
+//    public TempBehaviour temp = new();
 
 
+//    public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
+//    {
+//        var playable = ScriptPlayable<TempBehaviour>.Create(graph, temp);
 
-        return playable;
-
-    }
 
 
-}
+//        return playable;
+
+//    }
+
+
+//}

@@ -20,7 +20,7 @@ public class DOChangeHpUI : MonoBehaviour
     }
 
 
-    public void DamageView(int val)
+    public void DamegeView(int val)
     {
         //赤
         textUI.color = new Color(1, 0, 0, 1);
