@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SoundManager : Singleton<SoundManager>
+public class SoundMgr : Singleton<SoundMgr>
 {
     //public enum BGMType
     //{

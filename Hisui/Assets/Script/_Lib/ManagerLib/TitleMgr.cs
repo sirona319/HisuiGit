@@ -14,7 +14,7 @@ public class TitleMgr : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            var seAudio = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject;
+            var seAudio = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundMgr>().se.gameObject;
             MyLib.MyPlayOneSound("Sound/SE/wave/決定ボタンを押す12", 1f, seAudio);
 
             //var gMgr = GameObject.FindGameObjectWithTag(TagName.GameController).GetComponent<GameMgr>();

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BgmChange : MonoBehaviour
 {
@@ -8,7 +8,7 @@ public class BgmChange : MonoBehaviour
     void Start()
     {
         if (sceneBgm == null) return;
-        var sm = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>();
+        var sm = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundMgr>();
         sm.BgmChange(sceneBgm);
     }
 
