@@ -14,6 +14,7 @@ public class EnNormalMagazine : BaseMagazine
 
     void Start()
     {
+        if(target==null)
         target = GameObject.FindWithTag("Player").transform;
     }    
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class _Debug : MonoBehaviour
 {
@@ -6,6 +7,11 @@ public class _Debug : MonoBehaviour
     [SerializeField]bool StartEventSkip = false;
 
     [SerializeField] GameObject startWave;
+
+    [SerializeField] Canvas canvas;
+
+
+    [SerializeField] PlayerScr2D player;
     //bool isStartEventSkip = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,8 +24,10 @@ public class _Debug : MonoBehaviour
     {
         if(StartEventSkip)
         {
-
-            GameObject.Find("StartEvent").SetActive(false);
+            player.gameObject.SetActive(true);
+            player.enabled = true;
+            canvas.gameObject.SetActive(false);
+            //GameObject.Find("StartEvent").SetActive(false);
             if (startWave != null)
             {
                 startWave.SetActive(true);

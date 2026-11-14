@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2538072577339672057}
   - component: {fileID: 6576360051589269779}
   - component: {fileID: 2706420233406493615}
-  - component: {fileID: 1139804860654032660}
   - component: {fileID: 7605300292372885321}
   - component: {fileID: 6701999661179997562}
   - component: {fileID: 4960692821905661538}
@@ -230,21 +229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
-  poolCtr: {fileID: 1139804860654032660}
+  poolCtr: {fileID: 0}
   intervalTimeMax: 0.42
   pNormal: {fileID: 652295628485586386, guid: 712991a8729a19d4aa169f79a661f768, type: 3}
---- !u!114 &1139804860654032660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6435380748630735509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0ff215dd8878543ae32889eec1c730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PoolControl
 --- !u!114 &7605300292372885321
 MonoBehaviour:
   m_ObjectHideFlags: 0

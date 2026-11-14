@@ -10,7 +10,7 @@ public class PointMoveJerry : BaseMove
 
 
     [SerializeField] List<Transform> moveTrans;
-
+    //List<Vector3> moveVector;
     [SerializeField] List<float> endLength;
     [SerializeField][Range(1f, 20f)] float speed = 1f;
 
@@ -29,6 +29,12 @@ public class PointMoveJerry : BaseMove
         //moveTrans = TargetSet.I.SetPointArray(moveTrans,gameObject);
 
         GetComponent<SoundMove>().SoundPlay();
+
+        //foreach (var mt in moveTrans)
+        //{
+        //    moveVector.Add(mt.position);
+        //    Destroy(mt.gameObject);
+        //}
 
     }
 

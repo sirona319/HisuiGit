@@ -2,12 +2,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class JerryFall : EnemyBase
+public class JerryFall : EnemyBase, IDamage
 {
     //public float SpawnTime = 0f;
 
 
     ParticleSystem dmgPt;
+
+    //public bool IsDamage { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

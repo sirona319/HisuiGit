@@ -98,8 +98,8 @@ public class EnemyBase : CharaBase
     //        throw new System.Exception(findName + "スクリプタルオブジェクト　moveType 空");
     //}
 
-    public virtual void Init()
-    {
+   // public virtual void Init()
+ //   {
         //dmgParticle = Resources.Load("prefab/Particle/DamagePt").GetComponent<ParticleSystem>();
         //dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
 
@@ -114,7 +114,7 @@ public class EnemyBase : CharaBase
 
         //if (move != null)
         //    move.Initialize();
-    }
+   // }
 
     //public virtual void PrefabInit()
     //{
