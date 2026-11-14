@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [DisallowMultipleComponent]
 public class WarpUi : MonoBehaviour
 {
-    [SerializeField] Image hpImage;
+    [SerializeField] Image wpImage;
 
     float wpUiMaxVal;
 
@@ -15,13 +15,13 @@ public class WarpUi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        wpUiMaxVal = hpImage.rectTransform.sizeDelta.x;
+        wpUiMaxVal = wpImage.rectTransform.sizeDelta.x;
 
     }
 
     public bool EnableWarpCheck()
     {
-        Vector2 size = hpImage.rectTransform.sizeDelta;
+        Vector2 size = wpImage.rectTransform.sizeDelta;
         if (size.x < wpUiUseVal)
             return false;
         else
@@ -32,9 +32,9 @@ public class WarpUi : MonoBehaviour
     {
         //if (isDead) return 0;
 
-        Vector2 size = hpImage.rectTransform.sizeDelta;
+        Vector2 size = wpImage.rectTransform.sizeDelta;
         size.x -= damage;
-        hpImage.rectTransform.sizeDelta = size;
+        wpImage.rectTransform.sizeDelta = size;
 
 
         //if (size.x <= 0)
@@ -47,23 +47,23 @@ public class WarpUi : MonoBehaviour
         //    //hpNum.text = size.x.ToString() + "%";
         //}
 
-        //Color hpColor = hpImage.color;
+        //Color hpColor = wpImage.color;
         //hpColor.g += damage / changeColorSpeed;
-        //hpImage.color = hpColor;
+        //wpImage.color = hpColor;
 
 
         return size.x;
     }
     public void Heal()
     {
-        Vector2 size = hpImage.rectTransform.sizeDelta;
+        Vector2 size = wpImage.rectTransform.sizeDelta;
         if (size.x >= wpUiMaxVal) return;
 
 
-        //Color hpHealColor = hpImage.color;
+        //Color hpHealColor = wpImage.color;
         //hpHealColor.g -= returnSpeed + size.x / wpUiMaxVal;
         //if (hpHealColor.g <= 0) hpHealColor.g = 0;
-        //hpImage.color = hpHealColor;
+        //wpImage.color = hpHealColor;
 
         size.x += returnSpeed;
 
@@ -71,26 +71,26 @@ public class WarpUi : MonoBehaviour
         {
             size.x = wpUiMaxVal;
 
-            //Color hpColor = hpImage.color;
+            //Color hpColor = wpImage.color;
             //hpColor.r = 0;
-            //hpImage.color = hpColor;
+            //wpImage.color = hpColor;
 
-            hpImage.rectTransform.sizeDelta = size;
+            wpImage.rectTransform.sizeDelta = size;
             return;
         }
 
-        hpImage.rectTransform.sizeDelta = size;
+        wpImage.rectTransform.sizeDelta = size;
     }
 
 
     public bool Sub()
     {
-        Vector2 size = hpImage.rectTransform.sizeDelta;
+        Vector2 size = wpImage.rectTransform.sizeDelta;
         if (size.x <= 0){ return false; }
 
         size.x -= minusSpeed;
 
-        hpImage.rectTransform.sizeDelta = size;
+        wpImage.rectTransform.sizeDelta = size;
 
         return true;
     }

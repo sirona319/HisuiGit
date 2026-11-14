@@ -9,6 +9,13 @@ public class メモ : MonoBehaviour
     public LayerMask mask;
     /*
      * 
+     * イージング　フェード
+     * https://game-ui.net/?p=835
+     * 
+     *    GameObject.FindWithTag("MoveErea").ToList().ForEach(x => { x.SetActive(false); });
+     * 
+     * 
+     * 
      ・FixedUpdate() で Rigidbody2D を動かす理由
      *  原因はかなり高確率で Rigidbody2D を Update() で動かしていること です。
         WebGL だとフレームレートや物理更新のズレが出やすく、
@@ -30,7 +37,7 @@ public class メモ : MonoBehaviour
     if (Keyboard.current.fKey.isPressed || Mouse.current.leftButton.isPressed)
 
 
-    GameObject.FindWithTag("MoveErea").ToList().ForEach(x => { x.SetActive(false); });
+ 
 
     MyLib.MyPlayOneSound("SE/Gameover", 0.3f, GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se.gameObject);
 

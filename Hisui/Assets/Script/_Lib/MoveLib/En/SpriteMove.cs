@@ -21,11 +21,13 @@ public class SpriteMove : MonoBehaviour
     {
         transform.DetachChildren();
 
-        //foreach(var mt in moveTrans)
-        //{
-        //    moveVector.Add(mt.position);
-        //    Destroy(mt.gameObject);
-        //}
+        foreach (var mt in moveTrans)
+        {
+            moveVector.Add(mt.position);
+            Destroy(mt.gameObject);
+        }
+
+
         //moveTrans = TargetSet.I.SetPointArray(moveTrans, gameObject);
     }
 
@@ -42,11 +44,11 @@ public class SpriteMove : MonoBehaviour
     {
         if (isEnd) return;
 
-        float len = Vector3.Distance(transform.position, moveTrans[targetNo].position);
+        float len = Vector3.Distance(transform.position, moveVector[targetNo]);
         if (len < endLength)
         {
             targetNo++;
-            if (targetNo > moveTrans.Count - 1)
+            if (targetNo > moveVector.Count - 1)
             {
                 isEnd = true;
 
@@ -62,7 +64,7 @@ public class SpriteMove : MonoBehaviour
         // var vel = (moveTrans[targetNo].position - transform.position);
         // Quaternion targetRot = Quaternion.LookRotation(vel)* Quaternion.Euler(0, -90, 0);
         //transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, rotSpeed * Time.deltaTime);
-        transform.rotation = MyLib.TargetRotationSprite3D(moveTrans[targetNo].position, transform, rotSpeed);
+        transform.rotation = MyLib.TargetRotationSprite3D(moveVector[targetNo], transform, rotSpeed);
 
     }
 

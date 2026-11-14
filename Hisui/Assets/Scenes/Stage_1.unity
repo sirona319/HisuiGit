@@ -17100,6 +17100,10 @@ PrefabInstance:
       propertyPath: hpImage
       value: 
       objectReference: {fileID: 1634618721}
+    - target: {fileID: 6576360051589269779, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
+      propertyPath: wpImage
+      value: 
+      objectReference: {fileID: 1634618721}
     - target: {fileID: 7605300292372885321, guid: 77554f159873458498f2b5d7482f06cb, type: 3}
       propertyPath: 'lifeImage.Array.data[0]'
       value: 
