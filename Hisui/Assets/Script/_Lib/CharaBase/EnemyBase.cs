@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using Unity.VisualScripting;
-
-
-public class EnemyBase : CharaBase
+﻿public class EnemyBase : CharaBase
 {
 
     public bool isAreaOut = false;
