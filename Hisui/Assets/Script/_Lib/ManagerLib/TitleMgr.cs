@@ -14,18 +14,18 @@ public class TitleMgr : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            var seAudio = GameObject.FindWithTag("SoundM").GetComponent<SoundMgr>().se.gameObject;
+            var seAudio = GameObject.FindGameObjectWithTag("SoundM").GetComponent<SoundManager>().se.gameObject;
             MyLib.MyPlayOneSound("Sound/SE/wave/決定ボタンを押す12", 1f, seAudio);
 
-            //var gMgr = GameObject.FindWithTag(TagName.GameController).GetComponent<GameMgr>();
+            //var gMgr = GameObject.FindGameObjectWithTag(TagName.GameController).GetComponent<GameMgr>();
 
             //gMgr.isChangePlayer = true;
-            //gMgr.playerHp = GameObject.FindWithTag(TagName.Player).GetComponent<PlayerHp>().hp;
+            //gMgr.playerHp = GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<PlayerHp>().hp;
 
 
             //シーン遷移　プレイヤー座標の設定　効果音　プレイヤーのみと分ける
             const float sceneChangeTime = 2f;
-            GameObject.FindWithTag("Fade").GetComponent<FadeScene>().SceneFade
+            GameObject.FindGameObjectWithTag("Fade").GetComponent<FadeScene>().SceneFade
                 (SceneName.ToString(), 0f, sceneChangeTime);
         }
     }
