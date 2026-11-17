@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SceneChangeClick : MonoBehaviour, IPointerClickHandler//,IPointerEnterHandler, IPointerExitHandler
 {
     //public bool isEnable = false;
-    [SerializeField]EnumSceneName.SceneNameType sceneName;
+    [SerializeField]EnumSceneNameSample.SceneNameType sceneName;
 
     //[SerializeField]Image image;
 

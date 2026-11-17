@@ -7,7 +7,14 @@ public class メモ : MonoBehaviour
     public string memo;
     
     public LayerMask mask;
-    /*
+
+    //https://www.youtube.com/watch?v=-PgHkiVbnL4
+    //インスペクター　数式表現
+    /*https://www.google.com/search?q=%E3%81%86%E3%81%AB%EF%BD%94%EF%BD%99+%E6%95%B0%E5%BC%8F%E8%A1%A8%E7%8F%BE%E3%80%80%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC&sca_esv=e084c0a5ee5ec119&hl=ja&sxsrf=AKL5yDgPeehcv4iqCYtFecJ0zKbv95x6iA%3A1794836608550&source=hp&ei=gAj7asroHrm4rfcP7uCwyAU&iflsig=AHSINFcAAAAAavsWkNtB9_uucV1hxmO1BeBsP_fmjN9q&uact=5&oq=%E3%81%86%E3%81%AB%EF%BD%94%EF%BD%99+%E6%95%B0%E5%BC%8F%E8%A1%A8%E7%8F%BE%E3%80%80%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%9A%E3%82%AF%E3%82%BF%E3%83%BC&gs_lp=Egdnd3Mtd2l6IjHjgYbjgavvvZTvvZkg5pWw5byP6KGo54--44CA44Kk44Oz44K544Oa44Kv44K_44O8MgUQABjvBTIFEAAY7wUyBRAAGO8FMggQABiJBRiiBDIFEAAY7wVI_mVQkQhYuWJwAngAkAEAmAGCAaAByguqAQM5LjawAQC4AQPIAQD4AQL4AQGYAhCgAqILqAIKwgIHECMY6gIYJ8ICDRAjGPAFGMkCGOoCGCfCAg0QIxjJAhjwBRjqAhgnwgIHECMYsAIYJ8ICCRAhGAoYoAEYKsICBxAhGAoYoAGYAwfiAwQYACBd4gMEGAAgXuIDBBgAIF_iAwQYACBg4gMEGAAgYeIDBBgAIGLiAwUSATEgQPEFj8xuby1DmFWSBwM4LjigB_kwsgcDNi44uAeYC8IHBjMuMTIuMcgHGIAIAQ&sclient=gws-wiz
+     * 
+     * 
+     * 
+     * 
     パラメーターなど説明
     https://x.gd/vUvxo
     ステータスは状態

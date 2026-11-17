@@ -295,6 +295,14 @@ public static class MyLib
 
     #region 移動
 
+    public static Vector3 KeepVecY(Vector3 vec, float val)
+    {
+        var Vec = vec;
+        Vec.y = val;
+        return vec = Vec;
+
+    }
+
     //public static Vector3 TargetMoveNormalized(Vector3 target, Vector3 pos)
     //{
     //    Vector3 direction = target - pos;

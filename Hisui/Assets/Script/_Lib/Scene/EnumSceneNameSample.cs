@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnumSceneName : MonoBehaviour
+public class EnumSceneNameSample : MonoBehaviour
 {
     public enum SceneNameType
     {
