@@ -13,7 +13,6 @@ public class PlayerHP : BaseHP
 
     void Start()
     {
-        lifeImage.ToList().ForEach(x => x.enabled=false);
         for (int i = 0; i < lifeImage.Length; i++)
         {
             lifeImage[i].enabled = i < HP;//iがHPより小さいときはenabledをtrueにしている AI
@@ -33,7 +32,7 @@ public class PlayerHP : BaseHP
         MyLib.MyPlaySound("Sound/SE/damaged1", volume, gameObject);
         playerScr.dmgTime = playerScr.dmgTimeMax;
 
-        for (int i = HP - 1; damage > 0; damage--, i--)
+        for (int i = HP ; damage > 0; damage--, i--)
         {
             if (i < 0) break;
 
@@ -54,7 +53,7 @@ public class PlayerHP : BaseHP
 
     void DamageUpdate(int damage)
     {
-        for (int i = HP - 1; damage > 0; damage--,i--)
+        for (int i = HP ; damage > 0; damage--,i--)
         {
             if (i < 0) break;
 

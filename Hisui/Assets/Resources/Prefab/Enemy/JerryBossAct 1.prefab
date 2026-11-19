@@ -15,12 +15,12 @@ GameObject:
   - component: {fileID: 5444254731907683398}
   - component: {fileID: 6197113112929040193}
   - component: {fileID: 4981870683940028155}
-  - component: {fileID: 2590464329275109461}
   - component: {fileID: 8789848693336155058}
   - component: {fileID: 6421752456805427067}
   - component: {fileID: 4664346129228598145}
   - component: {fileID: 5926659721767097950}
   - component: {fileID: 2601009612694314231}
+  - component: {fileID: 3673270879787756207}
   m_Layer: 7
   m_Name: JerryBossAct 1
   m_TagString: Enemy
@@ -36,7 +36,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667880770115362332}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.56, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -419,22 +419,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2590464329275109461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667880770115362332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37da14d89b7a01440bb699be4aee58e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::JerryFall
-  isDead: 0
-  isAreaOut: 0
-  Hp: 20
-  SpawnTime: 0
 --- !u!114 &8789848693336155058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +499,21 @@ MonoBehaviour:
   angleChangeVal: 10
   shotTiming: 0.1
   bullet: {fileID: 8764880274935360633, guid: bf34238dfbc35fd4abb92d9b5fa0a5e3, type: 3}
+--- !u!114 &3673270879787756207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667880770115362332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addf5b1371caa53468a88cbc1bbc2437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JerryBoss
+  isDead: 0
+  isAreaOut: 0
+  SpawnTime: 0
 --- !u!1 &707114463241602318
 GameObject:
   m_ObjectHideFlags: 0

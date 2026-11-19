@@ -3,7 +3,7 @@
 
     public bool isAreaOut = false;
 
-    public int Hp = 0;
+    //public int Hp = 0;
 
     public float SpawnTime = 0f;
 

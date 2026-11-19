@@ -36,7 +36,7 @@ public class BaseHP : MonoBehaviour
         if (IsDead)
         {
             OnDead?.Invoke();
-            Dead();
+            //Dead();
         }
     }
 
@@ -51,8 +51,8 @@ public class BaseHP : MonoBehaviour
     }
 
     // 死亡時の処理
-    protected virtual void Dead()
-    {
-        Destroy(gameObject);
-    }
+    //protected virtual void Dead()
+    //{
+    //    Destroy(gameObject);
+    //}
 }

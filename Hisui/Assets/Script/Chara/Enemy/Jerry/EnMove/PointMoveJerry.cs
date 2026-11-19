@@ -6,29 +6,26 @@ using UnityEngine;
 
 public class PointMoveJerry : BaseMove
 {
-
-    [SerializeField] bool isTrailLoop = false;
+    Rigidbody2D rb2;
     const float rotSpeed = 5f;
 
 
     [SerializeField] List<Transform> moveTrans;
-    //List<Vector3> moveVector;
     [SerializeField] List<float> endLength;
     [SerializeField][Range(1f, 20f)] float speed = 1f;
 
     [SerializeField] bool isLoop = false;
-    //public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe　エネミークラスなど？
 
     int targetNo = 0;
-    Rigidbody2D rb2;
 
-    public BaseMove changeMove;
-    public BaseMagazine[] changeMags;//
+    [SerializeField] BaseMove changeMove;
+    [SerializeField] BaseMagazine[] changeMags;//
 
-    public MonoBehaviour[] changeComps;//
+    [SerializeField] MonoBehaviour[] changeComps;//
 
 
     //public event Action<BaseMove> OnMoveChange;
+    //public ReactiveProperty<bool> isPointMoveEnd = new ReactiveProperty<bool>(false);//CreateMoveでSubscribe　エネミークラスなど？
 
 
     void Start()
@@ -76,24 +73,18 @@ public class PointMoveJerry : BaseMove
 
                 changeComps.ToList().ForEach(x => x.enabled = !x.enabled);
                 changeMags.ToList().ForEach(x => x.enabled=!x.enabled);
-                //GetComponent<BaseMagazine>().enabled = true;
+
+                GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
                 this.enabled = false;
 
-                //    public event Action<BaseMove> OnMoveChange;  OnMoveChange?.Invoke(damage);
             }
-
-            if (!isTrailLoop)
-                GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
 
             if (isLoop)
                 targetNo = 0;
             else
                 targetNo--;
         }
-
-        
-
-
+ 
 
     }
 
