@@ -1,5 +1,7 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PointMoveJerry : BaseMove
@@ -19,6 +21,14 @@ public class PointMoveJerry : BaseMove
 
     int targetNo = 0;
     Rigidbody2D rb2;
+
+    public BaseMove changeMove;
+    public BaseMagazine[] changeMags;//
+
+    public MonoBehaviour[] changeComps;//
+
+
+    //public event Action<BaseMove> OnMoveChange;
 
 
     void Start()
@@ -58,13 +68,18 @@ public class PointMoveJerry : BaseMove
         if (targetNo > moveTrans.Count - 1)
         {
 
-            if (GetComponent<EnFloatMove>() != null)
+            if (changeMove)
             {
                 Debug.Log("PointMoveJerryからFloatMoveJerryに移行");
-                GetComponent<SoundMove>().SoundFadeStop();
-                GetComponent<EnFloatMove>().enabled = true;
-                GetComponent<BaseMagazine>().enabled = true;
+                //GetComponent<SoundMove>().SoundFadeStop();
+                changeMove.enabled = true;
+
+                changeComps.ToList().ForEach(x => x.enabled = !x.enabled);
+                changeMags.ToList().ForEach(x => x.enabled=!x.enabled);
+                //GetComponent<BaseMagazine>().enabled = true;
                 this.enabled = false;
+
+                //    public event Action<BaseMove> OnMoveChange;  OnMoveChange?.Invoke(damage);
             }
 
             if (!isTrailLoop)

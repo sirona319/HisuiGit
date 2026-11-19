@@ -1,40 +1,44 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class _Debug : MonoBehaviour
 {
-
-    [SerializeField]bool StartEventSkip = false;
-
-    [SerializeField] GameObject startWave;
-
+    //
+    [SerializeField] List<GameObject> erases;
     [SerializeField] Canvas canvas;
 
 
+    //
+    [SerializeField] GameObject startWave;
+    [SerializeField] BackScroll bcSc;
+
+    //
     [SerializeField] PlayerScr2D player;
-    //bool isStartEventSkip = false;
+    [SerializeField] bool DEBUGPLAYERHP = false;
+    [SerializeField] Vector3 pPos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
+        if (DEBUGPLAYERHP)
+            player.DEBUGNODAMAGE = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(StartEventSkip)
-        {
-            player.gameObject.SetActive(true);
-            player.enabled = true;
-            canvas.gameObject.SetActive(false);
-            //GameObject.Find("StartEvent").SetActive(false);
-            if (startWave != null)
-            {
-                startWave.SetActive(true);
-            }
-            StartEventSkip = false;
-            //isStartEventSkip = true;
-        }
+        player.transform.position = pPos;
+        player.GetComponent<Animator>().enabled = false;
+        canvas.gameObject.SetActive(false);
+
+
+        erases.ToList().ForEach(x => { Destroy(x); });
+
+
+        player.gameObject.SetActive(true);
+        player.enabled = true;
+
+
+
+        startWave.SetActive(true);
+        bcSc.enabled = true;
 
     }
 
@@ -45,4 +49,6 @@ public class _Debug : MonoBehaviour
             startWave.SetActive(true);
         }
     }
+
+
 }

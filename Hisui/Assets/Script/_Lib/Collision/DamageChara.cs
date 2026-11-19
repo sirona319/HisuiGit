@@ -1,10 +1,13 @@
-﻿using System.Linq;
+﻿using NaughtyAttributes;
+using System.Linq;
 using UnityEngine;
 
 public class DamageChara : MonoBehaviour
 {
     [SerializeField] int damageVal = 1;
 
+
+    [Tag]
     [SerializeField] string[] tagNames;
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,7 +20,8 @@ public class DamageChara : MonoBehaviour
              {
                  if (iDamage != null)
                  {
-                     iDamage.Damage(damageVal);
+                    iDamage.Damage(damageVal);
+                    Destroy(gameObject);
                  }
              }
         });

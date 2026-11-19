@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6701999661179997562}
   - component: {fileID: 4960692821905661538}
   - component: {fileID: 8471619546461212899}
+  - component: {fileID: 4463332632231326544}
   m_Layer: 12
   m_Name: Player 1
   m_TagString: Player
@@ -128,7 +129,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &9009212907774943230
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6435380748630735509}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0923b745e88f1a643b08e1165844c29c, type: 3}
   m_Name: 
@@ -182,7 +183,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   mag: {fileID: 2706420233406493615}
   warp: {fileID: 2538072577339672057}
-  DEBUGNODAMAGE: 1
+  DEBUGNODAMAGE: 0
 --- !u!114 &2538072577339672057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ MonoBehaviour:
   bulletSpeed: 5
   poolCtr: {fileID: 0}
   intervalTimeMax: 0.42
-  pNormal: {fileID: 652295628485586386, guid: 712991a8729a19d4aa169f79a661f768, type: 3}
+  pNormal: {fileID: 702257159010972785, guid: fea8197b919b9c34a9bb52947b17b80d, type: 3}
 --- !u!114 &7605300292372885321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,21 +245,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf08bde220b57f4da3930dc9e8f51a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHP
-  MAXHP: 5
+  maxHP: 1
   lifeImage:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  pSprite: {fileID: 2594479138804938240}
-  damageTimeMax: 1
-  damageTime: 0
+  dmgTimeMax: 1
+  dmgTime: 0
 --- !u!82 &6701999661179997562
 AudioSource:
   m_ObjectHideFlags: 0
@@ -396,3 +387,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4463332632231326544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435380748630735509}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aad917191cba3b448b732930ae92c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlinkSpriteMod
+  duration: 0.07
+  sprite: {fileID: 0}

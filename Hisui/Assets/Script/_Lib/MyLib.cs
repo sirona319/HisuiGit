@@ -303,6 +303,14 @@ public static class MyLib
 
     }
 
+    public static Vector3 KeepVecX(Vector3 vec, float val)
+    {
+        var Vec = vec;
+        Vec.x = val;
+        return vec = Vec;
+
+    }
+
     //public static Vector3 TargetMoveNormalized(Vector3 target, Vector3 pos)
     //{
     //    Vector3 direction = target - pos;

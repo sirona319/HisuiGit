@@ -36,7 +36,23 @@ public class SoundMove : MonoBehaviour
         isPlaying = true;
     }
 
-    public void SoundFadeStop()
+    //public void SoundFadeStop()
+    //{
+    //    Debug.Log("SoundFadeStop");
+
+    //    if (!isPlaying) return;
+    //    //if (!GetComponent<CharaBase>().isDead) return;
+
+    //    const float fadeSpeed = 1f;
+    //    seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+
+    //    seObj.GetComponent<TimeDestroy>().SetTime();
+    //    isPlaying = false;
+
+    //    Debug.Log("SoundFadeStopEnd");
+    //}
+
+    void OnDisable()
     {
         Debug.Log("SoundFadeStop");
 

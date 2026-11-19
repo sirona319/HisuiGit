@@ -33,26 +33,16 @@ public class JerryFall : EnemyBase, IDamage
         //ダメージパーティクル表示
         Instantiate(dmgPt, transform.position, Quaternion.identity);
 
-        Hp -= damage;        //HP減少処理
+        //Hp -= damage;        //HP減少処理
 
-        if (Hp <= 0)
-        {
+        //if (Hp <= 0)
+       // {
             isDead = true;
 
             //メッシュ　当たり判定　非表示　
-            //GetComponent<SpriteRenderer>().enabled = false;
-            //GetComponent<BoxCollider2D>().enabled = false;
-            //GetComponent<SoundMove>().SoundFadeStop();
-
-
-
-            //GetComponent<SoundCreateDead>().SoundPlay();
-            //GetComponent<TimeDestroy>().enabled = true;
-            //GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
-            //Destroy(gameObject);
             gameObject.SetActive(false);
 
-        }
+        //}
 
 
     }
@@ -73,12 +63,12 @@ public class JerryFall : EnemyBase, IDamage
         //Destroy(gameObject);
     }
 
-    private void OnDisable()
-    {
-        Debug.Log("JerryFall OnDisable");
-        //GetComponent<SpriteRenderer>().enabled = false;
-        //GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<SoundMove>().SoundFadeStop();
-    }
+    //private void OnDisable()
+    //{
+    //    Debug.Log("JerryFall OnDisable");
+    //    //GetComponent<SpriteRenderer>().enabled = false;
+    //    //GetComponent<BoxCollider2D>().enabled = false;
+    //   // GetComponent<SoundMove>().SoundFadeStop();
+    //}
 
 }

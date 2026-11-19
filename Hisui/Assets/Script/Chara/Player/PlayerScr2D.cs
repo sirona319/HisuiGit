@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
-public class PlayerScr2D : CharaBase
+public class PlayerScr2D : CharaBase,IDamage
 {
 
     #region　入力
@@ -23,7 +23,26 @@ public class PlayerScr2D : CharaBase
 
     [SerializeField] Warp warp;
 
-    [SerializeField] bool DEBUGNODAMAGE = false;
+    public bool DEBUGNODAMAGE = false;
+
+
+
+    public float dmgTimeMax = 1f;
+    public float dmgTime = 0;
+    public bool IsDamage => dmgTime > 0;
+
+
+    public void SetDebugDMG(bool value)
+    {
+        DEBUGNODAMAGE = value;
+    }
+
+    [SerializeField] private Vector3 targetPosition;
+
+    public void SetPosition()
+    {
+        transform.position = targetPosition;
+    }
 
     void Start()
     {
@@ -35,7 +54,15 @@ public class PlayerScr2D : CharaBase
     {
         if (isDead) return;
 
-       // if (!IsCtr) return;
+        if (IsDamage)
+            GetComponent<BlinkSpriteMod>().enabled = true;
+        else
+            GetComponent<BlinkSpriteMod>().enabled = false;
+
+        if (dmgTime > 0)
+            dmgTime -= Time.deltaTime;
+
+
 
         mag.MagazineUpdate();
 
@@ -211,9 +238,9 @@ public class PlayerScr2D : CharaBase
         if (DEBUGNODAMAGE) return;
 
         if (isDead) return;
-        if (GetComponent<PlayerHP>().IsDamage) return;
+        if (IsDamage) return;
 
-        GetComponent<PlayerHP>().DamageLife(damage);
+        GetComponent<BaseHP>().Damage(damage);
         Debug.Log("Damage");
 
     }

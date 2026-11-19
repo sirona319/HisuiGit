@@ -372,7 +372,7 @@ MonoBehaviour:
   minSaturation: 0.6
   maxSaturation: 1
   minValue: 1.5
-  maxValue: 3
+  maxValue: 2
   minAlpha: 0.8
   maxAlpha: 1
 --- !u!1 &8421130447649852565
