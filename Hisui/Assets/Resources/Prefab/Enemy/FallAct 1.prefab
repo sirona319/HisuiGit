@@ -429,8 +429,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JerryFall
   isDead: 0
   isAreaOut: 0
-  Hp: 1
   SpawnTime: 0
+  dmgPt: {fileID: 0}
 --- !u!114 &7934136547165375076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,13 +443,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5474500ee327f564f80da549f90a4515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTrailLoop: 0
   moveTrans:
   - {fileID: 1148167136687647883}
   endLength:
   - 0.8
   speed: 7
   isLoop: 0
+  changeMove: {fileID: 0}
+  changeMags: []
+  changeComps: []
 --- !u!114 &6207196298002315775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageChara
   damageVal: 1
+  hitDead: 0
   tagNames:
   - Player
 --- !u!114 &6693686651847012467

@@ -1,10 +1,13 @@
-﻿public class EnemyBase : CharaBase
+﻿using RangeAttribute = UnityEngine.RangeAttribute;
+
+public class EnemyBase : CharaBase
 {
 
     public bool isAreaOut = false;
 
     //public int Hp = 0;
 
+    [Range(0f, 100f)]
     public float SpawnTime = 0f;
 
 
@@ -94,23 +97,23 @@
     //        throw new System.Exception(findName + "スクリプタルオブジェクト　moveType 空");
     //}
 
-   // public virtual void Init()
- //   {
-        //dmgParticle = Resources.Load("prefab/Particle/DamagePt").GetComponent<ParticleSystem>();
-        //dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
+    // public virtual void Init()
+    //   {
+    //dmgParticle = Resources.Load("prefab/Particle/DamagePt").GetComponent<ParticleSystem>();
+    //dmgParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/DamagePt");
 
-        //move = GetComponent<EnemyBase>().move;
+    //move = GetComponent<EnemyBase>().move;
 
 
-        //if (atkMagazine != null)
-        //    atkMagazine.Initialize();
+    //if (atkMagazine != null)
+    //    atkMagazine.Initialize();
 
-        //if (atkMove != null)
-        //    atkMove.Initialize();
+    //if (atkMove != null)
+    //    atkMove.Initialize();
 
-        //if (move != null)
-        //    move.Initialize();
-   // }
+    //if (move != null)
+    //    move.Initialize();
+    // }
 
     //public virtual void PrefabInit()
     //{

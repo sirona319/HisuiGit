@@ -2,24 +2,36 @@
 
 public class GameMgr : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-
-
-
 
     [SerializeField] float fadeStartTime = 2f;
     [SerializeField] float fadeEndTime = 3f;
 
-    [SerializeField] EnumSceneName.SceneNameType SceneName;
+
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject boss;
+
+    [SerializeField] EnumSceneName.SceneNameType SceneNameOver;
+
+    [SerializeField] EnumSceneName.SceneNameType SceneNameNext;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player.GetComponent<BaseHP>().OnDead += GameOver;
+        player.GetComponent<CharaBase>().OnDead += GameOver;
+
+        boss.GetComponent<CharaBase>().OnDead += Next;
+
     }
 
     void GameOver()
     {
         var fade = GameObject.FindWithTag("Fade").GetComponent<FadeScene>();
-        fade.SceneFade(SceneName.ToString(), fadeStartTime, fadeEndTime);
+        fade.SceneFade(SceneNameOver.ToString(), fadeStartTime, fadeEndTime);
+    }
+
+    void Next()
+    {
+        //var fade = GameObject.FindWithTag("Fade").GetComponent<FadeScene>();
+        //fade.SceneFade(SceneNameNext.ToString(), fadeStartTime, fadeEndTime);
     }
 }

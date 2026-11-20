@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 992059453978553437}
   - component: {fileID: 5644416967341737549}
   - component: {fileID: 2881280420000828064}
-  - component: {fileID: 6176638625973830927}
   - component: {fileID: 2518605931410540852}
   m_Layer: 15
   m_Name: NormalAct 1
@@ -432,6 +431,7 @@ MonoBehaviour:
   isDead: 0
   isAreaOut: 0
   SpawnTime: 0
+  dmgPt: {fileID: 0}
 --- !u!114 &3208358321923960579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5474500ee327f564f80da549f90a4515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTrailLoop: 0
   moveTrans:
   - {fileID: 3108951979130288227}
   endLength:
@@ -508,22 +507,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageChara
   damageVal: 1
+  hitDead: 0
   tagNames:
   - Player
---- !u!114 &6176638625973830927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2537906381485809760}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dee5b437427514c9de0837b758122d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimeDestroy
-  deadTime: 1
-  isStart: 1
 --- !u!114 &2518605931410540852
 MonoBehaviour:
   m_ObjectHideFlags: 0

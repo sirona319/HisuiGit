@@ -1954,6 +1954,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 926586293099045779, guid: ccbec9fbbc73b9e44947eb6e06f18f8b, type: 3}
   m_PrefabInstance: {fileID: 989427778}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &240297877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240297841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7612fa6215307e74ca047c086938ee8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDmg
+  dmgTimeMax: 1
+  dmgPt: {fileID: 0}
+  dmgTime: 0
+  DBGNODMG: 0
 --- !u!1 &241667436
 GameObject:
   m_ObjectHideFlags: 0
@@ -4212,10 +4228,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b345f22548e4641ae8749ca7897d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMgr
-  player: {fileID: 240297841}
   fadeStartTime: 2
   fadeEndTime: 3
-  SceneName: 0
+  player: {fileID: 240297841}
+  boss: {fileID: 7585189442997547928}
+  SceneNameOver: 1
+  SceneNameNext: 0
 --- !u!114 &503446825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4223,7 +4241,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503446814}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea78fe7925a2c024b9bfe20b2083588e, type: 3}
   m_Name: 
@@ -7201,7 +7219,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6435380748630735509, guid: ccbec9fbbc73b9e44947eb6e06f18f8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 240297877}
   m_SourcePrefab: {fileID: 100100000, guid: ccbec9fbbc73b9e44947eb6e06f18f8b, type: 3}
 --- !u!1 &998216556
 GameObject:
@@ -7957,7 +7978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1097845739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13758,6 +13779,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 667880770115362332, guid: a7b36e6c06fe57b4fa6eaf1dfc7b02b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7585189442997547942}
+    - targetCorrespondingSourceObject: {fileID: 667880770115362332, guid: a7b36e6c06fe57b4fa6eaf1dfc7b02b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7585189442997547943}
   m_SourcePrefab: {fileID: 100100000, guid: a7b36e6c06fe57b4fa6eaf1dfc7b02b4, type: 3}
 --- !u!4 &3796299275553797763 stripped
 Transform:
@@ -13879,6 +13903,21 @@ MonoBehaviour:
   - {fileID: 467880536}
   - {fileID: 259678844}
   - {fileID: 2062299512}
+--- !u!114 &7585189442997547943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7585189442997547928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a18b289f2588a0419e0255296400c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BaseDmg
+  dmgTimeMax: 1
+  dmgPt: {fileID: 4088070497662250838, guid: 9abc7653719edce42bf0d665ae289b92, type: 3}
+  dmgTime: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

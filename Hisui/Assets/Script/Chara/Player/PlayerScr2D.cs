@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
-public class PlayerScr2D : CharaBase,IDamage
+public class PlayerScr2D : CharaBase
 {
 
     #region　入力
@@ -23,19 +23,8 @@ public class PlayerScr2D : CharaBase,IDamage
 
     [SerializeField] Warp warp;
 
-    public bool DEBUGNODAMAGE = false;
 
 
-
-    public float dmgTimeMax = 1f;
-    public float dmgTime = 0;
-    public bool IsDamage => dmgTime > 0;
-
-
-    public void SetDebugDMG(bool value)
-    {
-        DEBUGNODAMAGE = value;
-    }
 
     [SerializeField] private Vector3 targetPosition;
 
@@ -53,16 +42,6 @@ public class PlayerScr2D : CharaBase,IDamage
     void Update()
     {
         if (isDead) return;
-
-        if (IsDamage)
-            GetComponent<BlinkSpriteMod>().enabled = true;
-        else
-            GetComponent<BlinkSpriteMod>().enabled = false;
-
-        if (dmgTime > 0)
-            dmgTime -= Time.deltaTime;
-
-
 
         mag.MagazineUpdate();
 
@@ -130,8 +109,8 @@ public class PlayerScr2D : CharaBase,IDamage
 //Input.GetKey(KeyCode.A) ||
 //Input.GetKey(KeyCode.S) ||
 //Input.GetKey(KeyCode.D))
-        //m_rb.MovePosition(mPos);
-        m_rb.MovePosition(m_rb.position + movement * speed * Time.fixedDeltaTime);
+        m_rb.MovePosition(mPos);
+        //m_rb.MovePosition(m_rb.position + movement * speed * Time.fixedDeltaTime);
 
         //transform.position=mPos;
     }
@@ -232,19 +211,6 @@ public class PlayerScr2D : CharaBase,IDamage
 
 
     //}
-
-    public void Damage(int damage)
-    {
-        if (DEBUGNODAMAGE) return;
-
-        if (isDead) return;
-        if (IsDamage) return;
-
-        GetComponent<BaseHP>().Damage(damage);
-        Debug.Log("Damage");
-
-    }
-
 
 
     #region　剛体関連

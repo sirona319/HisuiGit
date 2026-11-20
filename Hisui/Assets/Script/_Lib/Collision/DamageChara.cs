@@ -1,30 +1,37 @@
 ﻿using NaughtyAttributes;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using UnityEngine;
 
 public class DamageChara : MonoBehaviour
 {
     [SerializeField] int damageVal = 1;
 
+    [SerializeField] bool hitDead = true;
+
 
     [Tag]
     [SerializeField] string[] tagNames;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        var iDamage = other.GetComponent<IDamage>();
-
-        tagNames.ToList().ForEach(tagName =>
+        //AI
+        foreach (var tagName in tagNames)
         {
-            if (other.CompareTag(tagName))
-             {
-                 if (iDamage != null)
-                 {
-                    iDamage.Damage(damageVal);
-                    Destroy(gameObject);
-                 }
-             }
-        });
+            if (!other.CompareTag(tagName))
+                continue;
+
+            var iDamage = other.GetComponent<IDamage>();
+
+            if (iDamage == null)
+                break;
+
+            iDamage.Damage(damageVal);
+
+            if (hitDead)
+                gameObject.SetActive(false);
+
+            break;
+        }
 
         //if (iDamage != null)
         //{

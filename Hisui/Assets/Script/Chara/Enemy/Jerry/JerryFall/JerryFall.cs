@@ -7,7 +7,7 @@ public class JerryFall : EnemyBase, IDamage
     //public float SpawnTime = 0f;
 
 
-    ParticleSystem dmgPt;
+    [SerializeField] ParticleSystem dmgPt;
 
     //public bool IsDamage { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
@@ -40,8 +40,8 @@ public class JerryFall : EnemyBase, IDamage
             isDead = true;
 
             //メッシュ　当たり判定　非表示　
-            gameObject.SetActive(false);
-
+           gameObject.SetActive(false);
+        //Destroy(gameObject);
         //}
 
 

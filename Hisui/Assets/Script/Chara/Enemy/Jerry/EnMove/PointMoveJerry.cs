@@ -72,6 +72,7 @@ public class PointMoveJerry : BaseMove
                 changeMove.enabled = true;
 
                 changeComps.ToList().ForEach(x => x.enabled = !x.enabled);
+                if(changeMags!=null)
                 changeMags.ToList().ForEach(x => x.enabled=!x.enabled);
 
                 GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);

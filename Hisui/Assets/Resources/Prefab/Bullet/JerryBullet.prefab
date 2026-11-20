@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8764880274935360633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.0000000310235, w: 1}
-  m_LocalPosition: {x: 2.5374813, y: 0.052012138, z: 0}
+  m_LocalPosition: {x: 2.5374813, y: 0.13531284, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageChara
   damageVal: 1
+  hitDead: 1
   tagNames:
   - Player
 --- !u!114 &152946797455286814

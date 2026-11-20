@@ -21,8 +21,8 @@ public class _Debug : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (DEBUGPLAYERHP)
-            player.DEBUGNODAMAGE = true;
+       // if (DEBUGPLAYERHP)
+         //   player.DEBUGNODAMAGE = true;
 
         player.transform.position = pPos;
         player.GetComponent<Animator>().enabled = false;

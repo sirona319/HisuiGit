@@ -7,61 +7,61 @@ using UnityEngine.UI;
 public class PlayerHP : BaseHP
 {
 
-    [SerializeField] Image[] lifeImage;
+    //[SerializeField] Image[] lifeImage;
 
-    PlayerScr2D playerScr;
+    //BaseDmg baseDmg;
 
-    void Start()
-    {
-        for (int i = 0; i < lifeImage.Length; i++)
-        {
-            lifeImage[i].enabled = i < HP;//iがHPより小さいときはenabledをtrueにしている AI
-        }
+    //void Start()
+    //{
+    //    for (int i = 0; i < lifeImage.Length; i++)
+    //    {
+    //        lifeImage[i].enabled = i < HP;//iがHPより小さいときはenabledをtrueにしている AI
+    //    }
 
-        OnHPChanged += DamageLife;
+    //    OnHPChanged += DamageLife;
 
-        playerScr=GetComponent<PlayerScr2D>();
-    }
+    //    baseDmg = GetComponent<BaseDmg>();
+    //}
 
-    //HPのダメージ表現
-    public void DamageLife(int damage)
-    {
+    ////HPのダメージ表現
+    //public void DamageLife(int damage)
+    //{
 
-        int saveValue = damage;
-        const float volume = 0.3f;
-        MyLib.MyPlaySound("Sound/SE/damaged1", volume, gameObject);
-        playerScr.dmgTime = playerScr.dmgTimeMax;
+    //    int saveValue = damage;
+    //    const float volume = 0.3f;
+    //    MyLib.MyPlaySound("Sound/SE/damaged1", volume, gameObject);
+    //    //baseDmg.dmgTime = baseDmg.dmgTimeMax;
 
-        for (int i = HP ; damage > 0; damage--, i--)
-        {
-            if (i < 0) break;
-
-
-            const float POW = 5f;
-            StartCoroutine(MyLib.DoShake(playerScr.dmgTime, POW, lifeImage[i].transform));
-
-        }
-
-        //成功
-        StartCoroutine(MyLib.DelayCoroutine(playerScr.dmgTime, () =>
-        {
-            DamageUpdate(saveValue);
-        }));
-
-    }
+    //    for (int i = HP ; damage > 0; damage--, i--)
+    //    {
+    //        if (i < 0) break;
 
 
-    void DamageUpdate(int damage)
-    {
-        for (int i = HP ; damage > 0; damage--,i--)
-        {
-            if (i < 0) break;
+    //        const float POW = 5f;
+    //        StartCoroutine(MyLib.DoShake(baseDmg.dmgTime, POW, lifeImage[i].transform));
 
-            lifeImage[i].enabled = false;
+    //    }
 
-        }
+    //    //成功
+    //    StartCoroutine(MyLib.DelayCoroutine(baseDmg.dmgTime, () =>
+    //    {
+    //        DamageUpdate(saveValue);
+    //    }));
+
+    //}
+
+
+    //void DamageUpdate(int damage)
+    //{
+    //    for (int i = HP ; damage > 0; damage--,i--)
+    //    {
+    //        if (i < 0) break;
+
+    //        lifeImage[i].enabled = false;
+
+    //    }
        
-    }
+    //}
 
     //public void HealLife(int heal)
     //{
