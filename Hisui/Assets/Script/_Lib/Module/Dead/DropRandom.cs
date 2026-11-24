@@ -11,7 +11,7 @@ public class DropRandom : MonoBehaviour
 
     private void Update()
     {
-        if (!GetComponent<CharaBase>().isDead) return;
+        if (!GetComponent<CharaBase>().IsDead) return;
         if (isDropEnd) return;
         isDropEnd = true;
 

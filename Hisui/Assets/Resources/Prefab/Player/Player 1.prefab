@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4960692821905661538}
   - component: {fileID: 8471619546461212899}
   - component: {fileID: 4463332632231326544}
+  - component: {fileID: 507534264600222743}
   m_Layer: 12
   m_Name: Player 1
   m_TagString: Player
@@ -183,7 +184,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   mag: {fileID: 2706420233406493615}
   warp: {fileID: 2538072577339672057}
-  DEBUGNODAMAGE: 0
+  targetPosition: {x: -6, y: 0, z: 0}
 --- !u!114 &2538072577339672057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,11 +246,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf08bde220b57f4da3930dc9e8f51a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHP
-  maxHP: 1
+  maxHP: 5
   lifeImage:
   - {fileID: 0}
-  dmgTimeMax: 1
-  dmgTime: 0
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!82 &6701999661179997562
 AudioSource:
   m_ObjectHideFlags: 0
@@ -401,3 +419,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlinkSpriteMod
   duration: 0.07
   sprite: {fileID: 0}
+--- !u!114 &507534264600222743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435380748630735509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7612fa6215307e74ca047c086938ee8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDmg
+  dmgTimeMax: 1
+  dmgPt: {fileID: 0}
+  dmgTime: 0
+  DBGNODMG: 0

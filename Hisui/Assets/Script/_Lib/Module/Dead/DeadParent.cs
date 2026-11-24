@@ -12,7 +12,7 @@ public class DeadParent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GetComponentInParent<CharaBase>().isDead) return;
+        if (!GetComponentInParent<CharaBase>().IsDead) return;
 
         Destroy(gameObject);
     }

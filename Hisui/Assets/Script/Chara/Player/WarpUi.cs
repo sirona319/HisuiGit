@@ -30,26 +30,10 @@ public class WarpUi : MonoBehaviour
 
     public float Change(int damage)
     {
-        //if (isDead) return 0;
 
         Vector2 size = wpImage.rectTransform.sizeDelta;
         size.x -= damage;
         wpImage.rectTransform.sizeDelta = size;
-
-
-        //if (size.x <= 0)
-        //{
-        //    //hpNum.text = "0%";
-        //    //isUse = false;
-        //}
-        //else
-        //{
-        //    //hpNum.text = size.x.ToString() + "%";
-        //}
-
-        //Color hpColor = wpImage.color;
-        //hpColor.g += damage / changeColorSpeed;
-        //wpImage.color = hpColor;
 
 
         return size.x;
@@ -59,21 +43,11 @@ public class WarpUi : MonoBehaviour
         Vector2 size = wpImage.rectTransform.sizeDelta;
         if (size.x >= wpUiMaxVal) return;
 
-
-        //Color hpHealColor = wpImage.color;
-        //hpHealColor.g -= returnSpeed + size.x / wpUiMaxVal;
-        //if (hpHealColor.g <= 0) hpHealColor.g = 0;
-        //wpImage.color = hpHealColor;
-
         size.x += returnSpeed;
 
         if(size.x >= wpUiMaxVal)
         {
             size.x = wpUiMaxVal;
-
-            //Color hpColor = wpImage.color;
-            //hpColor.r = 0;
-            //wpImage.color = hpColor;
 
             wpImage.rectTransform.sizeDelta = size;
             return;

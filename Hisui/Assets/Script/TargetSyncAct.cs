@@ -1,10 +1,14 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
 
+
+//同期　オブジェクトの有効　無効
+
 public class TargetSyncActChild : MonoBehaviour
 {
 
     [SerializeField] GameObject go;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,9 +20,10 @@ public class TargetSyncActChild : MonoBehaviour
     void Update()
     {
         if (go == null) return;
+
         if (go.activeInHierarchy)
         {
-            foreach (Transform child in transform.GetComponentsInChildren<Transform>(true))
+            foreach (Transform child in transform.GetComponentsInChildren<Transform>())
             {
                 if (child == transform) continue;
 
@@ -27,15 +32,13 @@ public class TargetSyncActChild : MonoBehaviour
         }
         else
         {
-            foreach (Transform child in transform.GetComponentsInChildren<Transform>(true))
+            foreach (Transform child in transform.GetComponentsInChildren<Transform>())
             {
                 if (child == transform) continue;
 
                 child.gameObject.SetActive(false);
             }
         }
-            //gameObject.transform.GetComponentsInChildren<Transform>().gameObject.SetActive(true);
-        //else
-            //gameObject.SetActive(false);
+
     }
 }

@@ -2,13 +2,10 @@
 
 public class SinVectorMove : BaseMove
 {
-
     Vector3 addSinVec = Vector3.zero;
     Vector3 floatVector;
 
     float sinTime = 0;
-
-
 
     [SerializeField] float sinVal = 0.02f;
 
@@ -21,8 +18,6 @@ public class SinVectorMove : BaseMove
     private void Start()
     {
         Initialize();
-
-        Debug.Log(gameObject.name+"SinVectorMove Start");
     }
     private void FixedUpdate()
     {
@@ -32,31 +27,13 @@ public class SinVectorMove : BaseMove
     public override void Initialize()
     {
 
-
-        transform.DetachChildren();
         var dir = targetTrans.position - transform.position;
 
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir.normalized);
 
-
-
-
-        //transform.rotation = MyLib.GetAngleRotationFuncs((transform.position + Vector3.up), transform, 10);
-        //const float sinVal = 0.04f;
-        //const float sinValMini = 0.02f;
-        //見た目だけの回転
-        //var spriteTrans = transform.Find("Sprite").gameObject.transform;
-        //spriteTrans.rotation = Quaternion.FromToRotation(Vector3.up, transform.up);
-
-        //float moveVal = speedM;//0.02f;
         floatVector = dir.normalized * moveVal;
 
         addSinVec = transform.right * sinVal;
-    }
-
-    public override void MoveEnter()
-    {
-
     }
 
     public override void MoveUpdate()
@@ -67,27 +44,4 @@ public class SinVectorMove : BaseMove
 
     }
 
-
-
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-
-    //    if (other.CompareTag("ExitErea"))
-    //    {
-    //        if(gameObject.tag=="Enemy")
-    //        {
-    //            Debug.Log("ExitEreaに触れた  SoundCreateDead");
-    //            //gameObject.GetComponent<CreateDeadSound>().IsSoundEnable = false;
-    //            gameObject.transform.GetComponent<EnemyBase>().EnemyDamage(10);
-    //            return;
-    //        }
-
-    //    }
-
-    //}
-
-    //public void PosReset()
-    //{
-
-    //}
 }

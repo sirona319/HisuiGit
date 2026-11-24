@@ -1,5 +1,7 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 [DisallowMultipleComponent]
 public class Warp : MonoBehaviour
@@ -32,14 +34,34 @@ public class Warp : MonoBehaviour
 
     [SerializeField] string ptChildName= "Ring";
 
+    CircleCollider2D circleCol2D;
+
+    SpriteRenderer sr;
+
+
+    private void Awake()
+    {
+        circleCol2D = GetComponent<CircleCollider2D>();
+        sr = GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
         wpParticle = Resources.Load("prefab/Particle/Wp").GetComponent<ParticleSystem>();
-        //wpParticle = MyLib.GetComponentLoad<ParticleSystem>("prefab/Particle/Wp");
     }
 
     private void Update()
     {
+
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
+        {
+            WarpStart();
+        }
+
+        else if (Keyboard.current.leftShiftKey.wasReleasedThisFrame)
+        {
+            WarpEnd();
+        }
+
         if (!isWarpMove)
             warpUi.Heal();//回復
         else
@@ -67,14 +89,14 @@ public class Warp : MonoBehaviour
             pAlpha -= pFadeSpeed;//Time.deltaTime;
             if (pAlpha <= 0)
             {
-                GetComponent<CircleCollider2D>().enabled = false;
+                circleCol2D.enabled = false;
                 pAlpha = 0;
                 //return;
             }
 
 
             //プレイヤーの透明化
-            GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, pAlpha);//(r,g,b,a);
+            sr.material.color = new Color(1.0f, 1.0f, 1.0f, pAlpha);//(r,g,b,a);
         }
         else if (!playerFade)
         {
@@ -83,13 +105,13 @@ public class Warp : MonoBehaviour
             {
                 pAlpha = 1;
                 isWarpMove = false;
-                GetComponent<CircleCollider2D>().enabled = true;
+                circleCol2D.enabled = true;
                 //return;
             }
 
 
             //プレイヤーの透明化
-            GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, pAlpha);//(r,g,b,a);
+            sr.material.color = new Color(1.0f, 1.0f, 1.0f, pAlpha);//(r,g,b,a);
         }
     }
 
@@ -135,44 +157,15 @@ public class Warp : MonoBehaviour
         if (wpInterval > 0) return;
         if (isWarpMove) return;
 
-        //if (!warpUi.EnableWarpCheck()) return;
-
         //ワープ開始
         isWarpMove = true;
 
         playerFade = true;
 
-        //warpUi.Change(25);
-        /////////////
-
-
-
-
 
         //ワープパーティクル生成　プレイヤーの子階層へ
         wpObj = Instantiate(wpParticle, transform.position, Quaternion.identity, transform);
-
-        //pFadeSpeedAdd = pFadeSpeed;
-        //pFadeSpeedSubtract = 0f;
-
-        //StartCoroutine(MyLib.LoopDelayCoroutineIf(Time.deltaTime, pAlpha > 0 || !isWarpMove, () =>
-        //{
-        //    pAlpha -= 0.6f;//Time.deltaTime;
-        //    if (pAlpha <= 0)
-        //    {
-        //        pAlpha = 0;
-        //        //return;
-        //    }
-
-
-        //    //プレイヤーの透明化
-        //    GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, pAlpha);//(r,g,b,a);
-        //},
-        //"GetKeyDownプレイヤーフェード終了"));
-
-
-
-        
+  
     }
 
     public void WarpEnd()
@@ -181,110 +174,11 @@ public class Warp : MonoBehaviour
         if (!isWarpMove) return;
 
         //ワープ終了   フェード開始のほうを　終了させたい　bool?
-
         playerFade = false;
         ptFade = true;
 
         isWarpMove = false;
         wpInterval = wpIntervalMax;
 
-        /////////////
-        //pAlpha = 0;
-        //wpPtAlpha = 1;
-
-        //pFadeSpeedAdd = 0f;
-        //pFadeSpeedSubtract = pFadeSpeed;
-        ////Playerのスプライトのフェード出現
-        //StartCoroutine(MyLib.LoopDelayCoroutineIf(Time.deltaTime, pAlpha < 1 || !isWarpMove, () =>
-        //{
-        //    pAlpha += pFadeSpeedSubtract;//Time.deltaTime;
-
-        //    if (pAlpha >= 1)
-        //        pAlpha = 1;
-
-        //    //プレイヤーの透明化
-        //    GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, pAlpha);//(r,g,b,a);
-        //}));
-
-        //GetComponent<SpriteRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1f);//(r,g,b,a);
-
-        //パーティクルのフェード消去
-        //if (wpObj.gameObject != null)
-        //{
-
-        //    wpObj.colorOverLifetime.color.gradient.SetKeys
-        //        (new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f), new GradientColorKey(Color.red, 1.0f) },
-        //        new GradientAlphaKey[] { new GradientAlphaKey(0.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
-
-
-        //    var ringPt = wpObj.gameObject.transform.Find("Ring").GetComponent<ParticleSystem>();
-
-        //    ringPt.colorOverLifetime.color.gradient.SetKeys
-        //        (new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f) },
-        //        new GradientAlphaKey[] { new GradientAlphaKey(0.0f, .5f) });
-
-
-
-
-
-        //    StartCoroutine(MyLib.LoopDelayCoroutineIf
-        //        (Time.deltaTime, wpPtAlpha > 0 || !isWarpMove || wpObj == null, () =>
-        //        {
-        //            wpPtAlpha -= pFadeSpeedSubtract;//Time.deltaTime;
-
-
-        //            if (wpPtAlpha <= 0)
-        //            {
-        //                wpObj.gameObject.SetActive(false);
-        //                //Destroy(wpObj.gameObject);
-        //                wpPtAlpha = 0;
-        //                isWarpMove = false;
-
-
-
-        //                //return;
-        //            }
-
-
-        //            if (wpObj != null)
-        //            {
-
-
-        //                wpObj.colorOverLifetime.color.gradient.SetKeys
-        //                    (new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f), new GradientColorKey(Color.red, 1.0f) },
-        //                    new GradientAlphaKey[] { new GradientAlphaKey(wpPtAlpha, 0.0f), new GradientAlphaKey(wpPtAlpha, 1.0f) });
-
-
-        //                var ringPt = wpObj.gameObject.transform.Find("Ring").GetComponent<ParticleSystem>();
-        //                float ringPtKeyPosition = .5f;
-
-        //                ringPt.colorOverLifetime.color.gradient.SetKeys
-        //                    (new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f) },
-        //                    new GradientAlphaKey[] { new GradientAlphaKey(wpPtAlpha, ringPtKeyPosition) });
-
-        //            }
-
-        //        }));
-
-
-            //wpInterval = wpIntervalMax;
-
-
-
-
-
-
-
-            //Gradient grad = new Gradient();
-            // grad.SetKeys(new GradientColorKey[] { new GradientColorKey(Color.blue, 0.0f), new GradientColorKey(Color.red, 1.0f) },
-            //    new GradientAlphaKey[] { new GradientAlphaKey(0.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) });
-
-            //col.color = grad;
-
-            //Destroy(wpObj.gameObject);
-        //}
-
-
-        
     }
 }

@@ -17,6 +17,9 @@ public class GameMgr : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+       // PlayerPrefs.SetInt("GameNo", 0);
+
+      //  PlayerPrefs.Save();
         player.GetComponent<CharaBase>().OnDead += GameOver;
 
         boss.GetComponent<CharaBase>().OnDead += Next;
@@ -27,11 +30,19 @@ public class GameMgr : MonoBehaviour
     {
         var fade = GameObject.FindWithTag("Fade").GetComponent<FadeScene>();
         fade.SceneFade(SceneNameOver.ToString(), fadeStartTime, fadeEndTime);
+        Debug.Log("FadeTITLE");
     }
 
     void Next()
     {
-        //var fade = GameObject.FindWithTag("Fade").GetComponent<FadeScene>();
-        //fade.SceneFade(SceneNameNext.ToString(), fadeStartTime, fadeEndTime);
+
+        //セーブ
+
+        PlayerPrefs.SetInt("GameNo", 1);
+
+        PlayerPrefs.Save();
+
+        Debug.Log("セーブ　１//");
+
     }
 }

@@ -4,12 +4,10 @@ using UnityEngine.InputSystem;
 [DisallowMultipleComponent]
 public class PlayerMagazine : BaseMagazine
 {
-
     float intervalTime = 0f;
     [SerializeField]float intervalTimeMax = 1f;
     [SerializeField] GameObject pNormal;
-
-    //[SerializeField] CreateBullet createBullet;
+    [SerializeField] AudioClip clip;
 
     void Start()
     {
@@ -23,12 +21,13 @@ public class PlayerMagazine : BaseMagazine
 #if ENABLE_INPUT_SYSTEM
         // New input system backends are enabled.
         if(intervalTime <= 0)
+
         if (Keyboard.current.fKey.isPressed || Mouse.current.leftButton.isPressed)
         {
             intervalTime = intervalTimeMax;
             NormalShot();
 
-            MyLib.MyPlayOneSound("Sound/SE/PlayerNormalShot", gameObject.GetComponent<AudioSource>());
+            MyLib.MyPlayOneSound(clip,GetComponent<AudioSource>());
         }
 #endif
 

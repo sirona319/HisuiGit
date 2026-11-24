@@ -123,7 +123,7 @@ public class JerryScr : EnemyBase
     public bool ReturnStateTypeDead()
     {
         //const int DEAD = 2;
-        if (GetComponent<CharaBase>().isDead) return true;
+        if (GetComponent<CharaBase>().IsDead) return true;
 
         //const int DAMAGESTATE = 1;
         //return DAMAGESTATE;

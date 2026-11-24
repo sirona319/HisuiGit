@@ -6,12 +6,14 @@ using UnityEngine.UI;
 //AI
 public class BaseHP : MonoBehaviour
 {
+
+    #region HP
     [SerializeField][Range(0,20)] protected int maxHP = 10;
 
     public int HP { get; private set; }
     //public int MaxHP => maxHP;
 
-    public bool IsDead => HP <= 0;
+    //private bool IsDead => HP <= 0;
     //public bool IsHpMax => HP >= maxHP;
 
     public event Action<int> OnHPChanged;
@@ -27,26 +29,22 @@ public class BaseHP : MonoBehaviour
     // ダメージ
     public virtual void Damage(int damage)
     {
-        if (IsDead || damage <= 0) return;
+        if (GetComponent<CharaBase>().IsDead || damage <= 0) return;
 
         HP = Mathf.Max(0, HP - damage);//大きいほうを選択
 
 
-        OnHPChanged?.Invoke(damage);//?は関数が登録されているかの確認　　登録時だけ呼び出し
+        OnHPChanged?.Invoke(HP);//?は関数が登録されているかの確認　　登録時だけ呼び出し
 
-        if (IsDead)
-        {
-            GetComponent<CharaBase>().OnDead?.Invoke();
-            Debug.Log("OnDead");
-            //OnDead?.Invoke();
-            //Dead();
-        }
+        if (HP <= 0)
+            GetComponent<CharaBase>().Dead();
+        
     }
 
     // 回復
     public virtual void Heal(int heal)
     {
-        if (IsDead || heal <= 0) return;
+        if (GetComponent<CharaBase>().IsDead || heal <= 0) return;
 
         HP = Mathf.Min(maxHP, HP + heal);//小さいほうを選択
 
@@ -58,6 +56,7 @@ public class BaseHP : MonoBehaviour
     //{
     //    Destroy(gameObject);
     //}
+    #endregion
 
 
 
@@ -69,21 +68,21 @@ public class BaseHP : MonoBehaviour
 
 
 
-
+    #region DMG
 
     /// <summary>
     /// UI処理
     /// </summary>
-
-    [SerializeField] Image[] lifeImage;
-
+    /// 
+    [SerializeField] AudioClip clip;
     BaseDmg dmg;
+    [SerializeField] Image[] lifeImage;
 
     void Start()
     {
         for (int i = 0; i < lifeImage.Length; i++)
         {
-            lifeImage[i].enabled = i < HP;//iがHPより小さいときはenabledをtrueにしている AI
+            lifeImage[i].enabled = i < HP;//iがHPより小さいときはenabledをtrueにしている
         }
 
         OnHPChanged += DamageLife;
@@ -92,18 +91,16 @@ public class BaseHP : MonoBehaviour
     }
 
     //HPのダメージ表現
-    public void DamageLife(int damage)
+    public void DamageLife(int hp)
     {
-
-        int saveValue = damage;
         const float volume = 0.3f;
-        MyLib.MyPlaySound("Sound/SE/damaged1", volume, gameObject);
-        // bossDamage.dmgTime = bossDamage.dmgTimeMax;
 
-        for (int i = HP; i >= 0 && damage > 0; i--, damage--)
+        MyLib.MyPlayOneSound(clip, GetComponent<AudioSource>(), volume);
+
+
+        for (int i = hp; i < lifeImage.Length; i++)
         {
-            if (i >= lifeImage.Length || lifeImage[i] == null)
-                continue;
+            if (lifeImage[i] == null) continue;
 
 
             const float POW = 5f;
@@ -111,24 +108,25 @@ public class BaseHP : MonoBehaviour
 
         }
 
-        //成功
         StartCoroutine(MyLib.DelayCoroutine(dmg.dmgTime, () =>
         {
-            DamageUpdate(saveValue);
+            DamageUpdate(hp);
         }));
 
     }
 
 
-    void DamageUpdate(int damage)
+    void DamageUpdate(int hp)
     {
-        for (int i = HP; i >= 0 && damage > 0; i--, damage--)
+        for (int i = 0; i < lifeImage.Length; i++)
         {
-            if (i >= lifeImage.Length || lifeImage[i] == null)
-                continue;
+            if (lifeImage[i] == null) continue;
 
-            lifeImage[i].enabled = false;
+            lifeImage[i].enabled = i < hp;
         }
 
     }
+
+    #endregion
+
 }

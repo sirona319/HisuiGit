@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class EnCircleOneMagazine : BaseMagazine
 {
+    [SerializeField] AudioClip clip;
+    AudioSource audioSource;
 
     float intervalTime = 1f;
     [SerializeField] float intervalTimeMax = 1f;
@@ -10,25 +13,27 @@ public class EnCircleOneMagazine : BaseMagazine
 
     [SerializeField] Transform target;
 
-    [SerializeField] string soundPath = "Sound/SE/JerryShot";
-
     [SerializeField] int bulletNum = 35;
 
     float shotAngle = 0;
 
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
         if (target == null) return;
 
         intervalTime -= Time.deltaTime;
-        if (intervalTime <= 0)
-        {
-            intervalTime = intervalTimeMax;
 
-            MyLib.MyPlayOneSound(soundPath, gameObject.GetComponent<AudioSource>());//水滴
-            CircleOneShot();
-        }
+        if (intervalTime > 0) return;
+
+        MyLib.MyPlayOneSound(clip, audioSource); // 水滴
+        CircleOneShot();
+
+        intervalTime = intervalTimeMax;
 
 
     }

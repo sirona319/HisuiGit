@@ -8,14 +8,14 @@ public class EnNormalMagazine : BaseMagazine
 
     [SerializeField] GameObject bullet;
 
-    [SerializeField] Transform target;
+    Transform target;
 
-    [SerializeField] string soundPath = "Sound/SE/JerryShot";
+    [SerializeField] AudioClip seGo;
 
     void Start()
     {
         if(target==null)
-        target = GameObject.FindWithTag("Player").transform;
+            target = GameObject.FindWithTag("Player").transform;
     }    
 
     void Update()
@@ -27,10 +27,7 @@ public class EnNormalMagazine : BaseMagazine
         {
             intervalTime = intervalTimeMax;
 
-            if(GetComponent<AudioSource>() != null)
-                MyLib.MyPlayOneSound(soundPath, gameObject.GetComponent<AudioSource>());//水滴
-
-
+            MyLib.MyPlayOneSound(seGo, GetComponent<AudioSource>());//水滴
 
             Shot();
         }

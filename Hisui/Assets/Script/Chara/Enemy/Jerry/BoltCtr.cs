@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-//AI
+//AI 本体につける
 //https://taira-komori.net/quick/quick.cgi?mode=find&word=%93d%8BC   音声　電気
 public class BoltCtr : MonoBehaviour
 {

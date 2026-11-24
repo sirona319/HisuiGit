@@ -4,8 +4,15 @@ using UnityEngine;
 public class CharaBase : MonoBehaviour
 {
 
-    public bool isDead = false;
+    public bool IsDead { get; private set; } = false;
 
-    public Action OnDead;
+    public virtual void Dead()
+    {
+        if (IsDead) return;
+        OnDead?.Invoke();
+        IsDead = true;
+        Debug.Log("deaddddd");
+    }
 
+    public event Action OnDead;
 }

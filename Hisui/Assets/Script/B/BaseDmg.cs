@@ -9,13 +9,11 @@ public class BaseDmg : MonoBehaviour, IDamage
 
     public bool IsDamage => dmgTime > 0;
 
-    CharaBase chara;//ChraBase
     BaseHP hp;
     BlinkSpriteMod blink;
 
     void Awake()
     {
-        chara = GetComponent<CharaBase>();
         hp = GetComponent<BaseHP>();
         blink = GetComponent<BlinkSpriteMod>();
     }
@@ -30,8 +28,7 @@ public class BaseDmg : MonoBehaviour, IDamage
 
     public virtual void Damage(int damage)
     {
-        if (chara.isDead || IsDamage || hp.IsDead)
-            return;
+        if (GetComponent<CharaBase>().IsDead || IsDamage)return;
 
         // ダメージ時間設定
         dmgTime = dmgTimeMax;

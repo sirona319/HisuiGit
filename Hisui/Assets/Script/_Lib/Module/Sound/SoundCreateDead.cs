@@ -3,33 +3,19 @@ using UnityEngine;
 
 public class SoundCreateDead : MonoBehaviour
 {
-    //public AudioSource deadSound;
-
     bool IsSoundEnable = false;
 
-    [SerializeField] string path;
-
-    //AudioSource audioSe;
-
-    //[SerializeField] AudioResource audioSe;
-
-    //private void Start()
-    //{
-    //    //audioSe= MyLib.GetComponentLoad<AudioSource>("Prefab/Sound/DestroySound");
-    //}
+    [SerializeField] AudioClip clip;
 
 
     public void Update()
     {
         if (IsSoundEnable) return;
-        if (!GetComponent<CharaBase>().isDead) return ;
+        if (!GetComponent<CharaBase>().IsDead) return;
         IsSoundEnable = true;
 
-        MyLib.MyPlayOneSound(path, 0.1f, gameObject);
-        //StartCoroutine(DestroyFlagFalse());
-        //var seGo = Instantiate(audioSe, transform.position, Quaternion.identity);
-        //seGo.GetComponent<SoundEndDestroy>().StartDestroyFlg();//削除登録
-        //return IsSoundEnable;
+        MyLib.MyPlayOneSound(clip, GetComponent<AudioSource>(), 0.1f);
+
     }
 
     //再生が終了したら破棄する

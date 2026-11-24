@@ -11,7 +11,9 @@ public class PointMoveJerry : BaseMove
 
 
     [SerializeField] List<Transform> moveTrans;
-    [SerializeField] List<float> endLength;
+    List<Vector3> moveVector = new();
+
+    [SerializeField] float endLength=.1f;
     [SerializeField][Range(1f, 20f)] float speed = 1f;
 
     [SerializeField] bool isLoop = false;
@@ -19,9 +21,8 @@ public class PointMoveJerry : BaseMove
     int targetNo = 0;
 
     [SerializeField] BaseMove changeMove;
-    [SerializeField] BaseMagazine[] changeMags;//
-
-    [SerializeField] MonoBehaviour[] changeComps;//
+    [SerializeField] BaseMagazine[] changeMags;
+    [SerializeField] MonoBehaviour[] changeComps;
 
 
     //public event Action<BaseMove> OnMoveChange;
@@ -31,63 +32,71 @@ public class PointMoveJerry : BaseMove
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
-        transform.DetachChildren();
-       // moveTrans = moveTrans;
-        //moveTrans = TargetSet.I.SetPointArray(moveTrans,gameObject);
+
 
         GetComponent<SoundMove>().SoundPlay();
 
-        //foreach (var mt in moveTrans)
-        //{
-        //    moveVector.Add(mt.position);
-        //    Destroy(mt.gameObject);
-        //}
+
+        foreach (var mt in moveTrans)
+        {
+            moveVector.Add(mt.position);
+            Destroy(mt.gameObject);
+        }
 
     }
 
     private void FixedUpdate()
     {
-        PointUpdate();
+        if (PointUpdate()) return;
 
-        transform.rotation = MyLib.GetAngleRotationFunc2D(moveTrans[targetNo].position, transform, rotSpeed);
+        transform.rotation = MyLib.GetAngleRotationFunc2D(moveVector[targetNo], transform, rotSpeed);
 
         rb2.MovePosition(rb2.position + (Vector2)transform.up * (speed * Time.fixedDeltaTime));
 
     }
 
-    void PointUpdate()
+    bool PointUpdate()
     {
-        float len = Vector2.Distance(rb2.position, moveTrans[targetNo].position);
-        if (len >= endLength[targetNo]) return;
+        float len = Vector2.Distance(rb2.position, moveVector[targetNo]);
+        if (len >= endLength) return false;
         
 
         targetNo++;
-        if (targetNo > moveTrans.Count - 1)
+        if (targetNo >= moveVector.Count)
         {
-
-            if (changeMove)
+            if (changeMove != null)
             {
-                Debug.Log("PointMoveJerryからFloatMoveJerryに移行");
-                //GetComponent<SoundMove>().SoundFadeStop();
-                changeMove.enabled = true;
-
-                changeComps.ToList().ForEach(x => x.enabled = !x.enabled);
-                if(changeMags!=null)
-                changeMags.ToList().ForEach(x => x.enabled=!x.enabled);
-
-                GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
-                this.enabled = false;
-
+                ChangeMove();
+                return true;
             }
 
             if (isLoop)
                 targetNo = 0;
             else
-                targetNo--;
+                targetNo = moveVector.Count - 1;
         }
- 
 
+        return false;
     }
 
+
+    void ChangeMove()
+    {
+        
+        Debug.Log("FloatMoveJerryに移行");
+
+        changeMove.enabled = true;
+
+        changeComps.ToList().ForEach(x => x.enabled = !x.enabled);
+
+        if (changeMags != null)
+            changeMags.ToList().ForEach(x => x.enabled = !x.enabled);
+
+        GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
+        this.enabled = false;
+
+
+        
+    }
 
 }

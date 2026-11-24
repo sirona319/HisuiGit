@@ -12,7 +12,7 @@ public class SceneChangeClickEvent : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] List<DOFadeText> endFades;
 
-    [SerializeField] BackScroll backsc;
+   // [SerializeField] BackScroll backsc;
 
     public UnityEvent OnStart;
 
@@ -33,6 +33,12 @@ public class SceneChangeClickEvent : MonoBehaviour, IPointerClickHandler
         Debug.Log(gameObject.name + "Click");
 
         endFades.ToList().ForEach(x => { x.ShowWindow(); });
+
+
+
+        PlayerPrefs.SetInt("GameNo", 0);
+
+        PlayerPrefs.Save();
 
         IsAct = true;
 

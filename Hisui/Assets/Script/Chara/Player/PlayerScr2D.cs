@@ -21,10 +21,6 @@ public class PlayerScr2D : CharaBase
 
     #endregion
 
-    [SerializeField] Warp warp;
-
-
-
 
     [SerializeField] private Vector3 targetPosition;
 
@@ -33,7 +29,7 @@ public class PlayerScr2D : CharaBase
         transform.position = targetPosition;
     }
 
-    void Start()
+    void Awake()
     {
         m_rb = GetComponent<Rigidbody2D>();
 
@@ -41,22 +37,22 @@ public class PlayerScr2D : CharaBase
 
     void Update()
     {
-        if (isDead) return;
+        if (IsDead) return;
 
         mag.MagazineUpdate();
 
 
 #if ENABLE_INPUT_SYSTEM
         // New input system backends are enabled.
-        if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
-        {
-            warp.WarpStart();
-        }
+        //if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
+        //{
+        //    warp.WarpStart();
+        //}
 
-        if (Keyboard.current.leftShiftKey.wasReleasedThisFrame)
-        {
-            warp.WarpEnd();
-        }
+        //if (Keyboard.current.leftShiftKey.wasReleasedThisFrame)
+        //{
+        //    warp.WarpEnd();
+        //}
 #endif
 
 #if ENABLE_LEGACY_INPUT_MANAGER

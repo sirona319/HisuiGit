@@ -2,9 +2,11 @@
 
 public class JerryBoss : EnemyBase
 {
-    void Start()
+
+    SoundCreateDead sd;
+    void Awake()
     {
-        GetComponent<CharaBase>().OnDead+= Dead;
+        sd = GetComponent<SoundCreateDead>();
     }
 
     void Update()
@@ -12,21 +14,11 @@ public class JerryBoss : EnemyBase
         AreaOut();
     }
 
-    public void Dead()
-    {
-        //if (isDead) return;
-
-        isDead = true;
-        gameObject.SetActive(false);
-    }
-
     void AreaOut()
     {
         if (!isAreaOut) return;
+        sd.enabled = false;
+        Dead();
 
-        isDead = true;
-
-        GetComponent<SoundCreateDead>().enabled = false;
-        gameObject.SetActive(false);
     }
 }

@@ -8,7 +8,7 @@ public class Drop : MonoBehaviour
 
     private void Update()
     {
-        if(!GetComponent<CharaBase>().isDead) return;
+        if(!GetComponent<CharaBase>().IsDead) return;
         if(isDropEnd) return;
 
         Instantiate(go, transform.position, Quaternion.identity);

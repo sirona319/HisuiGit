@@ -4,36 +4,36 @@ using UnityEngine;
 public class SoundMove : MonoBehaviour
 {
 
-    //自動停止
-    //GameObject parentGo;
+    [SerializeField] GameObject SeGo;
 
-    GameObject seObj;
+     GameObject seGo;
 
-    [SerializeField] string path;
 
     bool isPlaying = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //SoundFadeStop();
-    }
 
     public void SoundPlay()
     {
         if (isPlaying) return;
-        if (GetComponent<CharaBase>().isDead) return;
-        var se = GameObject.FindWithTag("SoundM").GetComponent<SoundManager>().se;
-        var moveSe = (GameObject)Resources.Load(path);//Prefab/Sound/JerryTrailSe
-        seObj = Instantiate(moveSe, transform.position, Quaternion.identity);
-        seObj.GetComponent<AudioSource>().Play();
+        if (GetComponent<CharaBase>().IsDead) return;
+        seGo = Instantiate(SeGo, transform.position, Quaternion.identity);
+        seGo.GetComponent<AudioSource>().Play();
 
         isPlaying = true;
+    }
+
+    void OnDisable()
+    {
+        Debug.Log("SoundFadeStop");
+
+        if (!isPlaying) return;
+
+        const float fadeSpeed = 1f;
+        seGo.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+
+        seGo.GetComponent<TimeDestroy>().SetTime();
+        isPlaying = false;
+
+        Debug.Log("SoundFadeStopEnd");
     }
 
     //public void SoundFadeStop()
@@ -51,20 +51,4 @@ public class SoundMove : MonoBehaviour
 
     //    Debug.Log("SoundFadeStopEnd");
     //}
-
-    void OnDisable()
-    {
-        Debug.Log("SoundFadeStop");
-
-        if (!isPlaying) return;
-        //if (!GetComponent<CharaBase>().isDead) return;
-
-        const float fadeSpeed = 1f;
-        seObj.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
-
-        seObj.GetComponent<TimeDestroy>().SetTime();
-        isPlaying = false;
-
-        Debug.Log("SoundFadeStopEnd");
-    }
 }

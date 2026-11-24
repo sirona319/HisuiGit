@@ -122,7 +122,7 @@ public class EnemySpawnWavePrefab : BaseSpawn
         //}
 
         //if(saveGo == null) return;
-        if (!saveGo.GetComponent<CharaBase>().isDead) return;
+        if (!saveGo.GetComponent<CharaBase>().IsDead) return;
 
         //破棄と生成
         Destroy(saveGo);
@@ -134,7 +134,7 @@ public class EnemySpawnWavePrefab : BaseSpawn
     {
         //Debug.Log();
         //Debug.Log("0");
-        if (!saveGo.GetComponent<CharaBase>().isDead) return;
+        if (!saveGo.GetComponent<CharaBase>().IsDead) return;
 
         //破棄と生成
         Destroy(saveGo);

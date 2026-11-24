@@ -797,56 +797,13 @@ public static class MyLib
 
 
     /// <summary>
-    /// ボリューム調整あり
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="volume"></param>
-    /// <param name="obj"></param>
-    public static AudioSource MyPlayOneSound(string name, float volume, GameObject obj)
-    {
-        var audioSource = obj.GetComponent<AudioSource>();
-        var sound = (AudioClip)Resources.Load(name);
-        audioSource.PlayOneShot(sound, volume);
-
-        return audioSource;
-    }
-
-    /// <summary>
-    /// ボリューム調整あり
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="volume"></param>
-    /// <param name="obj"></param>
-    public static AudioSource MyPlaySound(string name, float volume, GameObject obj)
-    {
-        var audioSource = obj.GetComponent<AudioSource>();
-        audioSource.clip = (AudioClip)Resources.Load(name);
-        audioSource.Play();
-
-        return audioSource;
-    }
-
-    /// <summary>
     /// ボリューム調整なし
     /// </summary>
     /// <param name="name"></param>
     /// <param name="obj"></param>
-    public static AudioSource MyPlayOneSound(string name, AudioSource audio)
+    public static AudioSource MyPlayOneSound(AudioClip clip, AudioSource audio, float volume = 1f)
     {
-        var sound = (AudioClip)Resources.Load(name);
-        audio.PlayOneShot(sound);
-
-        return audio;
-    }
-
-    /// <summary>
-    /// ボリューム調整なし
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="obj"></param>
-    public static AudioSource MyPlayOneSound(AudioClip clip, AudioSource audio)
-    {
-        audio.PlayOneShot(clip);
+        audio.PlayOneShot(clip, volume);
 
         return audio;
     }
@@ -883,13 +840,13 @@ public static class MyLib
     /// </summary>
     /// <param name="name"></param>
     /// <param name="obj"></param>
-    public static void MyPlayOneSoundSingle(string name,float volume, GameObject obj)
+    public static void MyPlayOneSoundSingle(AudioClip clip,float volume, GameObject obj)
     {
         var audioSource = obj.GetComponent<AudioSource>();
-        var sound = (AudioClip)Resources.Load(name);
+        //var sound = (AudioClip)Resources.Load(name);
 
         if (!audioSource.isPlaying)
-            audioSource.PlayOneShot(sound, volume);
+            audioSource.PlayOneShot(clip, volume);
     }
 
     public static IEnumerator SoundFadeOffCoroutine(AudioSource audio, float fadeSpeed)

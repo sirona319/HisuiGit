@@ -1,14 +1,18 @@
-﻿using RangeAttribute = UnityEngine.RangeAttribute;
-
-public class EnemyBase : CharaBase
+﻿public class EnemyBase : CharaBase
 {
 
     public bool isAreaOut = false;
 
+
+    public override void Dead()
+    {
+        base.Dead();
+        gameObject.SetActive(false);
+    }
     //public int Hp = 0;
 
-    [Range(0f, 100f)]
-    public float SpawnTime = 0f;
+    //[Range(0f, 100f)]
+    //public float SpawnTime = 0f;
 
 
 
