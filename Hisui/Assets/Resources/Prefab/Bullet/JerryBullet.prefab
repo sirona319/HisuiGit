@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1372904476738841711}
   - component: {fileID: 1728911355511614409}
   - component: {fileID: 152946797455286814}
+  - component: {fileID: 9205623877907775758}
   m_Layer: 10
   m_Name: JerryBullet
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8764880274935360633}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.000025525325, w: 1}
-  m_LocalPosition: {x: 6.01141, y: -3.332161, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0000000310235, w: 1}
+  m_LocalPosition: {x: 2.0573606, y: 0.0089038005, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -160,3 +161,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NormalBullet
   angle: 0
+--- !u!114 &9205623877907775758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764880274935360633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88bb0b25be4bcda4bb56440b7f1d4cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReleaseDestroyer
+  IsRelease: 0

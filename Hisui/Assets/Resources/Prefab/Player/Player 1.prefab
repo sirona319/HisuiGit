@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 8471619546461212899}
   - component: {fileID: 4463332632231326544}
   - component: {fileID: 507534264600222743}
+  - component: {fileID: 3198812117375590475}
   m_Layer: 12
   m_Name: Player 1
   m_TagString: Player
@@ -179,11 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0923b745e88f1a643b08e1165844c29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   speed: 3
   movement: {x: 0, y: 0}
   mag: {fileID: 2706420233406493615}
-  warp: {fileID: 2538072577339672057}
   targetPosition: {x: -6, y: 0, z: 0}
 --- !u!114 &2538072577339672057
 MonoBehaviour:
@@ -231,9 +230,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 5
-  poolCtr: {fileID: 0}
   intervalTimeMax: 0.42
-  pNormal: {fileID: 702257159010972785, guid: fea8197b919b9c34a9bb52947b17b80d, type: 3}
+  clip: {fileID: 8300000, guid: 39e3f878aaa386b4eb396e1dce2d73d3, type: 3}
+  poolCtr: {fileID: 3198812117375590475}
 --- !u!114 &7605300292372885321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf08bde220b57f4da3930dc9e8f51a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHP
-  maxHP: 5
+  maxHP: 20
+  clip: {fileID: 8300000, guid: 3f8226240ec8c484b85332dc3b8d60ff, type: 3}
   lifeImage:
   - {fileID: 0}
   - {fileID: 0}
@@ -435,3 +435,16 @@ MonoBehaviour:
   dmgPt: {fileID: 0}
   dmgTime: 0
   DBGNODMG: 0
+--- !u!114 &3198812117375590475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6435380748630735509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c5c57df08da56438535784ff21bc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolControl
+  Prefab: {fileID: 702257159010972785, guid: fea8197b919b9c34a9bb52947b17b80d, type: 3}

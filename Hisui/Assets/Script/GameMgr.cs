@@ -14,16 +14,18 @@ public class GameMgr : MonoBehaviour
 
     [SerializeField] EnumSceneName.SceneNameType SceneNameNext;
 
+
+    public GameObject SWave;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       // PlayerPrefs.SetInt("GameNo", 0);
-
-      //  PlayerPrefs.Save();
         player.GetComponent<CharaBase>().OnDead += GameOver;
 
         boss.GetComponent<CharaBase>().OnDead += Next;
 
+        if(SWave!=null)
+        SWave.SetActive(true);
     }
 
     void GameOver()

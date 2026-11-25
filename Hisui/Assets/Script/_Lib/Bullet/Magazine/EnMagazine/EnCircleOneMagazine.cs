@@ -1,54 +1,53 @@
-﻿using UnityEngine;
-using UnityEngine.Audio;
+﻿//using UnityEngine;
 
-public class EnCircleOneMagazine : BaseMagazine
-{
-    [SerializeField] AudioClip clip;
-    AudioSource audioSource;
+//public class EnCircleOneMagazine : BaseJerryMag
+//{
+//    [SerializeField] AudioClip clip;
+//    AudioSource audioSource;
 
-    float intervalTime = 1f;
-    [SerializeField] float intervalTimeMax = 1f;
+//    float intervalTime = 1f;
+//    [SerializeField] float intervalTimeMax = 1f;
 
-    [SerializeField] GameObject bullet;
+//    [SerializeField] GameObject bullet;
 
-    [SerializeField] Transform target;
+//    [SerializeField] Transform target;
 
-    [SerializeField] int bulletNum = 35;
+//    [SerializeField] int bulletNum = 35;
 
-    float shotAngle = 0;
+//    float shotAngle = 0;
 
-    void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
+//    void Awake()
+//    {
+//        audioSource = GetComponent<AudioSource>();
+//    }
 
-    void Update()
-    {
-        if (target == null) return;
+//    void Update()
+//    {
+//        if (target == null) return;
 
-        intervalTime -= Time.deltaTime;
+//        intervalTime -= Time.deltaTime;
 
-        if (intervalTime > 0) return;
+//        if (intervalTime > 0) return;
 
-        MyLib.MyPlayOneSound(clip, audioSource); // 水滴
-        CircleOneShot();
+//        MyLib.MyPlayOneSound(clip, audioSource); // 水滴
+//        CircleOneShot();
 
-        intervalTime = intervalTimeMax;
+//        intervalTime = intervalTimeMax;
 
 
-    }
+//    }
 
-    void CircleOneShot()
-    {
-        shotAngle = 0;
-        for (int i = 0; i <= bulletNum; i++)
-        {
-            shotAngle += 10;
+//    void CircleOneShot()
+//    {
+//        shotAngle = 0;
+//        for (int i = 0; i <= bulletNum; i++)
+//        {
+//            shotAngle += 10;
 
-            BulletAtk(shotAngle, transform.position, transform.rotation, bullet);
+//            BulletAtk(shotAngle, transform.position, transform.rotation, bullet);
 
-        }
+//        }
 
-    }
+//    }
 
-}
+//}

@@ -28,9 +28,13 @@ public class SoundMove : MonoBehaviour
         if (!isPlaying) return;
 
         const float fadeSpeed = 1f;
-        seGo.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
+        if(seGo!=null)
+        {
+            seGo.GetComponent<AudioSource>().DOFade(0, fadeSpeed);
 
-        seGo.GetComponent<TimeDestroy>().SetTime();
+            seGo.GetComponent<TimeDestroy>().SetTime();
+        }
+
         isPlaying = false;
 
         Debug.Log("SoundFadeStopEnd");

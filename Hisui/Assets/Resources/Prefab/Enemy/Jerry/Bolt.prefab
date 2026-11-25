@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JerryFall
   isAreaOut: 0
-  dmgPt: {fileID: 0}
+  dmgPt: {fileID: 4088070497662250838, guid: 9abc7653719edce42bf0d665ae289b92, type: 3}
 --- !u!114 &3208358321923960579
 MonoBehaviour:
   m_ObjectHideFlags: 0

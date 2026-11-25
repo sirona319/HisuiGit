@@ -1,8 +1,26 @@
-・パッケージ
-FadeCamera2.unitypackage
-DOTween (HOTween v2)
-UIEffect
+・・パッケージ
+・DOTween (HOTween v2)
+
+・UIEffect
 https://zenn.dev/m_mikan12/articles/0cb0750c74c96e
+・UIエフェクト  
+https://mob-sakai.github.io/UIEffect/
+https://github.com/mob-sakai/UIEffect
+https://github.com/mob-sakai/UIEffect.git
+
+
+FadeCamera2.unitypackage
+https://x.gd/97tTw
 
 ・UIサイト
 https://icon-rainbow.com/?s=%E6%9C%AC
+
+
+
+・フォント
+https://booth.pm/ja/items/3308018　クラフト
+https://booth.pm/ja/items/4927023　マルミーニャ
+https://ymnk-design.booth.pm/items/7748814　カラメルポップ
+https://booth.pm/ja/items/7801932　ナイトシェーダー
+
+https://cgbox.jp/2023/07/27/unity-font/

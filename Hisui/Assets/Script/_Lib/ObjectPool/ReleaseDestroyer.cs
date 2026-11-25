@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
 public class ReleaseDestroyer : MonoBehaviour
 {
@@ -13,13 +14,13 @@ public class ReleaseDestroyer : MonoBehaviour
     {
         if (pool != null)
         {
-            if (IsRelease)
-            {
-                //Debug.Log("二重リリース回避");
-                return;
-            }
+            //if (IsRelease)
+            //{
+            //    //Debug.Log("二重リリース回避");
+            //    return;
+            //}
 
-            IsRelease = true;
+            //IsRelease = true;
             pool.ReleaseGameObject(gameObject);
             return;
 
@@ -31,6 +32,39 @@ public class ReleaseDestroyer : MonoBehaviour
             return;
         }
     }
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] int damageVal = 1;
+
+    [SerializeField] bool hitDead = true;
+
+    [Tag]
+    [SerializeField] string[] tagNames;
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //AI
+        foreach (var tagName in tagNames)
+        {
+            if (!other.CompareTag(tagName))
+                continue;
+
+            var iDamage = other.GetComponent<IDamage>();
+
+            if (iDamage == null)
+                break;
+
+            iDamage.Damage(damageVal);
+
+            if (hitDead)
+                gameObject.SetActive(false);
+
+            break;
+        }
+
+    }
+
 
     //private void OnTriggerEnter2D(Collider2D other)
     //{

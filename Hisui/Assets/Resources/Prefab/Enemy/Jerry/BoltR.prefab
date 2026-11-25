@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JerryFall
   isAreaOut: 0
-  dmgPt: {fileID: 0}
+  dmgPt: {fileID: 4088070497662250838, guid: 9abc7653719edce42bf0d665ae289b92, type: 3}
 --- !u!114 &5474776587054562973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ffe04de75b0e841b12468a2ff4da99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: a422cbabaa5bd63458560f4fa13a18a1, type: 3}
+  clip: {fileID: 8300000, guid: 10d398f4a9ef1dd4a80cd60bb7635ffb, type: 3}
 --- !u!114 &1692914302542842586
 MonoBehaviour:
   m_ObjectHideFlags: 0

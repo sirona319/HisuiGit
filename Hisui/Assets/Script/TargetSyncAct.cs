@@ -1,5 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 //同期　オブジェクトの有効　無効
@@ -9,13 +8,6 @@ public class TargetSyncActChild : MonoBehaviour
 
     [SerializeField] GameObject go;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -23,7 +15,10 @@ public class TargetSyncActChild : MonoBehaviour
 
         if (go.activeInHierarchy)
         {
-            foreach (Transform child in transform.GetComponentsInChildren<Transform>())
+
+            //GetComponentsInChildren<Transform>(true)
+            //この true は、非アクティブ（Inactive）になっている子オブジェクトも検索対象に含めるか
+            foreach (Transform child in transform.GetComponentsInChildren<Transform>(true))
             {
                 if (child == transform) continue;
 
@@ -32,7 +27,7 @@ public class TargetSyncActChild : MonoBehaviour
         }
         else
         {
-            foreach (Transform child in transform.GetComponentsInChildren<Transform>())
+            foreach (Transform child in transform.GetComponentsInChildren<Transform>(true))
             {
                 if (child == transform) continue;
 

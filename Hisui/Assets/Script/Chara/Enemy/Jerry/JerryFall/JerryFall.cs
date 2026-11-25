@@ -23,8 +23,10 @@ public class JerryFall : EnemyBase, IDamage
     {
         if (IsDead) return;
 
-        //ダメージパーティクル表示
-        Instantiate(dmgPt, transform.position, Quaternion.identity);
+        if (dmgPt)
+            Instantiate(dmgPt, transform.position, Quaternion.identity);
+        else
+            Debug.Log("dmgPt設定されていない");
 
         Hp -= damage;        //HP減少処理
 

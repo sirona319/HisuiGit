@@ -6,7 +6,7 @@ public class PlayerMagazine : BaseMagazine
 {
     float intervalTime = 0f;
     [SerializeField]float intervalTimeMax = 1f;
-    [SerializeField] GameObject pNormal;
+    //[SerializeField] GameObject pNormal;
     [SerializeField] AudioClip clip;
 
     void Start()
@@ -50,6 +50,35 @@ public class PlayerMagazine : BaseMagazine
         Vector2 direction = (transform.position + Vector3.right) - transform.position;
         float pAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;//ターゲットへの角度を取得する
 
-        BulletAtk(pAngle, transform.position, transform.rotation, pNormal); //Target渡す
+        BulletAtk(pAngle, transform.position, transform.rotation, poolCtr.Prefab); //Target渡す
+    }
+
+
+    [SerializeField] PoolControl poolCtr;
+
+    protected override GameObject BulletAtk(float angle, Vector3 pos, Quaternion rot, GameObject charaBullet = null)
+    {
+
+        if (charaBullet == null) return null;
+
+        charaBullet.transform.position = pos;
+        charaBullet.transform.rotation = rot;
+        //var bullet = Instantiate(charaBullet);
+
+        var bullet = poolCtr.GetGameObject(charaBullet,pos,rot);//Instantiate(charaBullet);
+
+
+        // 自分のプールを登録する
+        var release = bullet.GetComponent<ReleaseDestroyer>();
+        release.pool = poolCtr;
+        // if (bullet.GetComponent<NormalBullet>() != null)
+        // {
+        var normalBullet = bullet.GetComponent<NormalBullet>();
+        normalBullet.SetSpeed(bulletSpeed);
+        normalBullet.angle = angle;
+        normalBullet.BulletInit();
+        // }
+
+        return bullet;
     }
 }

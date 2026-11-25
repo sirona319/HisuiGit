@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-//using static EnemyData;
 
 public abstract class BaseMagazine : MonoBehaviour
 {
-    //全てがクラス名ではない　AddComponent際にパラメータ変更して扱う
+
     public enum MagazineType
     {
         TargetMagazine,
@@ -82,30 +81,36 @@ public abstract class BaseMagazine : MonoBehaviour
 
     [SerializeField] protected float bulletSpeed = 5f;
 
-    [SerializeField] PoolControl poolCtr;
-    protected GameObject BulletAtk(float angle, Vector3 pos, Quaternion rot, GameObject charaBullet = null)
+    ////[SerializeField] PoolControl poolCtr;
+    //PoolType poolType = PoolType.Enemy;
+    //public enum PoolType
+    //{
+    //    Player,
+    //    Enemy,
+    //}
+
+    protected virtual GameObject BulletAtk(float angle, Vector3 pos, Quaternion rot, GameObject charaBullet = null)
     {
 
-        if (charaBullet == null)
-        {
-            Debug.Log("charaBullet NULL");
-            return null;
-
-
-        }
+        if (charaBullet == null) return null;
 
         charaBullet.transform.position = pos;
         charaBullet.transform.rotation = rot;
         var bullet = Instantiate(charaBullet);
 
+        // var bullet = poolCtr.GetGameObject(charaBullet,pos,rot);//Instantiate(charaBullet);
 
-        if (bullet.GetComponent<NormalBullet>() != null)
-        {
-            var normalBullet = bullet.GetComponent<NormalBullet>();
+
+        // 自分のプールを登録する
+        //var release = bullet.GetComponent<ReleaseDestroyer>();
+        //release.pool = poolCtr;
+        // if (bullet.GetComponent<NormalBullet>() != null)
+        // {
+        var normalBullet = bullet.GetComponent<NormalBullet>();
             normalBullet.SetSpeed(bulletSpeed);
             normalBullet.angle = angle;
             normalBullet.BulletInit();
-        }
+       // }
 
         return bullet;
     }

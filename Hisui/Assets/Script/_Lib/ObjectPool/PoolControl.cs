@@ -8,7 +8,7 @@ public class PoolControl : MonoBehaviour
 {
     private ObjectPool<GameObject> pool;
 
-    public GameObject Prefab { get; private set; }
+    public GameObject Prefab;
 
     private void Awake()
     {
@@ -32,7 +32,11 @@ public class PoolControl : MonoBehaviour
 
     void OnDestroyPooledObject(GameObject obj)
     {
-        Destroy(obj);
+        //AI
+        if (Application.isPlaying)
+            Destroy(obj);
+        else
+            DestroyImmediate(obj);
     }
 
     public GameObject GetGameObject(GameObject prefab,Vector3 position,Quaternion rotation)
@@ -48,7 +52,6 @@ public class PoolControl : MonoBehaviour
 
     public void ReleaseGameObject(GameObject obj)
     {
-        
         pool.Release(obj);
     }
 }

@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ffe04de75b0e841b12468a2ff4da99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 10d398f4a9ef1dd4a80cd60bb7635ffb, type: 3}
 --- !u!114 &6421752456805427067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHP
   maxHP: 10
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 3f8226240ec8c484b85332dc3b8d60ff, type: 3}
   lifeImage:
   - {fileID: 0}
   - {fileID: 0}
@@ -624,7 +624,6 @@ MonoBehaviour:
   poolCtr: {fileID: 0}
   intervalTimeMax: 1
   bullet: {fileID: 8764880274935360633, guid: bf34238dfbc35fd4abb92d9b5fa0a5e3, type: 3}
-  target: {fileID: 0}
   seGo: {fileID: 0}
 --- !u!1 &1622639471585205475
 GameObject:
@@ -674,7 +673,6 @@ MonoBehaviour:
   poolCtr: {fileID: 0}
   intervalTimeMax: 1
   bullet: {fileID: 8764880274935360633, guid: bf34238dfbc35fd4abb92d9b5fa0a5e3, type: 3}
-  target: {fileID: 0}
   seGo: {fileID: 0}
 --- !u!1 &6544570461165495860
 GameObject:
@@ -769,5 +767,4 @@ MonoBehaviour:
   poolCtr: {fileID: 0}
   intervalTimeMax: 1
   bullet: {fileID: 8764880274935360633, guid: bf34238dfbc35fd4abb92d9b5fa0a5e3, type: 3}
-  target: {fileID: 0}
   seGo: {fileID: 0}

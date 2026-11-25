@@ -1,6 +1,4 @@
 ﻿using NaughtyAttributes;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using UnityEngine;
 
 public class DamageChara : MonoBehaviour
@@ -9,9 +7,9 @@ public class DamageChara : MonoBehaviour
 
     [SerializeField] bool hitDead = true;
 
-
     [Tag]
     [SerializeField] string[] tagNames;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         //AI
