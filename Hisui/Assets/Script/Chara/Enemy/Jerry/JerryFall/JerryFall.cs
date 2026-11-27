@@ -3,15 +3,7 @@
 public class JerryFall : EnemyBase, IDamage
 {
     [SerializeField] ParticleSystem dmgPt;
-    SoundCreateDead sd;
-
     int Hp = 1;
-
-    void Awake()
-    {
-        sd = GetComponent<SoundCreateDead>();
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -41,8 +33,6 @@ public class JerryFall : EnemyBase, IDamage
     void AreaOut()
     {
         if (!isAreaOut) return;
-
-        sd.enabled = false;
         Dead();
     }
 

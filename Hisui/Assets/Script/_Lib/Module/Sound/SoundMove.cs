@@ -37,7 +37,7 @@ public class SoundMove : MonoBehaviour
 
         isPlaying = false;
 
-        Debug.Log("SoundFadeStopEnd");
+       // Debug.Log("SoundFadeStopEnd");
     }
 
     //public void SoundFadeStop()

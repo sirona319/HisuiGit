@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
-
-
 //プールマネージャーは敵と味方攻撃判定　ごとに分けて所持する　Player Enemyで二つ　基本
 public class PoolControl : MonoBehaviour
 {
     private ObjectPool<GameObject> pool;
 
-    public GameObject Prefab;
+    GameObject Prefab;
 
     private void Awake()
     {

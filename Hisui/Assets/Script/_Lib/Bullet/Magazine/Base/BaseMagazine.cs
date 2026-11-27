@@ -3,26 +3,26 @@
 public abstract class BaseMagazine : MonoBehaviour
 {
 
-    public enum MagazineType
-    {
-        TargetMagazine,
-        FiveMagazine,
-        CircleOneMagazine,
+    //public enum MagazineType
+    //{
+    //    TargetMagazine,
+    //    FiveMagazine,
+    //    CircleOneMagazine,
 
-        CircleMagazineR,
-        CircleMagazineL,
+    //    CircleMagazineR,
+    //    CircleMagazineL,
 
-        TwoCarveMagazine,
+    //    TwoCarveMagazine,
 
-        //NearMagazine,
+    //    //NearMagazine,
 
-        //NumAttackType,
-    }
+    //    //NumAttackType,
+    //}
 
-    public enum MagazineClassName
-    {
-        CircleMagazine,
-    }
+    //public enum MagazineClassName
+    //{
+    //    CircleMagazine,
+    //}
 
     //public float shotTime = 0;
 

@@ -1,9 +1,20 @@
-﻿using UnityEngine;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
 public class BaseJerryMag : BaseMagazine
 {
 
-    [SerializeField] PoolControl poolCtr;
+    [SerializeField] protected PoolControl poolCtr;
+
+    // [Tag]
+    // [SerializeField] private string poolTag;
+
+    private void Start()
+    {
+        //poolCtr = GameObject.Find("JerryPool").GetComponent<PoolControl>();
+        //enabled = false;
+        Debug.Log("GetPOOL");
+    }
 
     protected override GameObject BulletAtk(float angle, Vector3 pos, Quaternion rot, GameObject charaBullet = null)
     {

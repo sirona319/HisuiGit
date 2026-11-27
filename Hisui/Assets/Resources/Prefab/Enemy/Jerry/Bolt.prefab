@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 3248249834795155307}
   - component: {fileID: 3208358321923960579}
   - component: {fileID: 2863141801741146935}
-  - component: {fileID: 992059453978553437}
   - component: {fileID: 5644416967341737549}
   - component: {fileID: 2881280420000828064}
   - component: {fileID: 228362870810549721}
@@ -429,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JerryFall
   isAreaOut: 0
+  dead: {fileID: 8300000, guid: 10d398f4a9ef1dd4a80cd60bb7635ffb, type: 3}
   dmgPt: {fileID: 4088070497662250838, guid: 9abc7653719edce42bf0d665ae289b92, type: 3}
 --- !u!114 &3208358321923960579
 MonoBehaviour:
@@ -465,19 +465,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatMoveJerry
   floatSpeed: 0.005
---- !u!114 &992059453978553437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2537906381485809760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ffe04de75b0e841b12468a2ff4da99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 10d398f4a9ef1dd4a80cd60bb7635ffb, type: 3}
 --- !u!114 &5644416967341737549
 MonoBehaviour:
   m_ObjectHideFlags: 0

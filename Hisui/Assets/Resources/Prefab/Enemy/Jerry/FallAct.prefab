@@ -17,12 +17,11 @@ GameObject:
   - component: {fileID: 2546997611571139700}
   - component: {fileID: 4657142406295093486}
   - component: {fileID: 7934136547165375076}
-  - component: {fileID: 6207196298002315775}
   - component: {fileID: 7646302267767511019}
   - component: {fileID: 7420679790060900882}
   - component: {fileID: 6693686651847012467}
   m_Layer: 15
-  m_Name: FallAct 1
+  m_Name: FallAct
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JerryFall
   isAreaOut: 0
+  dead: {fileID: 8300000, guid: 10d398f4a9ef1dd4a80cd60bb7635ffb, type: 3}
   dmgPt: {fileID: 4088070497662250838, guid: 9abc7653719edce42bf0d665ae289b92, type: 3}
 --- !u!114 &7934136547165375076
 MonoBehaviour:
@@ -449,19 +449,6 @@ MonoBehaviour:
   changeMove: {fileID: 0}
   changeMags: []
   changeComps: []
---- !u!114 &6207196298002315775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3055958887146269912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ffe04de75b0e841b12468a2ff4da99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 10d398f4a9ef1dd4a80cd60bb7635ffb, type: 3}
 --- !u!114 &7646302267767511019
 MonoBehaviour:
   m_ObjectHideFlags: 0

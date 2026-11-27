@@ -36,23 +36,17 @@ public class SoundManager : Singleton<SoundManager>
             sourceLists.Add(source);
         }
 
-
+        //オーディオミキサーはResourcesフォルダに作成する
         audioMixer = Resources.Load<AudioMixer>("AudioMixer");
 
         if (!audioMixer)
             audioMixer = Resources.Load<AudioMixer>("NewAudioMixer");
-        //オーディオミキサーはResourcesフォルダに作成する
-        //Debug.Log(audioMixer);
 
         if (!audioMixer)
             Debug.Log("オーディオミキサーが存在しない");
     }
     void Start()
     {
-
-
-
-
         //var m = PlayerPrefs.GetFloat("master", 0);
         ////masterSl.value = m;
 
@@ -70,8 +64,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         const float OUTTIME = 0.3f;
         const float INTIME = 2f;
-        //const float VOLUME = 0.03f;
-        //Debug.Log(sourceLists[0].name);
+
         foreach (AudioSource sl in sourceLists)
         {
             sl.DOKill();
@@ -79,18 +72,17 @@ public class SoundManager : Singleton<SoundManager>
             {
                 sl.Play();
                 sl.DOFade(bgmVol, INTIME);
-                Debug.Log("testplayBGM");
+               // Debug.Log("testplayBGM");
             }
             else
             {
                 if (sl.isPlaying)
                     sl.DOFade(0f, OUTTIME).OnComplete(() => sl.Stop());
-                //sl.mute = true;
-                //Debug.Log("test");
+
             }
-            //Debug.Log("sss");
+
         }
-       // Debug.Log(clip.name);
+
     }
 
     public void SetMaster(float value)
@@ -98,7 +90,6 @@ public class SoundManager : Singleton<SoundManager>
 
         audioMixer.SetFloat("MasterVol", value);
         PlayerPrefs.SetFloat("master", value);
-      //  PlayerPrefs.Save();
     }
 
     public void SetBgm(float value)
@@ -106,7 +97,6 @@ public class SoundManager : Singleton<SoundManager>
 
         audioMixer.SetFloat("BgmVol", value);
         PlayerPrefs.SetFloat("bgm", value);
-        //PlayerPrefs.Save();
     }
 
     public void SetSe(float value)
@@ -114,17 +104,11 @@ public class SoundManager : Singleton<SoundManager>
 
         audioMixer.SetFloat("SeVol", value);
         PlayerPrefs.SetFloat("se", value);
-        //PlayerPrefs.Save();
     }
 
     //public void BgmChange(BGMType type)
     //{
     //    //ボリュームを下げていって　切り替える
-
-
-
-
-
     //    //const float OUTTIME = 0.3f;
     //    //const float INTIME = 2f;
     //    //const float VOLUME = 0.1f;

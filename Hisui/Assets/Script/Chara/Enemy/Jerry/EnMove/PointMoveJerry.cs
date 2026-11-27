@@ -94,8 +94,6 @@ public class PointMoveJerry : BaseMove
 
         GetComponent<TrailRenderer>().material.DOFade(endValue: 0, duration: 1f);
         this.enabled = false;
-
-
         
     }
 

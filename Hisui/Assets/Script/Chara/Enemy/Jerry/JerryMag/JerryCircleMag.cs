@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Audio;
 
-public class EnCircleOneMagazine : BaseJerryMag
+public class JerryCircleMag : BaseJerryMag
 {
     [SerializeField] AudioClip clip;
     AudioSource audioSource;
@@ -20,6 +19,12 @@ public class EnCircleOneMagazine : BaseJerryMag
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        if (target == null)
+            target = GameObject.FindWithTag("Player").transform;
     }
 
     void Update()

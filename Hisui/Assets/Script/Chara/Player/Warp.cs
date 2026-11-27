@@ -7,14 +7,10 @@ using UnityEngine.UIElements;
 public class Warp : MonoBehaviour
 {
     #region ワープ
-    ParticleSystem wpParticle;//ワープパーティクル
+    [SerializeField] ParticleSystem wpParticle;//ワープパーティクル
     ParticleSystem wpObj;
 
     [SerializeField] float pFadeSpeed = 0.06f;
-    //float pFadeSpeedAdd = 0f;
-    //float pFadeSpeedSubtract = 0;
-
-    //[SerializeField] float wpPtFadeSpeed= 0;
 
     bool isWarpMove = false;
 
@@ -43,10 +39,6 @@ public class Warp : MonoBehaviour
     {
         circleCol2D = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
-    }
-    void Start()
-    {
-        wpParticle = Resources.Load("prefab/Particle/Wp").GetComponent<ParticleSystem>();
     }
 
     private void Update()

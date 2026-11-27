@@ -11,7 +11,7 @@ public class CharaBase : MonoBehaviour
         if (IsDead) return;
         OnDead?.Invoke();
         IsDead = true;
-        Debug.Log("deaddddd");
+        //Debug.Log("deaddddd");
     }
 
     public event Action OnDead;

@@ -3,12 +3,6 @@
 public class JerryBoss : EnemyBase
 {
 
-    SoundCreateDead sd;
-    void Awake()
-    {
-        sd = GetComponent<SoundCreateDead>();
-    }
-
     void Update()
     {
         AreaOut();
@@ -17,7 +11,6 @@ public class JerryBoss : EnemyBase
     void AreaOut()
     {
         if (!isAreaOut) return;
-        sd.enabled = false;
         Dead();
 
     }

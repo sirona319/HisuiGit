@@ -5,14 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
-  - FxTemporaire
   - ExitErea
-  - EnemyMgr
   - Fade
-  - SoundMgr
   - Message
   - GameMgr
   - SoundM
+  - JerryPool
   layers:
   - Default
   - TransparentFX

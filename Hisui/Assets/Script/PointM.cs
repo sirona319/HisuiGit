@@ -8,7 +8,7 @@ public class PointM : BaseMove
     [SerializeField] float speed = 4f;
     //const float rotSpeed = 5f;
 
-    [SerializeField] bool isLoop = false;
+    //[SerializeField] bool isLoop = false;
 
     protected int targetNo = 0;
 

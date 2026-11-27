@@ -1,28 +1,28 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿//using System.Collections;
+//using UnityEngine;
 
-public class SoundCreateDead : MonoBehaviour
-{
-    bool IsSoundEnable = false;
+//public class SoundCreateDead : MonoBehaviour
+//{
+//    bool IsSoundEnable = false;
 
-    [SerializeField] AudioClip clip;
+//    [SerializeField] AudioClip clip;
 
 
-    public void Update()
-    {
-        if (IsSoundEnable) return;
-        if (!GetComponent<CharaBase>().IsDead) return;
-        IsSoundEnable = true;
+//    public void Update()
+//    {
+//        if (IsSoundEnable) return;
+//        if (!GetComponent<CharaBase>().IsDead) return;
+//        IsSoundEnable = true;
 
-        MyLib.MyPlayOneSound(clip, GetComponent<AudioSource>(), 0.1f);
+//        MyLib.MyPlayOneSound(clip, GetComponent<AudioSource>(), 0.1f);
 
-    }
+//    }
 
-    //再生が終了したら破棄する
-    IEnumerator DestroyFlagFalse()
-    {
-        yield return new WaitUntil(() => GetComponent<AudioSource>().isPlaying == false);
+//    //再生が終了したら破棄する
+//    IEnumerator DestroyFlagFalse()
+//    {
+//        yield return new WaitUntil(() => GetComponent<AudioSource>().isPlaying == false);
 
-        Destroy(gameObject);
-    }
-}
+//        Destroy(gameObject);
+//    }
+//}

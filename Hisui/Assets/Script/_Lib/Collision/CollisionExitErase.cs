@@ -13,7 +13,7 @@ public class CollisionExitErase : MonoBehaviour
         if (ene != null)
         {
             ene.isAreaOut = true;
-            Debug.Log("EnemyBase.isAreaOut = true;");
+            //Debug.Log("EnemyBase.isAreaOut = true;");
             return;
         }
 
@@ -25,7 +25,7 @@ public class CollisionExitErase : MonoBehaviour
             if(other.gameObject.layer== poolLayer)
             {
                 other.GetComponent<ReleaseDestroyer>().PoolDestroy();
-                Debug.Log("pool");
+                //Debug.Log("pool");
                 return;
             }    
 

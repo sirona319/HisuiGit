@@ -14,7 +14,7 @@ public class NarrationAsset : PlayableAsset
     public float textSpd = 1f;
     public bool textEndIcon;
 
-    public NarrationBehaviour narration = new NarrationBehaviour();
+    public NarrationBehaviour narration = new();
 
     //public TMP_Text mText;
     public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
